@@ -607,8 +607,8 @@ export default function TheFactsPage() {
             className="text-center mb-10"
           >
             <h2 className="text-3xl md:text-4xl font-black text-white mb-3">
-              Rules for <span className="text-danger-500">Them</span>.
-              Not for <span className="text-sky-400">You</span>.
+              Rules for <span className="text-danger-500">Thee</span>,{" "}
+              Not for <span className="text-sky-400">Me</span>.
             </h2>
             <p className="text-dark-400 max-w-2xl mx-auto">
               The regulatory framework isn&apos;t just broken. It&apos;s
