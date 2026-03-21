@@ -64,7 +64,7 @@ const problems = [
     title: "Aviation Safety Hazard",
     stat: "184 Feet",
     description:
-      "An unlit, 184-foot pole going up near a residential area with no FAA lighting, no community consultation, and no environmental review. Communities like Shelburne, MA require 1,500-foot setbacks from homes. Liverpool is getting zero.",
+      "An unlit, 184-foot structure going up 3 miles from Syracuse Hancock International Airport and 0.3 miles from the actual flight path where planes descend at 1,000 feet. The FAA signed off with zero lighting requirements. The NTSB has documented fatal collisions with unlit towers near airports.",
     source: "https://ehtrust.org/what-communities-have-strong-setbacks-for-cell-antennas-near-homes-and-schools/",
     sourceLabel: "EHT: Community Setbacks",
     color: "text-sky-500",
