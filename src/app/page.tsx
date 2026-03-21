@@ -90,9 +90,9 @@ export default function HomePage() {
             transition={{ duration: 0.4 }}
             className="flex items-center justify-center mb-8"
           >
-            <span className="inline-flex items-center gap-2 px-4 py-2 bg-danger-900/50 border border-danger-700/40 rounded-full text-danger-300 text-xs font-bold uppercase tracking-wider">
+            <span className="inline-flex items-center gap-2 px-4 py-2 bg-danger-900/50 border border-danger-700/40 rounded-full text-danger-300 text-xs font-bold uppercase tracking-wider animate-pulse">
               <AlertTriangle className="w-3.5 h-3.5" />
-              Community Alert — Liverpool, NY
+              Active Threat — Liverpool, NY
             </span>
           </motion.div>
 
@@ -118,9 +118,10 @@ export default function HomePage() {
             transition={{ duration: 0.6, delay: 0.3 }}
             className="mt-6 text-lg md:text-xl text-dark-400 text-center max-w-2xl mx-auto leading-relaxed"
           >
-            A 184-foot commercial cell tower is being erected on New York State
-            Thruway Authority land in Liverpool—bypassing all local zoning,
-            environmental reviews, and neighbor notifications.
+            Right now, a 184-foot commercial cell tower is going up on New York
+            State Thruway Authority land in Liverpool. No local approval. No
+            environmental review. No one told you. By the time you find out,
+            it&apos;ll be too late.
           </motion.p>
 
           {/* Scroll indicator */}
