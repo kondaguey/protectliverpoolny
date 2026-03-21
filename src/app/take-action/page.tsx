@@ -137,7 +137,6 @@ export default function TakeActionPage() {
 
   const fetchCount = useCallback(async () => {
     try {
-      if (!supabase) return;
       const { count, error } = await supabase
         .from("plny_signatures")
         .select("*", { count: "exact", head: true });
@@ -179,7 +178,6 @@ export default function TakeActionPage() {
     setSubmitError("");
 
     try {
-      if (!supabase) throw new Error("Database not available");
       const { error } = await supabase.from("plny_signatures").insert({
         first_name: form.first_name.trim(),
         last_name: form.last_name.trim(),
