@@ -28,12 +28,18 @@ export function Footer() {
           </div>
 
           {/* Links */}
-          <div className="flex items-center gap-6 text-sm text-dark-400">
+          <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm text-dark-400">
             <a href="/" className="hover:text-white transition-colors">
               Home
             </a>
-            <a href="/the-facts" className="hover:text-white transition-colors">
-              The Facts
+            <a href="/the-facts/aviation" className="hover:text-white transition-colors">
+              Aviation & Safety
+            </a>
+            <a href="/the-facts/health" className="hover:text-white transition-colors">
+              Health & Science
+            </a>
+            <a href="/the-facts/community" className="hover:text-white transition-colors">
+              Community & Legal
             </a>
             <a href="/take-action" className="hover:text-white transition-colors">
               Take Action
