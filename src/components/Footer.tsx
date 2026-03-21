@@ -1,4 +1,5 @@
 import { ShieldAlert, Mail } from "lucide-react";
+import { CopyButton } from "./CopyButton";
 
 export function Footer() {
   return (
@@ -15,13 +16,16 @@ export function Footer() {
           </div>
 
           {/* Email */}
-          <a
-            href="mailto:takeaction@protectliverpoolny.org"
-            className="inline-flex items-center gap-2 px-4 py-2 bg-danger-900/30 border border-danger-800/30 rounded-lg text-sm font-bold text-danger-300 hover:bg-danger-900/50 transition-all"
-          >
-            <Mail className="w-4 h-4" />
-            takeaction@protectliverpoolny.org
-          </a>
+          <div className="flex items-center gap-2">
+            <a
+              href="mailto:takeaction@protectliverpoolny.org"
+              className="inline-flex items-center gap-2 px-4 py-2 bg-danger-900/30 border border-danger-800/30 rounded-lg text-sm font-bold text-danger-300 hover:bg-danger-900/50 transition-all"
+            >
+              <Mail className="w-4 h-4" />
+              takeaction@protectliverpoolny.org
+            </a>
+            <CopyButton text="takeaction@protectliverpoolny.org" />
+          </div>
 
           {/* Links */}
           <div className="flex items-center gap-6 text-sm text-dark-400">
@@ -46,6 +50,17 @@ export function Footer() {
             All information presented is sourced from public records and
             community testimony.
           </p>
+          <div className="flex justify-center gap-4 mt-4">
+            <a href="/privacy" className="text-xs text-dark-500 hover:text-dark-300 transition-colors">
+              Privacy Policy
+            </a>
+            <a href="/terms" className="text-xs text-dark-500 hover:text-dark-300 transition-colors">
+              Terms
+            </a>
+            <a href="/disclaimer" className="text-xs text-dark-500 hover:text-dark-300 transition-colors">
+              Disclaimer
+            </a>
+          </div>
           <p className="text-xs text-dark-600 text-center mt-3">
             © {new Date().getFullYear()} Protect Liverpool NY. All rights
             reserved.

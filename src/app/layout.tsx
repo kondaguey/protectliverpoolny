@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
+import { CookieBanner } from "@/components/CookieBanner";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -27,7 +28,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Protect Liverpool NY — Stop the 184-Foot Cell Tower",
     description:
-      "They're building an 18-story tower in our backyards. And they're not telling anyone. Sign the petition now.",
+      "They're building an 18-story tower in our backyards. And they're not telling us. Sign the petition now.",
     type: "website",
     url: "https://protectliverpoolny.org",
   },
@@ -50,6 +51,7 @@ export default function RootLayout({
         <Header />
         <main className="flex-1">{children}</main>
         <Footer />
+        <CookieBanner />
       </body>
     </html>
   );

@@ -20,8 +20,11 @@ import {
   ChevronRight,
   Building2,
   FileSearch,
+  Scale,
+  ShieldAlert,
 } from "lucide-react";
 import { supabase } from "@/lib/supabase";
+import { CopyButton } from "@/components/CopyButton";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 30 },
@@ -72,18 +75,18 @@ const localOfficials = [
   },
   {
     role: "Ward 3 Councilor",
-    name: "Page Steinhardt",
+    name: "Daniel Ciciarelli",
     phone: "(315) 457-6661",
-    email: "psteinhardt@salina.ny.us",
+    email: "3rdWard@salina.ny.us",
     note: "Town Board member",
     priority: false,
   },
   {
     role: "Ward 4 Councilor",
-    name: "Eliza Hewitt Driscoll",
+    name: "David Carnie",
     phone: "(315) 457-6661",
-    email: "edriscoll@salina.ny.us",
-    note: "Town Board member",
+    email: "4thWard@salina.ny.us",
+    note: "Town Board member — also Onondaga County District 5 Legislator",
     priority: false,
   },
 ];
@@ -134,6 +137,8 @@ export default function TakeActionPage() {
   const [submitError, setSubmitError] = useState("");
   const [signatureCount, setSignatureCount] = useState<number | null>(null);
   const [copied, setCopied] = useState(false);
+  const [optInContact, setOptInContact] = useState(false);
+  const [canHelp, setCanHelp] = useState(false);
 
   const fetchCount = useCallback(async () => {
     try {
@@ -184,6 +189,8 @@ export default function TakeActionPage() {
         email: form.email.trim().toLowerCase(),
         zip_code: form.zip_code.trim(),
         comment: form.comment.trim() || null,
+        opt_in_contact: optInContact,
+        can_help: canHelp,
       });
 
       if (error) throw error;
@@ -447,6 +454,32 @@ export default function TakeActionPage() {
                     />
                   </div>
 
+                  {/* Opt-in checkboxes */}
+                  <div className="space-y-3">
+                    <label className="flex items-start gap-3 cursor-pointer group">
+                      <input
+                        type="checkbox"
+                        checked={optInContact}
+                        onChange={(e) => setOptInContact(e.target.checked)}
+                        className="mt-1 w-4 h-4 rounded border-dark-600 bg-dark-800 text-danger-500 focus:ring-danger-500/50 flex-shrink-0"
+                      />
+                      <span className="text-sm text-dark-300 group-hover:text-dark-200 transition-colors">
+                        Yes, you may contact me with updates about this campaign and ways to get involved.
+                      </span>
+                    </label>
+                    <label className="flex items-start gap-3 cursor-pointer group">
+                      <input
+                        type="checkbox"
+                        checked={canHelp}
+                        onChange={(e) => setCanHelp(e.target.checked)}
+                        className="mt-1 w-4 h-4 rounded border-dark-600 bg-dark-800 text-danger-500 focus:ring-danger-500/50 flex-shrink-0"
+                      />
+                      <span className="text-sm text-dark-300 group-hover:text-dark-200 transition-colors">
+                        I have expertise that can help this cause (legal, aviation, environmental, media, etc.)
+                      </span>
+                    </label>
+                  </div>
+
                   {submitError && (
                     <div className="bg-danger-950/50 border border-danger-800/50 rounded-xl p-3 flex items-center gap-2">
                       <AlertTriangle className="w-4 h-4 text-danger-400 flex-shrink-0" />
@@ -476,6 +509,16 @@ export default function TakeActionPage() {
                     Your information will only be used for this petition. We will
                     never sell or share your data.
                   </p>
+
+                  <div className="text-center pt-2 border-t border-dark-800/50">
+                    <p className="text-xs text-dark-500 mb-1">Have questions or want to get involved directly?</p>
+                    <a
+                      href="mailto:protectliverpoolny@gmail.com"
+                      className="text-sm font-semibold text-danger-400 hover:text-danger-300 transition-colors"
+                    >
+                      protectliverpoolny@gmail.com
+                    </a>
+                  </div>
                 </form>
               </div>
             )}
@@ -567,6 +610,91 @@ export default function TakeActionPage() {
                 uphill fast.
               </p>
             </div>
+            {/* Find My Ward */}
+            <div className="bg-dark-900/60 border border-dark-800/50 rounded-2xl p-5 md:p-6 mb-6">
+              <div className="flex items-center gap-2 mb-4">
+                <MapPin className="w-5 h-5 text-amber-400" />
+                <h3 className="text-base font-bold text-white">
+                  Find My Ward
+                </h3>
+              </div>
+              <p className="text-sm text-dark-300 mb-4">
+                Not sure which ward you&apos;re in? Here&apos;s a quick guide
+                so you know exactly who represents you on the Town Board.
+              </p>
+              <div className="grid sm:grid-cols-2 gap-3 mb-4">
+                {[
+                  {
+                    ward: "Ward 1",
+                    rep: "Hayley Downs",
+                    areas: "Village of Liverpool area, west of the railroad tracks, north to the Clay/Lysander town line",
+                    color: "border-sky-800/40",
+                    tag: "text-sky-400",
+                  },
+                  {
+                    ward: "Ward 2",
+                    rep: "Leesa Paul",
+                    areas: "Northeast Salina — east of the railroad tracks, north of Old Liverpool Rd, along the Clay town line to Hyland Dr",
+                    color: "border-emerald-800/40",
+                    tag: "text-emerald-400",
+                  },
+                  {
+                    ward: "Ward 3",
+                    rep: "Daniel Ciciarelli",
+                    areas: "South-central Salina — south of 7th North St, west of I-81, near Mattydale and LeMoyne areas",
+                    color: "border-purple-800/40",
+                    tag: "text-purple-400",
+                  },
+                  {
+                    ward: "Ward 4",
+                    rep: "David Carnie",
+                    areas: "Southeast Salina — Electronics Pkwy, Thruway corridor, Wolf St, Factory Ave to DeWitt town line",
+                    color: "border-danger-800/40",
+                    tag: "text-danger-400",
+                  },
+                ].map((w) => (
+                  <div
+                    key={w.ward}
+                    className={`bg-dark-800/50 border ${w.color} rounded-xl p-4`}
+                  >
+                    <p className={`text-xs font-bold uppercase tracking-widest mb-1 ${w.tag}`}>
+                      {w.ward}
+                    </p>
+                    <p className="text-sm font-semibold text-white mb-1">
+                      {w.rep}
+                    </p>
+                    <p className="text-xs text-dark-400 leading-relaxed">
+                      {w.areas}
+                    </p>
+                  </div>
+                ))}
+              </div>
+              <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3">
+                <a
+                  href="https://ongov.net/boe/documents/SalinaWards.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 px-4 py-2 bg-amber-900/30 border border-amber-800/30 rounded-lg text-xs font-semibold text-amber-300 hover:bg-amber-900/50 transition-all"
+                >
+                  <FileText className="w-3 h-3" />
+                  Official Ward Map (PDF)
+                  <ExternalLink className="w-3 h-3" />
+                </a>
+                <a
+                  href="https://ecode360.com/12046908"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 px-4 py-2 bg-dark-800 border border-dark-700 rounded-lg text-xs font-semibold text-dark-300 hover:text-white transition-all"
+                >
+                  <FileSearch className="w-3 h-3" />
+                  Full Ward Boundary Descriptions
+                  <ExternalLink className="w-3 h-3" />
+                </a>
+              </div>
+              <p className="text-xs text-danger-400/80 mt-3 italic">
+                <MapPin className="w-3 h-3 inline" /> The cell tower site (474 Electronics Pkwy) is in Ward 4.
+              </p>
+            </div>
 
             {/* Tier 1: Local Officials */}
             <h3 className="text-base font-bold text-white mb-3 flex items-center gap-2">
@@ -649,14 +777,14 @@ export default function TakeActionPage() {
                 <ExternalLink className="w-3.5 h-3.5 text-dark-500 group-hover:text-white" />
               </a>
               <a
-                href="https://www.townofonondaga.gov/calendar/443/"
+                href="https://www.salinany.gov/community/calendar.php"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center justify-between px-4 py-3 bg-dark-900/60 border border-dark-800/50 rounded-xl text-sm text-dark-200 hover:text-white hover:border-dark-600 transition-all group"
               >
                 <span className="flex items-center gap-2">
                   <Calendar className="w-4 h-4 text-danger-400" />
-                  Meeting Calendar
+                  Salina Calendar
                 </span>
                 <ExternalLink className="w-3.5 h-3.5 text-dark-500 group-hover:text-white" />
               </a>
@@ -736,19 +864,24 @@ export default function TakeActionPage() {
                 <div className="bg-dark-900/60 rounded-xl p-4">
                   <Calendar className="w-5 h-5 text-danger-400 mb-2" />
                   <p className="text-xs text-dark-400 uppercase font-bold tracking-wider mb-1">
-                    Date
+                    Town Board Meetings
                   </p>
-                  <a
-                    href="https://www.salinany.gov/government/agendas___minutes.php"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-danger-400 font-semibold text-sm hover:underline inline-flex items-center gap-1"
-                  >
-                    Check Schedule
-                    <ExternalLink className="w-3 h-3" />
-                  </a>
-                  <p className="text-xs text-dark-500 mt-1">
-                    Next scheduled meeting
+                  <p className="text-white font-semibold text-sm">2nd & 4th Mondays</p>
+                  <div className="mt-2 space-y-1">
+                    {[
+                      "Mon, Mar 22",
+                      "Mon, Apr 13",
+                      "Mon, Apr 27",
+                      "Mon, May 11",
+                      "Wed, May 27",
+                    ].map((d) => (
+                      <p key={d} className="text-xs text-dark-300">
+                        • {d}
+                      </p>
+                    ))}
+                  </div>
+                  <p className="text-[10px] text-dark-500 mt-2 italic">
+                    May 27 moved to Wed (Memorial Day)
                   </p>
                 </div>
                 <div className="bg-dark-900/60 rounded-xl p-4">
@@ -756,10 +889,16 @@ export default function TakeActionPage() {
                   <p className="text-xs text-dark-400 uppercase font-bold tracking-wider mb-1">
                     Time
                   </p>
-                  <p className="text-white font-semibold">7:00 PM</p>
+                  <p className="text-white font-semibold">6:30 PM</p>
                   <p className="text-xs text-dark-500 mt-1">
                     Arrive early for public comment
                   </p>
+                  <div className="mt-3 pt-3 border-t border-dark-800/50">
+                    <p className="text-[10px] text-dark-400 uppercase font-bold tracking-wider mb-1">
+                      Zoning Board
+                    </p>
+                    <p className="text-xs text-dark-300">1st & 3rd Mondays, 6:30 PM</p>
+                  </div>
                 </div>
                 <div className="bg-dark-900/60 rounded-xl p-4">
                   <MapPin className="w-5 h-5 text-danger-400 mb-2" />
@@ -895,73 +1034,104 @@ export default function TakeActionPage() {
 
             {/* FAA callout */}
             <div className="bg-danger-950/30 border border-danger-800/30 rounded-xl p-5 mb-6">
-              <div className="flex items-start gap-3">
+              <div className="flex items-start gap-3 mb-4">
                 <AlertTriangle className="w-5 h-5 text-danger-400 mt-0.5 flex-shrink-0" />
                 <div>
                   <p className="text-danger-200 font-bold mb-1">
                     Painting and Lighting Requirements: FAA Chapters NONE
                   </p>
                   <p className="text-sm text-danger-300/70 leading-relaxed">
-                    That&apos;s a direct quote from the federal filing. A 184-foot
-                    industrial structure going up 3 miles from Syracuse Hancock
-                    International Airport — with{" "}
-                    <strong className="text-danger-200">
-                      zero obstruction lighting
-                    </strong>
-                    . Because at 184 feet, they don&apos;t have to. By design.
+                    That&apos;s a direct quote from the federal filing. No
+                    obstruction lighting on a 184-foot structure 3 miles from
+                    Syracuse Hancock International — because at 184 feet, they
+                    don&apos;t have to.
                   </p>
+                </div>
+              </div>
+              <div className="bg-dark-900/50 border border-dark-800/40 rounded-lg p-4">
+                <p className="text-xs font-bold text-dark-500 uppercase tracking-widest mb-2">
+                  Even if they add lights — the problem doesn&apos;t go away
+                </p>
+                <p className="text-sm text-dark-300 leading-relaxed">
+                  Lights make it visible. They don&apos;t make it safe. A
+                  184-foot steel structure in a low-altitude corridor where
+                  aircraft descend below 1,000 feet is the problem — lights
+                  or not. The altitude, the proximity to SYR, and the total
+                  absence of community input are the real issues.
+                </p>
+              </div>
+              <div className="bg-dark-900/50 border border-dark-800/40 rounded-lg p-4 mt-3">
+                <p className="text-[10px] font-bold text-dark-500 uppercase tracking-widest mb-2">
+                  Tower Site Parcel Data
+                </p>
+                <div className="grid grid-cols-2 gap-x-6 gap-y-1 text-xs">
+                  <span className="text-dark-400">Address</span>
+                  <span className="text-white font-semibold">474 Electronics Pkwy</span>
+                  <span className="text-dark-400">Municipality</span>
+                  <span className="text-white font-semibold">Salina</span>
+                  <span className="text-dark-400">Tax Map #</span>
+                  <span className="text-white font-semibold">075.-01-11.1</span>
+                  <span className="text-dark-400">Acreage</span>
+                  <span className="text-white font-semibold">87.10 acres</span>
+                  <span className="text-dark-400">Owner Mailing</span>
+                  <span className="text-white font-semibold">PO Box 189, Albany, NY</span>
                 </div>
               </div>
             </div>
 
-            {/* The Two Documents */}
-            <div className="grid sm:grid-cols-2 gap-4 mb-6">
-              <a
-                href="/faa-filing-phoenix-tower-intl.pdf"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group bg-dark-900/60 border border-dark-800/50 hover:border-danger-800/50 rounded-xl p-5 transition-all"
-              >
-                <p className="text-[10px] text-dark-500 uppercase font-bold tracking-widest mb-2">
-                  Document 1 — Issued 02/14/2025
-                </p>
-                <p className="text-white font-bold group-hover:text-danger-400 transition-colors mb-2">
-                  FCC Antenna Structure Registration
-                </p>
-                <p className="text-xs text-dark-400 leading-relaxed mb-3">
-                  The original registration granting Phoenix Tower International
-                  permission to build. ASR #1329974. Height: 184 ft. FAA
-                  lighting: NONE.
-                </p>
-                <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-danger-400">
-                  <FileSearch className="w-3 h-3" />
-                  View PDF
-                  <ExternalLink className="w-3 h-3" />
-                </span>
-              </a>
-              <a
-                href="/construction-reminder.pdf"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group bg-dark-900/60 border border-dark-800/50 hover:border-amber-800/50 rounded-xl p-5 transition-all"
-              >
-                <p className="text-[10px] text-dark-500 uppercase font-bold tracking-widest mb-2">
-                  Document 2 — Dated 02/18/2026
-                </p>
-                <p className="text-white font-bold group-hover:text-amber-400 transition-colors mb-2">
-                  FCC Construction Reminder
-                </p>
-                <p className="text-xs text-dark-400 leading-relaxed mb-3">
-                  Over a year later, the FCC sent this: &ldquo;We have no record
-                  that construction or alteration has been completed or
-                  abandoned.&rdquo;
-                </p>
-                <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-amber-400">
-                  <FileSearch className="w-3 h-3" />
-                  View PDF
-                  <ExternalLink className="w-3 h-3" />
-                </span>
-              </a>
+            {/* The Two Documents — FRONT AND CENTER */}
+            <div className="mb-6">
+              <p className="text-center text-xs font-bold text-dark-500 uppercase tracking-widest mb-4">
+                Read the Documents Yourself
+              </p>
+              <div className="grid sm:grid-cols-2 gap-4">
+                <a
+                  href="/faa-filing-phoenix-tower-intl.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group bg-danger-950/20 border-2 border-danger-800/40 hover:border-danger-500/60 rounded-2xl p-6 md:p-8 transition-all hover:scale-[1.02]"
+                >
+                  <p className="text-[10px] text-danger-400 uppercase font-bold tracking-widest mb-3">
+                    Document 1 — Issued 02/14/2025
+                  </p>
+                  <p className="text-lg md:text-xl text-white font-black group-hover:text-danger-400 transition-colors mb-3">
+                    FCC Antenna Structure Registration
+                  </p>
+                  <p className="text-sm text-dark-300 leading-relaxed mb-4">
+                    The original registration granting Phoenix Tower International
+                    permission to build. ASR #1329974. Height: 184 ft. FAA
+                    lighting: <strong className="text-danger-400">NONE</strong>.
+                  </p>
+                  <span className="inline-flex items-center gap-2 px-4 py-2 bg-danger-600/20 border border-danger-700/40 rounded-lg text-sm font-bold text-danger-300 group-hover:bg-danger-600/30 transition-all">
+                    <FileSearch className="w-4 h-4" />
+                    View PDF
+                    <ExternalLink className="w-3.5 h-3.5" />
+                  </span>
+                </a>
+                <a
+                  href="/construction-reminder.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group bg-amber-950/20 border-2 border-amber-800/30 hover:border-amber-500/60 rounded-2xl p-6 md:p-8 transition-all hover:scale-[1.02]"
+                >
+                  <p className="text-[10px] text-amber-400 uppercase font-bold tracking-widest mb-3">
+                    Document 2 — Dated 02/18/2026
+                  </p>
+                  <p className="text-lg md:text-xl text-white font-black group-hover:text-amber-400 transition-colors mb-3">
+                    FCC Construction Reminder
+                  </p>
+                  <p className="text-sm text-dark-300 leading-relaxed mb-4">
+                    Over a year later, the FCC sent this: &ldquo;We have no record
+                    that construction or alteration has been completed or
+                    abandoned.&rdquo;
+                  </p>
+                  <span className="inline-flex items-center gap-2 px-4 py-2 bg-amber-600/20 border border-amber-700/40 rounded-lg text-sm font-bold text-amber-300 group-hover:bg-amber-600/30 transition-all">
+                    <FileSearch className="w-4 h-4" />
+                    View PDF
+                    <ExternalLink className="w-3.5 h-3.5" />
+                  </span>
+                </a>
+              </div>
             </div>
 
             {/* Implications callout */}
@@ -989,6 +1159,95 @@ export default function TakeActionPage() {
                 </strong>
                 . That&apos;s not oversight. That&apos;s strategy.
               </p>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* ═════════════ FEDERAL REPORTING ═════════════ */}
+      <section className="py-8 px-4">
+        <div className="max-w-3xl mx-auto">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeUp}
+            custom={0}
+            className="space-y-4"
+          >
+            <h3 className="font-bold text-white text-center mb-2" style={{ fontSize: "clamp(1.25rem, 2.5vw, 1.5rem)" }}>
+              Report This Tower to Federal Agencies
+            </h3>
+
+            {/* FAA */}
+            <div className="bg-sky-950/30 border border-sky-800/30 rounded-2xl p-6">
+              <div className="flex items-start gap-4">
+                <ShieldAlert className="w-7 h-7 text-sky-400 flex-shrink-0 mt-0.5" />
+                <div>
+                  <h4 className="font-bold text-sky-300 mb-1">
+                    FAA — Aviation Safety
+                  </h4>
+                  <p className="text-dark-300 text-sm leading-relaxed mb-3">
+                    Report a 184-foot unlit tower 0.3 miles from an active
+                    landing path at Syracuse Hancock International as a threat
+                    to the National Airspace System.
+                  </p>
+                  <div className="flex flex-col sm:flex-row gap-3">
+                    <a
+                      href="tel:866-835-5322"
+                      className="inline-flex items-center gap-2 px-4 py-2 bg-sky-900/40 hover:bg-sky-900/60 border border-sky-700/40 text-sky-300 font-bold text-sm rounded-xl transition-all duration-200"
+                    >
+                      <Phone className="w-4 h-4" />
+                      866-TELL-FAA
+                    </a>
+                    <a
+                      href="https://www.faa.gov/about/office_org/headquarters_offices/aae"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 px-4 py-2 bg-dark-800/40 hover:bg-dark-800/60 border border-dark-700/40 text-dark-200 font-bold text-sm rounded-xl transition-all duration-200"
+                    >
+                      <ExternalLink className="w-4 h-4" />
+                      FAA Hotline Web Form
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* USFWS */}
+            <div className="bg-lime-950/30 border border-lime-800/30 rounded-2xl p-6">
+              <div className="flex items-start gap-4">
+                <ShieldAlert className="w-7 h-7 text-lime-400 flex-shrink-0 mt-0.5" />
+                <div>
+                  <h4 className="font-bold text-lime-300 mb-1">
+                    U.S. Fish &amp; Wildlife Service — Protected Species
+                  </h4>
+                  <p className="text-dark-300 text-sm leading-relaxed mb-3">
+                    This tower sits adjacent to Onondaga Lake — New York&apos;s
+                    largest urban bald eagle roost — and in habitat used by
+                    turkey vultures, both protected under the Migratory Bird
+                    Treaty Act and the Bald &amp; Golden Eagle Protection Act.
+                  </p>
+                  <div className="flex flex-col sm:flex-row gap-3">
+                    <a
+                      href="tel:844-397-8477"
+                      className="inline-flex items-center gap-2 px-4 py-2 bg-lime-900/40 hover:bg-lime-900/60 border border-lime-700/40 text-lime-300 font-bold text-sm rounded-xl transition-all duration-200"
+                    >
+                      <Phone className="w-4 h-4" />
+                      844-FWS-TIPS
+                    </a>
+                    <a
+                      href="https://www.fws.gov/contact"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 px-4 py-2 bg-dark-800/40 hover:bg-dark-800/60 border border-dark-700/40 text-dark-200 font-bold text-sm rounded-xl transition-all duration-200"
+                    >
+                      <ExternalLink className="w-4 h-4" />
+                      USFWS Contact
+                    </a>
+                  </div>
+                </div>
+              </div>
             </div>
           </motion.div>
         </div>
@@ -1032,7 +1291,19 @@ export default function TakeActionPage() {
                   <MapPin className="w-3.5 h-3.5 mt-0.5 flex-shrink-0 text-dark-500" />
                   <span>999 Yamato Rd, Suite 100<br />Boca Raton, FL 33431</span>
                 </div>
-                <div className="flex gap-2">
+                <div className="flex items-start gap-2 text-sm text-dark-300">
+                  <Phone className="w-3.5 h-3.5 mt-0.5 flex-shrink-0 text-dark-500" />
+                  <a href="tel:561-257-0557" className="hover:text-white transition-colors">
+                    (561) 257-0557
+                  </a>
+                </div>
+                <div className="flex items-start gap-2 text-sm text-dark-300">
+                  <Mail className="w-3.5 h-3.5 mt-0.5 flex-shrink-0 text-dark-500" />
+                  <a href="mailto:contact@phoenixintnl.com" className="hover:text-white transition-colors">
+                    contact@phoenixintnl.com
+                  </a>
+                </div>
+                <div className="flex flex-wrap gap-2">
                   <a
                     href="https://maps.app.goo.gl/qJDn93bEtMx3yJFi8"
                     target="_blank"
@@ -1117,6 +1388,155 @@ export default function TakeActionPage() {
         </div>
       </section>
 
+      {/* ═══════════════════ CONTACT LOCAL PRESS ═══════════════════ */}
+      <section className="py-16 md:py-24 px-4">
+        <div className="max-w-3xl mx-auto">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeUp}
+            custom={0}
+            className="text-center mb-10"
+          >
+            <h2 className="text-3xl md:text-4xl font-black text-white mb-3">
+              Contact Local{" "}
+              <span className="text-danger-500">Press</span>
+            </h2>
+            <p className="text-dark-400 max-w-xl mx-auto">
+              The media is the multiplier. One story reaches thousands.
+              Contact these Syracuse-area newsrooms and tell them what&apos;s
+              happening in Liverpool.
+            </p>
+          </motion.div>
+
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeUp}
+            custom={1}
+            className="space-y-3 mb-8"
+          >
+            {[
+              {
+                outlet: "syracuse.com",
+                type: "Print / Digital",
+                email: "tips@syracuse.com",
+                url: "https://www.syracuse.com/contact",
+                note: "Largest CNY digital news outlet — already covered 5G concerns in 2019",
+              },
+              {
+                outlet: "CNY Central (WSTM / WTVH)",
+                type: "TV — NBC 3 / CBS 5",
+                email: "news@cnycentral.com",
+                url: "https://cnycentral.com/station/contact",
+                note: "TV news reaches the broadest local audience",
+              },
+              {
+                outlet: "NewsChannel 9 (WSYR-TV)",
+                type: "TV — ABC 9",
+                email: "Assignmentdesk@LocalSYR.com",
+                url: "https://www.localsyr.com/contact",
+                note: "Assignment desk — where breaking stories get picked up",
+              },
+              {
+                outlet: "WSYR News Radio",
+                type: "Radio — 570 AM / 106.9 FM",
+                email: "wsyrnews@iheartmedia.com",
+                phone: "(315) 421-9797",
+                note: "Talk radio amplifies community outrage fast",
+              },
+            ].map((press) => (
+              <div
+                key={press.outlet}
+                className="bg-dark-900/60 border border-dark-800/50 rounded-xl p-5"
+              >
+                <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3">
+                  <div className="flex-1 min-w-0">
+                    <p className="text-sm font-bold text-white mb-0.5">
+                      {press.outlet}
+                    </p>
+                    <p className="text-[10px] text-dark-500 uppercase font-bold tracking-widest mb-2">
+                      {press.type}
+                    </p>
+                    <p className="text-xs text-dark-400">{press.note}</p>
+                  </div>
+                  <div className="flex flex-col gap-1.5 sm:items-end flex-shrink-0">
+                    <a
+                      href={`mailto:${press.email}?subject=Unauthorized 184-Foot Cell Tower in Liverpool, NY`}
+                      className="inline-flex items-center gap-1.5 text-xs font-semibold text-danger-300 hover:text-danger-200 transition-colors"
+                    >
+                      <Mail className="w-3 h-3" />
+                      {press.email}
+                    </a>
+                    {press.phone && (
+                      <a
+                        href={`tel:${press.phone.replace(/[^0-9]/g, "")}`}
+                        className="inline-flex items-center gap-1.5 text-xs font-semibold text-sky-300 hover:text-sky-200 transition-colors"
+                      >
+                        <Phone className="w-3 h-3" />
+                        {press.phone}
+                      </a>
+                    )}
+                    {press.url && (
+                      <a
+                        href={press.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1.5 text-xs font-semibold text-dark-400 hover:text-dark-300 transition-colors"
+                      >
+                        <ExternalLink className="w-3 h-3" />
+                        Contact page
+                      </a>
+                    )}
+                  </div>
+                </div>
+              </div>
+            ))}
+          </motion.div>
+
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeUp}
+            custom={2}
+            className="bg-sky-950/20 border border-sky-800/20 rounded-xl p-5"
+          >
+            <p className="text-xs font-bold text-sky-400 uppercase tracking-widest mb-2">
+              Suggested Subject Line
+            </p>
+            <p className="text-sm text-dark-200 font-mono bg-dark-900/60 rounded-lg p-3 select-all mb-4">
+              Massive 184-Ft Cell Tower Being Built 0.3 Miles From SYR Landing Zone
+            </p>
+
+            <p className="text-xs font-bold text-sky-400 uppercase tracking-widest mb-2">
+              Suggested Message — Copy, Paste & Personalize
+            </p>
+            <div className="text-sm text-dark-200 font-mono bg-dark-900/60 rounded-lg p-4 select-all whitespace-pre-line leading-relaxed">
+{`Hi,
+
+I'm reaching out about a story developing in Liverpool, NY that I believe deserves coverage.
+
+A 184-foot commercial cell tower is currently being erected on New York State Thruway Authority land — just 0.3 miles from a landing approach to Syracuse Hancock International Airport — in a residential neighborhood surrounded by elementary schools, apartment complexes, and assisted living facilities.
+
+No residents were notified. No local zoning review was conducted. The tower requires zero obstruction lighting under FAA rules because it was built at exactly 184 feet — 16 feet below the federal threshold.
+
+Residents are concerned about health effects from 24/7 RF radiation, aviation safety, and declining property values. The community has organized at ProtectLiverpoolNY.org and is demanding answers from local and state officials.
+
+[PERSONALIZE: Add your connection — Are you a parent at a nearby school? A pilot? A homeowner who was never told? A few sentences about why this matters to you makes a huge difference.]
+
+I'd be happy to connect you with residents, provide documentation, or answer any questions.
+
+Thank you for your time,
+[YOUR NAME]
+[YOUR PHONE / EMAIL]`}
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
       {/* ═══════════════════ HELP THE CAUSE ═══════════════════ */}
       <section className="py-16 md:py-24 px-4 bg-dark-900/30">
         <div className="max-w-3xl mx-auto">
@@ -1148,27 +1568,27 @@ export default function TakeActionPage() {
           >
             {[
               {
-                icon: "📢",
+                icon: Megaphone,
                 title: "Share this site",
                 desc: "Send protectliverpoolny.org to every neighbor, parent, and community group you know. Awareness is the first step.",
               },
               {
-                icon: "🏛️",
+                icon: Building2,
                 title: "Attend the next Town Board meeting",
                 desc: "Show up. Bring your neighbors. Numbers are the only thing elected officials respond to.",
               },
               {
-                icon: "📝",
+                icon: FileText,
                 title: "File a FOIL request",
                 desc: "Request documents from the NYS Thruway Authority about the tower lease, environmental waivers, and all correspondence with Phoenix Tower International.",
               },
               {
-                icon: "🗣️",
+                icon: Megaphone,
                 title: "Tell your story",
                 desc: "Are you a pilot? A parent at Long Branch Elementary? A resident who was never notified? Your story matters. Send it to us.",
               },
               {
-                icon: "⚖️",
+                icon: Scale,
                 title: "Support legal action",
                 desc: "If you have legal expertise, connections to environmental law organizations, or resources to contribute to a potential challenge — reach out.",
               },
@@ -1177,7 +1597,7 @@ export default function TakeActionPage() {
                 key={item.title}
                 className="flex items-start gap-4 bg-dark-900/60 border border-dark-800/50 rounded-xl p-5"
               >
-                <span className="text-2xl flex-shrink-0">{item.icon}</span>
+                <item.icon className="w-5 h-5 text-danger-400 flex-shrink-0 mt-0.5" />
                 <div>
                   <p className="text-sm font-bold text-white mb-1">
                     {item.title}
@@ -1204,13 +1624,16 @@ export default function TakeActionPage() {
             <p className="text-dark-200 mb-4">
               Have information, a story, or a way to help? Reach out directly:
             </p>
-            <a
-              href="mailto:takeaction@protectliverpoolny.org"
-              className="inline-flex items-center gap-2 px-6 py-3 bg-danger-600 hover:bg-danger-500 text-white font-bold rounded-xl transition-all duration-200 shadow-lg shadow-danger-900/40 hover:shadow-danger-800/60 hover:scale-[1.03]"
-            >
-              <Mail className="w-4 h-4" />
-              takeaction@protectliverpoolny.org
-            </a>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
+              <a
+                href="mailto:takeaction@protectliverpoolny.org"
+                className="inline-flex items-center gap-2 px-6 py-3 bg-danger-600 hover:bg-danger-500 text-white font-bold rounded-xl transition-all duration-200 shadow-lg shadow-danger-900/40 hover:shadow-danger-800/60 hover:scale-[1.03]"
+              >
+                <Mail className="w-4 h-4" />
+                takeaction@protectliverpoolny.org
+              </a>
+              <CopyButton text="takeaction@protectliverpoolny.org" />
+            </div>
           </motion.div>
         </div>
       </section>
