@@ -340,9 +340,9 @@ export default function HomePage() {
 
             <div className="bg-dark-900/60 border border-dark-800/50 rounded-2xl p-6 md:p-8">
               <p className="text-dark-200 leading-relaxed mb-4">
-                They&apos;re telling you this tower is for &ldquo;5G.&rdquo;
+                They&apos;re telling you this tower is for &ldquo;5G.&rdquo;{" "}
                 Here&apos;s what they&apos;re{" "}
-                <strong className="text-white">not</strong> telling you: the type
+                <strong className="text-white">not</strong>{" "}telling you: the type
                 of 5G that towers like this deliver&mdash;
                 <strong className="text-white">low-band 5G</strong>&mdash;is{" "}
                 <span className="text-danger-400 font-bold">
