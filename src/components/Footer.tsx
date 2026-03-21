@@ -1,4 +1,4 @@
-import { ShieldAlert } from "lucide-react";
+import { ShieldAlert, Mail } from "lucide-react";
 
 export function Footer() {
   return (
@@ -13,6 +13,15 @@ export function Footer() {
               <span className="text-danger-500">LIVERPOOL</span>
             </span>
           </div>
+
+          {/* Email */}
+          <a
+            href="mailto:takeaction@protectliverpoolny.org"
+            className="inline-flex items-center gap-2 px-4 py-2 bg-danger-900/30 border border-danger-800/30 rounded-lg text-sm font-bold text-danger-300 hover:bg-danger-900/50 transition-all"
+          >
+            <Mail className="w-4 h-4" />
+            takeaction@protectliverpoolny.org
+          </a>
 
           {/* Links */}
           <div className="flex items-center gap-6 text-sm text-dark-400">
