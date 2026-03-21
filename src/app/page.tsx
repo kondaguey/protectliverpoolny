@@ -191,8 +191,8 @@ export default function HomePage() {
           </motion.div>
 
           <p className="text-xs text-dark-500 text-center mt-4">
-            Drag the slider to compare. Right image is an AI rendering of the
-            fully equipped tower.
+            Drag the slider to compare. Right image is a conceptual rendering
+            of what the tower will nearly look like.
           </p>
         </div>
       </section>
