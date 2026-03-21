@@ -102,10 +102,9 @@ export default function HomePage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
             className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-center leading-[1.05] tracking-tight"
+            style={{ textWrap: "balance" } as React.CSSProperties}
           >
-            They&apos;re Building an 18-Story Tower
-            <br />
-            in Our Backyards.{" "}
+            They&apos;re Building an 18-Story Tower in Our Backyards.{" "}
             <span className="text-danger-500">
               And They&apos;re Not Telling Anyone.
             </span>
@@ -117,6 +116,7 @@ export default function HomePage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
             className="mt-6 text-lg md:text-xl text-dark-400 text-center max-w-2xl mx-auto leading-relaxed"
+            style={{ textWrap: "balance" } as React.CSSProperties}
           >
             Right now, a 184-foot commercial cell tower is going up on New York
             State Thruway Authority land in Liverpool. No local approval. No

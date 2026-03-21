@@ -34,6 +34,11 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Pretty heading wrapping on all devices */
+h1, h2, h3 {
+  text-wrap: balance;
+}
+
 /* Custom scrollbar */
 ::-webkit-scrollbar {
   width: 6px;

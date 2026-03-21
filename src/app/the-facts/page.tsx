@@ -56,10 +56,10 @@ export default function TheFactsPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
             className="text-3xl sm:text-4xl md:text-5xl font-black text-center leading-tight tracking-tight"
+            style={{ textWrap: "balance" } as React.CSSProperties}
           >
             The Rules Weren&apos;t Written to{" "}
-            <span className="text-danger-500">Protect You.</span>
-            <br />
+            <span className="text-danger-500">Protect You.</span>{" "}
             They Were Written to{" "}
             <span className="text-danger-500">Silence You.</span>
           </motion.h1>
@@ -69,6 +69,7 @@ export default function TheFactsPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
             className="mt-6 text-lg text-dark-400 text-center max-w-2xl mx-auto leading-relaxed"
+            style={{ textWrap: "balance" } as React.CSSProperties}
           >
             Here&apos;s how Phoenix Tower International is building a massive
             commercial cell tower in your neighborhood without telling a single
