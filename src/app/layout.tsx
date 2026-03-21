@@ -13,7 +13,7 @@ const inter = Inter({
 export const metadata: Metadata = {
   title: "Protect Liverpool NY — Stop the 184-Foot Cell Tower",
   description:
-    "A grassroots campaign fighting the unauthorized 184-foot cell tower built in Liverpool, NY without community notice. Sign the petition and take action.",
+    "A grassroots campaign fighting the unauthorized 184-foot cell tower being built in Liverpool, NY without community notice. Sign the petition and take action.",
   keywords: [
     "Liverpool NY",
     "cell tower",

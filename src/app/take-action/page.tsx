@@ -1012,7 +1012,7 @@ export default function TakeActionPage() {
                 </div>
                 <div>
                   <h3 className="text-base font-bold text-white">
-                    Know Who Built This
+                    Know Who&apos;s Building This
                   </h3>
                   <p className="text-xs text-dark-400">The company behind the tower</p>
                 </div>

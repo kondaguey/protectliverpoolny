@@ -1112,7 +1112,7 @@ export default function TheFactsPage() {
             </p>
             <p className="text-dark-400 text-sm">
               It&apos;s about infrastructure for AI, surveillance, and
-              corporate data pipelines &mdash; built in your neighborhood,
+              corporate data pipelines &mdash; going up in your neighborhood,
               without your permission.
             </p>
           </motion.div>
