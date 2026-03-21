@@ -1116,6 +1116,104 @@ export default function TakeActionPage() {
         </div>
       </section>
 
+      {/* ═══════════════════ HELP THE CAUSE ═══════════════════ */}
+      <section className="py-16 md:py-24 px-4 bg-dark-900/30">
+        <div className="max-w-3xl mx-auto">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeUp}
+            custom={0}
+            className="text-center mb-10"
+          >
+            <h2 className="text-3xl md:text-4xl font-black text-white mb-3">
+              Help the{" "}
+              <span className="text-danger-500">Cause</span>
+            </h2>
+            <p className="text-dark-400 max-w-xl mx-auto">
+              This fight takes more than signatures. Here&apos;s how you
+              can make a real difference.
+            </p>
+          </motion.div>
+
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeUp}
+            custom={1}
+            className="space-y-4 mb-8"
+          >
+            {[
+              {
+                icon: "📢",
+                title: "Share this site",
+                desc: "Send protectliverpoolny.org to every neighbor, parent, and community group you know. Awareness is the first step.",
+              },
+              {
+                icon: "🏛️",
+                title: "Attend the next Town Board meeting",
+                desc: "Show up. Bring your neighbors. Numbers are the only thing elected officials respond to.",
+              },
+              {
+                icon: "📝",
+                title: "File a FOIL request",
+                desc: "Request documents from the NYS Thruway Authority about the tower lease, environmental waivers, and all correspondence with Phoenix Tower International.",
+              },
+              {
+                icon: "🗣️",
+                title: "Tell your story",
+                desc: "Are you a pilot? A parent at Long Branch Elementary? A resident who was never notified? Your story matters. Send it to us.",
+              },
+              {
+                icon: "⚖️",
+                title: "Support legal action",
+                desc: "If you have legal expertise, connections to environmental law organizations, or resources to contribute to a potential challenge — reach out.",
+              },
+            ].map((item) => (
+              <div
+                key={item.title}
+                className="flex items-start gap-4 bg-dark-900/60 border border-dark-800/50 rounded-xl p-5"
+              >
+                <span className="text-2xl flex-shrink-0">{item.icon}</span>
+                <div>
+                  <p className="text-sm font-bold text-white mb-1">
+                    {item.title}
+                  </p>
+                  <p className="text-xs text-dark-400 leading-relaxed">
+                    {item.desc}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </motion.div>
+
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeUp}
+            custom={2}
+            className="bg-danger-950/30 border border-danger-800/30 rounded-2xl p-6 md:p-8 text-center"
+          >
+            <p className="text-xs font-bold text-danger-400 uppercase tracking-widest mb-3">
+              Get in Touch
+            </p>
+            <p className="text-dark-200 mb-4">
+              Have information, a story, or a way to help? Reach out directly:
+            </p>
+            <a
+              href="mailto:takeaction@protectliverpoolny.org"
+              className="inline-flex items-center gap-2 px-6 py-3 bg-danger-600 hover:bg-danger-500 text-white font-bold rounded-xl transition-all duration-200 shadow-lg shadow-danger-900/40 hover:shadow-danger-800/60 hover:scale-[1.03]"
+            >
+              <Mail className="w-4 h-4" />
+              takeaction@protectliverpoolny.org
+            </a>
+          </motion.div>
+        </div>
+      </section>
+
       {/* ═══════════════════ FINAL REMINDER ═══════════════════ */}
       <section className="py-12 md:py-20 px-4">
         <div className="max-w-2xl mx-auto">

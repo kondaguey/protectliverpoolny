@@ -213,6 +213,22 @@ export default function TheFactsPage() {
             </p>
           </motion.div>
 
+          {/* They Live image */}
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeUp}
+            custom={0.5}
+            className="flex justify-center mb-8"
+          >
+            <img
+              src="/protect-they-live-logo.png"
+              alt="They Live — see the tower, see the plane"
+              className="w-full max-w-md rounded-2xl border border-dark-700/50 shadow-2xl shadow-black/40"
+            />
+          </motion.div>
+
           {/* Stat cards */}
           <motion.div
             initial="hidden"
@@ -440,6 +456,216 @@ export default function TheFactsPage() {
                 <ExternalLink className="w-3 h-3" />
               </a>
             </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* ═══════════════════ LOOK AROUND YOU ═══════════════════ */}
+      <section className="py-16 md:py-24 px-4 bg-dark-900/30">
+        <div className="max-w-4xl mx-auto">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeUp}
+            custom={0}
+            className="text-center mb-10"
+          >
+            <h2 className="text-3xl md:text-4xl font-black text-white mb-3">
+              Look Around the{" "}
+              <span className="text-danger-500">Tower</span>
+            </h2>
+            <p className="text-dark-400 max-w-2xl mx-auto">
+              Here&apos;s what sits within a 1-mile radius of a 184-foot
+              unlit industrial monopole emitting RF radiation 24/7.
+            </p>
+          </motion.div>
+
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeUp}
+            custom={1}
+            className="grid sm:grid-cols-2 md:grid-cols-3 gap-4"
+          >
+            {[
+              {
+                emoji: "🏫",
+                label: "Elementary Schools",
+                items: [
+                  "Long Branch Elementary (0.8 mi)",
+                  "Elmcrest Elementary",
+                  "Donlin Drive Elementary",
+                  "Chestnut Hill Elementary",
+                ],
+              },
+              {
+                emoji: "🏨",
+                label: "Hotels",
+                items: [
+                  "Staybridge Suites (Exit 37)",
+                  "Best Western Plus (Exit 37)",
+                  "Days Inn by Wyndham",
+                  "Comfort Inn & Suites",
+                ],
+              },
+              {
+                emoji: "🏘️",
+                label: "Residential",
+                items: [
+                  "Rivers Pointe Apartments",
+                  "Georgian Court Apartments",
+                  "Plymouth Meeting Apartments",
+                  "Single-family neighborhoods",
+                ],
+              },
+              {
+                emoji: "🚒",
+                label: "Fire Stations",
+                items: [
+                  "Liverpool FD — Main Station",
+                  "Station 2 — 7th North St",
+                  "Station 3 — Long Branch Rd",
+                ],
+              },
+              {
+                emoji: "🍽️",
+                label: "Restaurants",
+                items: [
+                  "Smokey Bones Bar & Grill",
+                  "il Limone (Italian)",
+                  "Santangelo's",
+                  "Multiple chain restaurants",
+                ],
+              },
+              {
+                emoji: "🏥",
+                label: "Care & Community",
+                items: [
+                  "Assisted living facilities",
+                  "Medical offices",
+                  "Churches & community centers",
+                  "Parks & playgrounds",
+                ],
+              },
+            ].map((cat) => (
+              <div
+                key={cat.label}
+                className="bg-dark-900/60 border border-dark-800/50 rounded-xl p-5"
+              >
+                <p className="text-2xl mb-2">{cat.emoji}</p>
+                <p className="text-sm font-bold text-white mb-2">
+                  {cat.label}
+                </p>
+                <ul className="space-y-1">
+                  {cat.items.map((item) => (
+                    <li
+                      key={item}
+                      className="text-xs text-dark-400 leading-relaxed"
+                    >
+                      • {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </motion.div>
+
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeUp}
+            custom={2}
+            className="mt-6 bg-danger-950/30 border border-danger-800/30 rounded-xl p-5 text-center"
+          >
+            <p className="text-danger-200 font-medium">
+              These aren&apos;t hypothetical neighbors. These are{" "}
+              <strong className="text-white">children</strong>,{" "}
+              <strong className="text-white">families</strong>,{" "}
+              <strong className="text-white">first responders</strong>, and{" "}
+              <strong className="text-white">elderly residents</strong>{" "}
+              living and working within direct exposure range of this
+              tower &mdash; and not a single one of them was asked.
+            </p>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* ═══════════════════ RULES FOR ME NOT FOR THEE ═══════════════════ */}
+      <section className="py-16 md:py-24 px-4">
+        <div className="max-w-4xl mx-auto">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeUp}
+            custom={0}
+            className="text-center mb-10"
+          >
+            <h2 className="text-3xl md:text-4xl font-black text-white mb-3">
+              Rules for <span className="text-danger-500">Them</span>.
+              Not for <span className="text-sky-400">You</span>.
+            </h2>
+            <p className="text-dark-400 max-w-2xl mx-auto">
+              The regulatory framework isn&apos;t just broken. It&apos;s
+              designed to silence you.
+            </p>
+          </motion.div>
+
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeUp}
+            custom={1}
+            className="space-y-4"
+          >
+            {[
+              {
+                their: "Telecom companies can build a 184-foot tower in a residential neighborhood with zero local approval.",
+                your: "You need a permit to build a fence over 6 feet tall on your own property.",
+              },
+              {
+                their: "The 1996 Telecom Act prohibits local governments from rejecting towers based on health concerns.",
+                your: "Your concerns about RF exposure to your children are legally irrelevant to the approval process.",
+              },
+              {
+                their: "Phoenix Tower International sat on federal approval for a year, then started building without notifying a single resident.",
+                your: "If you start a construction project without a permit, you get fined, stopped, and potentially sued.",
+              },
+              {
+                their: "The FAA says a 184-foot structure 3 miles from an active runway doesn't need a single light on it.",
+                your: "Your drone gets grounded if you fly 400 feet near an airport without FAA clearance.",
+              },
+              {
+                their: "The FCC hasn't updated its RF exposure limits since 1996. A federal court ruled them inadequate in 2021.",
+                your: "You're told the radiation is \"within guidelines\" — guidelines from before the first iPhone existed.",
+              },
+            ].map((rule, i) => (
+              <div
+                key={i}
+                className="grid md:grid-cols-2 gap-3"
+              >
+                <div className="bg-dark-900/60 border border-dark-800/50 rounded-xl p-5">
+                  <p className="text-[10px] text-dark-500 uppercase font-bold tracking-widest mb-2">
+                    They Can
+                  </p>
+                  <p className="text-dark-200 text-sm leading-relaxed">
+                    {rule.their}
+                  </p>
+                </div>
+                <div className="bg-danger-950/20 border border-danger-800/30 rounded-xl p-5">
+                  <p className="text-[10px] text-danger-400 uppercase font-bold tracking-widest mb-2">
+                    You Can&apos;t
+                  </p>
+                  <p className="text-danger-200 text-sm leading-relaxed">
+                    {rule.your}
+                  </p>
+                </div>
+              </div>
+            ))}
           </motion.div>
         </div>
       </section>
