@@ -242,7 +242,7 @@ export default function TakeActionPage() {
             className="text-3xl sm:text-4xl md:text-5xl font-black text-center leading-tight tracking-tight"
           >
             Your Voice Is the{" "}
-            <span className="text-danger-500">Only Weapon</span> They
+            <span className="text-danger-500">Only Weapon</span>{" "}They
             Can&apos;t Ignore.
           </motion.h1>
 
