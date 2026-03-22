@@ -46,15 +46,10 @@ const problems = [
     title: "Your Home Is Worth Less. Right Now.",
     stat: "Up to 20%",
     bullets: [
-      "Your home could lose up to 20% of its value — that's $40,000–$60,000 gone on a $300K house",
-      "94% of buyers say they'd pay less or flat out refuse to buy near a cell tower",
-      "79% of buyers won't even LOOK at a property within a few blocks of a tower",
+      "Up to $60,000 gone on a $300K house — 94% of buyers refuse to buy near a cell tower",
       "HUD classifies cell towers as \"Hazards and Nuisances\" — your home is now flagged",
-      "If you have an FHA mortgage, the fall zone restriction could tank your refinance options",
     ],
-    source:
-      "https://ehsciences.org/cell-towers-drop-property-values/",
-    sourceLabel: "Full Property Value Research",
+    href: "/the-facts/community",
     color: "text-danger-500",
     bg: "bg-danger-950/40",
     border: "border-danger-800/30",
@@ -64,31 +59,23 @@ const problems = [
     title: "Your Family Is Being Radiated 24/7.",
     stat: "\"Clear Evidence\"",
     bullets: [
-      "The NTP's $30M government study found \"clear evidence\" of cancer from RF radiation — the same radiation this tower emits",
-      "A child's brain absorbs 10× more cumulative RF energy from a tower than from a phone call — and they can't move away from it",
-      "A federal court ruled the FCC's safety standards \"arbitrary and capricious\" — they haven't been updated since 1996",
-      "AT&T, Verizon, and T-Mobile all warn their own investors about litigation risk from RF — but won't warn YOU",
-      "73.6% of all peer-reviewed studies on people living near towers found harmful health effects",
+      "The NTP's $30M study found \"clear evidence\" of cancer from RF — the same radiation this tower emits",
+      "73.6% of peer-reviewed studies on people living near towers found harmful health effects",
     ],
-    source: "https://ehtrust.org/scientific-research-on-5g-and-health/",
-    sourceLabel: "Peer-Reviewed Research",
+    href: "/the-facts/health",
     color: "text-amber-500",
     bg: "bg-amber-950/30",
     border: "border-amber-800/30",
   },
   {
     icon: PlaneTakeoff,
-    title: "Planes Are Landing 0.25 Miles Away. This Tower Has No Lights.",
+    title: "0.25 Miles from the Landing Corridor. No Lights.",
     stat: "184 ft",
     bullets: [
-      "0.25 miles from an active landing corridor for Syracuse Hancock International Airport",
-      "184 feet tall — just under the FAA's 200-foot threshold, so zero lighting is required by law. Intentional.",
-      "The FAA issued an emergency directive proving 5G C-Band signals interfere with the altimeters pilots use to land",
+      "Built just under the FAA's 200-foot threshold so zero lighting is required — intentional",
       "The NTSB has documented pilots dying from collisions with unlit towers exactly like this one",
-      "Police, medical, and news helicopters fly at this altitude — one foggy night is all it takes",
     ],
-    source: "https://www.ntsb.gov/safety/safety-recs/recletters/A-13-016-017.pdf",
-    sourceLabel: "NTSB: Fatal Tower Collisions",
+    href: "/the-facts/aviation",
     color: "text-sky-500",
     bg: "bg-sky-950/30",
     border: "border-sky-800/30",
@@ -98,14 +85,10 @@ const problems = [
     title: "Zero Environmental Review. Zero Accountability.",
     stat: "0 Reviews",
     bullets: [
-      "No environmental impact assessment was conducted before construction — not for wildlife, water, soil, or radiation",
-      "7 million birds die from tower collisions annually in North America — this tower is unlit and invisible at night",
-      "Onondaga Lake, directly adjacent, hosts NY's largest urban bald eagle roost — federally protected under the Eagle Protection Act",
-      "Peer-reviewed research proves cell tower RF decimates honeybee colonies — bees pollinate 1/3 of all food you eat",
-      "Turkey vultures circle the site daily — protected under the Migratory Bird Treaty Act, $250K fine per kill",
+      "No environmental impact assessment — not for wildlife, water, soil, or radiation",
+      "100+ bald eagles roost at Onondaga Lake, directly adjacent — federally protected",
     ],
-    source: "/the-facts/health#environmental-impact",
-    sourceLabel: "See the Evidence",
+    href: "/the-facts/wildlife",
     color: "text-lime-500",
     bg: "bg-lime-950/30",
     border: "border-lime-800/30",
@@ -222,10 +205,10 @@ export default function HomePage() {
         >
           <div className="max-w-5xl mx-auto px-4 md:px-12 lg:px-24 py-4 md:py-5 grid grid-cols-4 gap-2 md:gap-8">
             {[
-              { value: "5–20%", label: "Property Value", color: "text-danger-400" },
+              { value: "5–20%", label: "Property Value Decrease", color: "text-danger-400" },
               { value: "184 ft", label: "Unlit Tower", color: "text-amber-400" },
               { value: "0.25 mi", label: "Flight Corridor", color: "text-sky-400" },
-              { value: "100+", label: "Eagles Nearby", color: "text-lime-400" },
+              { value: "100+", label: "Bald Eagles", color: "text-lime-400" },
             ].map((stat) => (
               <div key={stat.label} className="text-center">
                 <p className={`text-xl sm:text-2xl md:text-4xl font-black ${stat.color} leading-none`}>
@@ -422,6 +405,9 @@ export default function HomePage() {
           <p className="text-xs text-dark-500 text-center mt-3">
             {slideCaptions[slideIndex]}
           </p>
+          <p className="text-xs text-dark-400 text-center mt-2 italic">
+            Images and video of the actual tower mast coming soon
+          </p>
         </div>
       </section>
 
@@ -449,7 +435,7 @@ export default function HomePage() {
             </p>
           </motion.div>
 
-          <div className="grid sm:grid-cols-2 gap-6">
+          <div className="grid sm:grid-cols-2 gap-5">
             {problems.map((problem, i) => (
               <motion.div
                 key={problem.title}
@@ -458,73 +444,48 @@ export default function HomePage() {
                 viewport={{ once: true, margin: "-30px" }}
                 variants={fadeUp}
                 custom={i + 1}
-                className={`${problem.bg} ${problem.border} border rounded-2xl p-6 md:p-8 hover:scale-[1.02] transition-transform duration-300`}
               >
-                <problem.icon
-                  className={`w-10 h-10 ${problem.color} mb-4`}
-                />
-                <div
-                  className={`text-2xl font-black ${problem.color} mb-1`}
+                <Link
+                  href={problem.href}
+                  className={`block ${problem.bg} ${problem.border} border rounded-2xl p-5 md:p-6 hover:scale-[1.02] transition-all duration-300 group`}
                 >
-                  {problem.stat}
-                </div>
-                <h3 className="font-bold text-white mb-3" style={{ fontSize: "clamp(1rem, 2vw, 1.125rem)" }}>
-                  {problem.title}
-                </h3>
-                <ul className="space-y-3 mt-4">
-                  {problem.bullets.map((bullet, j) => (
-                    <li
-                      key={j}
-                      className="flex items-start gap-3 bg-black/20 rounded-lg px-3 py-2.5"
+                  <div className="flex items-center gap-3 mb-3">
+                    <problem.icon
+                      className={`w-8 h-8 ${problem.color} flex-shrink-0`}
+                    />
+                    <div
+                      className={`text-2xl font-black ${problem.color} leading-none`}
                     >
-                      <span className={`w-2 h-2 rounded-full ${problem.color.replace('text-', 'bg-')} mt-1.5 flex-shrink-0`} />
-                      <span className="text-dark-200 leading-relaxed" style={{ fontSize: "0.9rem" }}>
-                        {bullet}
-                      </span>
-                    </li>
-                  ))}
-                </ul>
-                <a
-                  href={problem.source}
-                  {...(problem.source.startsWith("http") ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-                  className={`inline-flex items-center gap-1.5 mt-4 text-xs font-semibold ${problem.color} hover:underline`}
-                >
-                  {problem.sourceLabel}
-                  {problem.source.startsWith("http") && <ExternalLink className="w-3 h-3" />}
-                </a>
+                      {problem.stat}
+                    </div>
+                  </div>
+                  <h3 className="font-bold text-white mb-3" style={{ fontSize: "clamp(0.95rem, 2vw, 1.05rem)" }}>
+                    {problem.title}
+                  </h3>
+                  <ul className="space-y-2">
+                    {problem.bullets.map((bullet, j) => (
+                      <li
+                        key={j}
+                        className="flex items-start gap-2.5 bg-black/20 rounded-lg px-3 py-2"
+                      >
+                        <span className={`w-1.5 h-1.5 rounded-full ${problem.color.replace('text-', 'bg-')} mt-1.5 flex-shrink-0`} />
+                        <span className="text-dark-200 leading-relaxed" style={{ fontSize: "0.85rem" }}>
+                          {bullet}
+                        </span>
+                      </li>
+                    ))}
+                  </ul>
+                  <span className={`inline-flex items-center gap-1.5 mt-4 text-xs font-bold ${problem.color} group-hover:underline`}>
+                    See the evidence
+                    <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
+                  </span>
+                </Link>
               </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* ═══════════════════ NO ONE VOTED ═══════════════════ */}
-      <section className="py-12 md:py-16 px-4">
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          variants={fadeUp}
-          custom={0}
-          className="max-w-3xl mx-auto text-center"
-        >
-          <h2
-            className="font-black text-white mb-4"
-            style={{ fontSize: "clamp(1.75rem, 4vw, 2.5rem)" }}
-          >
-            No Public Vote. No Public Notice.
-            <br />
-            <span className="text-danger-500">Your silence is the consent they want.</span>
-          </h2>
-          <p className="text-dark-300 max-w-2xl mx-auto leading-relaxed" style={{ fontSize: "clamp(1rem, 2vw, 1.125rem)" }}>
-            Not a single resident, homeowner, school board, or elected official
-            in Liverpool was consulted, polled, notified, or given any
-            opportunity to weigh in on a 184-foot commercial tower going up in a
-            residential neighborhood. This isn&apos;t democracy. This is a
-            transaction&mdash;and your community is the product.
-          </p>
-        </motion.div>
-      </section>
 
       {/* ═══════════════════ ASK YOURSELF WHY ═══════════════════ */}
       <section className="py-16 md:py-24 px-4 bg-dark-900/30">
@@ -865,96 +826,120 @@ export default function HomePage() {
               </Link>
             </motion.div>
 
-            {/* Tax Irony Callout */}
-            <motion.div
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: "-30px" }}
-              variants={fadeUp}
-              custom={4}
-              className="bg-danger-950/30 border border-danger-800/30 rounded-2xl p-6 md:p-8"
-            >
-              <p className="text-dark-100 font-medium leading-relaxed mb-3" style={{ fontSize: "clamp(0.95rem, 2vw, 1.1rem)" }}>
-                You pay some of the{" "}
-                <strong className="text-white">highest taxes in the entire country</strong>{" "}
-                to live in New York State &mdash; only for that same state to cut backdoor deals on{" "}
-                <strong className="text-white">your land</strong>, with{" "}
-                <strong className="text-white">your tax dollars</strong>, that will tank your property value and put your family&apos;s health at risk.
-              </p>
-              <p className="text-dark-400 text-sm leading-relaxed">
-                The state that takes more from you than almost any other didn&apos;t just fail to protect you &mdash; they{" "}
-                <span className="text-danger-400 font-bold">actively helped a private corporation profit at your expense</span>, and they don&apos;t even have the decency to tell you about it.
-              </p>
-            </motion.div>
+            {/* No Public Vote + Tax Irony — side by side */}
+            <div className="grid md:grid-cols-2 gap-5">
+              <motion.div
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: "-30px" }}
+                variants={fadeUp}
+                custom={3.5}
+                className="bg-dark-900/60 border border-dark-800/50 rounded-2xl p-5 md:p-6 text-center flex flex-col justify-center"
+              >
+                <h3
+                  className="font-black text-white mb-2"
+                  style={{ fontSize: "clamp(1.1rem, 2.5vw, 1.4rem)" }}
+                >
+                  No Public Vote. No Public Notice.
+                  <br />
+                  <span className="text-danger-500">Your silence is the consent they want.</span>
+                </h3>
+                <p className="text-dark-300 leading-relaxed" style={{ fontSize: "clamp(0.8rem, 1.5vw, 0.9rem)" }}>
+                  Not a single resident, homeowner, school board, or elected official
+                  in Liverpool was consulted, polled, notified, or given any
+                  opportunity to weigh in. This isn&apos;t democracy. This is a
+                  transaction&mdash;and your community is the product.
+                </p>
+              </motion.div>
+
+              <motion.div
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: "-30px" }}
+                variants={fadeUp}
+                custom={4}
+                className="bg-danger-950/30 border border-danger-800/30 rounded-2xl p-5 md:p-6 flex flex-col justify-center"
+              >
+                <p className="text-dark-100 font-medium leading-relaxed mb-2" style={{ fontSize: "clamp(0.85rem, 1.5vw, 0.95rem)" }}>
+                  You pay some of the{" "}
+                  <strong className="text-white">highest taxes in the entire country</strong>{" "}
+                  to live in New York State &mdash; only for that same state to cut backdoor deals on{" "}
+                  <strong className="text-white">your land</strong>, with{" "}
+                  <strong className="text-white">your tax dollars</strong>, that will tank your property value and put your family&apos;s health at risk.
+                </p>
+                <p className="text-dark-400 text-sm leading-relaxed">
+                  The state that takes more from you than almost any other didn&apos;t just fail to protect you &mdash; they{" "}
+                  <span className="text-danger-400 font-bold">actively helped a private corporation profit at your expense</span>.
+                </p>
+              </motion.div>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* ═══════════════════ UNITY CALLOUT ═══════════════════ */}
-      <section className="py-16 md:py-24 px-4">
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          variants={fadeUp}
-          custom={0}
-          className="max-w-3xl mx-auto bg-dark-900/60 border border-dark-800/50 rounded-2xl p-8 md:p-12 text-center"
-        >
-          <p className="text-xs font-bold text-dark-500 uppercase tracking-widest mb-4">
-            A PSA for Those Wondering...
-          </p>
-          <h2
-            className="font-black text-white mb-4"
-            style={{ fontSize: "clamp(1.5rem, 3.5vw, 2rem)" }}
+      {/* ═══════════════════ UNITY + CTA ═══════════════════ */}
+      <section className="py-12 md:py-16 px-4">
+        <div className="max-w-3xl mx-auto space-y-10">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeUp}
+            custom={0}
+            className="bg-dark-900/60 border border-dark-800/50 rounded-2xl p-6 md:p-10 text-center"
           >
-            This is{" "}
-            <span className="text-danger-500">NOT</span>{" "}a Left vs. Right Issue.
-          </h2>
-          <p className="text-lg md:text-xl font-bold text-white mb-4">
-            It&apos;s an{" "}
-            <span className="text-danger-500">us</span>{" "}vs.{" "}
-            <span className="text-danger-500">them</span>{" "}issue.
-          </p>
-          <p className="text-dark-300 leading-relaxed max-w-xl mx-auto">
-            We know the world is divided right now. That&apos;s by design.
-            But this? This isn&apos;t about who you voted for or what cable
-            news you watch. A private corporation is building a 184-foot
-            industrial structure in your neighborhood — and not a single
-            one of us was asked. We either come together on this, or
-            it&apos;s game over.
-          </p>
-        </motion.div>
-      </section>
+            <p className="text-xs font-bold text-dark-500 uppercase tracking-widest mb-3">
+              A PSA for Those Wondering...
+            </p>
+            <h2
+              className="font-black text-white mb-3"
+              style={{ fontSize: "clamp(1.4rem, 3.5vw, 1.9rem)" }}
+            >
+              This is{" "}
+              <span className="text-danger-500">NOT</span>{" "}a Left vs. Right Issue.
+            </h2>
+            <p className="text-lg font-bold text-white mb-3">
+              It&apos;s an{" "}
+              <span className="text-danger-500">Us</span>{" "}vs.{" "}
+              <span className="text-danger-500">Them</span>{" "}issue.
+            </p>
+            <p className="text-dark-300 leading-relaxed max-w-xl mx-auto text-sm">
+              We know the world is divided right now. That&apos;s by design.
+              But this isn&apos;t about who you voted for. A private corporation
+              is building a 184-foot industrial structure in your neighborhood
+              — and not a single one of us was asked. We either come together
+              on this, or it&apos;s game over.
+            </p>
+          </motion.div>
 
-      {/* ═══════════════════ INLINE CTA ═══════════════════ */}
-      <section className="py-20 md:py-28 px-4">
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          variants={fadeUp}
-          custom={0}
-          className="max-w-3xl mx-auto text-center"
-        >
-          <h2
-            className="font-black mb-4"
-            style={{ fontSize: "clamp(1.75rem, 4vw, 2.5rem)" }}
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeUp}
+            custom={1}
+            className="text-center"
           >
-            This Stops When{" "}
-            <span className="text-danger-500">We Stop It.</span>
-          </h2>
-          <p className="text-dark-400 mb-8 max-w-xl mx-auto" style={{ fontSize: "clamp(1rem, 2vw, 1.125rem)" }}>
-            They&apos;re bypassing every process designed to protect you. The only way to
-            fight back is with our voices—loudly, together, and on the record.
-          </p>
-          <Link
-            href="/take-action"
-            className="inline-flex items-center gap-2 px-8 py-4 bg-danger-600 hover:bg-danger-500 text-white font-bold text-lg rounded-xl transition-all duration-200 shadow-lg shadow-danger-900/40 hover:shadow-danger-800/60 hover:scale-[1.03]"
-          >
-            Sign the Petition & Take Action
-            <ArrowRight className="w-5 h-5" />
-          </Link>
-        </motion.div>
+            <h2
+              className="font-black mb-4"
+              style={{ fontSize: "clamp(1.75rem, 4vw, 2.5rem)" }}
+            >
+              This Stops When{" "}
+              <span className="text-danger-500">We Stop It.</span>
+            </h2>
+            <p className="text-dark-400 mb-8 max-w-xl mx-auto" style={{ fontSize: "clamp(1rem, 2vw, 1.125rem)" }}>
+              They&apos;re bypassing every process designed to protect you. The only way to
+              fight back is with our voices—loudly, together, and on the record.
+            </p>
+            <Link
+              href="/take-action"
+              className="inline-flex items-center gap-2 px-8 py-4 bg-danger-600 hover:bg-danger-500 text-white font-bold text-lg rounded-xl transition-all duration-200 shadow-lg shadow-danger-900/40 hover:shadow-danger-800/60 hover:scale-[1.03]"
+            >
+              Sign the Petition & Take Action
+              <ArrowRight className="w-5 h-5" />
+            </Link>
+          </motion.div>
+        </div>
       </section>
 
       {/* ═══════════════════ STICKY MOBILE CTA ═══════════════════ */}

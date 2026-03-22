@@ -47,19 +47,24 @@ export default function HealthSciencePage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-3xl sm:text-4xl md:text-5xl font-black leading-tight tracking-tight"
+            className="font-black leading-[0.95] tracking-tighter"
+            style={{ fontSize: "clamp(3rem, 10vw, 6rem)" }}
           >
-            Health{" "}
-            <span className="text-danger-500">Impacts</span>
+            They Know It&apos;s{" "}
+            <span className="text-danger-500">Harmful.</span>
+            <br />
+            They Built It{" "}
+            <span className="text-danger-500">Anyway.</span>
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
-            className="mt-6 text-lg text-dark-400 max-w-2xl mx-auto leading-relaxed"
+            className="mt-6 text-dark-400 max-w-2xl mx-auto leading-relaxed"
+            style={{ fontSize: "clamp(1rem, 2.5vw, 1.25rem)" }}
           >
-            What the independent research says about RF radiation, children&apos;s vulnerability,
-            and the safety limits a federal court called &quot;arbitrary and capricious.&quot;
+            Peer-reviewed studies. Federal court rulings. SEC filings from the carriers themselves.
+            The evidence is overwhelming &mdash; and they&apos;re counting on you not reading it.
           </motion.p>
         </div>
       </section>

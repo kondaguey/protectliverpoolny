@@ -274,6 +274,111 @@ export default function CommunityLegalPage() {
         </div>
       </section>
 
+      {/* ═══════════════════ THE STATE LAND LOOPHOLE ═══════════════════ */}
+      <section className="py-16 md:py-24 px-4 bg-dark-900/30">
+        <div className="max-w-4xl mx-auto">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-50px" }}
+            variants={fadeUp}
+            custom={0}
+          >
+            <div className="flex items-center gap-3 mb-6">
+              <div className="w-10 h-10 rounded-xl bg-danger-900/50 border border-danger-800/30 flex items-center justify-center">
+                <AlertTriangle className="w-5 h-5 text-danger-400" />
+              </div>
+              <h2 className="text-2xl md:text-3xl font-bold">
+                The State Land Loophole
+              </h2>
+            </div>
+          </motion.div>
+
+          <div className="space-y-6">
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              variants={fadeUp}
+              custom={1}
+              className="bg-dark-900/60 border border-dark-800/50 rounded-2xl p-6 md:p-8"
+            >
+              <p className="text-dark-200 leading-relaxed mb-4">
+                Under normal circumstances, any company wanting to build a
+                184-foot commercial structure in a residential area would need to
+                go through <strong className="text-white">local zoning approval</strong>,{" "}
+                <strong className="text-white">environmental impact reviews</strong>,
+                and <strong className="text-white">mandatory neighbor notification</strong>.
+              </p>
+              <p className="text-dark-200 leading-relaxed">
+                Phoenix Tower International is finding a way around all of it. They
+                secured a lease on land owned by the{" "}
+                <strong className="text-white">
+                  New York State Thruway Authority (NYSTA)
+                </strong>
+                . Because the land is state-owned, it falls outside the
+                jurisdiction of{" "}
+                <strong className="text-white">Onondaga County</strong> and the{" "}
+                <strong className="text-white">Town of Salina</strong>—
+                completely bypassing local government authority.
+              </p>
+            </motion.div>
+
+            <div className="grid sm:grid-cols-2 gap-4">
+              {[
+                {
+                  title: "No Local Zoning Review",
+                  text: "State-owned land is exempt from local zoning ordinances. The Town of Salina had no authority to approve or deny the build.",
+                },
+                {
+                  title: "No Neighbor Notification",
+                  text: "There is no public hearing, no mailed notice, no opportunity for residents to weigh in. Residents are discovering a tower going up in their yards.",
+                },
+                {
+                  title: "No Transparent Environmental Review",
+                  text: "No environmental impact assessment has been shared with the public. If one exists, it was never disclosed to the community it would affect.",
+                },
+                {
+                  title: "No Local Tax Revenue",
+                  text: "Because the tower sits on state land, the local municipality sees zero tax revenue from this massive commercial operation in their community.",
+                },
+              ].map((fact, i) => (
+                <motion.div
+                  key={fact.title}
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true }}
+                  variants={fadeUp}
+                  custom={i + 2}
+                  className="bg-dark-900/40 border border-dark-800/40 rounded-xl p-5"
+                >
+                  <h3 className="font-bold text-white mb-2">{fact.title}</h3>
+                  <p className="text-sm text-dark-300 leading-relaxed">
+                    {fact.text}
+                  </p>
+                </motion.div>
+              ))}
+            </div>
+
+            <motion.blockquote
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              variants={fadeUp}
+              custom={0}
+              className="relative bg-danger-950/30 border-l-4 border-danger-600 rounded-r-xl p-6 md:p-8"
+            >
+              <p className="text-lg md:text-xl text-dark-100 font-medium italic leading-relaxed">
+                &ldquo;They used a legal gap designed for highway
+                infrastructure to erect a commercial cell tower in a
+                residential neighborhood. This was by design, not by
+                accident.&rdquo;
+              </p>
+            </motion.blockquote>
+          </div>
+        </div>
+      </section>
+
       {/* ═══════════════════ RULES FOR ME NOT FOR THEE ═══════════════════ */}
       <section className="py-16 md:py-24 px-4">
         <div className="max-w-4xl mx-auto">
@@ -571,7 +676,7 @@ export default function CommunityLegalPage() {
             viewport={{ once: true }}
             variants={fadeUp}
             custom={1}
-            className="mb-8"
+            className="mb-4"
           >
             <a
               href="https://www.syracuse.com/news/2019/05/some-syracuse-lawmakers-still-wary-of-5g-if-were-wrong-the-risk-is-terrible.html"
@@ -588,12 +693,50 @@ export default function CommunityLegalPage() {
                 &ldquo;If we&apos;re wrong, the risk is terrible&rdquo;
               </p>
               <p className="text-sm text-dark-300 mb-3">
-                Syracuse lawmakers raised concerns about 5G safety back in
-                2019. Years later, the towers are going up anyway &mdash;
-                and the concerns haven&apos;t been answered.
+                Syracuse Common Council narrowly approved 5G towers 5-3 in 2019 — after public hearings, debate, and a two-week delay forced by a skeptical councilor. Liverpool got none of that. Not even a vote.
               </p>
               <p className="text-xs text-amber-400 font-semibold flex items-center gap-1">
                 Syracuse.com
+                <ExternalLink className="w-3 h-3" />
+              </p>
+            </a>
+          </motion.div>
+
+          {/* NYS Task Force Report — featured */}
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeUp}
+            custom={1.25}
+            className="mb-8"
+          >
+            <a
+              href="https://esd.ny.gov/sites/default/files/Upstate-Cellular-Coverage-Task-Force-Final-Report.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block bg-sky-950/20 border border-sky-800/30 rounded-2xl p-6 md:p-8 hover:border-sky-600/50 transition-all group"
+            >
+              <div className="flex items-center gap-2 mb-3">
+                <span className="text-xs font-bold text-sky-400 uppercase tracking-widest">
+                  <Landmark className="w-3 h-3" /> Official — NYS Government Report
+                </span>
+              </div>
+              <p className="text-lg md:text-xl font-black text-white group-hover:text-sky-200 transition-colors mb-2">
+                NY Upstate Cellular Coverage Task Force — Final Report
+              </p>
+              <p className="text-sm text-dark-300 mb-3">
+                New York State&apos;s own task force identified coverage gaps only in the remote Adirondacks and Catskills — not suburban Syracuse. The report mandates environmental review, visual impact assessments, and public process for tower siting. Liverpool got zero. The state also collects ~$10M/year from tower deals on its own land through Crown Castle.
+              </p>
+              <div className="flex flex-wrap gap-2 mb-3">
+                {["Coverage gaps are rural", "Environmental review required", "State profits from deals", "Small cells preferred"].map((tag) => (
+                  <span key={tag} className="text-[10px] font-bold text-sky-300 bg-sky-900/40 border border-sky-800/30 px-2 py-0.5 rounded-full">
+                    {tag}
+                  </span>
+                ))}
+              </div>
+              <p className="text-xs text-sky-400 font-semibold flex items-center gap-1">
+                Empire State Development (PDF)
                 <ExternalLink className="w-3 h-3" />
               </p>
             </a>
