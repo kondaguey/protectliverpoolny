@@ -10,6 +10,11 @@ import {
   Landmark,
   ArrowRight,
   MapPin,
+  TrendingDown,
+  Construction,
+  Scale,
+  Eye,
+  Car,
 } from "lucide-react";
 
 const fadeUp = {
@@ -36,7 +41,7 @@ export default function CommunityLegalPage() {
           >
             <span className="inline-flex items-center gap-2 px-4 py-2 bg-amber-900/40 border border-amber-700/40 rounded-full text-amber-300 text-xs font-bold uppercase tracking-wider">
               <Landmark className="w-3.5 h-3.5" />
-              Community & Legal
+              Community & Land Value
             </span>
           </motion.div>
           <motion.h1
@@ -45,11 +50,10 @@ export default function CommunityLegalPage() {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="text-3xl sm:text-4xl md:text-5xl font-black leading-tight tracking-tight"
           >
-            The System Is{" "}
-            <span className="text-danger-500">Rigged</span>.{" "}
+            Your Community.{" "}
+            <span className="text-danger-500">Your Home Value.</span>{" "}
             <br className="hidden sm:block" />
-            Communities Are{" "}
-            <span className="text-amber-400">Fighting Back</span>.
+            <span className="text-amber-400">Their Profit.</span>
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 15 }}
@@ -57,10 +61,216 @@ export default function CommunityLegalPage() {
             transition={{ duration: 0.6, delay: 0.3 }}
             className="mt-6 text-lg text-dark-400 max-w-2xl mx-auto leading-relaxed"
           >
-            Federal law was written to protect telecom companies, not you. But
-            across the country, residents are proving that organized
-            communities can win.
+            Property values drop up to 20% near cell towers. Federal law was written to silence you.
+            And nobody asked your permission.
           </motion.p>
+        </div>
+      </section>
+
+      {/* ═══════════════════ PROPERTY VALUES ═══════════════════ */}
+      <section className="py-16 md:py-24 px-4">
+        <div className="max-w-4xl mx-auto">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeUp}
+            custom={0}
+          >
+            <div className="text-center mb-8">
+              <h3 className="text-2xl md:text-3xl font-black text-white mb-3">
+                Your Home Is{" "}
+                <span className="text-danger-500">Worth Less Now</span>
+              </h3>
+              <p className="text-dark-400 max-w-2xl mx-auto">
+                This isn&apos;t speculation. Peer-reviewed studies, federal
+                agencies, and realtors across the country confirm that cell
+                towers reduce property values — sometimes dramatically.
+              </p>
+            </div>
+
+            {/* Key stats */}
+            <div className="grid sm:grid-cols-3 gap-4 mb-6">
+              {[
+                {
+                  stat: "94%",
+                  label: "of home buyers say they would pay less or avoid a property near a cell tower",
+                  source: "NISLAPP Survey",
+                },
+                {
+                  stat: "Up to 20%",
+                  label: "decline in property values reported by licensed real estate appraisers and peer-reviewed studies",
+                  source: "Multiple Studies",
+                },
+                {
+                  stat: "79%",
+                  label: "say they would never purchase or rent a property within a few blocks of a cell tower",
+                  source: "REALTOR Magazine",
+                },
+              ].map((item) => (
+                <div
+                  key={item.stat}
+                  className="bg-danger-950/30 border border-danger-800/30 rounded-xl p-5 text-center"
+                >
+                  <p className="text-3xl md:text-4xl font-black text-danger-400 mb-1">
+                    {item.stat}
+                  </p>
+                  <p className="text-xs text-dark-300 leading-relaxed mb-2">
+                    {item.label}
+                  </p>
+                  <p className="text-[10px] text-dark-500 italic">
+                    {item.source}
+                  </p>
+                </div>
+              ))}
+            </div>
+
+            {/* HUD callout */}
+            <div className="bg-amber-950/30 border border-amber-800/30 rounded-2xl p-6 mb-6">
+              <div className="flex items-start gap-4">
+                <AlertTriangle className="w-8 h-8 text-amber-400 flex-shrink-0 mt-0.5" />
+                <div>
+                  <h4 className="font-bold text-amber-300 mb-2">
+                    The Federal Government Already Knows
+                  </h4>
+                  <p className="text-dark-200 text-sm leading-relaxed mb-3">
+                    The U.S. Department of Housing and Urban Development (HUD)
+                    classifies cell towers as{" "}
+                    <strong className="text-white">
+                      &ldquo;Hazards and Nuisances.&rdquo;
+                    </strong>{" "}
+                    FHA appraisers are required to flag nearby towers as
+                    potential deficiencies, comment on their impact on
+                    marketability, and verify the home isn&apos;t within the
+                    tower&apos;s engineered fall distance.
+                  </p>
+                  <p className="text-xs text-dark-400">
+                    The California Association of Realtors&apos; Property
+                    Sellers Questionnaire lists cell towers alongside other
+                    &ldquo;neighborhood noise, nuisance or other problems.&rdquo;
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Peer-reviewed studies */}
+            <div className="bg-dark-900/60 border border-dark-800/50 rounded-2xl p-6 mb-6">
+              <p className="text-xs font-bold text-sky-400 uppercase tracking-widest mb-4">
+                Published Research on Property Value Impacts
+              </p>
+              <div className="space-y-4">
+                {[
+                  {
+                    study: "Brisbane, Australia (2018)",
+                    finding: "Proximity to cell towers negatively affects house values, decreasing as distance increases. Researchers recommended a compensation program for nearby property owners.",
+                    journal: "Environmental Economics and Policy Studies",
+                  },
+                  {
+                    study: "Johannesburg, South Africa (2024)",
+                    finding: "The closer a residential property is to a cell tower, the greater the impact on its selling price.",
+                    journal: "International Journal of Housing Markets and Analysis",
+                  },
+                  {
+                    study: "U.S. Spatial Analysis (2018)",
+                    finding: "Homes within 0.72 km of towers lost 2.46% on average, and up to 9.78% for visible towers. Aggregate loss: over $24 million for properties in that band.",
+                    journal: "Journal of Real Estate Finance and Economics",
+                  },
+                  {
+                    study: "Kentucky (2016)",
+                    finding: "A home with a visible tower 1,000 feet away sells for 1.82% ($3,342) less. Aggregate impact: $10 million for all properties within 1,000 feet.",
+                    journal: "Land Economics",
+                  },
+                ].map((item) => (
+                  <div
+                    key={item.study}
+                    className="bg-dark-800/40 rounded-xl p-4"
+                  >
+                    <p className="text-sm font-semibold text-white mb-1">
+                      {item.study}
+                    </p>
+                    <p className="text-xs text-dark-300 leading-relaxed mb-1">
+                      {item.finding}
+                    </p>
+                    <p className="text-[10px] text-dark-500 italic">
+                      {item.journal}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Realtor quote */}
+            <div className="bg-dark-900/60 border border-dark-800/50 rounded-2xl p-6 mb-6">
+              <Quote className="w-6 h-6 text-dark-600 mb-3" />
+              <p className="text-dark-200 text-sm leading-relaxed italic mb-3">
+                &ldquo;In my opinion from extensive experience I will tell you
+                the cell tower will negatively effect the price of the property
+                between 15%–30%. Not only that but close to 90% of my clients
+                would refuse to consider looking at or buying the property.&rdquo;
+              </p>
+              <p className="text-xs text-dark-500">
+                — Licensed Realtor, Birmingham, MI
+              </p>
+            </div>
+
+            <div className="text-center">
+              <a
+                href="https://ehsciences.org/cell-towers-drop-property-values/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-6 py-3 bg-danger-900/40 hover:bg-danger-900/60 border border-danger-700/40 text-danger-300 font-bold text-sm rounded-xl transition-all duration-200 hover:scale-[1.03]"
+              >
+                Full Property Value Research
+                <ExternalLink className="w-4 h-4" />
+              </a>
+            </div>
+          </motion.div>
+
+          {/* Impact cards */}
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeUp}
+            custom={1}
+            className="mt-10"
+          >
+            <div className="grid sm:grid-cols-2 gap-4">
+              {[
+                {
+                  icon: Construction,
+                  title: "If They Can Do It Here, They Can Do It Anywhere",
+                  text: "This tower was built without local approval or community input. If that stands, it sets the precedent for the next one — and the one after that. Your street could be next.",
+                },
+                {
+                  icon: Car,
+                  title: "You Drive Past It Every Day",
+                  text: "Routes 11, 57, Electronics Parkway, the Thruway — thousands of residents commute right through this corridor daily. A 184-foot industrial structure changes the character of the area for everyone.",
+                },
+                {
+                  icon: Eye,
+                  title: "It's an Eyesore — Period",
+                  text: "184 feet of steel monopole towering over a residential neighborhood isn't just a safety concern. It's visual blight that degrades the community's character and quality of life.",
+                },
+                {
+                  icon: Scale,
+                  title: "It's About Accountability",
+                  text: "A private company used state land to bypass local government entirely. If residents don't push back, it tells every telecom company that Salina is open for business — no questions asked.",
+                },
+              ].map((item) => (
+                <div
+                  key={item.title}
+                  className="bg-dark-900/60 border border-dark-800/50 rounded-xl p-5"
+                >
+                  <item.icon className="w-6 h-6 text-danger-400 mb-2" />
+                  <p className="text-white font-bold mb-2">{item.title}</p>
+                  <p className="text-sm text-dark-300 leading-relaxed">
+                    {item.text}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </motion.div>
         </div>
       </section>
 
@@ -103,7 +313,7 @@ export default function CommunityLegalPage() {
                 your: "Your concerns about RF exposure to your children are legally irrelevant to the approval process.",
               },
               {
-                their: "Phoenix Tower International sat on federal approval for a year, then started building without notifying a single resident.",
+                their: "Phoenix Tower International sat on federal approval for a year, then started building without notifying a single resident. Not by accident — by design.",
                 your: "If you start a construction project without a permit, you get fined, stopped, and potentially sued.",
               },
               {
@@ -278,6 +488,35 @@ export default function CommunityLegalPage() {
                   next if Liverpool doesn&apos;t fight.
                 </p>
               </div>
+            </motion.div>
+
+            {/* Malicious Intent */}
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              variants={fadeUp}
+              custom={4}
+              className="bg-danger-950/30 border border-danger-800/40 rounded-2xl p-6 md:p-8"
+            >
+              <h3 className="font-bold text-danger-400 text-lg mb-3">
+                Let&apos;s Call It What It Is.
+              </h3>
+              <p className="text-dark-200 text-sm leading-relaxed mb-3">
+                A company exploits a loophole in state land law. Sits on federal
+                approval for over a year. Begins construction without notifying
+                a single resident. Builds a 184-foot unlit tower 0.25 miles from
+                an active landing corridor in a residential neighborhood.
+              </p>
+              <p className="text-dark-200 text-sm leading-relaxed mb-3">
+                This wasn&apos;t an oversight. This wasn&apos;t a clerical error. This
+                wasn&apos;t a missed notification. At every single step, due
+                diligence was skipped — not because it was forgotten, but
+                because it was <strong className="text-white">never intended</strong>.
+              </p>
+              <p className="text-danger-300 text-sm font-bold leading-relaxed">
+                This is what malicious intent looks like when it wears a corporate logo.
+              </p>
             </motion.div>
           </div>
         </div>
@@ -587,27 +826,38 @@ export default function CommunityLegalPage() {
           <p className="text-xs font-bold text-dark-500 uppercase tracking-widest mb-4 text-center">
             Continue Reading
           </p>
-          <div className="grid sm:grid-cols-2 gap-4">
-            <Link
-              href="/the-facts/aviation"
-              className="group bg-dark-900/60 border border-dark-800/50 rounded-xl p-5 hover:border-sky-700/40 transition-all"
-            >
-              <p className="font-bold text-white group-hover:text-sky-400 transition-colors mb-1">
-                ← Aviation & Safety
-              </p>
-              <p className="text-xs text-dark-400">
-                The loophole, flight path proximity, 5G altimeter interference, and helicopter danger.
-              </p>
-            </Link>
+          <div className="grid sm:grid-cols-3 gap-4">
             <Link
               href="/the-facts/health"
               className="group bg-dark-900/60 border border-dark-800/50 rounded-xl p-5 hover:border-sky-700/40 transition-all"
             >
               <p className="font-bold text-white group-hover:text-sky-400 transition-colors mb-1">
-                ← Health & Science
+                Health Impacts →
               </p>
               <p className="text-xs text-dark-400">
-                RF radiation research, property values, children&apos;s vulnerability, and setback distances.
+                RF radiation research, children&apos;s vulnerability, and setback distances.
+              </p>
+            </Link>
+            <Link
+              href="/the-facts/aviation"
+              className="group bg-dark-900/60 border border-dark-800/50 rounded-xl p-5 hover:border-sky-700/40 transition-all"
+            >
+              <p className="font-bold text-white group-hover:text-sky-400 transition-colors mb-1">
+                Aviation & Safety →
+              </p>
+              <p className="text-xs text-dark-400">
+                The loophole, flight path proximity, 5G altimeter interference.
+              </p>
+            </Link>
+            <Link
+              href="/the-facts/wildlife"
+              className="group bg-dark-900/60 border border-dark-800/50 rounded-xl p-5 hover:border-lime-700/40 transition-all"
+            >
+              <p className="font-bold text-white group-hover:text-lime-400 transition-colors mb-1">
+                Wildlife & Environment →
+              </p>
+              <p className="text-xs text-dark-400">
+                Eagles, bird collisions, honeybees, and the Audubon data.
               </p>
             </Link>
           </div>

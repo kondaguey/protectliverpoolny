@@ -28,7 +28,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Protect Liverpool NY — Stop the 184-Foot Cell Tower",
     description:
-      "They're building an 18-story tower in our backyards. And they're not telling us. Sign the petition now.",
+      "They're building a 17-story tower in our backyards. And they're not telling us. Sign the petition now.",
     type: "website",
     url: "https://protectliverpoolny.org",
   },

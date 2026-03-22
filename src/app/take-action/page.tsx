@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import {
   Send,
   CheckCircle2,
@@ -22,6 +22,8 @@ import {
   FileSearch,
   Scale,
   ShieldAlert,
+  MessageSquareQuote,
+  ChevronDown as ChevronDownIcon,
 } from "lucide-react";
 import { supabase } from "@/lib/supabase";
 import { CopyButton } from "@/components/CopyButton";
@@ -120,6 +122,8 @@ type FormData = {
   last_name: string;
   email: string;
   zip_code: string;
+  street_address: string;
+  phone: string;
   comment: string;
 };
 
@@ -129,6 +133,8 @@ export default function TakeActionPage() {
     last_name: "",
     email: "",
     zip_code: "",
+    street_address: "",
+    phone: "",
     comment: "",
   });
   const [errors, setErrors] = useState<Partial<FormData>>({});
@@ -155,7 +161,54 @@ export default function TakeActionPage() {
 
   useEffect(() => {
     fetchCount();
+    fetchComments();
   }, [fetchCount]);
+
+  // Comments state
+  type PublicComment = {
+    name: string;
+    comment: string;
+    zip: string;
+    date: string;
+  };
+  const [comments, setComments] = useState<PublicComment[]>([]);
+  const [commentPage, setCommentPage] = useState(1);
+  const [commentTotal, setCommentTotal] = useState(0);
+  const [commentTotalPages, setCommentTotalPages] = useState(1);
+  const [loadingComments, setLoadingComments] = useState(false);
+
+  const fetchComments = async (page = 1, append = false) => {
+    setLoadingComments(true);
+    try {
+      const res = await fetch(`/api/comments?page=${page}&limit=10`);
+      const data = await res.json();
+      if (data.comments) {
+        setComments((prev) => append ? [...prev, ...data.comments] : data.comments);
+        setCommentTotal(data.total);
+        setCommentTotalPages(data.totalPages);
+        setCommentPage(page);
+      }
+    } catch {
+      // silently fail
+    } finally {
+      setLoadingComments(false);
+    }
+  };
+
+  const timeAgo = (dateStr: string) => {
+    const now = new Date();
+    const date = new Date(dateStr);
+    const seconds = Math.floor((now.getTime() - date.getTime()) / 1000);
+    if (seconds < 60) return "just now";
+    const minutes = Math.floor(seconds / 60);
+    if (minutes < 60) return `${minutes}m ago`;
+    const hours = Math.floor(minutes / 60);
+    if (hours < 24) return `${hours}h ago`;
+    const days = Math.floor(hours / 24);
+    if (days < 30) return `${days}d ago`;
+    const months = Math.floor(days / 30);
+    return `${months}mo ago`;
+  };
 
   const validate = (): boolean => {
     const e: Partial<FormData> = {};
@@ -188,6 +241,8 @@ export default function TakeActionPage() {
         last_name: form.last_name.trim(),
         email: form.email.trim().toLowerCase(),
         zip_code: form.zip_code.trim(),
+        street_address: form.street_address.trim() || null,
+        phone: form.phone.trim() || null,
         comment: form.comment.trim() || null,
         opt_in_contact: optInContact,
         can_help: canHelp,
@@ -195,8 +250,30 @@ export default function TakeActionPage() {
 
       if (error) throw error;
 
+      // Send confirmation email (non-blocking — petition is saved even if email fails)
+      try {
+        await fetch("/api/send-receipt", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            firstName: form.first_name.trim(),
+            lastName: form.last_name.trim(),
+            email: form.email.trim().toLowerCase(),
+            zipCode: form.zip_code.trim(),
+            streetAddress: form.street_address.trim() || null,
+            phone: form.phone.trim() || null,
+            comment: form.comment.trim() || null,
+            optInContact,
+            canHelp,
+          }),
+        });
+      } catch {
+        // Email send failed silently — petition is already saved
+      }
+
       setSubmitted(true);
       fetchCount();
+      fetchComments();
     } catch (err: any) {
       setSubmitError(
         err.message || "Something went wrong. Please try again."
@@ -275,6 +352,28 @@ export default function TakeActionPage() {
               </div>
             </motion.div>
           )}
+        </div>
+      </section>
+
+      {/* ═══════════════════ NOT FROM LIVERPOOL ═══════════════════ */}
+      <section className="px-4 pb-6 md:pb-8">
+        <div className="max-w-2xl mx-auto">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeUp}
+            custom={0}
+            className="bg-lime-950/20 border border-lime-800/30 rounded-xl p-5 md:p-6 text-center"
+          >
+            <p className="font-bold text-white text-sm mb-1">
+              Not from Liverpool?{" "}
+              <span className="text-lime-400">Your signature still matters.</span>
+            </p>
+            <p className="text-dark-400 text-xs leading-relaxed max-w-md mx-auto">
+              What we learn fighting this &mdash; the legal strategies, the loopholes, the playbook &mdash; gets passed on to every community facing the same fight. When one neighborhood wins, it sets the precedent for all of them.
+            </p>
+          </motion.div>
         </div>
       </section>
 
@@ -437,6 +536,44 @@ export default function TakeActionPage() {
 
                   <div>
                     <label
+                      htmlFor="street_address"
+                      className="block text-sm font-medium text-dark-300 mb-1.5"
+                    >
+                      Street Address{" "}
+                      <span className="text-dark-500">(optional — strengthens your petition)</span>
+                    </label>
+                    <input
+                      type="text"
+                      id="street_address"
+                      name="street_address"
+                      value={form.street_address}
+                      onChange={handleChange}
+                      className="w-full px-4 py-3 bg-dark-800 border border-dark-700 rounded-xl text-white placeholder-dark-500 focus:outline-none focus:ring-2 focus:ring-danger-500/50 focus:border-danger-500 transition-all"
+                      placeholder="123 Main St, Liverpool, NY"
+                    />
+                  </div>
+
+                  <div>
+                    <label
+                      htmlFor="phone"
+                      className="block text-sm font-medium text-dark-300 mb-1.5"
+                    >
+                      Phone Number{" "}
+                      <span className="text-dark-500">(optional)</span>
+                    </label>
+                    <input
+                      type="tel"
+                      id="phone"
+                      name="phone"
+                      value={form.phone}
+                      onChange={handleChange}
+                      className="w-full px-4 py-3 bg-dark-800 border border-dark-700 rounded-xl text-white placeholder-dark-500 focus:outline-none focus:ring-2 focus:ring-danger-500/50 focus:border-danger-500 transition-all"
+                      placeholder="(315) 555-1234"
+                    />
+                  </div>
+
+                  <div>
+                    <label
                       htmlFor="comment"
                       className="block text-sm font-medium text-dark-300 mb-1.5"
                     >
@@ -526,8 +663,84 @@ export default function TakeActionPage() {
         </div>
       </section>
 
+      {/* ═══════════════════ COMMUNITY VOICES ═══════════════════ */}
+      {comments.length > 0 && (
+        <section className="py-12 md:py-20 px-4 bg-dark-900/30">
+          <div className="max-w-3xl mx-auto">
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              variants={fadeUp}
+              custom={0}
+              className="text-center mb-8"
+            >
+              <div className="flex items-center justify-center gap-2 mb-3">
+                <MessageSquareQuote className="w-5 h-5 text-danger-400" />
+                <span className="text-xs font-bold text-danger-400 uppercase tracking-widest">
+                  Community Voices
+                </span>
+              </div>
+              <h2
+                className="font-black text-white mb-3"
+                style={{ fontSize: "clamp(1.5rem, 3.5vw, 2rem)" }}
+              >
+                What Your{" "}
+                <span className="text-danger-500">Neighbors</span> Are Saying
+              </h2>
+              <p className="text-dark-400 text-sm">
+                {commentTotal} {commentTotal === 1 ? "person has" : "people have"} left a comment with their signature.
+              </p>
+            </motion.div>
+
+            <div className="space-y-3">
+              <AnimatePresence>
+                {comments.map((c, i) => (
+                  <motion.div
+                    key={`${c.name}-${c.date}-${i}`}
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: i * 0.03, duration: 0.3 }}
+                    className="bg-dark-900/60 border border-dark-800/50 rounded-xl p-4 md:p-5"
+                  >
+                    <p className="text-dark-200 leading-relaxed mb-3" style={{ fontSize: "0.95rem" }}>
+                      &ldquo;{c.comment}&rdquo;
+                    </p>
+                    <div className="flex items-center justify-between text-xs text-dark-500">
+                      <div className="flex items-center gap-2">
+                        <span className="w-6 h-6 rounded-full bg-danger-900/50 border border-danger-800/30 flex items-center justify-center text-danger-400 font-bold text-[10px]">
+                          {c.name.charAt(0)}
+                        </span>
+                        <span className="font-semibold text-dark-300">{c.name}</span>
+                        {c.zip && (
+                          <span className="text-dark-600">• {c.zip}</span>
+                        )}
+                      </div>
+                      <span>{timeAgo(c.date)}</span>
+                    </div>
+                  </motion.div>
+                ))}
+              </AnimatePresence>
+            </div>
+
+            {commentPage < commentTotalPages && (
+              <div className="text-center mt-6">
+                <button
+                  onClick={() => fetchComments(commentPage + 1, true)}
+                  disabled={loadingComments}
+                  className="inline-flex items-center gap-2 px-6 py-3 bg-dark-900/60 border border-dark-800/50 rounded-xl text-sm font-bold text-dark-300 hover:text-white hover:border-dark-700 transition-all disabled:opacity-50"
+                >
+                  {loadingComments ? "Loading..." : "Load More Comments"}
+                  <ChevronDownIcon className="w-4 h-4" />
+                </button>
+              </div>
+            )}
+          </div>
+        </section>
+      )}
+
       {/* ═══════════════════ CALL SCRIPT ═══════════════════ */}
-      <section className="py-12 md:py-20 px-4 bg-dark-900/30">
+      <section id="contact-officials" className="py-12 md:py-20 px-4 bg-dark-900/30 scroll-mt-24">
         <div className="max-w-3xl mx-auto">
           <motion.div
             initial="hidden"

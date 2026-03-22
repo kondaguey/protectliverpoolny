@@ -3,21 +3,15 @@
 import Link from "next/link";
 import { motion } from "framer-motion";
 import {
-  Scale,
   AlertTriangle,
   Quote,
-  Eye,
   ExternalLink,
   Microscope,
   Gavel,
-  Bug,
   BarChart3,
   FileText,
   ShieldAlert,
   MapPin,
-  Construction,
-  Car,
-  TrendingDown,
   GraduationCap,
   ArrowRight,
 } from "lucide-react";
@@ -55,8 +49,8 @@ export default function HealthSciencePage() {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="text-3xl sm:text-4xl md:text-5xl font-black leading-tight tracking-tight"
           >
-            Health, Science &{" "}
-            <span className="text-danger-500">Your Property</span>
+            Health{" "}
+            <span className="text-danger-500">Impacts</span>
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 15 }}
@@ -64,7 +58,8 @@ export default function HealthSciencePage() {
             transition={{ duration: 0.6, delay: 0.3 }}
             className="mt-6 text-lg text-dark-400 max-w-2xl mx-auto leading-relaxed"
           >
-            What the independent research says about RF radiation, property values, children&apos;s vulnerability, and the wildlife they don&apos;t want you thinking about.
+            What the independent research says about RF radiation, children&apos;s vulnerability,
+            and the safety limits a federal court called &quot;arbitrary and capricious.&quot;
           </motion.p>
         </div>
       </section>
@@ -93,34 +88,14 @@ export default function HealthSciencePage() {
           <div className="grid sm:grid-cols-2 gap-4">
             {[
               {
-                icon: Construction,
-                title: "If They Can Do It Here, They Can Do It Anywhere",
-                text: "This tower was built without local approval or community input. If that stands, it sets the precedent for the next one — and the one after that. Your street could be next.",
-              },
-              {
-                icon: Car,
-                title: "You Drive Past It Every Day",
-                text: "Routes 11, 57, Electronics Parkway, the Thruway — thousands of residents commute right through this corridor daily. A 184-foot industrial structure changes the character of the area for everyone.",
-              },
-              {
-                icon: TrendingDown,
-                title: "Property Values Are Everyone's Problem",
-                text: "Studies consistently show that cell towers reduce property values within a 1-mile radius. In a interconnected housing market like Liverpool and Salina, that ripple affects comparable sales across the entire area.",
-              },
-              {
-                icon: Eye,
-                title: "It's an Eyesore — Period",
-                text: "184 feet of steel monopole towering over a residential neighborhood isn't just a safety concern. It's visual blight that degrades the community's character and quality of life.",
-              },
-              {
                 icon: GraduationCap,
                 title: "Your Kids Go to School Here",
                 text: "Long Branch Elementary, Lakeshore Road Elementary, Liverpool Middle — they're all nearby. Even if your house isn't in the shadow of the tower, your children may be spending their days in it.",
               },
               {
-                icon: Scale,
-                title: "It's About Accountability",
-                text: "A private company used state land to bypass local government entirely. If residents don't push back, it tells every telecom company that Salina is open for business — no questions asked.",
+                icon: Microscope,
+                title: "Children Absorb 10× More RF",
+                text: "Peer-reviewed research shows tower signals produce 10× more cumulative daily RF energy absorption in a child's brain than a phone call. Children have thinner skulls and developing nervous systems.",
               },
             ].map((item) => (
               <motion.div
@@ -219,16 +194,6 @@ export default function HealthSciencePage() {
                 accent: "text-purple-400",
                 bg: "bg-purple-950/30",
                 border: "border-purple-800/30",
-              },
-              {
-                icon: Bug,
-                title: "7 Million Birds Killed by Towers Annually",
-                text: "The U.S. Fish & Wildlife Service estimates that communication towers kill approximately 7 million birds per year in North America — primarily nocturnal migrants disoriented by steady-burning warning lights. Unlit towers under 200 feet, like the proposed Liverpool tower, are among the hardest for birds to detect.",
-                link: "https://www.fws.gov/story/threats-birds-communication-towers",
-                linkLabel: "U.S. Fish & Wildlife Service",
-                accent: "text-lime-400",
-                bg: "bg-lime-950/30",
-                border: "border-lime-800/30",
               },
               {
                 icon: AlertTriangle,
@@ -371,16 +336,16 @@ export default function HealthSciencePage() {
             {/* Key stat callout */}
             <div className="bg-danger-950/40 border-2 border-danger-700/40 rounded-2xl p-6 md:p-8 text-center mb-6">
               <p className="text-5xl md:text-6xl font-black text-danger-400 mb-2">
-                1,500–3,000 ft
+                3,000 ft
               </p>
               <p className="text-lg font-bold text-white mb-2">
-                Minimum Recommended Setback
+                Bare Minimum Setback
               </p>
               <p className="text-sm text-dark-300 max-w-xl mx-auto">
-                Multiple peer-reviewed studies (Levitt & Lai 2010, Dode et al.
+                Multiple peer-reviewed studies (Levitt &amp; Lai 2010, Dode et al.
                 2011, Pearce 2024) and the New Hampshire State 5G Commission
-                recommend cell towers be a minimum of 1,500 to 3,000 feet
-                from residences, schools, and hospitals.
+                recommend cell towers be a minimum of 3,000 feet
+                from residences, schools, and hospitals — and many of these towers are designed to be equipped for 6G.
               </p>
             </div>
 
@@ -490,6 +455,35 @@ export default function HealthSciencePage() {
                   near schools.
                 </p>
               </div>
+
+              {/* Worldwide radiation limits comparison */}
+              <div className="bg-dark-900/60 border border-dark-800/50 rounded-2xl p-6">
+                <p className="text-xs font-bold text-amber-400 uppercase tracking-widest mb-3">
+                  Worldwide RF Radiation Limits — Country Comparison
+                </p>
+                <p className="text-dark-300 text-sm leading-relaxed mb-4">
+                  Most countries set wireless radiation limits{" "}
+                  <strong className="text-white">100× to 1,000× stricter</strong> than
+                  the United States. The FCC&apos;s limits haven&apos;t been updated since 1996.
+                </p>
+                <div className="rounded-xl overflow-hidden border border-dark-700/50 mb-4">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src="https://imagedelivery.net/5MAOvNjO0OBL917jHWR5AA/f9f3e799-a84f-4c8f-459f-33097d861300/public"
+                    alt="Worldwide wireless radiation limits comparison by country — the U.S. has the weakest standards"
+                    className="w-full h-auto"
+                  />
+                </div>
+                <a
+                  href="https://ehsciences.org/wp-content/uploads/2025/08/Cell-Tower-Wireless-Radiation-Worldwide-Limits-EHSsciences.org_.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 text-xs font-semibold text-amber-400 hover:underline"
+                >
+                  Full Report: Worldwide Wireless Radiation Limits (PDF)
+                  <ExternalLink className="w-3 h-3" />
+                </a>
+              </div>
             </div>
 
             {/* US school districts that ban */}
@@ -517,301 +511,6 @@ export default function HealthSciencePage() {
               </div>
               <p className="text-sm text-danger-200 mt-4 font-medium">
                 If these communities can protect their children, so can Salina.
-              </p>
-            </div>
-          </motion.div>
-
-          {/* Property Values Section */}
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={fadeUp}
-            custom={0}
-            className="mt-12"
-          >
-            <div className="text-center mb-8">
-              <h3 className="text-2xl md:text-3xl font-black text-white mb-3">
-                Your Home Is{" "}
-                <span className="text-danger-500">Worth Less Now</span>
-              </h3>
-              <p className="text-dark-400 max-w-2xl mx-auto">
-                This isn&apos;t speculation. Peer-reviewed studies, federal
-                agencies, and realtors across the country confirm that cell
-                towers reduce property values — sometimes dramatically.
-              </p>
-            </div>
-
-            {/* Key stats */}
-            <div className="grid sm:grid-cols-3 gap-4 mb-6">
-              {[
-                {
-                  stat: "94%",
-                  label: "of home buyers say they would pay less or avoid a property near a cell tower",
-                  source: "NISLAPP Survey",
-                },
-                {
-                  stat: "Up to 20%",
-                  label: "decline in property values reported by licensed real estate appraisers and peer-reviewed studies",
-                  source: "Multiple Studies",
-                },
-                {
-                  stat: "79%",
-                  label: "say they would never purchase or rent a property within a few blocks of a cell tower",
-                  source: "REALTOR Magazine",
-                },
-              ].map((item) => (
-                <div
-                  key={item.stat}
-                  className="bg-danger-950/30 border border-danger-800/30 rounded-xl p-5 text-center"
-                >
-                  <p className="text-3xl md:text-4xl font-black text-danger-400 mb-1">
-                    {item.stat}
-                  </p>
-                  <p className="text-xs text-dark-300 leading-relaxed mb-2">
-                    {item.label}
-                  </p>
-                  <p className="text-[10px] text-dark-500 italic">
-                    {item.source}
-                  </p>
-                </div>
-              ))}
-            </div>
-
-            {/* HUD callout */}
-            <div className="bg-amber-950/30 border border-amber-800/30 rounded-2xl p-6 mb-6">
-              <div className="flex items-start gap-4">
-                <AlertTriangle className="w-8 h-8 text-amber-400 flex-shrink-0 mt-0.5" />
-                <div>
-                  <h4 className="font-bold text-amber-300 mb-2">
-                    The Federal Government Already Knows
-                  </h4>
-                  <p className="text-dark-200 text-sm leading-relaxed mb-3">
-                    The U.S. Department of Housing and Urban Development (HUD)
-                    classifies cell towers as{" "}
-                    <strong className="text-white">
-                      &ldquo;Hazards and Nuisances.&rdquo;
-                    </strong>{" "}
-                    FHA appraisers are required to flag nearby towers as
-                    potential deficiencies, comment on their impact on
-                    marketability, and verify the home isn&apos;t within the
-                    tower&apos;s engineered fall distance.
-                  </p>
-                  <p className="text-xs text-dark-400">
-                    The California Association of Realtors&apos; Property
-                    Sellers Questionnaire lists cell towers alongside other
-                    &ldquo;neighborhood noise, nuisance or other problems.&rdquo;
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            {/* Peer-reviewed studies */}
-            <div className="bg-dark-900/60 border border-dark-800/50 rounded-2xl p-6 mb-6">
-              <p className="text-xs font-bold text-sky-400 uppercase tracking-widest mb-4">
-                Published Research on Property Value Impacts
-              </p>
-              <div className="space-y-4">
-                {[
-                  {
-                    study: "Brisbane, Australia (2018)",
-                    finding: "Proximity to cell towers negatively affects house values, decreasing as distance increases. Researchers recommended a compensation program for nearby property owners.",
-                    journal: "Environmental Economics and Policy Studies",
-                  },
-                  {
-                    study: "Johannesburg, South Africa (2024)",
-                    finding: "The closer a residential property is to a cell tower, the greater the impact on its selling price.",
-                    journal: "International Journal of Housing Markets and Analysis",
-                  },
-                  {
-                    study: "U.S. Spatial Analysis (2018)",
-                    finding: "Homes within 0.72 km of towers lost 2.46% on average, and up to 9.78% for visible towers. Aggregate loss: over $24 million for properties in that band.",
-                    journal: "Journal of Real Estate Finance and Economics",
-                  },
-                  {
-                    study: "Kentucky (2016)",
-                    finding: "A home with a visible tower 1,000 feet away sells for 1.82% ($3,342) less. Aggregate impact: $10 million for all properties within 1,000 feet.",
-                    journal: "Land Economics",
-                  },
-                ].map((item) => (
-                  <div
-                    key={item.study}
-                    className="bg-dark-800/40 rounded-xl p-4"
-                  >
-                    <p className="text-sm font-semibold text-white mb-1">
-                      {item.study}
-                    </p>
-                    <p className="text-xs text-dark-300 leading-relaxed mb-1">
-                      {item.finding}
-                    </p>
-                    <p className="text-[10px] text-dark-500 italic">
-                      {item.journal}
-                    </p>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Realtor quote */}
-            <div className="bg-dark-900/60 border border-dark-800/50 rounded-2xl p-6 mb-6">
-              <Quote className="w-6 h-6 text-dark-600 mb-3" />
-              <p className="text-dark-200 text-sm leading-relaxed italic mb-3">
-                &ldquo;In my opinion from extensive experience I will tell you
-                the cell tower will negatively effect the price of the property
-                between 15%–30%. Not only that but close to 90% of my clients
-                would refuse to consider looking at or buying the property.&rdquo;
-              </p>
-              <p className="text-xs text-dark-500">
-                — Licensed Realtor, Birmingham, MI
-              </p>
-            </div>
-
-            <div className="text-center">
-              <a
-                href="https://ehsciences.org/cell-towers-drop-property-values/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-6 py-3 bg-danger-900/40 hover:bg-danger-900/60 border border-danger-700/40 text-danger-300 font-bold text-sm rounded-xl transition-all duration-200 hover:scale-[1.03]"
-              >
-                Full Property Value Research
-                <ExternalLink className="w-4 h-4" />
-              </a>
-            </div>
-          </motion.div>
-
-          {/* The Birds and the Bees Section */}
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={fadeUp}
-            custom={0}
-            className="mt-12"
-          >
-            <div className="text-center mb-8">
-              <p className="text-xs font-bold text-lime-400 uppercase tracking-widest mb-3">
-                The Ecological Impact No One Is Talking About
-              </p>
-              <h3
-                className="font-black text-white mb-3"
-                style={{ fontSize: "clamp(1.5rem, 3.5vw, 2rem)" }}
-              >
-                The Birds{" "}
-                <span className="text-lime-400">&amp;</span> the Bees
-              </h3>
-              <p className="text-dark-400 max-w-2xl mx-auto" style={{ fontSize: "clamp(0.875rem, 2vw, 1rem)" }}>
-                While the mainstream algorithms try to tell you there&apos;s
-                &quot;no conclusive evidence&quot; of wildlife being affected
-                by cell towers — the data tells a very different story.
-              </p>
-            </div>
-
-            {/* The Birds */}
-            <div className="bg-lime-950/20 border border-lime-800/30 rounded-2xl p-6 md:p-8 mb-6">
-              <h4 className="font-bold text-lime-300 mb-4" style={{ fontSize: "clamp(1.1rem, 2.5vw, 1.25rem)" }}>
-                The Birds: 7 Million Deaths Per Year
-              </h4>
-              <p className="text-dark-200 text-sm leading-relaxed mb-4">
-                According to the{" "}
-                <strong className="text-white">American Bird Conservancy</strong>,
-                communication towers kill approximately{" "}
-                <strong className="text-white">
-                  7 million birds per year
-                </strong>{" "}
-                in North America — primarily nocturnal migrants disoriented by
-                tower lights. Songbirds, raptors, and migratory species are
-                especially vulnerable when skies are overcast or foggy.
-              </p>
-
-              <div className="grid sm:grid-cols-2 gap-4 mb-4">
-                <div className="bg-dark-900/40 rounded-xl p-4">
-                  <p className="text-lime-400 font-black text-xl mb-1">100+</p>
-                  <p className="text-white font-bold text-sm mb-1">
-                    Bald Eagles at Onondaga Lake
-                  </p>
-                  <p className="text-dark-300 text-xs leading-relaxed">
-                    Onondaga Lake — directly adjacent to the tower site — is
-                    the largest urban bald eagle wintering roost in New York
-                    State. Protected under the{" "}
-                    <strong className="text-white">
-                      Bald and Golden Eagle Protection Act
-                    </strong>
-                    . Fines up to $250,000 per kill.
-                  </p>
-                </div>
-                <div className="bg-dark-900/40 rounded-xl p-4">
-                  <p className="text-danger-400 font-black text-xl mb-1">Lose-Lose</p>
-                  <p className="text-white font-bold text-sm mb-1">
-                    Lights Don&apos;t Fix This
-                  </p>
-                  <p className="text-dark-300 text-xs leading-relaxed">
-                    No lights? Birds can&apos;t see it. Steady-burning
-                    lights? The ABC confirms they{" "}
-                    <strong className="text-white">attract and disorient</strong>{" "}
-                    birds, causing more deaths. Even flashing lights still kill
-                    30% of what steady lights do. There is no version of this
-                    tower that isn&apos;t lethal to protected species.
-                  </p>
-                </div>
-              </div>
-
-              <p className="text-dark-300 text-xs leading-relaxed mb-3">
-                Turkey vultures — abundant at the tower site — are also{" "}
-                <strong className="text-white">federally protected</strong>{" "}
-                under the Migratory Bird Treaty Act of 1918. As large,
-                slow-soaring raptors, they are among the most
-                collision-prone species with tall structures.
-              </p>
-
-              <a
-                href="https://abcbirds.org/strategies/communications-towers/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 text-xs font-semibold text-lime-400 hover:underline"
-              >
-                American Bird Conservancy: Tower Collisions
-                <ExternalLink className="w-3 h-3" />
-              </a>
-            </div>
-
-            {/* The Bees */}
-            <div className="bg-amber-950/20 border border-amber-800/30 rounded-2xl p-6 md:p-8 mb-6">
-              <h4 className="font-bold text-amber-300 mb-4" style={{ fontSize: "clamp(1.1rem, 2.5vw, 1.25rem)" }}>
-                The Bees: Peer-Reviewed, Proven, and Devastating
-              </h4>
-              <p className="text-dark-200 text-sm leading-relaxed mb-4">
-                This one isn&apos;t even debatable. Peer-reviewed research has{" "}
-                <strong className="text-white">proven</strong> that cell tower
-                RF radiation decimates honeybee populations. Studies
-                demonstrate that exposure disrupts bee navigation, reduces
-                colony strength, and triggers colony collapse — a direct
-                threat to the food supply, since honeybees pollinate roughly{" "}
-                <strong className="text-white">
-                  one-third of all food humans eat
-                </strong>
-                .
-              </p>
-              <a
-                href="https://ui.adsabs.harvard.edu/abs/2022E%26ES..979a2013K/abstract"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 text-xs font-semibold text-amber-400 hover:underline"
-              >
-                Peer-Reviewed Study: RF Effects on Honeybees
-                <ExternalLink className="w-3 h-3" />
-              </a>
-            </div>
-
-            {/* Bottom line */}
-            <div className="bg-dark-900/60 border border-dark-800/50 rounded-2xl p-6 text-center">
-              <p className="text-dark-200 text-sm leading-relaxed max-w-2xl mx-auto">
-                An unlit, 184-foot tower in documented bald eagle habitat,
-                adjacent to New York&apos;s largest urban eagle roost,
-                surrounded by turkey vultures and honeybee populations — with
-                no environmental review shared with the public. If a single
-                protected species is killed, someone is{" "}
-                <strong className="text-white">legally liable</strong>. And
-                we&apos;ll be watching.
               </p>
             </div>
           </motion.div>
@@ -928,27 +627,38 @@ export default function HealthSciencePage() {
           <p className="text-xs font-bold text-dark-500 uppercase tracking-widest mb-4 text-center">
             Continue Reading
           </p>
-          <div className="grid sm:grid-cols-2 gap-4">
-            <Link
-              href="/the-facts/aviation"
-              className="group bg-dark-900/60 border border-dark-800/50 rounded-xl p-5 hover:border-sky-700/40 transition-all"
-            >
-              <p className="font-bold text-white group-hover:text-sky-400 transition-colors mb-1">
-                ← Aviation & Safety
-              </p>
-              <p className="text-xs text-dark-400">
-                The loophole, flight path proximity, 5G altimeter interference, and helicopter danger.
-              </p>
-            </Link>
+          <div className="grid sm:grid-cols-3 gap-4">
             <Link
               href="/the-facts/community"
               className="group bg-dark-900/60 border border-dark-800/50 rounded-xl p-5 hover:border-amber-700/40 transition-all"
             >
               <p className="font-bold text-white group-hover:text-amber-400 transition-colors mb-1">
-                Community & Legal →
+                ← Community & Land Value
               </p>
               <p className="text-xs text-dark-400">
-                Federal preemption, double standards, and communities fighting back.
+                Property values, double standards, and the legal framework.
+              </p>
+            </Link>
+            <Link
+              href="/the-facts/aviation"
+              className="group bg-dark-900/60 border border-dark-800/50 rounded-xl p-5 hover:border-sky-700/40 transition-all"
+            >
+              <p className="font-bold text-white group-hover:text-sky-400 transition-colors mb-1">
+                Aviation & Safety
+              </p>
+              <p className="text-xs text-dark-400">
+                The loophole, flight path proximity, 5G altimeter interference.
+              </p>
+            </Link>
+            <Link
+              href="/the-facts/wildlife"
+              className="group bg-dark-900/60 border border-dark-800/50 rounded-xl p-5 hover:border-lime-700/40 transition-all"
+            >
+              <p className="font-bold text-white group-hover:text-lime-400 transition-colors mb-1">
+                Wildlife & Environment →
+              </p>
+              <p className="text-xs text-dark-400">
+                Eagles, bird collisions, honeybees, and the Audubon data they can&apos;t ignore.
               </p>
             </Link>
           </div>

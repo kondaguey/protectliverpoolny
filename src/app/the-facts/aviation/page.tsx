@@ -976,27 +976,38 @@ export default function AviationSafetyPage() {
           <p className="text-xs font-bold text-dark-500 uppercase tracking-widest mb-4 text-center">
             Continue Reading
           </p>
-          <div className="grid sm:grid-cols-2 gap-4">
-            <Link
-              href="/the-facts/health"
-              className="group bg-dark-900/60 border border-dark-800/50 rounded-xl p-5 hover:border-sky-700/40 transition-all"
-            >
-              <p className="font-bold text-white group-hover:text-sky-400 transition-colors mb-1">
-                Health & Science →
-              </p>
-              <p className="text-xs text-dark-400">
-                RF radiation research, property values, children&apos;s vulnerability, and setback distances.
-              </p>
-            </Link>
+          <div className="grid sm:grid-cols-3 gap-4">
             <Link
               href="/the-facts/community"
               className="group bg-dark-900/60 border border-dark-800/50 rounded-xl p-5 hover:border-amber-700/40 transition-all"
             >
               <p className="font-bold text-white group-hover:text-amber-400 transition-colors mb-1">
-                Community & Legal →
+                ← Community & Land Value
               </p>
               <p className="text-xs text-dark-400">
-                Federal preemption, double standards, and communities fighting back.
+                Property values, double standards, and the legal framework.
+              </p>
+            </Link>
+            <Link
+              href="/the-facts/health"
+              className="group bg-dark-900/60 border border-dark-800/50 rounded-xl p-5 hover:border-sky-700/40 transition-all"
+            >
+              <p className="font-bold text-white group-hover:text-sky-400 transition-colors mb-1">
+                Health Impacts
+              </p>
+              <p className="text-xs text-dark-400">
+                RF radiation research, children&apos;s vulnerability, and setback distances.
+              </p>
+            </Link>
+            <Link
+              href="/the-facts/wildlife"
+              className="group bg-dark-900/60 border border-dark-800/50 rounded-xl p-5 hover:border-lime-700/40 transition-all"
+            >
+              <p className="font-bold text-white group-hover:text-lime-400 transition-colors mb-1">
+                Wildlife & Environment →
+              </p>
+              <p className="text-xs text-dark-400">
+                Eagles, bird collisions, honeybees, and the Audubon data they can&apos;t ignore.
               </p>
             </Link>
           </div>

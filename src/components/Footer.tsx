@@ -1,4 +1,4 @@
-import { ShieldAlert, Mail } from "lucide-react";
+import { Mail, Shield } from "lucide-react";
 import { CopyButton } from "./CopyButton";
 
 export function Footer() {
@@ -7,11 +7,17 @@ export function Footer() {
       <div className="max-w-6xl mx-auto">
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
           {/* Logo */}
-          <div className="flex items-center gap-2">
-            <ShieldAlert className="w-5 h-5 text-danger-500" />
-            <span className="font-extrabold text-sm tracking-tight">
+          <div className="flex items-center gap-2.5">
+            <span className="flex items-center justify-center w-28 h-28">
+              <img src="/protect-liverpool-ny-logo.png" alt="Protect Liverpool NY" className="w-full h-full object-contain" />
+            </span>
+            <span
+              className="font-black tracking-[-0.03em] leading-none"
+              style={{ fontSize: "0.9rem", fontFamily: "'Inter', system-ui, sans-serif" }}
+            >
               <span className="text-white">PROTECT</span>
               <span className="text-danger-500">LIVERPOOL</span>
+              <span className="text-dark-500 font-bold text-[10px] ml-0.5 tracking-wide">NY</span>
             </span>
           </div>
 

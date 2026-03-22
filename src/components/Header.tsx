@@ -2,13 +2,14 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import { Menu, X, ShieldAlert, ChevronDown } from "lucide-react";
+import { Menu, X, ChevronDown, Shield } from "lucide-react";
 import { usePathname } from "next/navigation";
 
 const factsSubLinks = [
+  { href: "/the-facts/community", label: "Community & Land Value" },
+  { href: "/the-facts/health", label: "Health Impacts" },
   { href: "/the-facts/aviation", label: "Aviation & Safety" },
-  { href: "/the-facts/health", label: "Health & Science" },
-  { href: "/the-facts/community", label: "Community & Legal" },
+  { href: "/the-facts/wildlife", label: "Wildlife & Environment" },
 ];
 
 export function Header() {
@@ -20,17 +21,23 @@ export function Header() {
 
   return (
     <header className="sticky top-0 z-50 bg-dark-950/90 backdrop-blur-md border-b border-dark-800/50">
-      <div className="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
+      <div className="max-w-6xl mx-auto px-4 h-24 flex items-center justify-between">
         {/* Logo */}
         <Link
           href="/"
-          className="flex items-center gap-2 group"
+          className="flex items-center gap-2.5 group"
           onClick={() => setMobileOpen(false)}
         >
-          <ShieldAlert className="w-7 h-7 text-danger-500 group-hover:text-danger-400 transition-colors" />
-          <span className="font-extrabold text-lg tracking-tight">
+          <span className="relative flex items-center justify-center w-20 h-20 group-hover:scale-105 transition-all">
+            <img src="/protect-liverpool-ny-logo.png" alt="Protect Liverpool NY" className="w-full h-full object-contain" />
+          </span>
+          <span
+            className="font-black tracking-[-0.03em] leading-none"
+            style={{ fontSize: "1.15rem", fontFamily: "'Inter', system-ui, sans-serif" }}
+          >
             <span className="text-white">PROTECT</span>
             <span className="text-danger-500">LIVERPOOL</span>
+            <span className="text-dark-500 font-bold text-xs ml-0.5 tracking-wide">NY</span>
           </span>
         </Link>
 
@@ -50,38 +57,49 @@ export function Header() {
           {/* The Facts — Dropdown */}
           <div
             className="relative"
-            onMouseEnter={() => setFactsOpen(true)}
-            onMouseLeave={() => setFactsOpen(false)}
+            onMouseEnter={() => {
+              clearTimeout((window as any).__factsTimer);
+              setFactsOpen(true);
+            }}
+            onMouseLeave={() => {
+              (window as any).__factsTimer = setTimeout(() => setFactsOpen(false), 150);
+            }}
           >
-            <button
+            <Link
+              href="/the-facts"
               className={`flex items-center gap-1 px-4 py-2 rounded-lg text-sm font-semibold transition-all duration-200 ${
                 isFactsActive
                   ? "bg-danger-600 text-white"
                   : "text-dark-300 hover:text-white hover:bg-dark-800"
               }`}
-              onClick={() => setFactsOpen(!factsOpen)}
             >
               The Facts
               <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${factsOpen ? "rotate-180" : ""}`} />
-            </button>
+            </Link>
 
             {factsOpen && (
-              <div className="absolute top-full left-0 mt-1 w-52 bg-dark-900 border border-dark-700/60 rounded-xl shadow-2xl shadow-black/40 overflow-hidden py-1">
-                {factsSubLinks.map((sub) => (
-                  <Link
-                    key={sub.href}
-                    href={sub.href}
-                    className={`block px-4 py-2.5 text-sm font-semibold transition-colors ${
-                      pathname === sub.href
-                        ? "bg-danger-600/20 text-danger-300"
-                        : "text-dark-300 hover:text-white hover:bg-dark-800/60"
-                    }`}
-                    onClick={() => setFactsOpen(false)}
-                  >
-                    {sub.label}
-                  </Link>
-                ))}
-              </div>
+              <>
+                {/* Invisible bridge to prevent gap mouseout */}
+                <div className="absolute top-full left-0 w-full h-2" />
+                <div className="absolute top-full left-0 pt-2 w-52">
+                  <div className="bg-dark-900 border border-dark-700/60 rounded-xl shadow-2xl shadow-black/40 overflow-hidden py-1">
+                    {factsSubLinks.map((sub) => (
+                      <Link
+                        key={sub.href}
+                        href={sub.href}
+                        className={`block px-4 py-2.5 text-sm font-semibold transition-colors ${
+                          pathname === sub.href
+                            ? "bg-danger-600/20 text-danger-300"
+                            : "text-dark-300 hover:text-white hover:bg-dark-800/60"
+                        }`}
+                        onClick={() => setFactsOpen(false)}
+                      >
+                        {sub.label}
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              </>
             )}
           </div>
 
