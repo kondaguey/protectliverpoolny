@@ -31,7 +31,16 @@ export default function CommunityLegalPage() {
     <>
       {/* ═══════════════════ HEADER ═══════════════════ */}
       <section className="relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-b from-dark-900/60 via-dark-950 to-dark-950" />
+        {/* Hero background image */}
+        <div className="absolute inset-0">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="https://imagedelivery.net/5MAOvNjO0OBL917jHWR5AA/615a2f24-06f0-440b-f4a0-4e4a24506900/public"
+            alt=""
+            className="w-full h-full object-cover"
+          />
+        </div>
+        <div className="absolute inset-0 bg-dark-950/60 backdrop-blur-sm" />
         <div className="relative max-w-4xl mx-auto px-4 pt-16 pb-12 md:pt-24 md:pb-16 text-center">
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}

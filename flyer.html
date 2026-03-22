@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Protect Liverpool NY — Door Flyer</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap');
+
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  @page {
+    size: 8.5in 11in;
+    margin: 0;
+  }
+
+  body {
+    font-family: 'Inter', -apple-system, sans-serif;
+    background: #0a0e1a;
+    color: #e2e8f0;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .flyer {
+    width: 8.5in;
+    height: 11in;
+    margin: 0 auto;
+    padding: 0.5in 0.55in 0.45in;
+    background: linear-gradient(170deg, #0d1117 0%, #0a0e1a 40%, #10111a 100%);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    position: relative;
+  }
+
+  /* Subtle top accent bar */
+  .top-bar {
+    width: 100%;
+    height: 5px;
+    background: linear-gradient(90deg, #ef4444, #dc2626, #ef4444);
+    border-radius: 3px;
+    margin-bottom: 0.3in;
+  }
+
+  /* === HEADLINE === */
+  .headline {
+    text-align: center;
+    margin-bottom: 0.2in;
+  }
+  .headline .pre {
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #ef4444;
+    margin-bottom: 6px;
+  }
+  .headline h1 {
+    font-size: 46px;
+    font-weight: 900;
+    line-height: 1;
+    letter-spacing: -2px;
+    color: #ffffff;
+  }
+  .headline h1 .red { color: #ef4444; }
+  .headline .sub {
+    font-size: 15px;
+    color: #94a3b8;
+    margin-top: 8px;
+    line-height: 1.4;
+    max-width: 6in;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .headline .sub strong { color: #ffffff; }
+
+  /* === STAT STRIP === */
+  .stat-strip {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 0.22in;
+  }
+  .stat-box {
+    text-align: center;
+    padding: 12px 8px;
+    border-radius: 10px;
+    border: 1.5px solid rgba(239, 68, 68, 0.3);
+    background: rgba(239, 68, 68, 0.06);
+  }
+  .stat-box .num {
+    font-size: 30px;
+    font-weight: 900;
+    color: #ef4444;
+    line-height: 1;
+  }
+  .stat-box .label {
+    font-size: 9px;
+    color: #94a3b8;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 700;
+    margin-top: 4px;
+    line-height: 1.2;
+  }
+
+  /* === BULLET SECTION === */
+  .bullets-section {
+    margin-bottom: 0.2in;
+  }
+  .section-label {
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: #ef4444;
+    margin-bottom: 10px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid rgba(239, 68, 68, 0.2);
+  }
+  .bullet-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+  .bullet {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    padding: 10px 12px;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+  }
+  .bullet .icon {
+    font-size: 16px;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+  .bullet .title {
+    font-size: 12px;
+    font-weight: 800;
+    color: #ffffff;
+    line-height: 1.2;
+    margin-bottom: 2px;
+  }
+  .bullet .desc {
+    font-size: 10px;
+    color: #94a3b8;
+    line-height: 1.35;
+  }
+  .bullet .desc strong { color: #cbd5e1; }
+  .bullet.highlight {
+    border-color: rgba(239, 68, 68, 0.25);
+    background: rgba(239, 68, 68, 0.05);
+  }
+
+  /* === QUOTE === */
+  .quote-bar {
+    background: rgba(239, 68, 68, 0.08);
+    border-left: 4px solid #ef4444;
+    border-radius: 0 10px 10px 0;
+    padding: 14px 18px;
+    margin-bottom: 0.2in;
+  }
+  .quote-bar p {
+    font-size: 13px;
+    font-weight: 700;
+    color: #ffffff;
+    line-height: 1.4;
+    font-style: italic;
+  }
+  .quote-bar .attr {
+    font-size: 9px;
+    color: #ef4444;
+    font-weight: 800;
+    font-style: normal;
+    margin-top: 4px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  /* === BOTTOM CTA === */
+  .cta-section {
+    margin-top: auto;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 20px;
+    align-items: center;
+    padding: 18px 20px;
+    background: linear-gradient(135deg, rgba(239, 68, 68, 0.12), rgba(239, 68, 68, 0.05));
+    border: 2px solid rgba(239, 68, 68, 0.35);
+    border-radius: 14px;
+  }
+  .cta-left {}
+  .cta-left .cta-head {
+    font-size: 22px;
+    font-weight: 900;
+    color: #ffffff;
+    letter-spacing: -0.5px;
+    line-height: 1.1;
+    margin-bottom: 4px;
+  }
+  .cta-left .cta-head .red { color: #ef4444; }
+  .cta-left .cta-sub {
+    font-size: 11px;
+    color: #94a3b8;
+    line-height: 1.3;
+  }
+  .cta-left .cta-url {
+    font-size: 16px;
+    font-weight: 900;
+    color: #ef4444;
+    margin-top: 6px;
+    letter-spacing: -0.3px;
+  }
+  .qr-placeholder {
+    width: 1.3in;
+    height: 1.3in;
+    border: 2px dashed rgba(239, 68, 68, 0.4);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background: rgba(255, 255, 255, 0.02);
+  }
+  .qr-placeholder .qr-label {
+    font-size: 9px;
+    color: #64748b;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-align: center;
+  }
+  .qr-placeholder .qr-icon {
+    font-size: 36px;
+    margin-bottom: 4px;
+    opacity: 0.3;
+  }
+
+  /* === FOOTER === */
+  .footer {
+    text-align: center;
+    margin-top: 10px;
+    font-size: 8px;
+    color: #475569;
+    line-height: 1.4;
+  }
+</style>
+</head>
+<body>
+<div class="flyer">
+  <div class="top-bar"></div>
+
+  <!-- HEADLINE -->
+  <div class="headline">
+    <p class="pre">⚠ Attention Liverpool &amp; Salina Residents</p>
+    <h1>
+      Did Anyone <span class="red">Ask You?</span>
+    </h1>
+    <p class="sub">
+      A <strong>184-foot commercial cell tower</strong> is being built in your neighborhood
+      right now — on state land, with <strong>no public vote</strong>, <strong>no notification</strong>,
+      and <strong>no environmental review</strong>.
+    </p>
+  </div>
+
+  <!-- STAT STRIP -->
+  <div class="stat-strip">
+    <div class="stat-box">
+      <div class="num">20%</div>
+      <div class="label">Property Value<br>Decrease Near Towers</div>
+    </div>
+    <div class="stat-box">
+      <div class="num">0.25 mi</div>
+      <div class="label">From Where Planes<br>Land at 1,000 ft</div>
+    </div>
+    <div class="stat-box">
+      <div class="num">0</div>
+      <div class="label">Residents Notified<br>or Consulted</div>
+    </div>
+  </div>
+
+  <!-- WHAT YOU NEED TO KNOW -->
+  <div class="bullets-section">
+    <div class="section-label">What You Need to Know</div>
+    <div class="bullet-grid">
+      <div class="bullet highlight">
+        <span class="icon">🏠</span>
+        <div>
+          <div class="title">Your Home Is Worth Less Now</div>
+          <div class="desc"><strong>94% of buyers</strong> avoid properties near cell towers. HUD classifies them as <strong>"Hazards and Nuisances."</strong></div>
+        </div>
+      </div>
+      <div class="bullet highlight">
+        <span class="icon">✈️</span>
+        <div>
+          <div class="title">In the Final Approach Path</div>
+          <div class="desc">Unlit. 0.25 miles from where aircraft descend at 1,000 ft. The FAA calls 5G altimeter interference <strong>"catastrophic."</strong></div>
+        </div>
+      </div>
+      <div class="bullet">
+        <span class="icon">🏫</span>
+        <div>
+          <div class="title">Your Kids' Schools Are Nearby</div>
+          <div class="desc">Long Branch, Elmcrest, and Liverpool Middle are within range. Children absorb <strong>10× more RF</strong> than adults.</div>
+        </div>
+      </div>
+      <div class="bullet">
+        <span class="icon">🔒</span>
+        <div>
+          <div class="title">They Bypassed Your Government</div>
+          <div class="desc">Built on NYSTA state land to <strong>avoid all local zoning</strong>, environmental review, and public notice requirements.</div>
+        </div>
+      </div>
+      <div class="bullet">
+        <span class="icon">🦅</span>
+        <div>
+          <div class="title">Bald Eagles Nest Here</div>
+          <div class="desc">Federally protected bald eagles and migratory birds are documented within the tower's kill zone. <strong>No wildlife study was done.</strong></div>
+        </div>
+      </div>
+      <div class="bullet">
+        <span class="icon">⚖️</span>
+        <div>
+          <div class="title">Federal Law Silences You</div>
+          <div class="desc">The 1996 Telecom Act <strong>bans</strong> local governments from rejecting towers over health concerns. That law is from before the first iPhone.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- QUOTE -->
+  <div class="quote-bar">
+    <p>"No public vote. No public notice. Your silence is the consent they want."</p>
+    <p class="attr">Not a single resident, school board, or elected official in Liverpool was consulted.</p>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta-section">
+    <div class="cta-left">
+      <div class="cta-head">
+        Get the Facts. <span class="red">Take Action.</span>
+      </div>
+      <div class="cta-sub">
+        Sign the petition. See the evidence. Make your voice heard<br>before it's too late.
+      </div>
+      <div class="cta-url">ProtectLiverpoolNY.com</div>
+    </div>
+    <div class="qr-placeholder">
+      <div class="qr-icon">📱</div>
+      <div class="qr-label">Place QR<br>Code Here</div>
+    </div>
+  </div>
+
+  <div class="footer">
+    This flyer is produced by residents of Liverpool & Salina. Not affiliated with any political party or organization.<br>
+    All claims are sourced from peer-reviewed studies, federal agencies, and public records. Full citations at ProtectLiverpoolNY.com
+  </div>
+</div>
+</body>
+</html>

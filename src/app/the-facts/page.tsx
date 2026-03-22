@@ -58,6 +58,17 @@ const sections = [
     accent: "text-lime-400",
     badge: "🦅 Federal Wildlife Law",
   },
+  {
+    href: "/the-facts/surveillance",
+    title: "The Real Question",
+    subtitle: "Liverpool already has full 5G. So what is this tower actually for?",
+    description: "Flock ALPR cameras are already photographing every vehicle in the area. ICE is already accessing the data. Private companies are already building watchlists. And this tower is providing the backbone.",
+    image: "https://imagedelivery.net/5MAOvNjO0OBL917jHWR5AA/87517ceb-e6c4-45e6-6dfe-1f0ce181f200/public",
+    color: "border-purple-700/40",
+    hoverColor: "group-hover:text-purple-400",
+    accent: "text-purple-400",
+    badge: "👁️ Follow the Infrastructure",
+  },
 ];
 
 export default function TheFactsLanding() {
@@ -82,7 +93,7 @@ export default function TheFactsLanding() {
             transition={{ duration: 0.6, delay: 0.3 }}
             className="mt-6 text-lg text-dark-400 max-w-2xl mx-auto leading-relaxed"
           >
-            Four areas of evidence. No opinions — just sourced data, federal documents, and peer-reviewed science.
+            Four areas of evidence and the question nobody&apos;s answering. No opinions — just sourced data, federal documents, and peer-reviewed science.
           </motion.p>
         </div>
       </section>

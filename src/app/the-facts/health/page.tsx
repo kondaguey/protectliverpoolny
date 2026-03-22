@@ -30,7 +30,15 @@ export default function HealthSciencePage() {
     <>
       {/* ═══════════════════ HEADER ═══════════════════ */}
       <section className="relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-b from-dark-900/60 via-dark-950 to-dark-950" />
+        <div className="absolute inset-0">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="https://imagedelivery.net/5MAOvNjO0OBL917jHWR5AA/56de917e-c37e-413f-af53-3ed52f588500/public"
+            alt=""
+            className="w-full h-full object-cover"
+          />
+        </div>
+        <div className="absolute inset-0 bg-dark-950/60 backdrop-blur-sm" />
         <div className="relative max-w-4xl mx-auto px-4 pt-16 pb-12 md:pt-24 md:pb-16 text-center">
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
@@ -48,12 +56,12 @@ export default function HealthSciencePage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
             className="font-black leading-[0.95] tracking-tighter"
-            style={{ fontSize: "clamp(3rem, 10vw, 6rem)" }}
+            style={{ fontSize: "clamp(2.5rem, 8vw, 5rem)" }}
           >
             They Know It&apos;s{" "}
             <span className="text-danger-500">Harmful.</span>
             <br />
-            They Built It{" "}
+            They&apos;re Building It{" "}
             <span className="text-danger-500">Anyway.</span>
           </motion.h1>
           <motion.p

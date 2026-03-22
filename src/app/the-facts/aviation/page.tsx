@@ -28,43 +28,68 @@ export default function AviationSafetyPage() {
       {/* ═══════════════════ HEADER ═══════════════════ */}
       <section className="relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-dark-900/60 via-dark-950 to-dark-950" />
-        <div className="relative max-w-4xl mx-auto px-4 pt-16 pb-12 md:pt-24 md:pb-16 text-center">
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.4 }}
-            className="flex items-center justify-center mb-6"
-          >
-            <span className="inline-flex items-center gap-2 px-4 py-2 bg-sky-900/40 border border-sky-700/40 rounded-full text-sky-300 text-xs font-bold uppercase tracking-wider">
-              <Plane className="w-3.5 h-3.5" />
-              Aviation &amp; Safety
-            </span>
-          </motion.div>
+        <div className="relative max-w-5xl mx-auto px-4 pt-16 pb-12 md:pt-24 md:pb-16">
+          <div className="grid md:grid-cols-2 gap-8 items-center">
+            {/* Left — Title & text */}
+            <div>
+              <motion.div
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.4 }}
+                className="flex items-center mb-6"
+              >
+                <span className="inline-flex items-center gap-2 px-4 py-2 bg-sky-900/40 border border-sky-700/40 rounded-full text-sky-300 text-xs font-bold uppercase tracking-wider">
+                  <Plane className="w-3.5 h-3.5" />
+                  Aviation &amp; Safety
+                </span>
+              </motion.div>
 
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="font-black leading-[0.95] tracking-tighter"
-            style={{ fontSize: "clamp(2.5rem, 9vw, 5.5rem)" }}
-          >
-            184 Feet.{" "}
-            <span className="text-danger-500">Unlit.</span>
-            <br />
-            In the{" "}
-            <span className="text-danger-500">Final Approach.</span>
-          </motion.h1>
+              <motion.h1
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.1 }}
+                className="font-black leading-[0.95] tracking-tighter"
+                style={{ fontSize: "clamp(2.5rem, 9vw, 5.5rem)" }}
+              >
+                184 Feet.{" "}
+                <span className="text-danger-500">Unlit.</span>
+                <br />
+                In the{" "}
+                <span className="text-danger-500">Final Approach.</span>
+              </motion.h1>
 
-          <motion.p
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            className="mt-6 text-dark-400 max-w-2xl mx-auto leading-relaxed"
-            style={{ fontSize: "clamp(1rem, 2.5vw, 1.25rem)" }}
-          >
-            0.25 miles due south of where aircraft descend at 1,000 feet toward Syracuse Hancock.
-            No lights. No notification to pilots. And the FAA signed off on it.
-          </motion.p>
+              <motion.p
+                initial={{ opacity: 0, y: 15 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.3 }}
+                className="mt-6 text-dark-400 max-w-lg leading-relaxed"
+                style={{ fontSize: "clamp(1rem, 2.5vw, 1.25rem)" }}
+              >
+                0.25 miles due south of where aircraft descend at 1,000 feet toward Syracuse Hancock.
+                No lights. No notification to pilots. And the FAA signed off on it.
+              </motion.p>
+            </div>
+
+            {/* Right — FlightRadar image */}
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.7, delay: 0.3 }}
+              className="relative"
+            >
+              <div className="rounded-2xl overflow-hidden border border-dark-700/50 shadow-2xl shadow-black/40">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src="https://imagedelivery.net/5MAOvNjO0OBL917jHWR5AA/82026018-9e77-4ea8-1424-674b34a40100/public"
+                  alt="Flightradar24 showing aircraft on final approach near the tower"
+                  className="w-full h-auto"
+                />
+              </div>
+              <p className="text-[10px] text-dark-500 mt-2 text-center italic">
+                Live Flightradar24 data — aircraft descending directly over the tower site
+              </p>
+            </motion.div>
+          </div>
         </div>
       </section>
 
@@ -404,25 +429,25 @@ export default function AviationSafetyPage() {
               },
             ].map((pair, i) => (
               <div key={i} className="grid md:grid-cols-2 gap-3">
-                <div className="bg-sky-950/20 border border-sky-800/20 rounded-xl p-5">
-                  <p className="text-[10px] text-sky-400 uppercase font-bold tracking-widest mb-2">
+                <div className="bg-sky-950/20 border border-sky-800/20 rounded-xl p-6">
+                  <p className="text-xs text-sky-400 uppercase font-bold tracking-widest mb-2">
                     They enforce this
                   </p>
-                  <p className="text-sm font-bold text-white mb-1">
+                  <p className="text-base font-bold text-white mb-2">
                     ✓ {pair.yours}
                   </p>
-                  <p className="text-xs text-dark-400 leading-relaxed">
+                  <p className="text-sm text-dark-400 leading-relaxed">
                     {pair.yoursDetail}
                   </p>
                 </div>
-                <div className="bg-danger-950/20 border border-danger-800/30 rounded-xl p-5">
-                  <p className="text-[10px] text-danger-400 uppercase font-bold tracking-widest mb-2">
+                <div className="bg-danger-950/20 border border-danger-800/30 rounded-xl p-6">
+                  <p className="text-xs text-danger-400 uppercase font-bold tracking-widest mb-2">
                     But not this
                   </p>
-                  <p className="text-sm font-bold text-white mb-1">
+                  <p className="text-base font-bold text-white mb-2">
                     ✗ {pair.theirs}
                   </p>
-                  <p className="text-xs text-dark-400 leading-relaxed">
+                  <p className="text-sm text-dark-400 leading-relaxed">
                     {pair.theirsDetail}
                   </p>
                 </div>

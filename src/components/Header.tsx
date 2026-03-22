@@ -10,6 +10,7 @@ const factsSubLinks = [
   { href: "/the-facts/health", label: "Health Impacts" },
   { href: "/the-facts/aviation", label: "Aviation & Safety" },
   { href: "/the-facts/wildlife", label: "Wildlife & Environment" },
+  { href: "/the-facts/surveillance", label: "The Real Question" },
 ];
 
 export function Header() {

@@ -1,20 +1,9 @@
 "use client";
 
 import Link from "next/link";
-import Image from "next/image";
-import dynamic from "next/dynamic";
 import { useState } from "react";
 import { motion } from "framer-motion";
 
-const ReactCompareSlider = dynamic(
-  () => import("react-compare-slider").then((mod) => mod.ReactCompareSlider),
-  { ssr: false }
-);
-const ReactCompareSliderImage = dynamic(
-  () =>
-    import("react-compare-slider").then((mod) => mod.ReactCompareSliderImage),
-  { ssr: false }
-);
 import {
   TrendingDown,
   Radio,
@@ -22,8 +11,6 @@ import {
   Bird,
   ArrowRight,
   AlertTriangle,
-  ChevronLeft,
-  ChevronRight,
   ExternalLink,
   Building2,
   FileText,
@@ -97,14 +84,6 @@ const problems = [
 
 export default function HomePage() {
   const [slideIndex, setSlideIndex] = useState(0);
-  const slideLabels = ["Map", "Day View", "Night View"];
-  const slideCaptions = [
-    "",
-    "A gray pole sitting incomplete for months — an eyesore blending into the background.",
-    "",
-  ];
-  const prev = () => setSlideIndex((i) => (i === 0 ? slideLabels.length - 1 : i - 1));
-  const next = () => setSlideIndex((i) => (i === slideLabels.length - 1 ? 0 : i + 1));
 
   const carriers = [
     { name: "T-Mobile", color: "text-pink-400", bg: "bg-pink-600", img: "https://imagedelivery.net/5MAOvNjO0OBL917jHWR5AA/930e948c-09a2-4aa1-e5b0-85a49d626c00/public" },
@@ -223,7 +202,7 @@ export default function HomePage() {
         </motion.div>
       </section>
 
-      {/* ═══════════════════ SLIDER ═══════════════════ */}
+      {/* ═══════════════════ LOCATION ═══════════════════ */}
       <section className="py-16 md:py-24 px-4">
         <div className="max-w-4xl mx-auto">
           <motion.div
@@ -247,17 +226,17 @@ export default function HomePage() {
             {/* Tab selector */}
             <div className="flex justify-center mb-6">
               <div className="inline-flex bg-dark-900 border border-dark-700/50 rounded-xl p-1 gap-1">
-                {slideLabels.map((label, i) => (
+                {["Map", "Photo", "Aviation"].map((label, i) => (
                   <button
                     key={label}
                     onClick={() => setSlideIndex(i)}
-                    className={`px-4 sm:px-5 py-2.5 rounded-lg text-sm font-bold transition-all ${
+                    className={`px-5 sm:px-6 py-2.5 rounded-lg text-sm font-bold transition-all ${
                       slideIndex === i
                         ? i === 0
                           ? "bg-emerald-600 text-white shadow-lg"
                           : i === 1
-                          ? "bg-amber-600 text-white shadow-lg"
-                          : "bg-indigo-600 text-white shadow-lg"
+                          ? "bg-danger-600 text-white shadow-lg"
+                          : "bg-sky-600 text-white shadow-lg"
                         : "text-dark-400 hover:text-white hover:bg-dark-800"
                     }`}
                   >
@@ -274,30 +253,12 @@ export default function HomePage() {
             viewport={{ once: true, margin: "-50px" }}
             variants={fadeUp}
             custom={1}
-            className="relative"
           >
-            {/* Chevron Left */}
-            <button
-              onClick={prev}
-              className="absolute left-2 top-1/2 -translate-y-1/2 z-10 p-2 bg-black/60 backdrop-blur-sm border border-dark-600/50 rounded-full text-white hover:bg-black/80 transition-all"
-              aria-label="Previous"
-            >
-              <ChevronLeft className="w-5 h-5" />
-            </button>
-            {/* Chevron Right */}
-            <button
-              onClick={next}
-              className="absolute right-2 top-1/2 -translate-y-1/2 z-10 p-2 bg-black/60 backdrop-blur-sm border border-dark-600/50 rounded-full text-white hover:bg-black/80 transition-all"
-              aria-label="Next"
-            >
-              <ChevronRight className="w-5 h-5" />
-            </button>
-
             {/* Map */}
             {slideIndex === 0 && (
-              <div className="rounded-2xl overflow-hidden border border-dark-700/50 shadow-2xl shadow-black/40" style={{ aspectRatio: "16/10" }}>
+              <div className="rounded-2xl overflow-hidden border border-dark-700/50 shadow-2xl shadow-black/40 relative" style={{ aspectRatio: "16/10" }}>
                 <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d2921.5!2d-76.18508!3d43.10192!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zNDPCsDA2JzA2LjkiTiA3NsKwMTEnMDYuMyJX!5e1!3m2!1sen!2sus!4v1"
+                  src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d6500!2d-76.18508!3d43.10192!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zNDPCsDA2JzA2LjkiTiA3NsKwMTEnMDYuMyJX!5e1!3m2!1sen!2sus!4v1"
                   width="100%"
                   height="100%"
                   style={{ border: 0, position: "absolute", inset: 0 }}
@@ -309,105 +270,65 @@ export default function HomePage() {
               </div>
             )}
 
-            {/* Day Slider */}
+            {/* Tower Photo */}
             {slideIndex === 1 && (
-              <div className="rounded-2xl overflow-hidden border border-dark-700/50 shadow-2xl shadow-black/40">
-                <ReactCompareSlider
-                  itemOne={
-                    <ReactCompareSliderImage
-                      src="/images/tower-current.jpg"
-                      alt="Gray pole sitting incomplete in daylight"
-                      style={{ objectFit: "cover" }}
-                    />
-                  }
-                  itemTwo={
-                    <ReactCompareSliderImage
-                      src="/images/tower-finished.jpg"
-                      alt="Conceptual rendering of the fully equipped tower"
-                      style={{ objectFit: "cover" }}
-                    />
-                  }
-                  defaultPosition={35}
-                  style={{ height: "auto", aspectRatio: "16/10" }}
+              <div className="rounded-2xl overflow-hidden border border-dark-700/50 shadow-2xl shadow-black/40 bg-dark-900" style={{ aspectRatio: "16/10" }}>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src="https://imagedelivery.net/5MAOvNjO0OBL917jHWR5AA/e9374762-20c4-4f98-84f8-12e8fcdb0800/public"
+                  alt="The 184-foot cell tower being erected in Liverpool, NY"
+                  className="w-full h-full object-contain"
                 />
-                <div className="absolute top-4 left-14 px-3 py-1.5 bg-black/70 backdrop-blur-sm rounded-lg text-sm font-bold text-white border border-dark-600/50">
-                  Currently
-                </div>
-                <div className="absolute top-4 right-14 px-3 py-1.5 bg-danger-600/90 backdrop-blur-sm rounded-lg text-sm font-bold text-white border border-danger-500/50">
-                  What&apos;s Coming
-                </div>
               </div>
             )}
 
-            {/* Night Slider */}
+            {/* Aviation */}
             {slideIndex === 2 && (
-              <div className="rounded-2xl overflow-hidden border border-dark-700/50 shadow-2xl shadow-black/40">
-                <ReactCompareSlider
-                  itemOne={
-                    <ReactCompareSliderImage
-                      src="/images/tower-night-current.jpg"
-                      alt="Unlit tower invisible against the night sky"
-                      style={{ objectFit: "cover" }}
-                    />
-                  }
-                  itemTwo={
-                    <ReactCompareSliderImage
-                      src="/images/tower-night-finished.jpg"
-                      alt="Conceptual rendering at night"
-                      style={{ objectFit: "cover" }}
-                    />
-                  }
-                  defaultPosition={35}
-                  style={{ height: "auto", aspectRatio: "16/10" }}
+              <div className="rounded-2xl overflow-hidden border border-sky-700/30 shadow-2xl shadow-black/40 bg-dark-900" style={{ aspectRatio: "16/10" }}>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src="https://imagedelivery.net/5MAOvNjO0OBL917jHWR5AA/82026018-9e77-4ea8-1424-674b34a40100/public"
+                  alt="Flightradar24 showing aircraft on final approach passing directly over the 184-foot unlit cell tower in Liverpool, NY"
+                  className="w-full h-full object-contain"
                 />
-                <div className="absolute top-4 left-14 px-3 py-1.5 bg-black/70 backdrop-blur-sm rounded-lg text-sm font-bold text-white border border-dark-600/50">
-                  Invisible at Night
-                </div>
-                <div className="absolute top-4 right-14 px-3 py-1.5 bg-danger-600/90 backdrop-blur-sm rounded-lg text-sm font-bold text-white border border-danger-500/50">
-                  What&apos;s Coming
-                </div>
               </div>
             )}
           </motion.div>
 
-          {/* Navigation hint */}
-          <div className="flex items-center justify-center gap-4 mt-5">
-            <button
-              onClick={prev}
-              className="flex items-center gap-1.5 px-3 py-1.5 text-sm text-dark-400 hover:text-white transition-colors"
-            >
-              <ChevronLeft className="w-4 h-4" />
-              {slideLabels[(slideIndex - 1 + slideLabels.length) % slideLabels.length]}
-            </button>
-            <div className="flex gap-2">
-              {slideLabels.map((_, i) => (
-                <button
-                  key={i}
-                  onClick={() => setSlideIndex(i)}
-                  className={`w-2.5 h-2.5 rounded-full transition-all ${
-                    slideIndex === i
-                      ? "bg-danger-500 scale-125"
-                      : "bg-dark-700 hover:bg-dark-500"
-                  }`}
-                  aria-label={`Go to slide ${i + 1}`}
-                />
-              ))}
-            </div>
-            <button
-              onClick={next}
-              className="flex items-center gap-1.5 px-3 py-1.5 text-sm text-dark-400 hover:text-white transition-colors"
-            >
-              {slideLabels[(slideIndex + 1) % slideLabels.length]}
-              <ChevronRight className="w-4 h-4" />
-            </button>
+          {/* Dots */}
+          <div className="flex justify-center gap-2 mt-5">
+            {[0, 1, 2].map((i) => (
+              <button
+                key={i}
+                onClick={() => setSlideIndex(i)}
+                className={`w-2.5 h-2.5 rounded-full transition-all ${
+                  slideIndex === i
+                    ? "bg-danger-500 scale-125"
+                    : "bg-dark-700 hover:bg-dark-500"
+                }`}
+                aria-label={`Go to slide ${i + 1}`}
+              />
+            ))}
           </div>
-
-          <p className="text-xs text-dark-500 text-center mt-3">
-            {slideCaptions[slideIndex]}
-          </p>
-          <p className="text-xs text-dark-400 text-center mt-2 italic">
-            Images and video of the actual tower mast coming soon
-          </p>
+          <div className="mt-5 text-center">
+            {slideIndex === 1 && (
+              <div className="bg-dark-900/60 border border-dark-800/50 rounded-xl px-5 py-4 max-w-2xl mx-auto">
+                <p className="text-sm text-dark-200 leading-relaxed">
+                  Taken March 21st, 2026. <strong className="text-white">Unlit, 184ft tall.</strong> There for over a month, unlit. 200m from 1,000+ homes, playing fields, and a park for children.
+                </p>
+                <button onClick={() => setSlideIndex(2)} className="mt-2 text-sm text-sky-400 font-bold hover:underline">
+                  See how close to airplanes it really is →
+                </button>
+              </div>
+            )}
+            {slideIndex === 2 && (
+              <div className="bg-danger-950/30 border border-danger-800/30 rounded-xl px-5 py-4 max-w-2xl mx-auto">
+                <p className="text-sm text-dark-200 leading-relaxed">
+                  A Boeing 737 at <strong className="text-danger-400">625 ft. barometric altitude</strong> — just <strong className="text-white">441 feet above</strong> a 184-foot unlit tower. 1,000 ft. due south of the final approach path to Syracuse Hancock International. <strong className="text-danger-400">No lights. Altimetry interference risk.*</strong>
+                </p>
+              </div>
+            )}
+          </div>
         </div>
       </section>
 
@@ -425,13 +346,13 @@ export default function HomePage() {
               className="font-black text-center mb-4"
               style={{ fontSize: "clamp(1.6rem, 4vw, 2.4rem)" }}
             >
-              The Eyesore Is the{" "}
-              <span className="text-danger-500">Least</span> of It.
+              The Eyesore and Aviation Risk Are{" "}
+              <span className="text-danger-500">Just Scratching the Surface.</span>
             </h2>
             <p className="text-dark-300 text-center mb-12 max-w-xl mx-auto leading-relaxed" style={{ fontSize: "clamp(0.95rem, 2vw, 1.1rem)" }}>
-              As if an unauthorized 184-foot tower and plummeting property values
-              aren&apos;t egregious enough — here&apos;s what else is in store
-              for our community if we don&apos;t demand this thing comes down.
+              An unauthorized 184-foot unlit tower 441 feet below a landing
+              corridor isn&apos;t even the worst of it — here&apos;s what else
+              is in store for our community if we don&apos;t demand this thing comes down.
             </p>
           </motion.div>
 
@@ -499,19 +420,20 @@ export default function HomePage() {
             className="text-center mb-8"
           >
             <p className="text-xs font-bold text-danger-400 uppercase tracking-widest mb-4">
-              Think About It
+              Okay, Seriously
             </p>
             <h2
               className="font-black text-white mb-3"
               style={{ fontSize: "clamp(1.5rem, 3.5vw, 2rem)" }}
             >
               Liverpool Already Has Full 5G Coverage.{" "}
-              <span className="text-danger-500">So Who Benefits?</span>
+              <span className="text-danger-500">So What Is This Tower For?</span>
             </h2>
             <p className="text-dark-300 max-w-xl mx-auto leading-relaxed" style={{ fontSize: "clamp(0.875rem, 2vw, 1rem)" }}>
-              Every major carrier already blankets Liverpool with 5G Ultra Wideband.
+              They&apos;ll tell you it&apos;s for &ldquo;better connectivity&rdquo; and &ldquo;smart highways.&rdquo;
+              Yeah. Okay. Every major carrier already blankets Liverpool with 5G Ultra Wideband.
               Don&apos;t take our word for it &mdash; these are <strong className="text-white">their own coverage maps</strong>,{" "}
-              as of March 2025, before this tower has been fully erected. That&apos;s what we&apos;re fighting to keep that way.
+              as of March 2026, <em>before</em> this tower has been fully erected.
             </p>
           </motion.div>
 
@@ -556,8 +478,8 @@ export default function HomePage() {
               <span className="text-pink-400 font-bold">T-Mobile</span>,{" "}
               <span className="text-sky-400 font-bold">AT&amp;T</span>, and{" "}
               <span className="text-red-400 font-bold">Verizon</span>.{" "}
-              So seriously &mdash;{" "}
-              <strong className="text-white">who the hell is this tower for?</strong>
+              Already. Right now. Without this tower.{" "}
+              <strong className="text-white">So who the hell is it for?</strong>
             </p>
           </motion.div>
 
@@ -629,14 +551,19 @@ export default function HomePage() {
             custom={2}
             className="text-center"
           >
-            <p className="text-dark-400 text-sm max-w-lg mx-auto">
+            <p className="text-dark-400 text-sm max-w-lg mx-auto mb-5">
               This isn&apos;t innovation. This is{" "}
               <strong className="text-white">infrastructure for surveillance</strong>{" "}
               — disguised as a cell tower, planted on state land where no one
-              can object, and built without a single public hearing. That&apos;s
-              not progress. That&apos;s{" "}
-              <span className="text-danger-400 font-bold">draconian</span>.
+              can object, and built without a single public hearing.
             </p>
+            <Link
+              href="/the-facts/surveillance"
+              className="inline-flex items-center gap-2 px-6 py-3 bg-purple-900/40 hover:bg-purple-900/60 border border-purple-700/40 text-purple-300 font-bold text-sm rounded-xl transition-all duration-200 hover:scale-[1.03]"
+            >
+              Read: The Real Question
+              <ArrowRight className="w-4 h-4" />
+            </Link>
           </motion.div>
         </div>
       </section>
@@ -886,7 +813,7 @@ export default function HomePage() {
             viewport={{ once: true }}
             variants={fadeUp}
             custom={0}
-            className="bg-dark-900/60 border border-dark-800/50 rounded-2xl p-6 md:p-10 text-center"
+            className="text-center mb-8"
           >
             <p className="text-xs font-bold text-dark-500 uppercase tracking-widest mb-3">
               A PSA for Those Wondering...
@@ -896,21 +823,92 @@ export default function HomePage() {
               style={{ fontSize: "clamp(1.4rem, 3.5vw, 1.9rem)" }}
             >
               This is{" "}
-              <span className="text-danger-500">NOT</span>{" "}a Left vs. Right Issue.
+              <span className="text-danger-500">NOT</span> About Picking a Side.
             </h2>
-            <p className="text-lg font-bold text-white mb-3">
-              It&apos;s an{" "}
-              <span className="text-danger-500">Us</span>{" "}vs.{" "}
-              <span className="text-danger-500">Them</span>{" "}issue.
-            </p>
-            <p className="text-dark-300 leading-relaxed max-w-xl mx-auto text-sm">
-              We know the world is divided right now. That&apos;s by design.
-              But this isn&apos;t about who you voted for. A private corporation
-              is building a 184-foot industrial structure in your neighborhood
-              — and not a single one of us was asked. We either come together
-              on this, or it&apos;s game over.
+            <p className="text-dark-400 max-w-xl mx-auto text-sm leading-relaxed">
+              A private corporation is building a 184-foot industrial structure
+              in your neighborhood — and not a single one of us was asked.
             </p>
           </motion.div>
+
+          {/* Unity callout — above diagram */}
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeUp}
+            custom={0.5}
+            className="mb-6 bg-danger-950/30 border border-danger-700/40 rounded-2xl p-5 md:p-6 text-center"
+          >
+            <p className="text-lg md:text-xl font-black text-white leading-relaxed mb-2">
+              This is where real unity happens. Not a debate &mdash; it&apos;s self-evident.
+            </p>
+            <p className="text-sm text-dark-300 max-w-lg mx-auto">
+              Ever wonder why we&apos;re always fighting each other instead of the people
+              making the decisions? Funny how the more divided we get, the faster
+              the infrastructure goes up. Almost like that&apos;s the point.
+            </p>
+          </motion.div>
+
+          {/* Venn Diagram Layout */}
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeUp}
+            custom={1}
+          >
+            <div className="relative grid md:grid-cols-5 gap-0 items-stretch">
+              {/* LEFT circle */}
+              <div className="md:col-span-2 bg-sky-950/30 border border-sky-800/30 rounded-2xl md:rounded-r-none p-5 md:p-6">
+                <ul className="space-y-2">
+                  {[
+                    "A bald eagle nesting zone 1.7 miles away — no environmental review",
+                    "A private corporation profiting off public Thruway land",
+                    "Zero community consent — no hearing, no vote, no notification",
+                    "Children absorb 10× more RF radiation — and Chestnut Ridge is right there",
+                  ].map((item) => (
+                    <li key={item} className="flex items-start gap-2 text-sm text-dark-300">
+                      <span className="text-sky-400 mt-0.5">•</span>
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              {/* CENTER overlap — Sensible Individuals */}
+              <div className="md:col-span-1 bg-amber-950/40 border-y border-amber-700/40 md:border border-amber-700/40 p-5 md:p-4 flex flex-col items-center justify-center text-center z-10 md:-mx-2 relative">
+                <div className="w-12 h-12 rounded-full bg-amber-600/20 border-2 border-amber-500/50 flex items-center justify-center mb-2">
+                  <span className="text-lg">🤝</span>
+                </div>
+                <p className="text-xs font-black text-amber-400 uppercase tracking-widest mb-1">
+                  Everyone
+                </p>
+                <p className="text-[11px] text-dark-300 leading-snug">
+                  Nobody asked. Nobody voted.
+                  Nobody was notified. That&apos;s not government — that&apos;s occupation.
+                </p>
+              </div>
+
+              {/* RIGHT circle */}
+              <div className="md:col-span-2 bg-red-950/30 border border-red-800/30 rounded-2xl md:rounded-l-none p-5 md:p-6">
+                <ul className="space-y-2">
+                  {[
+                    "Government making backroom deals — no elected official was consulted",
+                    "Your home value tanks up to 20% the day this thing goes up",
+                    "Your tax dollars funding a surveillance backbone you never approved",
+                    "4th Amendment? They don't need a warrant to track your car. It's already happening.",
+                  ].map((item) => (
+                    <li key={item} className="flex items-start gap-2 text-sm text-dark-300">
+                      <span className="text-red-400 mt-0.5">•</span>
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </motion.div>
+
 
           <motion.div
             initial="hidden"
