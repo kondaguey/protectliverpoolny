@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import WeNotAlone from "@/components/WeNotAlone";
+import QuickLinks from "@/components/QuickLinks";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
@@ -267,8 +268,17 @@ export default function CommunityLegalPage() {
         </div>
       </section>
 
+      <QuickLinks
+        links={[
+          { label: "Property Values", id: "property-values" },
+          { label: "The State Land Loophole", id: "state-land-loophole" },
+          { label: "What Other Towns Did", id: "social-proof" },
+          { label: "Take Action", id: "cta" },
+        ]}
+      />
+
       {/* ═══════════════════ PROPERTY VALUES ═══════════════════ */}
-      <section className="py-16 md:py-24 px-4">
+      <section id="property-values" className="py-16 md:py-24 px-4 scroll-mt-24">
         <div className="max-w-4xl mx-auto">
           <motion.div
             initial="hidden"
@@ -434,7 +444,7 @@ export default function CommunityLegalPage() {
       </section>
 
       {/* ═══════════════════ THE STATE LAND LOOPHOLE ═══════════════════ */}
-      <section className="py-16 md:py-24 px-4 bg-dark-900/30">
+      <section id="state-land-loophole" className="py-16 md:py-24 px-4 bg-dark-900/30 scroll-mt-24">
         <div className="max-w-4xl mx-auto">
           <motion.div
             initial="hidden"
@@ -540,10 +550,12 @@ export default function CommunityLegalPage() {
       <RulesSlider />
 
       {/* ═══════════════════ SOCIAL PROOF ═══════════════════ */}
-      <WeNotAlone />
+      <div id="social-proof" className="scroll-mt-24">
+        <WeNotAlone />
+      </div>
 
       {/* ═══════════════════ CTA ═══════════════════ */}
-      <section className="py-20 md:py-28 px-4">
+      <section id="cta" className="py-20 md:py-28 px-4 scroll-mt-24">
         <motion.div
           initial="hidden"
           whileInView="visible"

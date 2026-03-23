@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
+import QuickLinks from "@/components/QuickLinks";
 import { motion } from "framer-motion";
 import {
   AlertTriangle,
@@ -81,8 +82,18 @@ export default function WildlifePage() {
         </div>
       </section>
 
+      <QuickLinks
+        links={[
+          { label: "Bald Eagles", id: "eagles" },
+          { label: "Birds & Migration", id: "birds" },
+          { label: "Bees & Pollinators", id: "bees" },
+          { label: "Ecosystem-Wide Research", id: "ecosystem" },
+          { label: "Take Action", id: "wildlife-cta" },
+        ]}
+      />
+
       {/* ═══════════════════ EAGLE SECTION ═══════════════════ */}
-      <section className="py-16 md:py-24 px-4">
+      <section id="eagles" className="py-16 md:py-24 px-4 scroll-mt-24">
         <div className="max-w-4xl mx-auto">
           {/* Eagle Roost — FOIL First */}
           <motion.div
@@ -295,6 +306,7 @@ export default function WildlifePage() {
 
           {/* ═══════════════════ BIRDS ═══════════════════ */}
           <motion.div
+            id="birds"
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
@@ -375,6 +387,7 @@ export default function WildlifePage() {
 
           {/* ═══════════════════ BEES ═══════════════════ */}
           <motion.div
+            id="bees"
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
@@ -405,6 +418,7 @@ export default function WildlifePage() {
 
           {/* ═══════════════════ ECOSYSTEM-WIDE RESEARCH ═══════════════════ */}
           <motion.div
+            id="ecosystem"
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
@@ -600,7 +614,7 @@ export default function WildlifePage() {
       </section>
 
       {/* ═══════════════════ CTA ═══════════════════ */}
-      <section className="py-20 md:py-28 px-4">
+      <section id="wildlife-cta" className="py-20 md:py-28 px-4 scroll-mt-24">
         <motion.div
           initial="hidden"
           whileInView="visible"

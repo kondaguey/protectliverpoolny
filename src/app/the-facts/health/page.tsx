@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import WeNotAlone from "@/components/WeNotAlone";
+import QuickLinks from "@/components/QuickLinks";
 import { motion } from "framer-motion";
 import {
   AlertTriangle,
@@ -90,8 +91,17 @@ export default function HealthSciencePage() {
         </div>
       </section>
 
+      <QuickLinks
+        links={[
+          { label: "Why It Matters to You", id: "why-it-matters" },
+          { label: "What the Research Says", id: "the-science" },
+          { label: "The Federal Trap", id: "federal-trap" },
+          { label: "The Real Question", id: "the-real-question" },
+        ]}
+      />
+
       {/* ═══════════════════ WHY IT MATTERS TO YOU ═══════════════════ */}
-      <section className="py-16 md:py-24 px-4">
+      <section id="why-it-matters" className="py-16 md:py-24 px-4 scroll-mt-24">
         <div className="max-w-4xl mx-auto">
           <motion.div
             initial="hidden"
@@ -145,7 +155,7 @@ export default function HealthSciencePage() {
       </section>
 
       {/* ═══════════════════ THE SCIENCE ═══════════════════ */}
-      <section className="py-16 md:py-24 px-4">
+      <section id="the-science" className="py-16 md:py-24 px-4 scroll-mt-24">
         <div className="max-w-4xl mx-auto">
           <motion.div
             initial="hidden"
@@ -613,7 +623,7 @@ export default function HealthSciencePage() {
       </section>
 
       {/* ═══════════════════ THE FEDERAL TRAP ═══════════════════ */}
-      <section className="py-16 md:py-24 px-4 bg-dark-900/30">
+      <section id="federal-trap" className="py-16 md:py-24 px-4 bg-dark-900/30 scroll-mt-24">
         <div className="max-w-4xl mx-auto">
           <motion.div
             initial="hidden"
@@ -789,7 +799,9 @@ export default function HealthSciencePage() {
 
 
       {/* ═══════════════════ WE'RE NOT ALONE CTA ═══════════════════ */}
-      <WeNotAlone />
+      <div id="the-real-question" className="scroll-mt-24">
+        <WeNotAlone />
+      </div>
 
       {/* ═══════════════════ CROSS-LINKS ═══════════════════ */}
       <section className="py-12 px-4 border-t border-dark-800/50">

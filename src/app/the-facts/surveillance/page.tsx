@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import QuickLinks from "@/components/QuickLinks";
 import { motion } from "framer-motion";
 import {
   AlertTriangle,
@@ -94,8 +95,18 @@ export default function SurveillancePage() {
         </div>
       </section>
 
+      <QuickLinks
+        links={[
+          { label: "The Logic", id: "the-logic" },
+          { label: "This Isn't Left or Right", id: "not-political" },
+          { label: "Are You Flocking Serious", id: "flocking-serious" },
+          { label: "See It for Yourself", id: "see-it" },
+          { label: "The Pattern", id: "the-pattern" },
+        ]}
+      />
+
       {/* ═══════════════════ THE LOGIC ═══════════════════ */}
-      <section className="py-16 md:py-24 px-4">
+      <section id="the-logic" className="py-16 md:py-24 px-4 scroll-mt-24">
         <div className="max-w-4xl mx-auto">
           <motion.div
             initial="hidden"
@@ -188,7 +199,7 @@ export default function SurveillancePage() {
       </section>
 
       {/* ═══════════════════ THIS ISN'T LEFT OR RIGHT ═══════════════════ */}
-      <section className="py-16 md:py-24 px-4 bg-dark-900/30">
+      <section id="not-political" className="py-16 md:py-24 px-4 bg-dark-900/30 scroll-mt-24">
         <div className="max-w-4xl mx-auto">
           <motion.div
             initial="hidden"
@@ -321,7 +332,7 @@ export default function SurveillancePage() {
       </section>
 
       {/* ═══════════════════ ARE YOU FLOCKING SERIOUS ═══════════════════ */}
-      <section className="py-16 md:py-24 px-4">
+      <section id="flocking-serious" className="py-16 md:py-24 px-4 scroll-mt-24">
         <div className="max-w-4xl mx-auto">
           <motion.div
             initial="hidden"
@@ -565,7 +576,7 @@ export default function SurveillancePage() {
       </section>
 
       {/* ═══════════════════ SEE IT FOR YOURSELF ═══════════════════ */}
-      <section className="py-16 md:py-24 px-4">
+      <section id="see-it" className="py-16 md:py-24 px-4 scroll-mt-24">
         <div className="max-w-4xl mx-auto">
           <motion.div
             initial="hidden"
@@ -629,7 +640,7 @@ export default function SurveillancePage() {
 
 
       {/* ═══════════════════ THE PATTERN ═══════════════════ */}
-      <section className="py-16 md:py-24 px-4">
+      <section id="the-pattern" className="py-16 md:py-24 px-4 scroll-mt-24">
         <div className="max-w-4xl mx-auto">
           <motion.div
             initial="hidden"

@@ -279,6 +279,10 @@ export default function TakeActionPage() {
       }
 
       setSubmitted(true);
+      // Scroll to the confirmation so user sees it
+      setTimeout(() => {
+        document.getElementById("petition-section")?.scrollIntoView({ behavior: "smooth", block: "start" });
+      }, 100);
       fetchCount();
       fetchComments();
     } catch (err: any) {
@@ -360,6 +364,294 @@ export default function TakeActionPage() {
         </div>
       </section>
 
+      {/* ═══════════════════ PETITION FORM ═══════════════════ */}
+      <section id="petition-section" className="py-12 md:py-20 px-4 scroll-mt-24">
+        <div className="max-w-2xl mx-auto">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeUp}
+            custom={0}
+          >
+            {submitted ? (
+              /* ── Success State ── */
+              <div className="bg-emerald-950/40 border border-emerald-700/40 rounded-2xl p-8 md:p-12 text-center">
+                <CheckCircle2 className="w-16 h-16 text-emerald-400 mx-auto mb-4" />
+                <h2 className="text-2xl md:text-3xl font-black text-white mb-3">
+                  Thank You for Standing with Liverpool!
+                </h2>
+                <p className="text-emerald-200/80 text-lg mb-6">
+                  Your signature has been recorded. But don't stop here—the
+                  actions below are how we actually win this fight.
+                </p>
+                {signatureCount !== null && (
+                  <div className="inline-flex items-center gap-2 px-5 py-2 bg-emerald-900/40 border border-emerald-700/30 rounded-full">
+                    <Users className="w-4 h-4 text-emerald-400" />
+                    <span className="text-emerald-300 font-bold">
+                      {signatureCount.toLocaleString()} total signatures
+                    </span>
+                  </div>
+                )}
+              </div>
+            ) : (
+              /* ── Petition Form ── */
+              <div className="bg-dark-900/60 border border-dark-800/50 rounded-2xl p-6 md:p-8">
+                <div className="flex items-center gap-3 mb-6">
+                  <div className="w-10 h-10 rounded-xl bg-danger-900/50 border border-danger-800/30 flex items-center justify-center">
+                    <FileText className="w-5 h-5 text-danger-400" />
+                  </div>
+                  <div>
+                    <h2 className="text-xl font-bold text-white">
+                      Sign the Petition
+                    </h2>
+                    <p className="text-sm text-dark-400">
+                      Add your name to the official community record
+                    </p>
+                  </div>
+                </div>
+
+                <form onSubmit={handleSubmit} className="space-y-4">
+                  <div className="grid sm:grid-cols-2 gap-4">
+                    <div>
+                      <label
+                        htmlFor="first_name"
+                        className="block text-sm font-medium text-dark-300 mb-1.5"
+                      >
+                        First Name *
+                      </label>
+                      <input
+                        type="text"
+                        id="first_name"
+                        name="first_name"
+                        value={form.first_name}
+                        onChange={handleChange}
+                        className={`w-full px-4 py-3 bg-dark-800 border rounded-xl text-white placeholder-dark-500 focus:outline-none focus:ring-2 focus:ring-danger-500/50 focus:border-danger-500 transition-all ${
+                          errors.first_name
+                            ? "border-danger-500"
+                            : "border-dark-700"
+                        }`}
+                        placeholder="John"
+                      />
+                      {errors.first_name && (
+                        <p className="text-xs text-danger-400 mt-1">
+                          {errors.first_name}
+                        </p>
+                      )}
+                    </div>
+                    <div>
+                      <label
+                        htmlFor="last_name"
+                        className="block text-sm font-medium text-dark-300 mb-1.5"
+                      >
+                        Last Name *
+                      </label>
+                      <input
+                        type="text"
+                        id="last_name"
+                        name="last_name"
+                        value={form.last_name}
+                        onChange={handleChange}
+                        className={`w-full px-4 py-3 bg-dark-800 border rounded-xl text-white placeholder-dark-500 focus:outline-none focus:ring-2 focus:ring-danger-500/50 focus:border-danger-500 transition-all ${
+                          errors.last_name
+                            ? "border-danger-500"
+                            : "border-dark-700"
+                        }`}
+                        placeholder="Doe"
+                      />
+                      {errors.last_name && (
+                        <p className="text-xs text-danger-400 mt-1">
+                          {errors.last_name}
+                        </p>
+                      )}
+                    </div>
+                  </div>
+
+                  <div>
+                    <label
+                      htmlFor="email"
+                      className="block text-sm font-medium text-dark-300 mb-1.5"
+                    >
+                      Email Address *
+                    </label>
+                    <input
+                      type="email"
+                      id="email"
+                      name="email"
+                      value={form.email}
+                      onChange={handleChange}
+                      className={`w-full px-4 py-3 bg-dark-800 border rounded-xl text-white placeholder-dark-500 focus:outline-none focus:ring-2 focus:ring-danger-500/50 focus:border-danger-500 transition-all ${
+                        errors.email ? "border-danger-500" : "border-dark-700"
+                      }`}
+                      placeholder="you@example.com"
+                    />
+                    {errors.email && (
+                      <p className="text-xs text-danger-400 mt-1">
+                        {errors.email}
+                      </p>
+                    )}
+                  </div>
+
+                  <div>
+                    <label
+                      htmlFor="zip_code"
+                      className="block text-sm font-medium text-dark-300 mb-1.5"
+                    >
+                      Zip Code *
+                    </label>
+                    <input
+                      type="text"
+                      id="zip_code"
+                      name="zip_code"
+                      value={form.zip_code}
+                      onChange={handleChange}
+                      className={`w-full px-4 py-3 bg-dark-800 border rounded-xl text-white placeholder-dark-500 focus:outline-none focus:ring-2 focus:ring-danger-500/50 focus:border-danger-500 transition-all ${
+                        errors.zip_code
+                          ? "border-danger-500"
+                          : "border-dark-700"
+                      }`}
+                      placeholder="13088"
+                    />
+                    {errors.zip_code && (
+                      <p className="text-xs text-danger-400 mt-1">
+                        {errors.zip_code}
+                      </p>
+                    )}
+                  </div>
+
+                  <div>
+                    <label
+                      htmlFor="street_address"
+                      className="block text-sm font-medium text-dark-300 mb-1.5"
+                    >
+                      Street Address{" "}
+                      <span className="text-dark-500">
+                        (optional — strengthens your petition)
+                      </span>
+                    </label>
+                    <input
+                      type="text"
+                      id="street_address"
+                      name="street_address"
+                      value={form.street_address}
+                      onChange={handleChange}
+                      className="w-full px-4 py-3 bg-dark-800 border border-dark-700 rounded-xl text-white placeholder-dark-500 focus:outline-none focus:ring-2 focus:ring-danger-500/50 focus:border-danger-500 transition-all"
+                      placeholder="123 Main St, Liverpool, NY"
+                    />
+                  </div>
+
+                  <div>
+                    <label
+                      htmlFor="phone"
+                      className="block text-sm font-medium text-dark-300 mb-1.5"
+                    >
+                      Phone Number{" "}
+                      <span className="text-dark-500">(optional)</span>
+                    </label>
+                    <input
+                      type="tel"
+                      id="phone"
+                      name="phone"
+                      value={form.phone}
+                      onChange={handleChange}
+                      className="w-full px-4 py-3 bg-dark-800 border border-dark-700 rounded-xl text-white placeholder-dark-500 focus:outline-none focus:ring-2 focus:ring-danger-500/50 focus:border-danger-500 transition-all"
+                      placeholder="(315) 555-1234"
+                    />
+                  </div>
+
+                  <div>
+                    <label
+                      htmlFor="comment"
+                      className="block text-sm font-medium text-dark-300 mb-1.5"
+                    >
+                      Comment <span className="text-dark-500">(optional)</span>
+                    </label>
+                    <textarea
+                      id="comment"
+                      name="comment"
+                      value={form.comment}
+                      onChange={handleChange}
+                      rows={3}
+                      className="w-full px-4 py-3 bg-dark-800 border border-dark-700 rounded-xl text-white placeholder-dark-500 focus:outline-none focus:ring-2 focus:ring-danger-500/50 focus:border-danger-500 transition-all resize-none"
+                      placeholder="Share why this matters to you..."
+                    />
+                  </div>
+
+                  {/* Opt-in checkboxes */}
+                  <div className="space-y-3">
+                    <label className="flex items-start gap-3 cursor-pointer group">
+                      <input
+                        type="checkbox"
+                        checked={optInContact}
+                        onChange={(e) => setOptInContact(e.target.checked)}
+                        className="mt-1 w-4 h-4 rounded border-dark-600 bg-dark-800 text-danger-500 focus:ring-danger-500/50 flex-shrink-0"
+                      />
+                      <span className="text-sm text-dark-300 group-hover:text-dark-200 transition-colors">
+                        Yes, you may contact me with updates about this campaign
+                        and ways to get involved.
+                      </span>
+                    </label>
+                    <label className="flex items-start gap-3 cursor-pointer group">
+                      <input
+                        type="checkbox"
+                        checked={canHelp}
+                        onChange={(e) => setCanHelp(e.target.checked)}
+                        className="mt-1 w-4 h-4 rounded border-dark-600 bg-dark-800 text-danger-500 focus:ring-danger-500/50 flex-shrink-0"
+                      />
+                      <span className="text-sm text-dark-300 group-hover:text-dark-200 transition-colors">
+                        I have expertise that can help this cause (legal,
+                        aviation, environmental, media, etc.)
+                      </span>
+                    </label>
+                  </div>
+
+                  {submitError && (
+                    <div className="bg-danger-950/50 border border-danger-800/50 rounded-xl p-3 flex items-center gap-2">
+                      <AlertTriangle className="w-4 h-4 text-danger-400 flex-shrink-0" />
+                      <p className="text-sm text-danger-300">{submitError}</p>
+                    </div>
+                  )}
+
+                  <button
+                    type="submit"
+                    disabled={submitting}
+                    className="w-full flex items-center justify-center gap-2 py-4 bg-danger-600 hover:bg-danger-500 disabled:bg-danger-800 disabled:cursor-not-allowed text-white font-bold text-lg rounded-xl transition-all duration-200 shadow-lg shadow-danger-900/40"
+                  >
+                    {submitting ? (
+                      <>
+                        <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                        Submitting...
+                      </>
+                    ) : (
+                      <>
+                        <Send className="w-5 h-5" />
+                        Sign the Petition
+                      </>
+                    )}
+                  </button>
+
+                  <p className="text-xs text-dark-500 text-center">
+                    Your information will only be used for this petition. We
+                    will never sell or share your data.
+                  </p>
+
+                  <div className="text-center pt-2 border-t border-dark-800/50">
+                    <p className="text-xs text-dark-500 mb-1">
+                      Have questions or want to get involved directly?
+                    </p>
+                    <a
+                      href="mailto:takeaction@protectliverpoolny.org"
+                      className="text-sm font-semibold text-danger-400 hover:text-danger-300 transition-colors"
+                    >
+                      takeaction@protectliverpoolny.org
+                    </a>
+                  </div>
+                </form>
+              </div>
+            )}
+          </motion.div>
+        </div>
+      </section>
       {/* ═══════════════════ NOT FROM LIVERPOOL ═══════════════════ */}
       <section className="px-4 pb-6 md:pb-8">
         <div className="max-w-2xl mx-auto">
@@ -1647,294 +1939,6 @@ Thank you for your time,
         </div>
       </section>
 
-      {/* ═══════════════════ PETITION FORM ═══════════════════ */}
-      <section className="py-12 md:py-20 px-4">
-        <div className="max-w-2xl mx-auto">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={fadeUp}
-            custom={0}
-          >
-            {submitted ? (
-              /* ── Success State ── */
-              <div className="bg-emerald-950/40 border border-emerald-700/40 rounded-2xl p-8 md:p-12 text-center">
-                <CheckCircle2 className="w-16 h-16 text-emerald-400 mx-auto mb-4" />
-                <h2 className="text-2xl md:text-3xl font-black text-white mb-3">
-                  Thank You for Standing with Liverpool!
-                </h2>
-                <p className="text-emerald-200/80 text-lg mb-6">
-                  Your signature has been recorded. But don't stop here—the
-                  actions below are how we actually win this fight.
-                </p>
-                {signatureCount !== null && (
-                  <div className="inline-flex items-center gap-2 px-5 py-2 bg-emerald-900/40 border border-emerald-700/30 rounded-full">
-                    <Users className="w-4 h-4 text-emerald-400" />
-                    <span className="text-emerald-300 font-bold">
-                      {signatureCount.toLocaleString()} total signatures
-                    </span>
-                  </div>
-                )}
-              </div>
-            ) : (
-              /* ── Petition Form ── */
-              <div className="bg-dark-900/60 border border-dark-800/50 rounded-2xl p-6 md:p-8">
-                <div className="flex items-center gap-3 mb-6">
-                  <div className="w-10 h-10 rounded-xl bg-danger-900/50 border border-danger-800/30 flex items-center justify-center">
-                    <FileText className="w-5 h-5 text-danger-400" />
-                  </div>
-                  <div>
-                    <h2 className="text-xl font-bold text-white">
-                      Sign the Petition
-                    </h2>
-                    <p className="text-sm text-dark-400">
-                      Add your name to the official community record
-                    </p>
-                  </div>
-                </div>
-
-                <form onSubmit={handleSubmit} className="space-y-4">
-                  <div className="grid sm:grid-cols-2 gap-4">
-                    <div>
-                      <label
-                        htmlFor="first_name"
-                        className="block text-sm font-medium text-dark-300 mb-1.5"
-                      >
-                        First Name *
-                      </label>
-                      <input
-                        type="text"
-                        id="first_name"
-                        name="first_name"
-                        value={form.first_name}
-                        onChange={handleChange}
-                        className={`w-full px-4 py-3 bg-dark-800 border rounded-xl text-white placeholder-dark-500 focus:outline-none focus:ring-2 focus:ring-danger-500/50 focus:border-danger-500 transition-all ${
-                          errors.first_name
-                            ? "border-danger-500"
-                            : "border-dark-700"
-                        }`}
-                        placeholder="John"
-                      />
-                      {errors.first_name && (
-                        <p className="text-xs text-danger-400 mt-1">
-                          {errors.first_name}
-                        </p>
-                      )}
-                    </div>
-                    <div>
-                      <label
-                        htmlFor="last_name"
-                        className="block text-sm font-medium text-dark-300 mb-1.5"
-                      >
-                        Last Name *
-                      </label>
-                      <input
-                        type="text"
-                        id="last_name"
-                        name="last_name"
-                        value={form.last_name}
-                        onChange={handleChange}
-                        className={`w-full px-4 py-3 bg-dark-800 border rounded-xl text-white placeholder-dark-500 focus:outline-none focus:ring-2 focus:ring-danger-500/50 focus:border-danger-500 transition-all ${
-                          errors.last_name
-                            ? "border-danger-500"
-                            : "border-dark-700"
-                        }`}
-                        placeholder="Doe"
-                      />
-                      {errors.last_name && (
-                        <p className="text-xs text-danger-400 mt-1">
-                          {errors.last_name}
-                        </p>
-                      )}
-                    </div>
-                  </div>
-
-                  <div>
-                    <label
-                      htmlFor="email"
-                      className="block text-sm font-medium text-dark-300 mb-1.5"
-                    >
-                      Email Address *
-                    </label>
-                    <input
-                      type="email"
-                      id="email"
-                      name="email"
-                      value={form.email}
-                      onChange={handleChange}
-                      className={`w-full px-4 py-3 bg-dark-800 border rounded-xl text-white placeholder-dark-500 focus:outline-none focus:ring-2 focus:ring-danger-500/50 focus:border-danger-500 transition-all ${
-                        errors.email ? "border-danger-500" : "border-dark-700"
-                      }`}
-                      placeholder="you@example.com"
-                    />
-                    {errors.email && (
-                      <p className="text-xs text-danger-400 mt-1">
-                        {errors.email}
-                      </p>
-                    )}
-                  </div>
-
-                  <div>
-                    <label
-                      htmlFor="zip_code"
-                      className="block text-sm font-medium text-dark-300 mb-1.5"
-                    >
-                      Zip Code *
-                    </label>
-                    <input
-                      type="text"
-                      id="zip_code"
-                      name="zip_code"
-                      value={form.zip_code}
-                      onChange={handleChange}
-                      className={`w-full px-4 py-3 bg-dark-800 border rounded-xl text-white placeholder-dark-500 focus:outline-none focus:ring-2 focus:ring-danger-500/50 focus:border-danger-500 transition-all ${
-                        errors.zip_code
-                          ? "border-danger-500"
-                          : "border-dark-700"
-                      }`}
-                      placeholder="13088"
-                    />
-                    {errors.zip_code && (
-                      <p className="text-xs text-danger-400 mt-1">
-                        {errors.zip_code}
-                      </p>
-                    )}
-                  </div>
-
-                  <div>
-                    <label
-                      htmlFor="street_address"
-                      className="block text-sm font-medium text-dark-300 mb-1.5"
-                    >
-                      Street Address{" "}
-                      <span className="text-dark-500">
-                        (optional — strengthens your petition)
-                      </span>
-                    </label>
-                    <input
-                      type="text"
-                      id="street_address"
-                      name="street_address"
-                      value={form.street_address}
-                      onChange={handleChange}
-                      className="w-full px-4 py-3 bg-dark-800 border border-dark-700 rounded-xl text-white placeholder-dark-500 focus:outline-none focus:ring-2 focus:ring-danger-500/50 focus:border-danger-500 transition-all"
-                      placeholder="123 Main St, Liverpool, NY"
-                    />
-                  </div>
-
-                  <div>
-                    <label
-                      htmlFor="phone"
-                      className="block text-sm font-medium text-dark-300 mb-1.5"
-                    >
-                      Phone Number{" "}
-                      <span className="text-dark-500">(optional)</span>
-                    </label>
-                    <input
-                      type="tel"
-                      id="phone"
-                      name="phone"
-                      value={form.phone}
-                      onChange={handleChange}
-                      className="w-full px-4 py-3 bg-dark-800 border border-dark-700 rounded-xl text-white placeholder-dark-500 focus:outline-none focus:ring-2 focus:ring-danger-500/50 focus:border-danger-500 transition-all"
-                      placeholder="(315) 555-1234"
-                    />
-                  </div>
-
-                  <div>
-                    <label
-                      htmlFor="comment"
-                      className="block text-sm font-medium text-dark-300 mb-1.5"
-                    >
-                      Comment <span className="text-dark-500">(optional)</span>
-                    </label>
-                    <textarea
-                      id="comment"
-                      name="comment"
-                      value={form.comment}
-                      onChange={handleChange}
-                      rows={3}
-                      className="w-full px-4 py-3 bg-dark-800 border border-dark-700 rounded-xl text-white placeholder-dark-500 focus:outline-none focus:ring-2 focus:ring-danger-500/50 focus:border-danger-500 transition-all resize-none"
-                      placeholder="Share why this matters to you..."
-                    />
-                  </div>
-
-                  {/* Opt-in checkboxes */}
-                  <div className="space-y-3">
-                    <label className="flex items-start gap-3 cursor-pointer group">
-                      <input
-                        type="checkbox"
-                        checked={optInContact}
-                        onChange={(e) => setOptInContact(e.target.checked)}
-                        className="mt-1 w-4 h-4 rounded border-dark-600 bg-dark-800 text-danger-500 focus:ring-danger-500/50 flex-shrink-0"
-                      />
-                      <span className="text-sm text-dark-300 group-hover:text-dark-200 transition-colors">
-                        Yes, you may contact me with updates about this campaign
-                        and ways to get involved.
-                      </span>
-                    </label>
-                    <label className="flex items-start gap-3 cursor-pointer group">
-                      <input
-                        type="checkbox"
-                        checked={canHelp}
-                        onChange={(e) => setCanHelp(e.target.checked)}
-                        className="mt-1 w-4 h-4 rounded border-dark-600 bg-dark-800 text-danger-500 focus:ring-danger-500/50 flex-shrink-0"
-                      />
-                      <span className="text-sm text-dark-300 group-hover:text-dark-200 transition-colors">
-                        I have expertise that can help this cause (legal,
-                        aviation, environmental, media, etc.)
-                      </span>
-                    </label>
-                  </div>
-
-                  {submitError && (
-                    <div className="bg-danger-950/50 border border-danger-800/50 rounded-xl p-3 flex items-center gap-2">
-                      <AlertTriangle className="w-4 h-4 text-danger-400 flex-shrink-0" />
-                      <p className="text-sm text-danger-300">{submitError}</p>
-                    </div>
-                  )}
-
-                  <button
-                    type="submit"
-                    disabled={submitting}
-                    className="w-full flex items-center justify-center gap-2 py-4 bg-danger-600 hover:bg-danger-500 disabled:bg-danger-800 disabled:cursor-not-allowed text-white font-bold text-lg rounded-xl transition-all duration-200 shadow-lg shadow-danger-900/40"
-                  >
-                    {submitting ? (
-                      <>
-                        <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-                        Submitting...
-                      </>
-                    ) : (
-                      <>
-                        <Send className="w-5 h-5" />
-                        Sign the Petition
-                      </>
-                    )}
-                  </button>
-
-                  <p className="text-xs text-dark-500 text-center">
-                    Your information will only be used for this petition. We
-                    will never sell or share your data.
-                  </p>
-
-                  <div className="text-center pt-2 border-t border-dark-800/50">
-                    <p className="text-xs text-dark-500 mb-1">
-                      Have questions or want to get involved directly?
-                    </p>
-                    <a
-                      href="mailto:takeaction@protectliverpoolny.org"
-                      className="text-sm font-semibold text-danger-400 hover:text-danger-300 transition-colors"
-                    >
-                      takeaction@protectliverpoolny.org
-                    </a>
-                  </div>
-                </form>
-              </div>
-            )}
-          </motion.div>
-        </div>
-      </section>
 
       {/* ═══════════════════ COMMUNITY VOICES ═══════════════════ */}
       {comments.length > 0 && (

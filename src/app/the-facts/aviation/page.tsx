@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import WeNotAlone from "@/components/WeNotAlone";
+import QuickLinks from "@/components/QuickLinks";
 import { motion } from "framer-motion";
 import {
   AlertTriangle,
@@ -94,8 +95,18 @@ export default function AviationSafetyPage() {
         </div>
       </section>
 
+      <QuickLinks
+        links={[
+          { label: "Altitude & Obstruction", id: "altitude" },
+          { label: "Flight Path Proximity", id: "flight-path" },
+          { label: "Bird Strike Hazard", id: "bird-strike" },
+          { label: "5G Altimeter Interference", id: "5g-altimeter" },
+          { label: "Lights Won't Fix It", id: "lights-wont-fix" },
+        ]}
+      />
+
       {/* ═══════════════════ ALTITUDE & OBSTRUCTION ═══════════════════ */}
-      <section className="py-16 md:py-24 px-4">
+      <section id="altitude" className="py-16 md:py-24 px-4 scroll-mt-24">
         <div className="max-w-4xl mx-auto">
           <motion.div
             initial="hidden"
@@ -406,6 +417,7 @@ export default function AviationSafetyPage() {
 
           {/* ═══════════════════ FLIGHT PATH PROXIMITY ═══════════════════ */}
           <motion.div
+            id="flight-path"
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
@@ -552,7 +564,7 @@ export default function AviationSafetyPage() {
       </section>
 
       {/* ═══════════════════ BIRD STRIKE HAZARD ═══════════════════ */}
-      <section className="py-16 md:py-24 px-4 bg-lime-950/10">
+      <section id="bird-strike" className="py-16 md:py-24 px-4 bg-lime-950/10 scroll-mt-24">
         <div className="max-w-4xl mx-auto">
           <motion.div
             initial="hidden"
@@ -917,7 +929,7 @@ export default function AviationSafetyPage() {
       </section>
 
       {/* ═══════════════════ AIRPLANE MODE + 5G ALTIMETER ═══════════════════ */}
-      <section className="py-16 md:py-24 px-4">
+      <section id="5g-altimeter" className="py-16 md:py-24 px-4 scroll-mt-24">
         <div className="max-w-4xl mx-auto">
           <motion.div
             initial="hidden"
@@ -1155,7 +1167,7 @@ export default function AviationSafetyPage() {
 
 
       {/* ═══════════════════ LIGHTS WON'T FIX IT ═══════════════════ */}
-      <section className="pt-6 md:pt-10 pb-16 md:pb-24 px-4">
+      <section id="lights-wont-fix" className="pt-6 md:pt-10 pb-16 md:pb-24 px-4 scroll-mt-24">
         <div className="max-w-4xl mx-auto">
           <motion.div
             initial="hidden"
