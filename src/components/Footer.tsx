@@ -1,4 +1,5 @@
 import { Mail, Shield } from "lucide-react";
+import Image from "next/image";
 import { CopyButton } from "./CopyButton";
 
 export function Footer() {
@@ -9,7 +10,7 @@ export function Footer() {
           {/* Logo */}
           <div className="flex items-center gap-2.5">
             <span className="flex items-center justify-center w-28 h-28">
-              <img src="/protect-liverpool-ny-logo.png" alt="Protect Liverpool NY" className="w-full h-full object-contain" />
+              <Image src="/protect-liverpool-ny-logo-160.png" alt="Protect Liverpool NY" width={112} height={112} loading="lazy" className="w-full h-full object-contain" />
             </span>
             <span
               className="font-black tracking-[-0.03em] leading-none"

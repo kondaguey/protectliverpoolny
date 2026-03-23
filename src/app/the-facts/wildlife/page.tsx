@@ -328,6 +328,7 @@ export default function WildlifePage() {
               <div className="rounded-xl overflow-hidden border border-lime-800/30 mb-5" style={{ aspectRatio: "16/9" }}>
                 <iframe
                   src="https://customer-0td0xpcgba4t9wo5.cloudflarestream.com/b84c34b7bd21c03a888d706a0eb80e8a/iframe?poster=https%3A%2F%2Fcustomer-0td0xpcgba4t9wo5.cloudflarestream.com%2Fb84c34b7bd21c03a888d706a0eb80e8a%2Fthumbnails%2Fthumbnail.jpg%3Ftime%3D1s%26height%3D600"
+                  title="Dead vultures found at the cell tower site in Liverpool, NY"
                   allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture"
                   allowFullScreen
                   className="w-full h-full"

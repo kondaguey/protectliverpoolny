@@ -1,3 +1,12 @@
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Terms of Service",
+  description:
+    "Terms of use for ProtectLiverpoolNY.org, a community advocacy website fighting the unauthorized 184-foot cell tower in Liverpool, NY.",
+  alternates: { canonical: "/terms" },
+};
+
 export default function Terms() {
   return (
     <section className="py-16 md:py-24 px-4">

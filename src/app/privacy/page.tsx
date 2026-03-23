@@ -1,3 +1,12 @@
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Privacy Policy",
+  description:
+    "How ProtectLiverpoolNY.org handles your data. We collect only what's needed for the petition, never sell your info, and use zero tracking cookies.",
+  alternates: { canonical: "/privacy" },
+};
+
 export default function PrivacyPolicy() {
   return (
     <section className="py-16 md:py-24 px-4">

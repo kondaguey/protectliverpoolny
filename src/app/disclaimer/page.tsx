@@ -1,3 +1,12 @@
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Disclaimer",
+  description:
+    "ProtectLiverpoolNY.org is a grassroots community initiative. This page outlines our disclaimer regarding information accuracy, legal advice, and external links.",
+  alternates: { canonical: "/disclaimer" },
+};
+
 export default function Disclaimer() {
   return (
     <section className="py-16 md:py-24 px-4">

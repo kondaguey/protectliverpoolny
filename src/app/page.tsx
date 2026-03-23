@@ -305,6 +305,7 @@ export default function HomePage() {
               >
                 <iframe
                   src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d6500!2d-76.18508!3d43.10192!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zNDPCsDA2JzA2LjkiTiA3NsKwMTEnMDYuMyJX!5e1!3m2!1sen!2sus!4v1"
+                  title="Map showing cell tower location in Liverpool, NY"
                   width="100%"
                   height="100%"
                   style={{ border: 0, position: "absolute", inset: 0 }}

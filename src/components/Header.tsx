@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useState } from "react";
 import { Menu, X, ChevronDown, Shield } from "lucide-react";
 import { usePathname } from "next/navigation";
@@ -30,7 +31,7 @@ export function Header() {
           onClick={() => setMobileOpen(false)}
         >
           <span className="relative flex items-center justify-center w-20 h-20 group-hover:scale-105 transition-all">
-            <img src="/protect-liverpool-ny-logo.png" alt="Protect Liverpool NY" className="w-full h-full object-contain" />
+            <Image src="/protect-liverpool-ny-logo-160.png" alt="Protect Liverpool NY" width={80} height={80} priority className="w-full h-full object-contain" />
           </span>
           <span
             className="font-black tracking-[-0.03em] leading-none"
