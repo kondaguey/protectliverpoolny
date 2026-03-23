@@ -59,7 +59,7 @@ export default function Terms() {
                 className="text-danger-400 hover:text-danger-300 underline underline-offset-2"
               >
                 takeaction@protectliverpoolny.org
-              </a>
+              </a>{" "}
               .
             </p>
           </div>

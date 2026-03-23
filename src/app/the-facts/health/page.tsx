@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import WeNotAlone from "@/components/WeNotAlone";
 import { motion } from "framer-motion";
 import {
   AlertTriangle,
@@ -14,6 +15,8 @@ import {
   MapPin,
   GraduationCap,
   ArrowRight,
+  Radio,
+  Landmark,
 } from "lucide-react";
 
 const fadeUp = {
@@ -30,50 +33,60 @@ export default function HealthSciencePage() {
     <>
       {/* ═══════════════════ HEADER ═══════════════════ */}
       <section className="relative overflow-hidden">
-        <div className="absolute inset-0">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src="https://imagedelivery.net/5MAOvNjO0OBL917jHWR5AA/56de917e-c37e-413f-af53-3ed52f588500/public"
-            alt=""
-            className="w-full h-full object-cover"
-          />
-        </div>
-        <div className="absolute inset-0 bg-dark-950/60 backdrop-blur-sm" />
-        <div className="relative max-w-4xl mx-auto px-4 pt-16 pb-12 md:pt-24 md:pb-16 text-center">
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.4 }}
-            className="flex items-center justify-center mb-6"
-          >
-            <span className="inline-flex items-center gap-2 px-4 py-2 bg-sky-900/40 border border-sky-700/40 rounded-full text-sky-300 text-xs font-bold uppercase tracking-wider">
-              <Microscope className="w-3.5 h-3.5" />
-              Peer-Reviewed Research
-            </span>
-          </motion.div>
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="font-black leading-[0.95] tracking-tighter"
-            style={{ fontSize: "clamp(2.5rem, 8vw, 5rem)" }}
-          >
-            They Know It&apos;s{" "}
-            <span className="text-danger-500">Harmful.</span>
-            <br />
-            They&apos;re Building It{" "}
-            <span className="text-danger-500">Anyway.</span>
-          </motion.h1>
-          <motion.p
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            className="mt-6 text-dark-400 max-w-2xl mx-auto leading-relaxed"
-            style={{ fontSize: "clamp(1rem, 2.5vw, 1.25rem)" }}
-          >
-            Peer-reviewed studies. Federal court rulings. SEC filings from the carriers themselves.
-            The evidence is overwhelming &mdash; and they&apos;re counting on you not reading it.
-          </motion.p>
+        <div className="absolute inset-0 bg-gradient-to-b from-dark-900/60 via-dark-950 to-dark-950" />
+        <div className="relative max-w-5xl mx-auto px-4 pt-16 pb-12 md:pt-24 md:pb-16">
+          <div className="grid md:grid-cols-2 gap-8 items-center">
+            <div>
+              <motion.div
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.4 }}
+                className="flex items-center mb-6"
+              >
+                <span className="inline-flex items-center gap-2 px-4 py-2 bg-sky-900/40 border border-sky-700/40 rounded-full text-sky-300 text-xs font-bold uppercase tracking-wider">
+                  <Microscope className="w-3.5 h-3.5" />
+                  Peer-Reviewed Research
+                </span>
+              </motion.div>
+              <motion.h1
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.1 }}
+                className="font-black leading-[0.95] tracking-tighter"
+                style={{ fontSize: "clamp(2.5rem, 8vw, 5rem)" }}
+              >
+                They Know It's{" "}
+                <span className="text-danger-500">Harmful.</span>
+                <br />
+                They're Building It{" "}
+                <span className="text-danger-500">Anyway.</span>
+              </motion.h1>
+              <motion.p
+                initial={{ opacity: 0, y: 15 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.3 }}
+                className="mt-6 text-dark-400 max-w-lg leading-relaxed"
+                style={{ fontSize: "clamp(1rem, 2.5vw, 1.25rem)" }}
+              >
+                Peer-reviewed studies. Federal court rulings. SEC filings from the carriers themselves.
+                The evidence is overwhelming — and they're counting on you not reading it.
+              </motion.p>
+            </div>
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.7, delay: 0.3 }}
+            >
+              <div className="rounded-2xl overflow-hidden border border-dark-700/50 shadow-2xl shadow-black/40">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src="https://imagedelivery.net/5MAOvNjO0OBL917jHWR5AA/942d82d3-f543-4db2-22fb-1c3f117bfe00/public"
+                  alt="Health research evidence"
+                  className="w-full h-auto"
+                />
+              </div>
+            </motion.div>
+          </div>
         </div>
       </section>
 
@@ -88,12 +101,12 @@ export default function HealthSciencePage() {
             custom={0}
           >
             <h2 className="text-2xl md:text-3xl font-black text-center mb-3">
-              Think This Doesn&apos;t{" "}
+              Think This Doesn't{" "}
               <span className="text-danger-500">Affect You?</span>
             </h2>
             <p className="text-dark-400 text-center max-w-2xl mx-auto mb-10">
-              You don&apos;t have to live within a mile of this tower for it to
-              matter. Here&apos;s why every Salina and Liverpool resident should
+              You don't have to live within a mile of this tower for it to
+              matter. Here's why every Salina and Liverpool resident should
               care.
             </p>
           </motion.div>
@@ -151,7 +164,7 @@ export default function HealthSciencePage() {
             </div>
             <p className="text-dark-400 mb-8 max-w-2xl">
               The wireless industry says cell towers are safe. The independent
-              science says otherwise. Here are the studies they don&apos;t want
+              science says otherwise. Here are the studies they don't want
               you to read.
             </p>
           </motion.div>
@@ -159,20 +172,10 @@ export default function HealthSciencePage() {
           <div className="grid sm:grid-cols-2 gap-5">
             {[
               {
-                icon: Microscope,
-                title: "NTP Study — \"Clear Evidence\" of Cancer",
-                text: "The U.S. National Toxicology Program's $30 million study found \"clear evidence\" of carcinogenic activity from RF radiation, including malignant schwannomas of the heart and tumors in the brain.",
-                link: "https://ehtrust.org/science/research-on-cell-tower-and-cell-antenna-radiation/",
-                linkLabel: "View the Research",
-                accent: "text-sky-400",
-                bg: "bg-sky-950/30",
-                border: "border-sky-800/30",
-              },
-              {
                 icon: BarChart3,
                 title: "Ramazzini Institute Confirmation",
                 text: "Italy's Ramazzini Institute independently replicated the NTP findings, discovering increased tumor rates at RF exposure levels equivalent to those from cell towers — not just phones.",
-                link: "https://ehtrust.org/science/research-on-cell-tower-and-cell-antenna-radiation/",
+                link: "https://pubmed.ncbi.nlm.nih.gov/29530389/",
                 linkLabel: "View the Research",
                 accent: "text-emerald-400",
                 bg: "bg-emerald-950/30",
@@ -182,7 +185,7 @@ export default function HealthSciencePage() {
                 icon: Gavel,
                 title: "EHT v. FCC — Court Orders Review",
                 text: "In 2021, a federal court ruled that the FCC's decision to maintain 1996-era radiation limits was \"arbitrary and capricious,\" ordering the agency to address evidence of harm to children and the environment.",
-                link: "https://ehtrust.org/in-historic-decision-federal-court-finds-fcc-failed-to-justify-its-safety-standards/",
+                link: "https://ehtrust.org/in-historic-decision-federal-court-finds-fcc-failed-to-explain-why-it-ignored-scientific-evidence-showing-harm-from-wireless-radiation/",
                 linkLabel: "Read the Ruling",
                 accent: "text-amber-400",
                 bg: "bg-amber-950/30",
@@ -202,7 +205,7 @@ export default function HealthSciencePage() {
                 icon: ShieldAlert,
                 title: "Chromosomal Damage Near Towers",
                 text: "A 2024 peer-reviewed study found significantly higher chromosomal aberrations in the blood of people living near base station antennas, indicating potential DNA damage from chronic exposure.",
-                link: "https://ehtrust.org/science/research-on-cell-tower-and-cell-antenna-radiation/",
+                link: "https://pmc.ncbi.nlm.nih.gov/articles/PMC7405337/",
                 linkLabel: "View the Study",
                 accent: "text-purple-400",
                 bg: "bg-purple-950/30",
@@ -222,7 +225,7 @@ export default function HealthSciencePage() {
                 icon: BarChart3,
                 title: "73.6% of Cell Tower Studies Found Harmful Effects",
                 text: "A 2022 systematic review in Environmental Research by Balmori analyzed all available studies on people living near cell towers and found that nearly three out of four reported harmful health effects — including cancer, neurological symptoms, and reproductive harm.",
-                link: "https://pubmed.ncbi.nlm.nih.gov/35843134/",
+                link: "https://www.sciencedirect.com/science/article/abs/pii/S0013935122011781",
                 linkLabel: "View on PubMed",
                 accent: "text-orange-400",
                 bg: "bg-orange-950/30",
@@ -232,21 +235,11 @@ export default function HealthSciencePage() {
                 icon: Microscope,
                 title: "Cell Tower RF Exposure to Children's Brains Exceeds Cell Phone Use by 10×",
                 text: "A 2023 study by Lee & Choi in Environmental Research found that continuous 24-hour downlink signals from cell towers produced more than ten times higher cumulative daily RF energy absorption in a child's brain compared to a 10-minute phone call.",
-                link: "https://pubmed.ncbi.nlm.nih.gov/37429427/",
+                link: "https://ehsciences.org/addressing-cell-towers-at-schools-science-based-policy-health-risks/",
                 linkLabel: "View on PubMed",
                 accent: "text-cyan-400",
                 bg: "bg-cyan-950/30",
                 border: "border-cyan-800/30",
-              },
-              {
-                icon: Gavel,
-                title: "APHA 2025: Scientists Call for 1,500-Foot School Setbacks",
-                text: "At the 2025 American Public Health Association conference, researchers presented evidence that multiple peer-reviewed studies recommend cell towers be located at least 1,500 feet (~500 m) from schools and residences. The U.S. has no such federal requirement.",
-                link: "https://ehsciences.org/cell-towers-in-schools/",
-                linkLabel: "View APHA Presentation",
-                accent: "text-teal-400",
-                bg: "bg-teal-950/30",
-                border: "border-teal-800/30",
               },
             ].map((card, i) => (
               <motion.div
@@ -305,21 +298,12 @@ export default function HealthSciencePage() {
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
               <a
-                href="https://ehtrust.org/science/research-on-cell-tower-and-cell-antenna-radiation/"
+                href="https://pubmed.ncbi.nlm.nih.gov/?term=cell+tower+radiofrequency+health+effects"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 px-6 py-3 bg-sky-900/40 hover:bg-sky-900/60 border border-sky-700/40 text-sky-300 font-bold text-sm rounded-xl transition-all duration-200 hover:scale-[1.03]"
               >
-                Browse All Research on EHTrust.org
-                <ExternalLink className="w-4 h-4" />
-              </a>
-              <a
-                href="https://ehsciences.org/cell-towers-in-schools/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-6 py-3 bg-teal-900/40 hover:bg-teal-900/60 border border-teal-700/40 text-teal-300 font-bold text-sm rounded-xl transition-all duration-200 hover:scale-[1.03]"
-              >
-                APHA Conference Presentation
+                Browse Research on PubMed
                 <ExternalLink className="w-4 h-4" />
               </a>
             </div>
@@ -342,7 +326,7 @@ export default function HealthSciencePage() {
               <p className="text-dark-400 max-w-2xl mx-auto">
                 Multiple peer-reviewed studies and expert bodies recommend
                 minimum setback distances for cell towers near homes and
-                schools. Here&apos;s what the science says.
+                schools. Here's what the science says.
               </p>
             </div>
 
@@ -355,7 +339,7 @@ export default function HealthSciencePage() {
                 Bare Minimum Setback
               </p>
               <p className="text-sm text-dark-300 max-w-xl mx-auto">
-                Multiple peer-reviewed studies (Levitt &amp; Lai 2010, Dode et al.
+                Multiple peer-reviewed studies (Levitt & Lai 2010, Dode et al.
                 2011, Pearce 2024) and the New Hampshire State 5G Commission
                 recommend cell towers be a minimum of 3,000 feet
                 from residences, schools, and hospitals — and many of these towers are designed to be equipped for 6G.
@@ -477,16 +461,10 @@ export default function HealthSciencePage() {
                 <p className="text-dark-300 text-sm leading-relaxed mb-4">
                   Most countries set wireless radiation limits{" "}
                   <strong className="text-white">100× to 1,000× stricter</strong> than
-                  the United States. The FCC&apos;s limits haven&apos;t been updated since 1996.
+                  the United States. The FCC's limits haven't been updated since 1996.
                 </p>
-                <div className="rounded-xl overflow-hidden border border-dark-700/50 mb-4">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    src="https://imagedelivery.net/5MAOvNjO0OBL917jHWR5AA/f9f3e799-a84f-4c8f-459f-33097d861300/public"
-                    alt="Worldwide wireless radiation limits comparison by country — the U.S. has the weakest standards"
-                    className="w-full h-auto"
-                  />
-                </div>
+
+
                 <a
                   href="https://ehsciences.org/wp-content/uploads/2025/08/Cell-Tower-Wireless-Radiation-Worldwide-Limits-EHSsciences.org_.pdf"
                   target="_blank"
@@ -610,7 +588,7 @@ export default function HealthSciencePage() {
                 </div>
                 <p className="text-xs text-danger-300/70 mt-4 leading-relaxed">
                   Declarative. Measurable. Verifiable. This is what happens when
-                  you stop &ldquo;considering&rdquo; and start testing.
+                  you stop "considering" and start testing.
                 </p>
               </div>
             </div>
@@ -619,20 +597,199 @@ export default function HealthSciencePage() {
               <p className="text-danger-200 font-medium">
                 While they{" "}
                 <span className="text-dark-400 italic">
-                  &ldquo;consider&rdquo;
-                </span>
+                  "consider"
+                </span>{" "}
                 , the people on the ground fighting for your rights are
                 declaring{" "}
                 <strong className="text-white text-lg">IS</strong> and{" "}
                 <strong className="text-white text-lg">ARE</strong>.{" "}
                 <span className="text-danger-400 font-black">
-                  It&apos;s that obvious.
+                  It's that obvious.
                 </span>
               </p>
             </div>
           </motion.div>
         </div>
       </section>
+
+      {/* ═══════════════════ THE FEDERAL TRAP ═══════════════════ */}
+      <section className="py-16 md:py-24 px-4 bg-dark-900/30">
+        <div className="max-w-4xl mx-auto">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-50px" }}
+            variants={fadeUp}
+            custom={0}
+          >
+            <div className="flex items-center gap-3 mb-6">
+              <div className="w-10 h-10 rounded-xl bg-amber-900/40 border border-amber-800/30 flex items-center justify-center">
+                <Landmark className="w-5 h-5 text-amber-400" />
+              </div>
+              <h2 className="text-2xl md:text-3xl font-bold">
+                The Federal Trap
+              </h2>
+            </div>
+          </motion.div>
+
+          <div className="space-y-6">
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              variants={fadeUp}
+              custom={1}
+              className="bg-dark-900/60 border border-dark-800/50 rounded-2xl p-6 md:p-8"
+            >
+              <h3 className="text-lg font-bold text-white mb-3 flex items-center gap-2">
+                <Radio className="w-5 h-5 text-amber-400" />
+                The Telecommunications Act of 1996
+              </h3>
+              <p className="text-dark-200 leading-relaxed mb-4">
+                Here's the part most people don't know: Federal law{" "}
+                <strong className="text-white">explicitly prohibits</strong>{" "}
+                local governments from denying a cell tower based on
+                "environmental effects of radio frequency
+                emissions"—as long as the tower meets FCC guidelines.
+              </p>
+              <p className="text-dark-200 leading-relaxed mb-4">
+                That means even if you wanted to sue over health and radiation
+                concerns,{" "}
+                <strong className="text-white">
+                  federal law is stacked against you
+                </strong>{" "}
+                . The telecom industry spent decades lobbying for this
+                protection, and it's baked into the law. In 1996, Congress
+                even{" "}
+                <strong className="text-white">
+                  defunded the EPA from researching RF radiation health effects
+                </strong>{" "}
+                —eliminating the one federal agency that could have set
+                science-based safety standards.
+              </p>
+              <p className="text-dark-200 leading-relaxed mb-4">
+                <strong className="text-danger-400">
+                  But the tide is turning.
+                </strong>{" "}
+                In 2021, the Environmental Health Trust{" "}
+                <strong className="text-white">
+                  won a landmark federal court case
+                </strong>{" "}
+                against the FCC. The U.S. Court of Appeals ruled the FCC's
+                decision not to update its 1996 radiation exposure limits was{" "}
+                <strong className="text-white">
+                  "arbitrary and capricious"
+                </strong>{" "}
+                and ordered the Commission to explain why it ignored evidence of
+                non-cancer harms, impacts to children, and environmental damage.
+              </p>
+              <p className="text-dark-200 leading-relaxed">
+                The fight isn't just about radiation—it's about{" "}
+                <strong className="text-white">transparency</strong>,{" "}
+                <strong className="text-white">due process</strong>, and{" "}
+                <strong className="text-white">
+                  the right of a community to be heard
+                </strong>{" "}
+                before a massive commercial structure is dropped in their
+                neighborhood.
+              </p>
+            </motion.div>
+
+            {/* How We Fight */}
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              variants={fadeUp}
+              custom={2}
+              className="bg-dark-900/60 border border-dark-800/50 rounded-2xl p-6 md:p-8"
+            >
+              <h3 className="text-lg font-bold text-white mb-4">
+                How We Fight Back
+              </h3>
+              <ul className="space-y-3">
+                {[
+                  "Challenge the process: Was proper federal and state review actually completed?",
+                  "Demand transparency: Force disclosure of lease terms, radiation studies, and structural assessments.",
+                  "Push for legislation: New York State can close the NYSTA land loophole for future builds.",
+                  "Build political pressure: Elected officials respond to organized, vocal communities.",
+                  "Document everything: Every public meeting, every promise, every missed notification becomes evidence.",
+                ].map((item, i) => (
+                  <li
+                    key={i}
+                    className="flex items-start gap-3 text-dark-200 text-sm leading-relaxed"
+                  >
+                    <span className="mt-1 w-5 h-5 rounded-full bg-danger-600/20 border border-danger-600/40 flex items-center justify-center flex-shrink-0">
+                      <span className="text-xs font-bold text-danger-400">
+                        {i + 1}
+                      </span>
+                    </span>
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </motion.div>
+
+            {/* Warning callout */}
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              variants={fadeUp}
+              custom={3}
+              className="bg-amber-950/30 border border-amber-800/30 rounded-2xl p-6 md:p-8 flex gap-4"
+            >
+              <AlertTriangle className="w-8 h-8 text-amber-400 flex-shrink-0 mt-0.5" />
+              <div>
+                <h3 className="font-bold text-amber-300 mb-2">
+                  Why Silence Is Not an Option
+                </h3>
+                <p className="text-dark-200 text-sm leading-relaxed">
+                  If this tower goes unchallenged, it sets a precedent. It tells
+                  every telecom company that they can use state-owned land as a
+                  backdoor into any neighborhood in New York. Your community is
+                  next if Liverpool doesn't fight.
+                </p>
+              </div>
+            </motion.div>
+
+            {/* Malicious Intent */}
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              variants={fadeUp}
+              custom={4}
+              className="bg-danger-950/30 border border-danger-800/40 rounded-2xl p-6 md:p-8"
+            >
+              <h3 className="font-bold text-danger-400 text-lg mb-3">
+                Let's Call It What It Is.
+              </h3>
+              <p className="text-dark-200 text-sm leading-relaxed mb-3">
+                A company exploits a loophole in state land law. Sits on federal
+                approval for over a year. Begins construction without notifying
+                a single resident. Builds a 184-foot unlit tower 0.25 miles from
+                an active landing corridor in a residential neighborhood.
+              </p>
+              <p className="text-dark-200 text-sm leading-relaxed mb-3">
+                This wasn't an oversight. This wasn't a clerical
+                error. This wasn't a missed notification. At every single
+                step, due diligence was skipped — not because it was forgotten,
+                but because it was{" "}
+                <strong className="text-white">never intended</strong>.
+              </p>
+              <p className="text-danger-300 text-sm font-bold leading-relaxed">
+                This is what malicious intent looks like when it wears a
+                corporate logo.
+              </p>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+
+      {/* ═══════════════════ WE'RE NOT ALONE CTA ═══════════════════ */}
+      <WeNotAlone />
 
       {/* ═══════════════════ CROSS-LINKS ═══════════════════ */}
       <section className="py-12 px-4 border-t border-dark-800/50">
@@ -671,7 +828,7 @@ export default function HealthSciencePage() {
                 Wildlife & Environment →
               </p>
               <p className="text-xs text-dark-400">
-                Eagles, bird collisions, honeybees, and the Audubon data they can&apos;t ignore.
+                Eagles, bird collisions, honeybees, and the Audubon data they can't ignore.
               </p>
             </Link>
           </div>

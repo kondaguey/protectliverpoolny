@@ -18,7 +18,8 @@ const sections = [
     href: "/the-facts/community",
     title: "Community & Land Value Impact",
     subtitle: "Your neighborhood. Your home value. Their profit.",
-    description: "Property values drop up to 20% near cell towers. Federal law was written to silence you. And nobody asked your permission.",
+    description:
+      "Property values can drop up to 20% near cell towers. Federal law was written to silence you. And nobody asked your permission.",
     image: "/5g-protest-proof.jpg",
     color: "border-amber-700/40",
     hoverColor: "group-hover:text-amber-400",
@@ -29,7 +30,8 @@ const sections = [
     href: "/the-facts/health",
     title: "Health Impacts",
     subtitle: "What the independent research actually says.",
-    description: "Peer-reviewed studies, the NTP's $30M cancer finding, children's RF absorption 10× higher than adults, and the 1996 safety limits a court called \"arbitrary.\"",
+    description:
+      "Peer-reviewed studies, the NTP's $30M cancer finding, children's RF absorption 10× higher than adults, and the 1996 safety limits a court called \"arbitrary.\"",
     image: "/5g-tower-liverpool-ny-protest-installation-nys-salina.png",
     color: "border-sky-700/40",
     hoverColor: "group-hover:text-sky-400",
@@ -39,9 +41,11 @@ const sections = [
   {
     href: "/the-facts/aviation",
     title: "Aviation & Safety Risks",
-    subtitle: "1,320 feet from the landing corridor. Unlit.",
-    description: "FAA emergency directives, 5G altimeter interference, helicopter danger zones, and how they gamed Part 77 to dodge the lighting requirement.",
-    image: "/5g-tower-liverpool-ny-airline-interference-installation-nys-salina.png",
+    subtitle: "1,320 feet from the landing corridor.",
+    description:
+      "FAA emergency directives, 5G altimeter interference, helicopter danger zones, and how they gamed Part 77 to dodge the lighting requirement.",
+    image:
+      "/5g-tower-liverpool-ny-airline-interference-installation-nys-salina.png",
     color: "border-sky-700/40",
     hoverColor: "group-hover:text-sky-400",
     accent: "text-sky-400",
@@ -50,9 +54,11 @@ const sections = [
   {
     href: "/the-facts/wildlife",
     title: "Wildlife & Environmental Concerns",
-    subtitle: "100+ eagles. 1.7 miles away. No review.",
-    description: "Eagles nest on cell towers — then lose their homes to 5G upgrades. The Audubon Society has documented it. Nobody asked if it will happen here.",
-    image: "https://imagedelivery.net/5MAOvNjO0OBL917jHWR5AA/3461547c-bf7c-403d-5f32-d7d6168f8e00/public",
+    subtitle: "100+ eagles. 1.7 miles away.",
+    description:
+      "Bald Eagles are well documented to nest on these types of monopole cell towers — then lose their homes to 5G upgrades / tower maintenance. The Audubon Society has documented it. Nobody asked if it will happen here.",
+    image:
+      "https://imagedelivery.net/5MAOvNjO0OBL917jHWR5AA/3461547c-bf7c-403d-5f32-d7d6168f8e00/public",
     color: "border-lime-700/40",
     hoverColor: "group-hover:text-lime-400",
     accent: "text-lime-400",
@@ -61,9 +67,12 @@ const sections = [
   {
     href: "/the-facts/surveillance",
     title: "The Real Question",
-    subtitle: "Liverpool already has full 5G. So what is this tower actually for?",
-    description: "Flock ALPR cameras are already photographing every vehicle in the area. ICE is already accessing the data. Private companies are already building watchlists. And this tower is providing the backbone.",
-    image: "https://imagedelivery.net/5MAOvNjO0OBL917jHWR5AA/87517ceb-e6c4-45e6-6dfe-1f0ce181f200/public",
+    subtitle:
+      "Liverpool is already blanketed with 5G Ultraband to the max. So what is this tower actually for?",
+    description:
+      "Flock AI-driven ALPR cameras are already photographing every vehicle in the area that passes them. Private companies are already building watchlists. And this tower is providing the backbone.",
+    image:
+      "https://imagedelivery.net/5MAOvNjO0OBL917jHWR5AA/87517ceb-e6c4-45e6-6dfe-1f0ce181f200/public",
     color: "border-purple-700/40",
     hoverColor: "group-hover:text-purple-400",
     accent: "text-purple-400",
@@ -85,7 +94,9 @@ export default function TheFactsLanding() {
             className="text-3xl sm:text-4xl md:text-5xl font-black leading-tight tracking-tight"
           >
             The Facts{" "}
-            <span className="text-danger-500">They Don&apos;t Want You to Know</span>
+            <span className="text-danger-500">
+              They Don't Want You to Know
+            </span>
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 15 }}
@@ -93,7 +104,9 @@ export default function TheFactsLanding() {
             transition={{ duration: 0.6, delay: 0.3 }}
             className="mt-6 text-lg text-dark-400 max-w-2xl mx-auto leading-relaxed"
           >
-            Four areas of evidence and the question nobody&apos;s answering. No opinions — just sourced data, federal documents, and peer-reviewed science.
+            Five areas of evidence and the question nobody's answering. No
+            opinions — just sourced data, federal documents, and peer-reviewed
+            science.
           </motion.p>
         </div>
       </section>
@@ -128,10 +141,14 @@ export default function TheFactsLanding() {
 
                 {/* Text */}
                 <div className="md:w-3/5 p-6 md:p-8 flex flex-col justify-center">
-                  <span className={`text-[10px] font-bold uppercase tracking-widest ${section.accent} mb-2`}>
+                  <span
+                    className={`text-[10px] font-bold uppercase tracking-widest ${section.accent} mb-2`}
+                  >
                     {section.badge}
                   </span>
-                  <h2 className={`text-xl md:text-2xl font-black text-white ${section.hoverColor} transition-colors mb-2`}>
+                  <h2
+                    className={`text-xl md:text-2xl font-black text-white ${section.hoverColor} transition-colors mb-2`}
+                  >
                     {section.title}
                   </h2>
                   <p className="text-sm font-semibold text-dark-200 mb-2">
@@ -140,7 +157,9 @@ export default function TheFactsLanding() {
                   <p className="text-sm text-dark-400 leading-relaxed mb-4">
                     {section.description}
                   </p>
-                  <span className={`inline-flex items-center gap-1.5 text-sm font-bold ${section.accent}`}>
+                  <span
+                    className={`inline-flex items-center gap-1.5 text-sm font-bold ${section.accent}`}
+                  >
                     Read the evidence
                     <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                   </span>

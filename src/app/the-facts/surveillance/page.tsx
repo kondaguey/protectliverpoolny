@@ -33,50 +33,64 @@ export default function SurveillancePage() {
     <>
       {/* ═══════════════════ HEADER ═══════════════════ */}
       <section className="relative overflow-hidden">
-        {/* Hero background image */}
-        <div className="absolute inset-0">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src="https://imagedelivery.net/5MAOvNjO0OBL917jHWR5AA/87517ceb-e6c4-45e6-6dfe-1f0ce181f200/public"
-            alt=""
-            className="w-full h-full object-cover"
-          />
-        </div>
-        <div className="absolute inset-0 bg-dark-950/60 backdrop-blur-[1px]" />
-        <div className="relative max-w-4xl mx-auto px-4 pt-16 pb-12 md:pt-24 md:pb-16 text-center">
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.4 }}
-            className="flex items-center justify-center mb-6"
-          >
-            <span className="inline-flex items-center gap-2 px-4 py-2 bg-purple-900/40 border border-purple-700/40 rounded-full text-purple-300 text-xs font-bold uppercase tracking-wider">
-              <Eye className="w-3.5 h-3.5" />
-              Follow the Infrastructure
-            </span>
-          </motion.div>
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="font-black leading-[0.95] tracking-tighter"
-            style={{ fontSize: "clamp(2.5rem, 8vw, 5rem)" }}
-          >
-            So... Who&apos;s It{" "}
-            <span className="text-danger-500">Really</span> For?
-          </motion.h1>
-          <motion.p
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            className="mt-6 text-dark-400 max-w-2xl mx-auto leading-relaxed"
-            style={{ fontSize: "clamp(1rem, 2.5vw, 1.25rem)" }}
-          >
-            They&apos;ll say it&apos;s for your safety. For &ldquo;connectivity.&rdquo;
-            For &ldquo;smart highways.&rdquo; Okay. If it&apos;s for our safety &mdash;
-            why the radiation risk? The aviation risk? The property value collapse?
-            The environmental damage? None of that sounds very &ldquo;safe.&rdquo;
-          </motion.p>
+        <div className="absolute inset-0 bg-gradient-to-b from-dark-900/60 via-dark-950 to-dark-950" />
+        <div className="relative max-w-5xl mx-auto px-4 pt-16 pb-12 md:pt-24 md:pb-16">
+          <div className="grid md:grid-cols-2 gap-8 items-center">
+            {/* Left — Title & text */}
+            <div>
+              <motion.div
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.4 }}
+                className="flex items-center mb-6"
+              >
+                <span className="inline-flex items-center gap-2 px-4 py-2 bg-purple-900/40 border border-purple-700/40 rounded-full text-purple-300 text-xs font-bold uppercase tracking-wider">
+                  <Eye className="w-3.5 h-3.5" />
+                  Follow the Infrastructure
+                </span>
+              </motion.div>
+              <motion.h1
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.1 }}
+                className="font-black leading-[0.95] tracking-tighter"
+                style={{ fontSize: "clamp(2.5rem, 8vw, 5rem)" }}
+              >
+                So... Who's It{" "}
+                <span className="text-danger-500">Really</span> For?
+              </motion.h1>
+              <motion.p
+                initial={{ opacity: 0, y: 15 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.3 }}
+                className="mt-6 text-dark-400 max-w-lg leading-relaxed"
+                style={{ fontSize: "clamp(1rem, 2.5vw, 1.25rem)" }}
+              >
+                They'll say it's for your safety. For "connectivity."
+                For "smart highways." And honestly? It <em className="text-white not-italic font-bold">is</em>{" "} for
+                you — just not in the way they're telling you. It's
+                for watching you. Tracking you. Logging every vehicle,
+                every route, every pattern. That's not a service.
+                That's a product — and you're what's being sold.
+              </motion.p>
+            </div>
+
+            {/* Right — Hero image */}
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.7, delay: 0.3 }}
+            >
+              <div className="rounded-2xl overflow-hidden border border-dark-700/50 shadow-2xl shadow-black/40">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src="https://imagedelivery.net/5MAOvNjO0OBL917jHWR5AA/87517ceb-e6c4-45e6-6dfe-1f0ce181f200/public"
+                  alt="Surveillance infrastructure"
+                  className="w-full h-auto"
+                />
+              </div>
+            </motion.div>
+          </div>
         </div>
       </section>
 
@@ -91,11 +105,11 @@ export default function SurveillancePage() {
             custom={0}
           >
             <h2 className="text-2xl md:text-3xl font-black text-center mb-3">
-              Let&apos;s Walk Through the{" "}
+              Let's Walk Through the{" "}
               <span className="text-danger-500">Logic</span>
             </h2>
             <p className="text-dark-400 text-center max-w-2xl mx-auto mb-10">
-              This isn&apos;t conspiracy. This is just reading what they&apos;re actually telling us,
+              This isn't conspiracy. This is just reading what they're actually telling us,
               and asking the obvious follow-up question.
             </p>
           </motion.div>
@@ -185,16 +199,16 @@ export default function SurveillancePage() {
             className="text-center mb-10"
           >
             <p className="text-xs font-bold text-danger-400 uppercase tracking-widest mb-4">
-              This Isn&apos;t Left or Right
+              This Isn't Left or Right
             </p>
             <h2 className="text-2xl md:text-3xl font-black mb-3">
-              It&apos;s{" "}
-              <span className="text-danger-500">Everyone&apos;s</span> Problem
+              It's{" "}
+              <span className="text-danger-500">Everyone's</span> Problem
             </h2>
             <p className="text-dark-400 max-w-2xl mx-auto leading-relaxed">
-              Mass surveillance infrastructure doesn&apos;t care who you voted for.
+              Mass surveillance infrastructure doesn't care who you voted for.
               It tracks everyone. And no matter what side of the aisle you sit on,
-              there&apos;s something here that should make your blood boil.
+              there's something here that should make your blood boil.
             </p>
           </motion.div>
 
@@ -294,13 +308,13 @@ export default function SurveillancePage() {
               They create the problem. They get you to yell at each other.
             </p>
             <p className="text-base text-dark-200 leading-relaxed mb-4 max-w-2xl mx-auto">
-              Meanwhile &mdash; while you&apos;re busy arguing about left vs. right &mdash; they quietly
-              roll out a &ldquo;solution&rdquo; that puts{" "}
+              Meanwhile — while you're busy arguing about left vs. right — they quietly
+              roll out a "solution" that puts{" "}
               <strong className="text-danger-400">every single one of us under a microscope.</strong>
             </p>
             <p className="text-dark-400 text-sm">
               The only people who benefit from mass surveillance are the ones doing the surveilling.
-              And they&apos;re counting on us being too distracted to notice.
+              And they're counting on us being too distracted to notice.
             </p>
           </motion.div>
         </div>
@@ -318,14 +332,14 @@ export default function SurveillancePage() {
             className="text-center mb-10"
           >
             <p className="text-xs font-bold text-purple-400 uppercase tracking-widest mb-4">
-              You Can&apos;t Make This Up
+              You Can't Make This Up
             </p>
             <h2 className="text-3xl md:text-4xl font-black mb-3">
               Are You{" "}
               <span className="text-purple-400">Flock</span>ing Serious?
             </h2>
             <p className="text-dark-400 max-w-2xl mx-auto leading-relaxed">
-              Before you read another word &mdash; this is real. This is not a conspiracy theory.
+              Before you read another word — this is real. This is not a conspiracy theory.
               This is a publicly traded company, with a website, operating across America right now.
               Including right here in Liverpool.
             </p>
@@ -359,40 +373,43 @@ export default function SurveillancePage() {
               <div className="bg-dark-900/60 rounded-xl p-5">
                 <p className="text-white text-lg font-black mb-2">📋 Step 2: Your Plate Gets Read</p>
                 <p className="text-dark-200 text-base leading-relaxed">
-                  The camera uses AI to <strong className="text-white">read your license plate</strong> and
-                  record the <strong className="text-white">exact time, location, and direction</strong> you
+                  The camera uses AI to <strong className="text-white">read your license plate</strong>{" "}
+                  and record the <strong className="text-white">exact time, location, and direction</strong>{" "}
+                  you
                   were traveling. It also captures the make, model, and color of your vehicle.
-                  This data is uploaded instantly to Flock&apos;s cloud servers.
+                  This data is uploaded instantly to Flock's cloud servers.
                 </p>
               </div>
 
               <div className="bg-dark-900/60 rounded-xl p-5">
                 <p className="text-white text-lg font-black mb-2">🌐 Step 3: It Goes Into a Nationwide Database</p>
                 <p className="text-dark-200 text-base leading-relaxed">
-                  Your plate read doesn&apos;t stay local. It goes into a <strong className="text-white">massive,
-                  searchable database</strong> that connects thousands of cameras across the country. Any
-                  participating police department &mdash; anywhere in America &mdash; can search for
-                  your plate and see <strong className="text-white">everywhere you&apos;ve been</strong>.
+                  Your plate read doesn't stay local. It goes into a{" "}
+                  <strong className="text-white">massive, searchable database</strong>{" "}
+                  that connects thousands of cameras across the country. Any
+                  participating police department — anywhere in America — can search for
+                  your plate and see <strong className="text-white">everywhere you've been</strong>.
                   No warrant. No probable cause. No notification.
                 </p>
               </div>
 
               <div className="bg-dark-900/60 rounded-xl p-5">
-                <p className="text-white text-lg font-black mb-2">🤖 Step 4: AI Decides If You&apos;re &ldquo;Suspicious&rdquo;</p>
+                <p className="text-white text-lg font-black mb-2">🤖 Step 4: AI Decides If You're "Suspicious"</p>
                 <p className="text-dark-200 text-base leading-relaxed">
-                  Flock&apos;s AI doesn&apos;t just store data &mdash; it <strong className="text-white">analyzes
-                  everyone&apos;s driving patterns</strong> and automatically flags vehicles it considers
-                  &ldquo;suspicious.&rdquo; Not because you committed a crime. Because an{" "}
+                  Flock's AI doesn't just store data — it{" "}
+                  <strong className="text-white">analyzes everyone's driving patterns</strong>{" "}
+                  and automatically flags vehicles it considers
+                  "suspicious." Not because you committed a crime. Because an{" "}
                   <strong className="text-white">algorithm decided your pattern looked weird</strong>.
-                  You have no idea this is happening. You can&apos;t challenge it. You can&apos;t appeal it.
+                  You have no idea this is happening. You can't challenge it. You can't appeal it.
                 </p>
               </div>
 
               <div className="bg-dark-900/60 rounded-xl p-5">
                 <p className="text-white text-lg font-black mb-2">🏢 Step 5: Private Companies Get Access Too</p>
                 <p className="text-dark-200 text-base leading-relaxed">
-                  It&apos;s not just police. Flock launched a <strong className="text-white">&ldquo;Business
-                  Network&rdquo;</strong> where private companies can share vehicle watchlists. Your employer.
+                  It's not just police. Flock launched a <strong className="text-white">"Business
+                  Network"</strong> where private companies can share vehicle watchlists. Your employer.
                   Shopping centers. HOAs. Private security firms. They can{" "}
                   <strong className="text-white">add your plate to a hotlist</strong> and get alerted
                   every time you drive past one of their cameras. Anywhere.
@@ -402,9 +419,9 @@ export default function SurveillancePage() {
 
             <div className="bg-danger-950/30 border border-danger-800/30 rounded-xl p-5 text-center">
               <p className="text-danger-200 font-bold text-base">
-                <strong className="text-white text-xl">That&apos;s what Flock is.</strong>{" "}
+                <strong className="text-white text-xl">That's what Flock is.</strong>{" "}
                 A private company building a nationwide vehicle tracking network.
-                Not the government &mdash; a <em>company</em>. And then selling access to whoever wants it.
+                Not the government — a <em>company</em>. And then selling access to whoever wants it.
               </p>
             </div>
           </motion.div>
@@ -419,13 +436,13 @@ export default function SurveillancePage() {
             className="bg-danger-950/20 border border-danger-800/30 rounded-2xl p-6 md:p-8 mb-6"
           >
             <h3 className="text-xl md:text-2xl font-black text-white mb-3">
-              What Does This Have to Do with the 184ft Phoenix International Tower We&apos;re Fighting?
+              What Does This Have to Do with the 184ft Phoenix International Tower We're Fighting?
             </h3>
             <p className="text-dark-200 text-base leading-relaxed mb-5">
               Flock cameras need a persistent cellular connection to upload data to the cloud in real-time.
-              A 184-foot tower on NYS Thruway Authority land &mdash; right next to I-90 &mdash; is{" "}
+              A 184-foot tower on NYS Thruway Authority land — right next to I-90 — is{" "}
               <strong className="text-white">ideal infrastructure</strong>{" "}
-              for connecting ALPR cameras, IoT sensors, and &ldquo;smart highway&rdquo; equipment along the corridor.
+              for connecting ALPR cameras, IoT sensors, and "smart highway" equipment along the corridor.
             </p>
             <div className="grid sm:grid-cols-3 gap-3">
               {[
@@ -460,10 +477,10 @@ export default function SurveillancePage() {
             className="bg-dark-900/60 border border-purple-800/30 rounded-2xl p-6 md:p-8 mb-6"
           >
             <h3 className="text-xl md:text-2xl font-black text-white mb-2">
-              They&apos;re Already Here.
+              They're Already Here.
             </h3>
             <p className="text-dark-200 text-base leading-relaxed mb-5">
-              This isn&apos;t hypothetical. Flock cameras are{" "}
+              This isn't hypothetical. Flock cameras are{" "}
               <strong className="text-white">already deployed in and around Liverpool, NY</strong>.
               The map below shows camera locations currently operating in the area.
               You have not been asked. You have not been notified.
@@ -514,10 +531,10 @@ export default function SurveillancePage() {
             </p>
             <div className="bg-danger-950/30 border border-danger-800/30 rounded-xl p-5 mb-5">
               <p className="text-white font-bold text-lg leading-relaxed italic">
-                &ldquo;This explosion of new uses is what happens when you build an authoritarian tracking
-                infrastructure &mdash; it expands in more and more ways.&rdquo;
+                "This explosion of new uses is what happens when you build an authoritarian tracking
+                infrastructure — it expands in more and more ways."
               </p>
-              <p className="text-xs text-dark-500 mt-2">&mdash; ACLU, August 2025</p>
+              <p className="text-xs text-dark-500 mt-2">— ACLU, August 2025</p>
             </div>
             <div className="space-y-3 mb-5">
               {[
@@ -559,7 +576,7 @@ export default function SurveillancePage() {
             className="text-center mb-8"
           >
             <p className="text-xs font-bold text-purple-400 uppercase tracking-widest mb-4">
-              Don&apos;t Take Our Word for It
+              Don't Take Our Word for It
             </p>
             <h2 className="text-2xl md:text-3xl font-black mb-3">
               See It for{" "}
@@ -609,95 +626,7 @@ export default function SurveillancePage() {
         </div>
       </section>
 
-      {/* ═══════════════════ CHINA COMPARISON ═══════════════════ */}
-      <section className="py-16 md:py-24 px-4 bg-dark-900/30">
-        <div className="max-w-4xl mx-auto">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={fadeUp}
-            custom={0}
-            className="text-center mb-10"
-          >
-            <h2 className="text-2xl md:text-3xl font-black mb-3">
-              And You Thought{" "}
-              <span className="text-danger-500">China</span> Was a Surveillance State?
-            </h2>
-            <p className="text-dark-400 max-w-2xl mx-auto leading-relaxed">
-              We mock China for its social credit system and ubiquitous surveillance cameras.
-              Meanwhile, here&apos;s what&apos;s being built in our own backyard &mdash; just with better marketing.
-            </p>
-          </motion.div>
 
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={fadeUp}
-            custom={1}
-          >
-            <div className="grid md:grid-cols-2 gap-4">
-              {[
-                {
-                  china: "Cameras on every corner",
-                  us: "Flock ALPRs on every road, pole, and highway sign — photographing every vehicle, every hour",
-                },
-                {
-                  china: "Government tracks your movements",
-                  us: "Your car is tracked across a nationwide cloud database — searchable by any participating police department",
-                },
-                {
-                  china: "Social credit scoring",
-                  us: "Flock's AI analyzes driving patterns and flags \"suspicious\" vehicles — the algorithm decides you're a suspect, not a judge",
-                },
-                {
-                  china: "No right to privacy from the state",
-                  us: "No warrant needed. No probable cause. The Fourth Amendment Is Not For Sale Act was blocked in the Senate",
-                },
-                {
-                  china: "Government monitors dissent",
-                  us: "ICE uses Flock data for immigration raids. Police tracked a woman who had an abortion. Corporate \"Business Networks\" flag activists",
-                },
-                {
-                  china: "Citizens can't opt out",
-                  us: "You can't opt out either. Drive on public roads? You're in the system. There is no consent. There is no notification",
-                },
-              ].map((row, i) => (
-                <div key={i} className="bg-dark-900/60 border border-dark-800/50 rounded-xl p-4 flex flex-col gap-3">
-                  <div>
-                    <p className="text-[10px] font-bold text-dark-500 uppercase tracking-widest mb-1">China</p>
-                    <p className="text-sm text-dark-400">{row.china}</p>
-                  </div>
-                  <div className="h-px bg-danger-800/30" />
-                  <div>
-                    <p className="text-[10px] font-bold text-danger-400 uppercase tracking-widest mb-1">United States (Right Now)</p>
-                    <p className="text-sm text-dark-200 font-medium">{row.us}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </motion.div>
-
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={fadeUp}
-            custom={2}
-            className="mt-6 text-center"
-          >
-            <div className="bg-danger-950/40 border-2 border-danger-700/40 rounded-2xl p-6 md:p-8">
-              <p className="text-lg md:text-xl font-black text-white leading-relaxed mb-2">
-                The only difference between their surveillance state and ours?
-              </p>
-              <p className="text-danger-400 font-black text-2xl md:text-3xl">
-                Better branding.
-              </p>
-            </div>
-          </motion.div>
-        </div>
-      </section>
 
       {/* ═══════════════════ THE PATTERN ═══════════════════ */}
       <section className="py-16 md:py-24 px-4">
@@ -715,7 +644,7 @@ export default function SurveillancePage() {
             </h2>
             <p className="text-dark-400 text-center max-w-2xl mx-auto mb-10">
               Build the infrastructure first. Justify it later. Expand the use cases quietly.
-              By the time anyone notices, it&apos;s too late to object.
+              By the time anyone notices, it's too late to object.
             </p>
           </motion.div>
 
@@ -732,32 +661,32 @@ export default function SurveillancePage() {
                 {[
                   {
                     phase: "Phase 1",
-                    title: "\"It's just a cell tower\"",
-                    text: "They call it better connectivity. Smart infrastructure. Progress. Nobody gets notified. No hearing is held. No vote.",
+                    title: "Create a Problem",
+                    text: "Crime rates, traffic congestion, \"unsafe roads.\" Whether the data supports it or not, the narrative gets built. Fear needs a foundation.",
                     color: "bg-emerald-600",
                   },
                   {
                     phase: "Phase 2",
-                    title: "\"We added a few sensors\"",
-                    text: "IoT traffic monitors. Weather sensors. Speed detectors. \"Smart highway\" equipment. Sounds reasonable, right? No vote required.",
+                    title: "Generate Fear",
+                    text: "Local news segments. Town meetings. \"What if something happens?\" The danger is always vague enough to justify anything — and specific enough to scare you into silence.",
                     color: "bg-amber-600",
                   },
                   {
                     phase: "Phase 3",
-                    title: "\"The cameras are for safety\"",
-                    text: "ALPR cameras go up on the same infrastructure. Every plate, every car, every hour. Data goes to a cloud database. Searchable nationwide.",
+                    title: "Say It's for Safety",
+                    text: "\"Smart highways.\" \"Better connectivity.\" \"Public safety infrastructure.\" By the time they say the word 'safety,' the contracts are already signed.",
                     color: "bg-orange-600",
                   },
                   {
                     phase: "Phase 4",
-                    title: "\"Law enforcement needs access\"",
-                    text: "Local police get access. Then state police. Then ICE. Then private companies through the \"Business Network.\" Your movements are now an open database.",
+                    title: "Build the Infrastructure",
+                    text: "The tower goes up. The sensors go on. The cameras start recording. No vote. No public input. No environmental review. It's done before you know it started.",
                     color: "bg-danger-600",
                   },
                   {
                     phase: "Phase 5",
-                    title: "\"We've always done this\"",
-                    text: "By the time anyone asks questions, it's a decade old. The contracts are locked. The data has been flowing for years. \"Removing it would cost too much.\" It's over.",
+                    title: "Normalize It",
+                    text: "\"It's been here for years.\" \"Everyone else has one.\" \"Removing it would cost too much.\" The surveillance is permanent. The data has been flowing. It's over.",
                     color: "bg-purple-600",
                   },
                 ].map((phase, i) => (
@@ -788,12 +717,12 @@ export default function SurveillancePage() {
           >
             <div className="bg-danger-950/30 border-2 border-danger-700/40 rounded-2xl p-6 md:p-8 text-center">
               <p className="text-lg md:text-xl font-black text-white leading-relaxed mb-2">
-                We are at Phase 1.
+                We are between Phase 3 and Phase 4.
               </p>
               <p className="text-dark-300 max-w-xl mx-auto leading-relaxed mb-6">
-                The tower is up. The &ldquo;smart highway&rdquo; justification is in place.
-                The only thing standing between Phase 1 and Phase 5 is{" "}
-                <strong className="text-danger-400">you, right now, demanding it comes down.</strong>
+                They've created the justification. They've called it "safety."
+                The tower is going up. The only thing standing between here and Phase 5 is{" "}
+                <strong className="text-danger-400">you, right now, demanding it stops.</strong>
               </p>
               <Link
                 href="/take-action"
@@ -816,7 +745,7 @@ export default function SurveillancePage() {
               from the ACLU, NYSTA, Phoenix Tower International, and published reporting. We are not claiming that
               surveillance equipment has been installed on this specific tower. We are asking a question that
               deserves an answer: if Liverpool already has full 5G coverage, and the tower creates health, aviation,
-              environmental, and property value risks &mdash;{" "}
+              environmental, and property value risks —{" "}
               <strong className="text-dark-400">what is this infrastructure actually for?</strong>
             </p>
           </div>
@@ -849,7 +778,7 @@ export default function SurveillancePage() {
                 Health & Science
               </p>
               <p className="text-xs text-dark-400">
-                $30M cancer study, children&apos;s absorption, and the court ruling.
+                $30M cancer study, children's absorption, and the court ruling.
               </p>
             </Link>
             <Link
