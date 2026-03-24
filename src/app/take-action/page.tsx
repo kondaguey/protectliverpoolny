@@ -144,6 +144,8 @@ export default function TakeActionPage() {
   const [commentPublic, setCommentPublic] = useState(false);
   const [commentAnonymous, setCommentAnonymous] = useState(false);
   const [canHelp, setCanHelp] = useState(false);
+  const [consentChecked, setConsentChecked] = useState(false);
+  const [consentError, setConsentError] = useState("");
   const [expandedSteps, setExpandedSteps] = useState<Record<number, boolean>>(
     {},
   );
@@ -232,8 +234,13 @@ export default function TakeActionPage() {
     } else if (!/^\d{5}(-\d{4})?$/.test(form.zip_code)) {
       e.zip_code = "Please enter a valid zip code";
     }
+    if (!consentChecked) {
+      setConsentError("You must agree to the Privacy Notice to sign");
+    } else {
+      setConsentError("");
+    }
     setErrors(e);
-    return Object.keys(e).length === 0;
+    return Object.keys(e).length === 0 && consentChecked;
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -521,7 +528,7 @@ export default function TakeActionPage() {
                     </motion.div>
                   )}
                 </AnimatePresence>
-                <div className="flex items-center gap-3 mb-6">
+                <div className="flex items-center gap-3 mb-4">
                   <div className="w-10 h-10 rounded-xl bg-danger-900/50 border border-danger-800/30 flex items-center justify-center">
                     <FileText className="w-5 h-5 text-danger-400" />
                   </div>
@@ -535,6 +542,74 @@ export default function TakeActionPage() {
                   </div>
                 </div>
 
+                {/* The "Prayer" — Formal Demand & Mandate */}
+                <div className="bg-danger-950/30 border border-danger-800/30 rounded-xl p-4 mb-6">
+                  <p className="text-[11px] font-bold text-danger-400 uppercase tracking-widest mb-1">
+                    By signing below, you are endorsing this formal demand:
+                  </p>
+                  <div className="max-h-[320px] overflow-y-auto pr-2 custom-scrollbar">
+                    <h3 className="text-base font-black text-white uppercase tracking-wide mb-2">
+                      Official Petition Demand &amp; Mandate for Abatement
+                    </h3>
+
+                    <p className="text-xs text-dark-300 leading-relaxed mb-3">
+                      <strong className="text-dark-200">TO:</strong> The New York State Thruway Authority (NYSTA); Phoenix Tower International (Attn: Mitchell Henry); Town of Salina Supervisor Raul Huerta; Onondaga County Legislator David Carnie; Village of Liverpool Zoning Chair Jeremiah Thompson; New York State Senator Christopher Ryan (SD-50); New York State Assemblymembers Pamela Hunter (AD-128) and Al Stirpe (AD-127); <strong className="text-white">U.S. Senator Charles Schumer; U.S. Senator Kirsten Gillibrand; U.S. Representative John Mannion (NY-22);</strong> the FAA; the FCC; and the U.S. Fish and Wildlife Service (USFWS).
+                    </p>
+
+                    <p className="text-xs text-dark-200 leading-relaxed mb-3 font-medium">
+                      WE, THE UNDERSIGNED residents, taxpayers, and concerned citizens, issue this formal mandate demanding the immediate halt of construction, revocation of all lease agreements, and total physical abatement of the unauthorized commercial infrastructure tower currently being erected at the NYS Thruway (I-90) Exit 37 / 474 Electronics Pkwy site.
+                    </p>
+
+                    <div className="bg-dark-900/60 rounded-lg p-3 mb-3 border border-dark-700/30">
+                      <p className="text-[11px] font-bold text-dark-400 uppercase tracking-widest mb-1.5">
+                        Subject Infrastructure Details
+                      </p>
+                      <div className="space-y-0.5 text-xs text-dark-300">
+                        <p><strong className="text-dark-200">FCC ASR:</strong> 1329974 (FRN: 0025555459)</p>
+                        <p><strong className="text-dark-200">Coordinates:</strong> 43° 06&apos; 06.9&quot; N, 076° 11&apos; 06.3&quot; W</p>
+                        <p><strong className="text-dark-200">Structure:</strong> MTOWER (Monopole) / 184 ft (56.1 m) AGL</p>
+                      </div>
+                    </div>
+
+                    <div className="space-y-2 mb-3">
+                      <p className="text-xs text-dark-300 leading-relaxed">
+                        <strong className="text-dark-200">WHEREAS,</strong> NYSTA and Phoenix Tower International have weaponized state land exemptions to deliberately bypass the Town of Salina&apos;s zoning laws, evading public hearings, environmental impact transparency, and all forms of democratic community consent;
+                      </p>
+                      <p className="text-xs text-dark-300 leading-relaxed">
+                        <strong className="text-dark-200">WHEREAS,</strong> this unlit 184-foot (56.1-meter) structure—engineered precisely 16 feet (4.8 meters) below the FAA lighting threshold—sits 0.25 miles from the Syracuse Hancock International Airport (SYR) Runway 10 descent corridor. It introduces a severe physical collision hazard for low-altitude aircraft while contradicting FAA safety warnings regarding 5G C-Band radar altimeter interference;
+                      </p>
+                      <p className="text-xs text-dark-300 leading-relaxed">
+                        <strong className="text-dark-200">WHEREAS,</strong> this 184-foot (56.1-meter) structure acts as an &ldquo;attractive nuisance&rdquo; for raptors, situated 1.7 miles from New York State&apos;s largest urban bald eagle roost. By providing an artificial nesting and perching platform adjacent to a low-altitude flight corridor, this tower actively undermines SYR&apos;s FAA-mandated Wildlife Hazard Management Plan and deterrent protocols. Proceeding without explicit U.S. Fish and Wildlife Service (USFWS) consultation or a rigorous NEPA/SEQRA assessment threatens federally protected wildlife and violates the Bald and Golden Eagle Protection Act (BGEPA);
+                      </p>
+                      <p className="text-xs text-dark-300 leading-relaxed">
+                        <strong className="text-dark-200">WHEREAS,</strong> this 184-foot (56.1-meter) commercial structure will irreparably degrade the visual character of our residential neighborhoods, devastate local property values by up to 20%, and force the installation of high-capacity data infrastructure that alters the privacy and nature of our community without our consent;
+                      </p>
+                    </div>
+
+                    <div className="border-t border-danger-800/30 pt-3 space-y-2 mb-3">
+                      <p className="text-[11px] font-bold text-danger-400 uppercase tracking-widest">
+                        Therefore, We Demand:
+                      </p>
+                      <p className="text-xs text-dark-200 leading-relaxed">
+                        <strong className="text-white">1. Immediate Cessation:</strong> NYSTA and Phoenix Tower International must immediately halt all construction. <strong className="text-white">In the event of construction completion, we demand the physical dismantling, relocation, or court-ordered height reduction of the structure.</strong>
+                      </p>
+                      <p className="text-xs text-dark-200 leading-relaxed">
+                        <strong className="text-white">2. Municipal &amp; State Legal Action:</strong> We formally mandate that Supervisor Huerta, Legislator Carnie, Chairman Thompson, Senator Ryan, Assemblymember Hunter, and Assemblymember Stirpe exhaust all municipal and state legal resources—including filing an Article 78 proceeding or emergency injunction against NYSTA and PTI—to halt this state-sanctioned overreach.
+                      </p>
+                      <p className="text-xs text-dark-200 leading-relaxed">
+                        <strong className="text-white">3. Congressional &amp; Federal Intervention:</strong> We demand that Representative Mannion, Senator Schumer, and Senator Gillibrand launch immediate congressional inquiries into the FAA, FCC, and USFWS regarding the siting, environmental impact evasion, unmitigated aviation hazard, and BGEPA violations of ASR #1329974.
+                      </p>
+                    </div>
+
+                    <p className="text-xs text-dark-200 leading-relaxed font-semibold italic">
+                      By affixing our signatures below, we declare that our community and our airspace are not for sale, we do not consent to this infrastructure, and we will hold every named official electorally and legally accountable for their inaction.
+                    </p>
+                    <p className="text-[10px] text-dark-500 mt-3 text-right">
+                      Petition Last Updated: March 24, 2026
+                    </p>
+                  </div>
+                </div>
+
                 <form onSubmit={handleSubmit} className="space-y-4">
                   <div className="grid sm:grid-cols-2 gap-4">
                     <div>
@@ -542,7 +617,7 @@ export default function TakeActionPage() {
                         htmlFor="first_name"
                         className="block text-sm font-medium text-dark-300 mb-1.5"
                       >
-                        First Name *
+                        Legal First Name *
                       </label>
                       <input
                         type="text"
@@ -556,6 +631,7 @@ export default function TakeActionPage() {
                             : "border-dark-700"
                         }`}
                         placeholder="John"
+                        autoComplete="given-name"
                       />
                       {errors.first_name && (
                         <p className="text-xs text-danger-400 mt-1">
@@ -568,7 +644,7 @@ export default function TakeActionPage() {
                         htmlFor="last_name"
                         className="block text-sm font-medium text-dark-300 mb-1.5"
                       >
-                        Last Name *
+                        Legal Last Name *
                       </label>
                       <input
                         type="text"
@@ -582,6 +658,7 @@ export default function TakeActionPage() {
                             : "border-dark-700"
                         }`}
                         placeholder="Doe"
+                        autoComplete="family-name"
                       />
                       {errors.last_name && (
                         <p className="text-xs text-danger-400 mt-1">
@@ -596,7 +673,8 @@ export default function TakeActionPage() {
                       htmlFor="email"
                       className="block text-sm font-medium text-dark-300 mb-1.5"
                     >
-                      Email Address *
+                      Email Address *{" "}
+                      <span className="text-dark-500 font-normal">(verification only — never shared)</span>
                     </label>
                     <input
                       type="email"
@@ -650,7 +728,7 @@ export default function TakeActionPage() {
                     >
                       Street Address{" "}
                       <span className="text-dark-500">
-                        (optional — strengthens your petition)
+                        (optional — carries the most weight with officials)
                       </span>
                     </label>
                     <input
@@ -688,7 +766,7 @@ export default function TakeActionPage() {
                       htmlFor="comment"
                       className="block text-sm font-medium text-dark-300 mb-1.5"
                     >
-                      Comment <span className="text-dark-500">(optional)</span>
+                      Comment <span className="text-dark-500">(optional — strengthens petition even further)</span>
                     </label>
                     <textarea
                       id="comment"
@@ -710,10 +788,15 @@ export default function TakeActionPage() {
                         onChange={(e) => setOptInContact(e.target.checked)}
                         className="mt-1 w-4 h-4 rounded border-dark-600 bg-dark-800 text-danger-500 focus:ring-danger-500/50 flex-shrink-0"
                       />
-                      <span className="text-sm text-dark-300 group-hover:text-dark-200 transition-colors">
-                        Yes, you may contact me with updates about this campaign
-                        and ways to get involved.
-                      </span>
+                      <div>
+                        <span className="text-sm text-dark-300 group-hover:text-dark-200 transition-colors">
+                          Yes, you may contact me with updates about this campaign
+                          and ways to get involved.
+                        </span>
+                        <p className="text-[10px] text-dark-500 mt-0.5 italic">
+                          If left unchecked, we will ONLY email you for critical alerts: emergency construction updates, town hall votes, or material updates to our official legal demands.
+                        </p>
+                      </div>
                     </label>
                     <label className="flex items-start gap-3 cursor-pointer group">
                       <input
@@ -772,6 +855,50 @@ export default function TakeActionPage() {
                     )}
                   </div>
 
+                  <div className="bg-dark-800/40 border border-dark-700/40 rounded-xl p-4">
+                    <p className="text-xs text-dark-400 leading-relaxed">
+                      <span className="font-bold text-dark-300 block mb-1.5 text-sm">Privacy Notice — How Your Signature Will Be Used</span>
+                      This petition will be formally presented to elected officials as a sequentially numbered legal document. Your{" "}
+                      <strong className="text-white">full name</strong> and{" "}
+                      <strong className="text-white">zip code</strong>{" "}
+                      will appear on the final document alongside the formal petition demand, which is printed on every page per legal petition standards. If provided, your street address will be included to demonstrate direct community impact.
+                    </p>
+                    <p className="text-xs text-dark-500 leading-relaxed mt-2">
+                      Your <strong className="text-dark-400">email address</strong> is collected solely for signature verification and will{" "}
+                      <strong className="text-dark-300">never</strong> appear in the document, be shared with officials, or be shared with the public. We will never sell your information.
+                    </p>
+                    <p className="text-xs text-dark-500 leading-relaxed mt-2">
+                      Your signature is entirely voluntary. You may revoke your consent and have your name and data permanently deleted from our records at any time prior to the petition&apos;s formal submission by emailing{" "}
+                      <a href="mailto:takeaction@protectliverpoolny.org" className="text-danger-400 hover:text-danger-300 transition-colors font-medium">takeaction@protectliverpoolny.org</a>.
+                    </p>
+                    {/* Required consent checkbox */}
+                    <label className="flex items-start gap-3 cursor-pointer group mt-3 pt-3 border-t border-dark-700/30">
+                      <input
+                        type="checkbox"
+                        checked={consentChecked}
+                        onChange={(e) => {
+                          setConsentChecked(e.target.checked);
+                          if (e.target.checked) setConsentError("");
+                        }}
+                        className={`mt-0.5 w-4 h-4 rounded flex-shrink-0 focus:ring-danger-500/50 ${
+                          consentError
+                            ? "border-danger-500 bg-danger-950"
+                            : "border-dark-600 bg-dark-800 text-danger-500"
+                        }`}
+                      />
+                      <span className={`text-xs leading-relaxed transition-colors ${
+                        consentError ? "text-danger-400" : "text-dark-300 group-hover:text-dark-200"
+                      }`}>
+                        I agree to the Privacy Notice and understand that my name and zip code will appear on the formal petition document presented to elected officials. *
+                      </span>
+                    </label>
+                    {consentError && (
+                      <p className="text-xs text-danger-400 mt-1 ml-7">
+                        {consentError}
+                      </p>
+                    )}
+                  </div>
+
                   {submitError && (
                     <div className="bg-danger-950/50 border border-danger-800/50 rounded-xl p-3 flex items-center gap-2">
                       <AlertTriangle className="w-4 h-4 text-danger-400 flex-shrink-0" />
@@ -797,10 +924,7 @@ export default function TakeActionPage() {
                     )}
                   </button>
 
-                  <p className="text-xs text-dark-500 text-center">
-                    Your information will only be used for this petition. We
-                    will never sell or share your data.
-                  </p>
+
 
                   <div className="text-center pt-2 border-t border-dark-800/50">
                     <p className="text-xs text-dark-500 mb-1">

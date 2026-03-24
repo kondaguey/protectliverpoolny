@@ -21,7 +21,7 @@ export default function QuickLinks({ links }: { links: QuickLink[] }) {
   };
 
   return (
-    <div className="sticky top-16 z-30 w-full">
+    <div className="relative z-30 w-full">
       <div className="max-w-5xl mx-auto px-4 py-2">
         <div className="relative">
           <button
