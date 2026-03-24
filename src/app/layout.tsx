@@ -130,6 +130,8 @@ export default function RootLayout({
   return (
     <html lang="en" className={inter.variable}>
       <head>
+        <link rel="preconnect" href="https://imagedelivery.net" />
+        <link rel="dns-prefetch" href="https://imagedelivery.net" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}

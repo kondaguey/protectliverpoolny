@@ -101,6 +101,7 @@ export default function SurveillancePage() {
           { label: "This Isn't Left or Right", id: "not-political" },
           { label: "Are You Flocking Serious", id: "flocking-serious" },
           { label: "See It for Yourself", id: "see-it" },
+          { label: "Follow the Money", id: "follow-the-money" },
           { label: "The Pattern", id: "the-pattern" },
         ]}
       />
@@ -637,6 +638,169 @@ export default function SurveillancePage() {
         </div>
       </section>
 
+
+      {/* ═══════════════════ FOLLOW THE MONEY ═══════════════════ */}
+      <section id="follow-the-money" className="py-16 md:py-24 px-4 scroll-mt-24">
+        <div className="max-w-4xl mx-auto">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeUp}
+            custom={0}
+            className="text-center mb-10"
+          >
+            <p className="text-xs font-bold text-amber-400 uppercase tracking-widest mb-3">
+              Follow the Money
+            </p>
+            <h2
+              className="font-black text-white mb-4"
+              style={{ fontSize: "clamp(1.5rem, 3.5vw, 2.2rem)" }}
+            >
+              The Same People Funding <span className="text-danger-500">This Tower</span> Fund{" "}
+              <span className="text-danger-500">Everything Else</span> You Hate.
+            </h2>
+            <p className="text-dark-300 max-w-2xl mx-auto leading-relaxed">
+              Phoenix Tower International isn&apos;t a small telecom startup. It&apos;s backed by
+              BlackRock, Blackstone, and Grain Management — the same institutions profiting
+              from the things that harm you most. Left or right, this should make your blood boil.
+            </p>
+          </motion.div>
+
+          {/* Connection Chain */}
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeUp}
+            custom={0.5}
+            className="mb-10"
+          >
+            <div className="flex flex-col items-center gap-2 py-6 px-4 bg-dark-900/60 border border-dark-800/50 rounded-2xl">
+              <div className="flex flex-wrap justify-center gap-3">
+                <span className="px-4 py-2 bg-amber-900/30 border border-amber-800/30 rounded-lg text-amber-300 font-bold text-sm">BlackRock</span>
+                <span className="px-4 py-2 bg-purple-900/30 border border-purple-800/30 rounded-lg text-purple-300 font-bold text-sm">Blackstone</span>
+                <span className="px-4 py-2 bg-sky-900/30 border border-sky-800/30 rounded-lg text-sky-300 font-bold text-sm">Grain Management</span>
+              </div>
+              <span className="text-dark-500 text-lg">↓ invest in ↓</span>
+              <span className="px-5 py-2.5 bg-danger-900/30 border border-danger-800/30 rounded-lg text-danger-300 font-bold">Phoenix Tower International</span>
+              <span className="text-dark-500 text-lg">↓ builds ↓</span>
+              <span className="px-5 py-2.5 bg-danger-600 rounded-lg text-white font-black">The 184-ft Tower in Your Backyard</span>
+            </div>
+            <p className="text-center text-dark-400 text-sm mt-3">
+              BlackRock officially invested in PTI in <strong className="text-white">March 2024</strong>.{" "}
+              Blackstone has been PTI&apos;s majority owner since <strong className="text-white">2014</strong>.
+            </p>
+          </motion.div>
+
+          {/* Left / Right Pain */}
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeUp}
+            custom={1}
+            className="grid md:grid-cols-2 gap-4 mb-10"
+          >
+            {/* LEFT */}
+            <div className="bg-sky-950/20 border border-sky-800/30 rounded-2xl p-5">
+              <p className="text-xs font-bold text-sky-400 uppercase tracking-widest mb-3">If You Lean Left</p>
+              <ul className="space-y-3">
+                {[
+                  <><strong className="text-white">1.4 billion shares</strong> of PetroChina — Sudan&apos;s largest oil partner — <strong className="text-white">helping fund genocide</strong> in Darfur</>,
+                  <><strong className="text-white">1.8 billion shares</strong> of Sinopec — funding mass atrocities in Sudan and Syria</>,
+                  <>Shareholders voted for genocide-free investing. BlackRock <strong className="text-danger-400">opposed it and killed it</strong></>,
+                  <>Claims ESG commitment while maintaining the <strong className="text-white">worst human rights holdings on Earth</strong></>,
+                ].map((item, i) => (
+                  <li key={i} className="flex items-start gap-2.5 text-sm text-dark-300 leading-relaxed">
+                    <span className="w-1.5 h-1.5 rounded-full bg-sky-500 mt-1.5 flex-shrink-0" />
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+              <p className="text-xs text-dark-500 mt-3 italic">Source: Investors Against Genocide, SEC filings</p>
+            </div>
+
+            {/* RIGHT */}
+            <div className="bg-red-950/20 border border-red-800/30 rounded-2xl p-5">
+              <p className="text-xs font-bold text-red-400 uppercase tracking-widest mb-3">If You Lean Right</p>
+              <ul className="space-y-3">
+                {[
+                  <>The <strong className="text-white">world&apos;s largest asset manager ($10T+)</strong> pushing ESG mandates on American companies while ignoring their own</>,
+                  <>The single biggest force behind <strong className="text-white">corporate wokewashing</strong> — virtue signaling while profiting from genocide</>,
+                  <>Openly strategizes around <strong className="text-white">&quot;rewiring global supply chains&quot;</strong> and &quot;geopolitical fragmentation&quot; — their own words</>,
+                  <>Pushes <strong className="text-white">surveillance infrastructure</strong> as investment opportunities — &quot;smart cities,&quot; &quot;connected highways&quot;</>,
+                ].map((item, i) => (
+                  <li key={i} className="flex items-start gap-2.5 text-sm text-dark-300 leading-relaxed">
+                    <span className="w-1.5 h-1.5 rounded-full bg-red-500 mt-1.5 flex-shrink-0" />
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+              <p className="text-xs text-dark-500 mt-3 italic">Source: BlackRock.com, PRNewswire, SEC 10-K filings</p>
+            </div>
+          </motion.div>
+
+          {/* Center Callout */}
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeUp}
+            custom={1.5}
+            className="bg-danger-950/30 border border-danger-800/30 rounded-2xl p-6 md:p-8 text-center mb-10"
+          >
+            <p className="text-lg md:text-xl font-black text-white leading-relaxed mb-3">
+              They don&apos;t pick sides. <span className="text-danger-400">They pick profits.</span>
+            </p>
+            <p className="text-dark-300 text-sm leading-relaxed max-w-xl mx-auto">
+              They fund the tower in your backyard AND the oil companies funding genocide.
+              They push ESG AND profit from mass atrocities. They claim to care about
+              communities AND bypass every community protection on the books.
+            </p>
+          </motion.div>
+
+          {/* How This Affects YOU */}
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeUp}
+            custom={2}
+          >
+            <div className="bg-dark-900/60 border border-dark-800/50 rounded-2xl p-6 md:p-8">
+              <p className="text-xs font-bold text-danger-400 uppercase tracking-widest mb-4 text-center">
+                How This Affects You as a Liverpool Resident
+              </p>
+              <div className="flex flex-col items-center gap-3">
+                <div className="w-full grid sm:grid-cols-3 gap-3">
+                  <div className="bg-black/20 rounded-xl p-4 text-center">
+                    <p className="text-amber-400 font-black text-lg">The Tower</p>
+                    <p className="text-dark-400 text-xs mt-1">Built on state land. No zoning. No vote. No consent.</p>
+                  </div>
+                  <div className="bg-black/20 rounded-xl p-4 text-center">
+                    <p className="text-purple-400 font-black text-lg">The Infrastructure</p>
+                    <p className="text-dark-400 text-xs mt-1">Cameras, sensors, ALPR — the backbone of &quot;smart&quot; surveillance.</p>
+                  </div>
+                  <div className="bg-black/20 rounded-xl p-4 text-center">
+                    <p className="text-danger-400 font-black text-lg">The Data</p>
+                    <p className="text-dark-400 text-xs mt-1">Your location, speed, patterns — tracked, stored, sold.</p>
+                  </div>
+                </div>
+                <span className="text-dark-500 text-sm font-bold">↓</span>
+                <div className="bg-danger-900/20 border border-danger-800/30 rounded-xl p-4 w-full text-center">
+                  <p className="text-sm text-dark-300 leading-relaxed">
+                    This tower isn&apos;t about cell service. It&apos;s a node in the{" "}
+                    <strong className="text-white">Internet of Things</strong> — a network designed to connect
+                    every camera, sensor, and tracking device on the Thruway and Electronics Parkway.
+                    You&apos;re not the customer. <strong className="text-danger-400">You&apos;re the product.</strong>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
 
 
       {/* ═══════════════════ THE PATTERN ═══════════════════ */}

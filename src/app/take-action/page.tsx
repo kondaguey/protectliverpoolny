@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Send,
@@ -24,6 +24,8 @@ import {
   ShieldAlert,
   MessageSquareQuote,
   ChevronDown as ChevronDownIcon,
+  ChevronLeft as ChevronLeftIcon,
+  ChevronRight as ChevronRightIcon,
 } from "lucide-react";
 import { supabase } from "@/lib/supabase";
 import { CopyButton } from "@/components/CopyButton";
@@ -37,18 +39,13 @@ const fadeUp = {
   }),
 };
 
-const callScript = `Hello, my name is [YOUR NAME] and I'm a resident of Liverpool, New York, zip code [YOUR ZIP].
+const callScript = `Hello, my name is [YOUR NAME] and I live in Liverpool. I'm calling because I just found out a massive 184-foot unlit cell tower is being built on Thruway land at Exit 37, right in our neighborhood and right under the airport landing path.
 
-I'm calling to express my strong opposition to the 184-foot commercial cell tower that is being erected on New York State Thruway Authority land in our residential neighborhood—without any local zoning review, environmental assessment, or notification to affected residents.
+Nobody notified us. There was no public hearing. They're using a state loophole to bypass our local zoning laws entirely.
 
-I'm asking you to:
+I need to know what [THEIR NAME/TITLE] is doing to stop this construction and force a public safety review. We have over 100 bald eagles roosting less than two miles away, medevac helicopters fly over daily, and this tower has zero obstruction lighting.
 
-1. Investigate how this project is bypassing all local oversight by using state-owned land
-2. Support legislation to close this loophole so it can't happen in other communities
-3. Push for a full environmental and structural review of this tower
-4. Ensure that community input is required for any future builds on state land in residential areas
-
-This affects hundreds of families and sets a dangerous precedent for all of New York. Thank you for your time.`;
+We are not going to let a private company backed by BlackRock bypass our town. Thank you for your time.`;
 
 const localOfficials = [
   {
@@ -144,10 +141,14 @@ export default function TakeActionPage() {
   const [signatureCount, setSignatureCount] = useState<number | null>(null);
   const [copied, setCopied] = useState(false);
   const [optInContact, setOptInContact] = useState(false);
+  const [commentPublic, setCommentPublic] = useState(false);
+  const [commentAnonymous, setCommentAnonymous] = useState(false);
   const [canHelp, setCanHelp] = useState(false);
   const [expandedSteps, setExpandedSteps] = useState<Record<number, boolean>>(
     {},
   );
+  const voicesRef = useRef<HTMLDivElement>(null);
+  const [expandedComment, setExpandedComment] = useState<PublicComment | null>(null);
   const toggleStep = (step: number) =>
     setExpandedSteps((prev) => ({ ...prev, [step]: !prev[step] }));
 
@@ -251,6 +252,8 @@ export default function TakeActionPage() {
         street_address: form.street_address.trim() || null,
         phone: form.phone.trim() || null,
         comment: form.comment.trim() || null,
+        comment_public: commentPublic,
+        comment_anonymous: commentAnonymous,
         opt_in_contact: optInContact,
         can_help: canHelp,
       });
@@ -324,7 +327,7 @@ export default function TakeActionPage() {
           >
             <span className="inline-flex items-center gap-2 px-4 py-2 bg-danger-900/50 border border-danger-700/40 rounded-full text-danger-300 text-xs font-bold uppercase tracking-wider">
               <Megaphone className="w-3.5 h-3.5" />
-              Fight Back
+              Action Pipeline
             </span>
           </motion.div>
 
@@ -340,8 +343,8 @@ export default function TakeActionPage() {
             Ignore.
           </motion.h1>
 
-          {/* Signature counter */}
-          {signatureCount !== null && (
+          {/* Signature counter — auto-shows at 100+ signatures */}
+          {signatureCount !== null && signatureCount >= 100 && (
             <motion.div
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
@@ -385,7 +388,8 @@ export default function TakeActionPage() {
                   Your signature has been recorded. But don't stop here—the
                   actions below are how we actually win this fight.
                 </p>
-                {signatureCount !== null && (
+                {/* Signature count — auto-shows at 100+ */}
+                {signatureCount !== null && signatureCount >= 100 && (
                   <div className="inline-flex items-center gap-2 px-5 py-2 bg-emerald-900/40 border border-emerald-700/30 rounded-full">
                     <Users className="w-4 h-4 text-emerald-400" />
                     <span className="text-emerald-300 font-bold">
@@ -393,10 +397,130 @@ export default function TakeActionPage() {
                     </span>
                   </div>
                 )}
+
+                <div className="flex flex-col sm:flex-row items-center gap-3 mt-6">
+                  <button
+                    onClick={() => document.getElementById('action-steps')?.scrollIntoView({ behavior: 'smooth', block: 'start' })}
+                    className="w-full sm:w-auto px-6 py-3 bg-danger-600 hover:bg-danger-500 text-white font-bold rounded-xl transition-all text-sm"
+                  >
+                    🔥 Now Amplify Your Voice
+                  </button>
+                  <button
+                    onClick={() => document.getElementById('encouragement')?.scrollIntoView({ behavior: 'smooth', block: 'start' })}
+                    className="w-full sm:w-auto px-6 py-3 bg-white/5 backdrop-blur-md border border-white/10 text-dark-200 hover:text-white hover:bg-white/10 font-bold rounded-xl transition-all text-sm"
+                  >
+                    💬 A Word of Encouragement
+                  </button>
+                </div>
               </div>
             ) : (
               /* ── Petition Form ── */
               <div className="bg-dark-900/60 border border-dark-800/50 rounded-2xl p-6 md:p-8">
+                {/* Community Voices — Horizontal Scroller */}
+                {comments.length > 0 && (
+                  <div className="mb-6">
+                    <div className="flex items-center justify-between mb-3">
+                      <div className="flex items-center gap-2">
+                        <MessageSquareQuote className="w-4 h-4 text-emerald-400" />
+                        <span className="text-xs font-bold text-emerald-400 uppercase tracking-widest">
+                          {commentTotal} Public {commentTotal === 1 ? "Comment" : "Comments"}{signatureCount ? ` / ${signatureCount} Signatures` : ""} and counting
+                        </span>
+                      </div>
+                      <div className="flex items-center gap-1.5">
+                        <button
+                          onClick={() => voicesRef.current?.scrollBy({ left: -290, behavior: 'smooth' })}
+                          className="w-7 h-7 rounded-lg bg-white/5 backdrop-blur-md border border-white/10 flex items-center justify-center text-emerald-400 hover:bg-white/10 hover:text-emerald-300 transition-all"
+                          aria-label="Scroll left"
+                        >
+                          <ChevronLeftIcon className="w-3.5 h-3.5" />
+                        </button>
+                        <button
+                          onClick={() => voicesRef.current?.scrollBy({ left: 290, behavior: 'smooth' })}
+                          className="w-7 h-7 rounded-lg bg-white/5 backdrop-blur-md border border-white/10 flex items-center justify-center text-emerald-400 hover:bg-white/10 hover:text-emerald-300 transition-all"
+                          aria-label="Scroll right"
+                        >
+                          <ChevronRightIcon className="w-3.5 h-3.5" />
+                        </button>
+                      </div>
+                    </div>
+                    <div ref={voicesRef} className="flex gap-3 overflow-x-auto snap-x snap-mandatory pb-2 -mx-1 px-1" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none', WebkitOverflowScrolling: 'touch' }}>
+                      {comments.map((c, i) => (
+                        <div
+                          key={`${c.name}-${c.date}-${i}`}
+                          onClick={() => setExpandedComment(c)}
+                          className="snap-start flex-shrink-0 w-[280px] bg-white/5 backdrop-blur-md border border-emerald-800/20 rounded-xl p-4 cursor-pointer hover:bg-white/10 hover:border-emerald-700/30 transition-all flex flex-col"
+                        >
+                          <p className="text-dark-200 text-sm leading-relaxed mb-1 line-clamp-3">
+                            &ldquo;{c.comment}&rdquo;
+                          </p>
+                          {c.comment.length > 120 && (
+                            <span className="text-emerald-400 text-[10px] font-bold uppercase tracking-wider mb-3 inline-block">
+                              Read More →
+                            </span>
+                          )}
+                          <div className="flex items-center justify-between text-[10px] text-dark-500 mt-auto">
+                            <div className="flex items-center gap-1.5">
+                              <span className="w-5 h-5 rounded-full bg-emerald-900/50 border border-emerald-800/30 flex items-center justify-center text-emerald-400 font-bold text-[8px]">
+                                {c.name.charAt(0)}
+                              </span>
+                              <span className="font-semibold text-dark-400">
+                                {c.name}
+                              </span>
+                              {c.zip && (
+                                <span className="text-dark-600">• {c.zip}</span>
+                              )}
+                            </div>
+                            <span>{timeAgo(c.date)}</span>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {/* Expanded Comment Modal */}
+                <AnimatePresence>
+                  {expandedComment && (
+                    <motion.div
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      exit={{ opacity: 0 }}
+                      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm"
+                      onClick={() => setExpandedComment(null)}
+                    >
+                      <motion.div
+                        initial={{ opacity: 0, scale: 0.95, y: 10 }}
+                        animate={{ opacity: 1, scale: 1, y: 0 }}
+                        exit={{ opacity: 0, scale: 0.95, y: 10 }}
+                        transition={{ duration: 0.2 }}
+                        onClick={(e) => e.stopPropagation()}
+                        className="relative w-full max-w-md bg-dark-900/90 backdrop-blur-xl border border-emerald-800/30 rounded-2xl p-6 shadow-2xl"
+                      >
+                        <button
+                          onClick={() => setExpandedComment(null)}
+                          className="absolute top-3 right-3 w-7 h-7 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center text-dark-400 hover:text-white hover:bg-white/10 transition-all"
+                        >
+                          ✕
+                        </button>
+                        <p className="text-dark-100 text-base leading-relaxed mb-4 pr-8">
+                          &ldquo;{expandedComment.comment}&rdquo;
+                        </p>
+                        <div className="flex items-center gap-2 text-xs text-dark-500">
+                          <span className="w-6 h-6 rounded-full bg-emerald-900/50 border border-emerald-800/30 flex items-center justify-center text-emerald-400 font-bold text-[9px]">
+                            {expandedComment.name.charAt(0)}
+                          </span>
+                          <span className="font-semibold text-dark-300">
+                            {expandedComment.name}
+                          </span>
+                          {expandedComment.zip && (
+                            <span className="text-dark-600">• {expandedComment.zip}</span>
+                          )}
+                          <span className="ml-auto">{timeAgo(expandedComment.date)}</span>
+                        </div>
+                      </motion.div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
                 <div className="flex items-center gap-3 mb-6">
                   <div className="w-10 h-10 rounded-xl bg-danger-900/50 border border-danger-800/30 flex items-center justify-center">
                     <FileText className="w-5 h-5 text-danger-400" />
@@ -603,6 +727,49 @@ export default function TakeActionPage() {
                         aviation, environmental, media, etc.)
                       </span>
                     </label>
+                    {form.comment.trim() && (
+                      <>
+                        <label className="flex items-start gap-3 cursor-pointer group">
+                          <input
+                            type="checkbox"
+                            checked={commentPublic}
+                            onChange={(e) => setCommentPublic(e.target.checked)}
+                            className="mt-1 w-4 h-4 rounded border-dark-600 bg-dark-800 text-danger-500 focus:ring-danger-500/50 flex-shrink-0"
+                          />
+                          <span className="text-sm text-dark-300 group-hover:text-dark-200 transition-colors">
+                            Make my comment public (may be displayed on this site)
+                          </span>
+                        </label>
+                        {commentPublic && (
+                          <div className="ml-7 flex gap-4">
+                            <label className="flex items-center gap-2 cursor-pointer group">
+                              <input
+                                type="radio"
+                                name="attribution"
+                                checked={!commentAnonymous}
+                                onChange={() => setCommentAnonymous(false)}
+                                className="w-3.5 h-3.5 border-dark-600 bg-dark-800 text-danger-500 focus:ring-danger-500/50"
+                              />
+                              <span className="text-xs text-dark-300 group-hover:text-dark-200 transition-colors">
+                                Use my name & last initial
+                              </span>
+                            </label>
+                            <label className="flex items-center gap-2 cursor-pointer group">
+                              <input
+                                type="radio"
+                                name="attribution"
+                                checked={commentAnonymous}
+                                onChange={() => setCommentAnonymous(true)}
+                                className="w-3.5 h-3.5 border-dark-600 bg-dark-800 text-danger-500 focus:ring-danger-500/50"
+                              />
+                              <span className="text-xs text-dark-300 group-hover:text-dark-200 transition-colors">
+                                Anonymous
+                              </span>
+                            </label>
+                          </div>
+                        )}
+                      </>
+                    )}
                   </div>
 
                   {submitError && (
@@ -680,7 +847,7 @@ export default function TakeActionPage() {
       </section>
 
       {/* ═══════════════════ SYSTEMATIZED METHOD ═══════════════════ */}
-      <section className="py-16 md:py-24 px-4">
+      <section id="action-steps" className="py-16 md:py-24 px-4 scroll-mt-24">
         <div className="max-w-4xl mx-auto">
           <motion.div
             initial="hidden"
@@ -695,8 +862,8 @@ export default function TakeActionPage() {
               Your Action Plan
             </span>
             <h2 className="text-3xl md:text-5xl font-black tracking-tight mb-4">
-              A Systematized Method{" "}
-              <span className="text-danger-500">to Get Heard</span>
+              How We{" "}
+              <span className="text-danger-500">Fight Back</span>
             </h2>
             <p className="text-dark-400 max-w-2xl mx-auto leading-relaxed">
               Don't just be angry — be strategic. Follow this pipeline in order.
@@ -739,103 +906,110 @@ export default function TakeActionPage() {
                     Phones can be ignored. Paperwork can't.
                   </p>
 
-                  <div className="grid sm:grid-cols-2 gap-4">
+                  <div className="space-y-4">
                     {/* FCC */}
                     <div className="bg-dark-950/60 rounded-xl p-4 border border-dark-700/30">
-                      <p className="text-white font-bold text-sm mb-2">
-                        📡 FCC (Tower & RF Compliance)
+                      <p className="text-white font-bold text-sm mb-1">
+                        📡 FCC — Civilian Tower Complaint
                       </p>
-                      <p className="text-dark-400 text-xs mb-3">
-                        File a complaint about tower construction, RF emissions,
-                        or environmental non-compliance.
+                      <p className="text-dark-400 text-xs leading-relaxed mb-3">
+                        Submit a complaint about tower RF interference, safety
+                        concerns, or a tower light outage. Click{" "}
+                        <strong className="text-white">&quot;Radio&quot;</strong> or{" "}
+                        <strong className="text-white">&quot;Emergency&quot;</strong>{" "}
+                        on the form. Include coordinates, photos, and your
+                        narrative.
                       </p>
-                      <a
-                        href="https://consumercomplaints.fcc.gov/hc/en-us"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1.5 text-xs font-bold text-sky-400 hover:underline"
-                      >
-                        File FCC Complaint Online
-                        <ExternalLink className="w-3 h-3" />
-                      </a>
-                      <p className="text-dark-500 text-[10px] mt-1">
+                      <div className="flex flex-col sm:flex-row gap-2 flex-wrap">
+                        <a
+                          href="https://consumercomplaints.fcc.gov/hc/en-us"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-1.5 px-3 py-2 bg-sky-900/40 hover:bg-sky-900/60 border border-sky-700/40 text-sky-300 font-bold text-xs rounded-lg transition-all"
+                        >
+                          <ExternalLink className="w-3.5 h-3.5" />
+                          FCC Complaint Center
+                        </a>
+                      </div>
+                      <p className="text-dark-500 text-[10px] mt-2">
                         Phone: 1-888-225-5322
                       </p>
                     </div>
 
                     {/* FAA */}
                     <div className="bg-dark-950/60 rounded-xl p-4 border border-dark-700/30">
-                      <p className="text-white font-bold text-sm mb-2">
-                        ✈️ FAA (Aviation Safety)
+                      <p className="text-white font-bold text-sm mb-1">
+                        ✈️ FAA — Obstruction & Safety Hazard
                       </p>
-                      <p className="text-dark-400 text-xs mb-3">
-                        Report obstruction hazards, unlighted towers near flight
-                        paths, or altimeter interference concerns.
+                      <p className="text-dark-400 text-xs leading-relaxed mb-3">
+                        Report an unregistered or unlit tower that poses a hazard
+                        to navigable airspace. Use the Hotline to file a safety
+                        complaint. Use the OE/AAA portal to look up whether the
+                        builder actually filed a Form 7460-1.
                       </p>
-                      <a
-                        href="https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap7_section_7.html"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1.5 text-xs font-bold text-sky-400 hover:underline"
-                      >
-                        FAA Obstruction Reporting
-                        <ExternalLink className="w-3 h-3" />
-                      </a>
-                      <p className="text-dark-500 text-[10px] mt-1">
-                        Safety Hotline: 1-800-255-1111
-                      </p>
-                    </div>
-
-                    {/* NYS DEC */}
-                    <div className="bg-dark-950/60 rounded-xl p-4 border border-dark-700/30">
-                      <p className="text-white font-bold text-sm mb-2">
-                        🌿 NYS DEC (Environmental)
-                      </p>
-                      <p className="text-dark-400 text-xs mb-3">
-                        Report environmental violations — lack of SEQRA review,
-                        impact on protected species or wetlands.
-                      </p>
-                      <a
-                        href="https://www.dec.ny.gov/regulations/4249.html"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1.5 text-xs font-bold text-sky-400 hover:underline"
-                      >
-                        DEC Environmental Complaint
-                        <ExternalLink className="w-3 h-3" />
-                      </a>
-                      <p className="text-dark-500 text-[10px] mt-1">
-                        Region 7 Office: (315) 426-7400
+                      <div className="flex flex-col sm:flex-row gap-2 flex-wrap">
+                        <a
+                          href="https://hotline.faa.gov/"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-1.5 px-3 py-2 bg-sky-900/40 hover:bg-sky-900/60 border border-sky-700/40 text-sky-300 font-bold text-xs rounded-lg transition-all"
+                        >
+                          <ExternalLink className="w-3.5 h-3.5" />
+                          FAA Hotline Form
+                        </a>
+                        <a
+                          href="https://oeaaa.faa.gov/"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-1.5 px-3 py-2 bg-dark-800/40 hover:bg-dark-800/60 border border-dark-700/40 text-dark-200 font-bold text-xs rounded-lg transition-all"
+                        >
+                          <ExternalLink className="w-3.5 h-3.5" />
+                          OE/AAA Obstruction Lookup
+                        </a>
+                      </div>
+                      <p className="text-dark-500 text-[10px] mt-2">
+                        Safety Hotline: 1-800-255-1111 · 866-TELL-FAA
                       </p>
                     </div>
 
                     {/* USFWS */}
                     <div className="bg-dark-950/60 rounded-xl p-4 border border-dark-700/30">
-                      <p className="text-white font-bold text-sm mb-2">
-                        🦅 USFWS (Eagle Protection)
+                      <p className="text-white font-bold text-sm mb-1">
+                        🦅 USFWS — Eagle Protection & Bird Strikes
                       </p>
-                      <p className="text-dark-400 text-xs mb-3">
-                        Report potential Bald Eagle Protection Act violations —
-                        100+ eagles roost 1.7 miles from this tower.
+                      <p className="text-dark-400 text-xs leading-relaxed mb-3">
+                        100+ bald eagles roost at Onondaga Lake, 1.7 miles from
+                        this tower. Report strikes via the FAA Wildlife Strike
+                        Database. Report illegal take, unhandled eagle carcasses,
+                        or nest destruction directly to USFWS Law Enforcement.
                       </p>
-                      <a
-                        href="https://www.fws.gov/contact-us"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1.5 text-xs font-bold text-sky-400 hover:underline"
-                      >
-                        USFWS Contact
-                        <ExternalLink className="w-3 h-3" />
-                      </a>
+                      <div className="flex flex-col sm:flex-row gap-2 flex-wrap">
+                        <a
+                          href="tel:844-397-8477"
+                          className="inline-flex items-center gap-1.5 px-3 py-2 bg-lime-900/40 hover:bg-lime-900/60 border border-lime-700/40 text-lime-300 font-bold text-xs rounded-lg transition-all"
+                        >
+                          <Phone className="w-3.5 h-3.5" />
+                          844-FWS-TIPS
+                        </a>
+                        <a
+                          href="https://wildlife.faa.gov/"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-1.5 px-3 py-2 bg-dark-800/40 hover:bg-dark-800/60 border border-dark-700/40 text-dark-200 font-bold text-xs rounded-lg transition-all"
+                        >
+                          <ExternalLink className="w-3.5 h-3.5" />
+                          Wildlife Strike Database
+                        </a>
+                      </div>
                     </div>
                   </div>
 
-                  {/* Collapsible: Federal Reporting Details */}
+                  {/* Collapsible: Environmental Review Levers */}
                   <button
                     onClick={() => toggleStep(1)}
                     className="mt-4 w-full flex items-center justify-between px-4 py-3 bg-dark-800/50 hover:bg-dark-800/80 border border-dark-700/40 rounded-xl text-sm font-bold text-dark-200 hover:text-white transition-all"
                   >
-                    <span>📋 View direct reporting hotlines & forms</span>
+                    <span>⚖️ Environmental review levers — stop the tower before it goes up</span>
                     <ChevronDownIcon
                       className={`w-4 h-4 transition-transform duration-300 ${expandedSteps[1] ? "rotate-180" : ""}`}
                     />
@@ -850,74 +1024,160 @@ export default function TakeActionPage() {
                         className="overflow-hidden"
                       >
                         <div className="pt-4 space-y-4">
+                          <p className="text-dark-300 text-xs leading-relaxed">
+                            To stop or alter tower construction on environmental
+                            grounds, you need the legal levers — not just
+                            complaint forms. Telecom companies rely on civilians
+                            not knowing how this paperwork works.
+                          </p>
+
+                          {/* FCC ASR Search */}
                           <div className="bg-sky-950/30 border border-sky-800/30 rounded-xl p-5">
-                            <div className="flex items-start gap-3">
-                              <ShieldAlert className="w-6 h-6 text-sky-400 flex-shrink-0 mt-0.5" />
-                              <div>
-                                <h4 className="font-bold text-sky-300 mb-1">
-                                  FAA — Aviation Safety
-                                </h4>
-                                <p className="text-dark-300 text-xs leading-relaxed mb-3">
-                                  Report a 184-foot unlit tower 0.3 miles from
-                                  an active landing path at Syracuse Hancock
-                                  International as a threat to the National
-                                  Airspace System.
+                            <h4 className="font-bold text-sky-300 mb-1 text-sm">
+                              FCC — Request for Environmental Review
+                            </h4>
+                            <p className="text-dark-300 text-xs leading-relaxed mb-2">
+                              Before building, telecom companies must submit{" "}
+                              <strong className="text-white">FCC Form 854</strong>{" "}
+                              (Antenna Structure Registration) and post a local
+                              public notice. You have a legally mandated{" "}
+                              <strong className="text-danger-400">
+                                30-day window
+                              </strong>{" "}
+                              to file a formal objection. Search the ASR database
+                              for the tower, and if the application is pending,
+                              submit a Request for Environmental Review.
+                            </p>
+                            <p className="text-dark-400 text-[10px] leading-relaxed mb-3">
+                              You must submit evidence: photos of the eagle nest,
+                              coordinates of the habitat, or data from the NY
+                              Natural Heritage Program. Proving a BGEPA or MBTA
+                              violation forces an expensive Environmental
+                              Assessment.
+                            </p>
+                            <a
+                              href="https://wireless2.fcc.gov/UlsApp/AsrSearch/asrRegistrationSearch.jsp"
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="inline-flex items-center gap-2 px-3 py-2 bg-sky-900/40 hover:bg-sky-900/60 border border-sky-700/40 text-sky-300 font-bold text-xs rounded-lg transition-all"
+                            >
+                              <ExternalLink className="w-3.5 h-3.5" />
+                              FCC ASR Search Portal
+                            </a>
+                          </div>
+
+                          {/* USFWS NY Field Office */}
+                          <div className="bg-lime-950/30 border border-lime-800/30 rounded-xl p-5">
+                            <h4 className="font-bold text-lime-300 mb-1 text-sm">
+                              USFWS — NY Ecological Services Field Office
+                            </h4>
+                            <p className="text-dark-300 text-xs leading-relaxed mb-2">
+                              The USFWS doesn&apos;t have a generic complaint button.
+                              You bypass the web forms and go straight to the
+                              project review biologists at the NY Field Office in
+                              Cortland, NY. Email them with the subject:{" "}
+                              <em className="text-white not-italic">
+                                &quot;ESA/BGEPA Compliance Concern: [Tower Address]&quot;
+                              </em>
+                            </p>
+                            <p className="text-dark-400 text-[10px] leading-relaxed mb-3">
+                              State that a tower is entering construction within
+                              the buffer zone of a federally protected species.
+                              Include exact GPS coordinates.
+                            </p>
+                            <div className="flex flex-col sm:flex-row gap-2 flex-wrap">
+                              <a
+                                href="mailto:fw5es_nyfo@fws.gov?subject=ESA/BGEPA Compliance Concern: 474 Electronics Parkway, Liverpool NY"
+                                className="inline-flex items-center gap-2 px-3 py-2 bg-lime-900/40 hover:bg-lime-900/60 border border-lime-700/40 text-lime-300 font-bold text-xs rounded-lg transition-all"
+                              >
+                                <Mail className="w-3.5 h-3.5" />
+                                fw5es_nyfo@fws.gov
+                              </a>
+                              <a
+                                href="https://www.fws.gov/library/collections/forms"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="inline-flex items-center gap-2 px-3 py-2 bg-dark-800/40 hover:bg-dark-800/60 border border-dark-700/40 text-dark-200 font-bold text-xs rounded-lg transition-all"
+                              >
+                                <ExternalLink className="w-3.5 h-3.5" />
+                                USFWS Forms Library
+                              </a>
+                            </div>
+                          </div>
+
+                          {/* NYS DEC */}
+                          <div className="bg-amber-950/30 border border-amber-800/30 rounded-xl p-5">
+                            <h4 className="font-bold text-amber-300 mb-1 text-sm">
+                              NYS DEC — Environmental Notice Bulletin & SEQR
+                            </h4>
+                            <p className="text-dark-300 text-xs leading-relaxed mb-2">
+                              At the state level, tower projects must undergo{" "}
+                              <strong className="text-white">
+                                State Environmental Quality Review (SEQR)
+                              </strong>
+                              . The DEC publishes every pending permit in the
+                              Environmental Notice Bulletin (updated every
+                              Wednesday). Search your county to find the project
+                              and the assigned DEC Regional Permit Administrator.
+                            </p>
+                            <div className="flex flex-col sm:flex-row gap-2 flex-wrap mb-3">
+                              <a
+                                href="https://dec.ny.gov/news/environmental-notice-bulletin"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="inline-flex items-center gap-2 px-3 py-2 bg-amber-900/30 hover:bg-amber-900/50 border border-amber-700/40 text-amber-300 font-bold text-xs rounded-lg transition-all"
+                              >
+                                <ExternalLink className="w-3.5 h-3.5" />
+                                DEC Environmental Notice Bulletin
+                              </a>
+                              <a
+                                href="https://www.ny.gov/services/report-environmental-violation"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="inline-flex items-center gap-2 px-3 py-2 bg-dark-800/40 hover:bg-dark-800/60 border border-dark-700/40 text-dark-200 font-bold text-xs rounded-lg transition-all"
+                              >
+                                <ExternalLink className="w-3.5 h-3.5" />
+                                Report Environmental Violation
+                              </a>
+                            </div>
+                            <div className="bg-danger-950/30 border border-danger-800/30 rounded-lg p-3">
+                              <p className="text-danger-300 text-xs font-bold mb-1">
+                                🚨 Nuclear Option — Bulldozers Already There?
+                              </p>
+                              <p className="text-dark-300 text-[10px] leading-relaxed">
+                                If trees are being cleared or land graded next to
+                                eagle habitat without an Incidental Take Permit,
+                                call the{" "}
+                                <strong className="text-white">
+                                  NYS DEC Regional Wildlife Manager
+                                </strong>{" "}
+                                and the ECO dispatch line to report an active
+                                violation of Article 11 (Endangered &amp;
+                                Threatened Species Law).
+                              </p>
+                              <div className="flex flex-col sm:flex-row gap-2 mt-2">
+                                <a
+                                  href="tel:844-332-3267"
+                                  className="inline-flex items-center gap-1.5 px-3 py-2 bg-danger-900/40 hover:bg-danger-900/60 border border-danger-700/40 text-danger-300 font-bold text-xs rounded-lg transition-all"
+                                >
+                                  <Phone className="w-3.5 h-3.5" />
+                                  1-844-DEC-ECOS
+                                </a>
+                                <p className="text-dark-500 text-[10px] self-center">
+                                  Region 7: (315) 426-7400
                                 </p>
-                                <div className="flex flex-col sm:flex-row gap-2">
-                                  <a
-                                    href="tel:866-835-5322"
-                                    className="inline-flex items-center gap-2 px-3 py-2 bg-sky-900/40 hover:bg-sky-900/60 border border-sky-700/40 text-sky-300 font-bold text-xs rounded-lg transition-all"
-                                  >
-                                    <Phone className="w-3.5 h-3.5" />{" "}
-                                    866-TELL-FAA
-                                  </a>
-                                  <a
-                                    href="https://www.faa.gov/about/office_org/headquarters_offices/aae"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="inline-flex items-center gap-2 px-3 py-2 bg-dark-800/40 hover:bg-dark-800/60 border border-dark-700/40 text-dark-200 font-bold text-xs rounded-lg transition-all"
-                                  >
-                                    <ExternalLink className="w-3.5 h-3.5" /> FAA
-                                    Hotline Web Form
-                                  </a>
-                                </div>
                               </div>
                             </div>
                           </div>
-                          <div className="bg-lime-950/30 border border-lime-800/30 rounded-xl p-5">
-                            <div className="flex items-start gap-3">
-                              <ShieldAlert className="w-6 h-6 text-lime-400 flex-shrink-0 mt-0.5" />
-                              <div>
-                                <h4 className="font-bold text-lime-300 mb-1">
-                                  U.S. Fish & Wildlife Service — Protected
-                                  Species
-                                </h4>
-                                <p className="text-dark-300 text-xs leading-relaxed mb-3">
-                                  This tower sits adjacent to Onondaga Lake —
-                                  New York's largest urban bald eagle roost —
-                                  protected under the Migratory Bird Treaty Act
-                                  and the Bald & Golden Eagle Protection Act.
-                                </p>
-                                <div className="flex flex-col sm:flex-row gap-2">
-                                  <a
-                                    href="tel:844-397-8477"
-                                    className="inline-flex items-center gap-2 px-3 py-2 bg-lime-900/40 hover:bg-lime-900/60 border border-lime-700/40 text-lime-300 font-bold text-xs rounded-lg transition-all"
-                                  >
-                                    <Phone className="w-3.5 h-3.5" />{" "}
-                                    844-FWS-TIPS
-                                  </a>
-                                  <a
-                                    href="https://www.fws.gov/contact"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="inline-flex items-center gap-2 px-3 py-2 bg-dark-800/40 hover:bg-dark-800/60 border border-dark-700/40 text-dark-200 font-bold text-xs rounded-lg transition-all"
-                                  >
-                                    <ExternalLink className="w-3.5 h-3.5" />{" "}
-                                    USFWS Contact
-                                  </a>
-                                </div>
-                              </div>
-                            </div>
+
+                          <div className="bg-dark-800/40 border border-dark-700/30 rounded-lg p-3">
+                            <p className="text-dark-300 text-xs leading-relaxed">
+                              <strong className="text-white">Bottom line:</strong>{" "}
+                              These agencies run on paperwork. The most powerful
+                              thing you can do is include precise
+                              latitude/longitude coordinates and date/time stamps.
+                              Complaints without data get dismissed.
+                            </p>
                           </div>
                         </div>
                       </motion.div>
@@ -945,22 +1205,18 @@ export default function TakeActionPage() {
                     Step 2 — Contact the Airport
                   </p>
                   <h3 className="text-xl md:text-2xl font-black text-white mb-3">
-                    Tell SYR Their Own Rules Are Being{" "}
-                    <span className="text-danger-400">Broken</span>
+                    Demand They Protect the{" "}
+                    <span className="text-sky-400">Airspace</span>
                   </h3>
                   <p className="text-dark-300 leading-relaxed mb-4">
-                    Syracuse Hancock International Airport manages 2,300 acres
-                    to keep eagles and large birds away from runways. Their own
-                    environmental reviews state they{" "}
+                    The Syracuse Airport Authority spends millions mitigating
+                    bird strikes, yet a state loophole is allowing a 184-foot
+                    unlit tower — a{" "}
                     <strong className="text-white">
-                      will not grant leases that increase wildlife hazards
-                    </strong>
-                    . Now a cell tower — which the FAA's own Advisory Circular
-                    calls a wildlife attractant — is going up{" "}
-                    <strong className="text-danger-400">
-                      0.25 miles from their approach path
-                    </strong>
-                    . They need to know.
+                      known raptor attractant
+                    </strong>{" "}
+                    — 0.25 miles from their approach corridor. Tell the Airport
+                    Director to publicly oppose this hazard.
                   </p>
 
                   <div className="bg-dark-950/60 rounded-xl p-4 border border-dark-700/30 mb-4">
@@ -986,40 +1242,37 @@ export default function TakeActionPage() {
                         >
                           info@syrairport.org
                         </a>
-                      </p>
-                      <p className="text-dark-300 text-xs">
-                        <strong className="text-white">Website:</strong>{" "}
-                        <a
-                          href="https://www.syrairport.org"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="text-sky-400 hover:underline"
-                        >
-                          syrairport.org
-                        </a>
+                        <span className="text-dark-500 ml-1">
+                          (CC your local representatives)
+                        </span>
                       </p>
                     </div>
                   </div>
 
+                  {/* Public Advocacy Email */}
                   <div className="bg-sky-950/20 border border-sky-800/30 rounded-xl p-4">
-                    <p className="text-sky-400 font-bold text-xs uppercase tracking-widest mb-2">
-                      📞 What to Say
-                    </p>
-                    <p className="text-dark-200 text-sm leading-relaxed italic">
-                      "I'm calling about a 184-foot cell tower being constructed
-                      near your Runway 10 approach path, approximately 0.25
-                      miles from the landing corridor. Your environmental
-                      assessments state the airport will not grant leases for
-                      purposes that increase wildlife hazards. FAA Advisory
-                      Circular 150/5200-33C specifically identifies cell towers
-                      as wildlife attractants for eagles and large raptors. Over
-                      100 bald eagles winter at the Onondaga Lake roost 1.7
-                      miles from this site. Has the airport been consulted about
-                      this tower? Has a Wildlife Hazard Assessment update been
-                      conducted?"
-                    </p>
+                    <div className="flex items-center justify-between mb-2">
+                      <p className="text-sky-400 font-bold text-xs uppercase tracking-widest">
+                        📧 Copy & Send
+                      </p>
+                      <CopyButton text={`Director Terreri,\n\nAs a resident under the Runway 10 approach, I am urging the Syracuse Regional Airport Authority to publicly oppose the 184-foot unlit Phoenix Tower going up at 474 Electronics Parkway.\n\nGiven SYR's strict Wildlife Hazard Management Plan, allowing a massive steel structure that the FAA explicitly identifies as a raptor attractant just 0.25 miles from the descent corridor is a hazard to our community and the aircraft overhead.\n\nWe are asking you to formally request the NYS Thruway Authority halt this project until a full, public aviation safety and wildlife review is conducted.\n\nRespectfully,\n[YOUR NAME]\n[YOUR ADDRESS]`} />
+                    </div>
+                    <div className="text-[11px] text-dark-200 font-mono bg-dark-900/60 rounded-lg p-3 select-all whitespace-pre-line leading-relaxed">
+                      {`Director Terreri,
+
+As a resident under the Runway 10 approach, I am urging the Syracuse Regional Airport Authority to publicly oppose the 184-foot unlit Phoenix Tower going up at 474 Electronics Parkway.
+
+Given SYR's strict Wildlife Hazard Management Plan, allowing a massive steel structure that the FAA explicitly identifies as a raptor attractant just 0.25 miles from the descent corridor is a hazard to our community and the aircraft overhead.
+
+We are asking you to formally request the NYS Thruway Authority halt this project until a full, public aviation safety and wildlife review is conducted.
+
+Respectfully,
+[YOUR NAME]
+[YOUR ADDRESS]`}
+                    </div>
                   </div>
                 </div>
+
               </motion.div>
 
               {/* STEP 3: Contact Your Elected Officials */}
@@ -1663,9 +1916,9 @@ export default function TakeActionPage() {
                     Make It a Story They Can't Ignore
                   </h3>
                   <p className="text-dark-300 leading-relaxed mb-3">
-                    Local journalists are the force multiplier. One news segment
-                    reaches thousands. Send tips to local TV, print, and
-                    investigative journalists. Frame the story for them:
+                    Nothing scares them faster than the 6 o&apos;clock news. One
+                    news segment reaches thousands. Send tips to local TV,
+                    print, and investigative journalists. Frame the story:
                     <em className="text-white not-italic">
                       {" "}
                       a 184-foot unlit tower on state land, zero public input,
@@ -1808,7 +2061,141 @@ Thank you for your time,
                 </div>
               </motion.div>
 
-              {/* STEP 7: Band Together */}
+              {/* STEP 7: Write a Letter to the Editor */}
+              <motion.div
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                variants={fadeUp}
+                custom={4.5}
+                className="flex items-start gap-4 md:pl-2"
+              >
+                <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-pink-600 flex items-center justify-center flex-shrink-0 z-10 shadow-lg shadow-pink-900/40">
+                  <span className="text-white text-sm md:text-base font-black">
+                    7
+                  </span>
+                </div>
+                <div className="bg-dark-900/60 border border-dark-800/50 rounded-2xl p-6 md:p-8 flex-1">
+                  <p className="text-xs font-bold text-pink-400 uppercase tracking-widest mb-2">
+                    Step 7 — Write a Letter to the Editor
+                  </p>
+                  <h3 className="text-xl md:text-2xl font-black text-white mb-3">
+                    Get It in <span className="text-pink-400">Print</span>
+                  </h3>
+                  <p className="text-dark-300 leading-relaxed mb-3">
+                    A letter to the editor reaches thousands of readers who would
+                    never see a Facebook post. It gets indexed by Google. It puts
+                    the issue in the public record. Three outlets, one letter each
+                    — 15 minutes.
+                  </p>
+                  <button
+                    onClick={() => toggleStep(7)}
+                    className="mt-4 w-full flex items-center justify-between px-4 py-3 bg-dark-800/50 hover:bg-dark-800/80 border border-dark-700/40 rounded-xl text-sm font-bold text-dark-200 hover:text-white transition-all"
+                  >
+                    <span>📋 View outlets, guidelines & template letter</span>
+                    <ChevronDownIcon
+                      className={`w-4 h-4 transition-transform duration-300 ${expandedSteps[7] ? "rotate-180" : ""}`}
+                    />
+                  </button>
+                  <AnimatePresence>
+                    {expandedSteps[7] && (
+                      <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: "auto", opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.3 }}
+                        className="overflow-hidden"
+                      >
+                        <div className="pt-4 space-y-3">
+                          {/* Outlets */}
+                          {[
+                            {
+                              outlet: "Syracuse.com / Post-Standard",
+                              email: "letters@syracuse.com",
+                              limit: "250 words max",
+                              note: "Largest CNY digital + print audience. Include name, address, phone (not published).",
+                              color: "border-pink-800/30",
+                            },
+
+                            {
+                              outlet: "Eagle Bulletin / Star Review",
+                              email: null,
+                              limit: "~300 words",
+                              note: "Hyper-local Liverpool/Salina paper. Call (315) 434-8889 for submission details.",
+                              color: "border-amber-800/30",
+                            },
+                          ].map((pub) => (
+                            <div
+                              key={pub.outlet}
+                              className={`bg-dark-950/60 border ${pub.color} rounded-lg p-4`}
+                            >
+                              <p className="text-sm font-bold text-white mb-0.5">
+                                {pub.outlet}
+                              </p>
+                              <p className="text-[10px] text-dark-500 font-bold uppercase tracking-widest mb-2">
+                                {pub.limit}
+                              </p>
+                              <p className="text-xs text-dark-400 mb-2">
+                                {pub.note}
+                              </p>
+                              {pub.email ? (
+                                <a
+                                  href={`mailto:${pub.email}?subject=Letter to the Editor: 184-Ft Cell Tower in Liverpool, NY`}
+                                  className="inline-flex items-center gap-1.5 text-xs font-bold text-pink-400 hover:text-pink-300 transition-colors"
+                                >
+                                  <Mail className="w-3 h-3" />
+                                  {pub.email}
+                                </a>
+                              ) : (
+                                <a
+                                  href="tel:3154348889"
+                                  className="inline-flex items-center gap-1.5 text-xs font-bold text-pink-400 hover:text-pink-300 transition-colors"
+                                >
+                                  <Phone className="w-3 h-3" />
+                                  (315) 434-8889
+                                </a>
+                              )}
+                            </div>
+                          ))}
+
+                          {/* Template Letter */}
+                          <div className="bg-pink-950/20 border border-pink-800/20 rounded-lg p-4">
+                            <div className="flex items-center justify-between mb-2">
+                              <p className="text-[10px] font-bold text-pink-400 uppercase tracking-widest">
+                                Template Letter — Copy & Personalize
+                              </p>
+                              <CopyButton text={`To the Editor,\n\nI am writing to bring attention to a 184-foot commercial cell tower currently being erected in Liverpool, NY — on New York State Thruway Authority land at 474 Electronics Parkway — with zero public notification and no local zoning review.\n\nThis tower sits approximately 0.3 miles from an active landing approach to Syracuse Hancock International Airport. Over 100 bald eagles winter at the Onondaga Lake roost less than two miles away. The tower requires no obstruction lighting because it was built at exactly 184 feet — 16 feet below the FAA threshold.\n\nNo residents were notified. No environmental review was conducted. No community input was sought. The tower is being built by Phoenix Tower International, backed by BlackRock and Blackstone, on a lease with the Thruway Authority that bypasses every local protection on the books.\n\n[PERSONALIZE: Are you a homeowner nearby? A parent at Long Branch Elementary? A pilot who uses SYR? Add your personal stake here.]\n\nResidents have organized at ProtectLiverpoolNY.org and are demanding accountability from local and state officials. This isn't just a Liverpool problem — it's a precedent for every community in New York.\n\nSincerely,\n[YOUR NAME]\n[YOUR ADDRESS]\n[YOUR PHONE]`} />
+                            </div>
+                            <div className="text-[11px] text-dark-200 font-mono bg-dark-900/60 rounded-lg p-3 select-all whitespace-pre-line leading-relaxed">
+                              {`To the Editor,
+
+I am writing to bring attention to a 184-foot commercial cell tower currently being erected in Liverpool, NY — on New York State Thruway Authority land at 474 Electronics Parkway — with zero public notification and no local zoning review.
+
+This tower sits approximately 0.3 miles from an active landing approach to Syracuse Hancock International Airport. Over 100 bald eagles winter at the Onondaga Lake roost less than two miles away. The tower requires no obstruction lighting because it was built at exactly 184 feet — 16 feet below the FAA threshold.
+
+No residents were notified. No environmental review was conducted. No community input was sought. The tower is being built by Phoenix Tower International, backed by BlackRock and Blackstone, on a lease with the Thruway Authority that bypasses every local protection on the books.
+
+[PERSONALIZE: Are you a homeowner nearby? A parent at Long Branch Elementary? A pilot who uses SYR? Add your personal stake here.]
+
+Residents have organized at ProtectLiverpoolNY.org and are demanding accountability from local and state officials. This isn't just a Liverpool problem — it's a precedent for every community in New York.
+
+Sincerely,
+[YOUR NAME]
+[YOUR ADDRESS]
+[YOUR PHONE]`}
+                            </div>
+                            <p className="text-[10px] text-dark-500 mt-2 italic">
+                              ⚡ Pro tip: Send to only ONE outlet at a time — they want exclusive letters. Send Syracuse.com first (biggest reach), then a different version to Eagle Bulletin.
+                            </p>
+                          </div>
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              </motion.div>
+
+              {/* STEP 8: Band Together */}
               <motion.div
                 initial="hidden"
                 whileInView="visible"
@@ -1819,20 +2206,20 @@ Thank you for your time,
               >
                 <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-lime-600 flex items-center justify-center flex-shrink-0 z-10 shadow-lg shadow-lime-900/40">
                   <span className="text-white text-sm md:text-base font-black">
-                    7
+                    8
                   </span>
                 </div>
                 <div className="bg-dark-900/60 border border-dark-800/50 rounded-2xl p-6 md:p-8 flex-1">
                   <p className="text-xs font-bold text-lime-400 uppercase tracking-widest mb-2">
-                    Step 7 — Band Together
+                    Step 8 — Band Together
                   </p>
                   <h3 className="text-xl md:text-2xl font-black text-white mb-3">
                     Organize Your Neighborhood
                   </h3>
                   <p className="text-dark-300 leading-relaxed mb-5">
-                    One person complaining is noise. A hundred people organizing
-                    is a movement. Connect with your neighbors, share this site,
-                    and make this impossible to ignore.
+                    One complaint goes in the trash. A hundred complaints force
+                    a public hearing. Connect with your neighbors, share this
+                    site, and make this impossible to ignore.
                   </p>
 
                   <div className="grid sm:grid-cols-2 gap-4">
@@ -1926,13 +2313,13 @@ Thank you for your time,
           >
             <div className="bg-danger-950/20 border border-danger-800/30 rounded-2xl p-6 md:p-8 text-center">
               <p className="text-lg md:text-xl font-black text-white mb-2">
-                Do all 7. In order. Today.
+                Do all 8. In order. Today.
               </p>
               <p className="text-dark-300 max-w-xl mx-auto leading-relaxed">
                 Every step takes 5&ndash;10 minutes. In about an hour, you'll
                 have filed complaints with 4 federal/state agencies, notified
-                the airport, contacted your representatives, and connected with
-                your community. That's not activism — that's leverage.
+                the airport, contacted your representatives, written a letter
+                to the editor, and connected with your community. That's not activism — that's leverage.
               </p>
             </div>
           </motion.div>
@@ -1940,88 +2327,6 @@ Thank you for your time,
       </section>
 
 
-      {/* ═══════════════════ COMMUNITY VOICES ═══════════════════ */}
-      {comments.length > 0 && (
-        <section className="py-12 md:py-20 px-4 bg-dark-900/30">
-          <div className="max-w-3xl mx-auto">
-            <motion.div
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              variants={fadeUp}
-              custom={0}
-              className="text-center mb-8"
-            >
-              <div className="flex items-center justify-center gap-2 mb-3">
-                <MessageSquareQuote className="w-5 h-5 text-danger-400" />
-                <span className="text-xs font-bold text-danger-400 uppercase tracking-widest">
-                  Community Voices
-                </span>
-              </div>
-              <h2
-                className="font-black text-white mb-3"
-                style={{ fontSize: "clamp(1.5rem, 3.5vw, 2rem)" }}
-              >
-                What Your <span className="text-danger-500">Neighbors</span> Are
-                Saying
-              </h2>
-              <p className="text-dark-400 text-sm">
-                {commentTotal}{" "}
-                {commentTotal === 1 ? "person has" : "people have"} left a
-                comment with their signature.
-              </p>
-            </motion.div>
-
-            <div className="space-y-3">
-              <AnimatePresence>
-                {comments.map((c, i) => (
-                  <motion.div
-                    key={`${c.name}-${c.date}-${i}`}
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: i * 0.03, duration: 0.3 }}
-                    className="bg-dark-900/60 border border-dark-800/50 rounded-xl p-4 md:p-5"
-                  >
-                    <p
-                      className="text-dark-200 leading-relaxed mb-3"
-                      style={{ fontSize: "0.95rem" }}
-                    >
-                      "{c.comment}"
-                    </p>
-                    <div className="flex items-center justify-between text-xs text-dark-500">
-                      <div className="flex items-center gap-2">
-                        <span className="w-6 h-6 rounded-full bg-danger-900/50 border border-danger-800/30 flex items-center justify-center text-danger-400 font-bold text-[10px]">
-                          {c.name.charAt(0)}
-                        </span>
-                        <span className="font-semibold text-dark-300">
-                          {c.name}
-                        </span>
-                        {c.zip && (
-                          <span className="text-dark-600">• {c.zip}</span>
-                        )}
-                      </div>
-                      <span>{timeAgo(c.date)}</span>
-                    </div>
-                  </motion.div>
-                ))}
-              </AnimatePresence>
-            </div>
-
-            {commentPage < commentTotalPages && (
-              <div className="text-center mt-6">
-                <button
-                  onClick={() => fetchComments(commentPage + 1, true)}
-                  disabled={loadingComments}
-                  className="inline-flex items-center gap-2 px-6 py-3 bg-dark-900/60 border border-dark-800/50 rounded-xl text-sm font-bold text-dark-300 hover:text-white hover:border-dark-700 transition-all disabled:opacity-50"
-                >
-                  {loadingComments ? "Loading..." : "Load More Comments"}
-                  <ChevronDownIcon className="w-4 h-4" />
-                </button>
-              </div>
-            )}
-          </div>
-        </section>
-      )}
 
       {/* ═══════════════════ HELP THE CAUSE ═══════════════════ */}
       <section className="py-16 md:py-24 px-4 bg-dark-900/30">
@@ -2124,7 +2429,7 @@ Thank you for your time,
       </section>
 
       {/* ═══════════════════ FINAL REMINDER ═══════════════════ */}
-      <section className="py-12 md:py-20 px-4">
+      <section id="encouragement" className="py-12 md:py-20 px-4 scroll-mt-24">
         <div className="max-w-2xl mx-auto">
           <motion.div
             initial="hidden"
@@ -2138,15 +2443,15 @@ Thank you for your time,
               One Final Reminder
             </p>
             <p className="text-lg md:text-xl text-dark-200 font-medium italic leading-relaxed mb-2">
-              "You let one ant stand up to us, then they{" "}
+              &quot;You let one ant stand up to us, then they{" "}
               <span className="text-danger-400 not-italic font-black">all</span>{" "}
               might stand up&hellip; those puny little ants outnumber us a
               hundred to one. And if they ever figure that out, there goes our
-              way of life."
+              way of life.&quot;
             </p>
             <p className="text-sm text-dark-500 mb-8">
               — Hopper, explaining exactly why Phoenix Tower International and
-              the NYS Thruway Authority are hoping you won't read this page
+              the NYS Thruway Authority are hoping you won&apos;t read this page
             </p>
 
             <div
@@ -2161,7 +2466,6 @@ Thank you for your time,
                 className="absolute inset-0 w-full h-full"
               />
             </div>
-
             <p className="mt-6 text-sm text-dark-400">
               Salina has{" "}
               <span className="text-white font-bold">33,000 residents.</span>{" "}
@@ -2169,6 +2473,13 @@ Thank you for your time,
               <span className="text-danger-400 font-bold">one tower.</span> Do
               the math.
             </p>
+
+            <button
+              onClick={() => document.getElementById('action-steps')?.scrollIntoView({ behavior: 'smooth', block: 'start' })}
+              className="mt-8 px-8 py-3 bg-danger-600 hover:bg-danger-500 text-white font-bold rounded-xl transition-all text-sm inline-flex items-center gap-2"
+            >
+              🔥 Now Amplify Your Voice
+            </button>
           </motion.div>
         </div>
       </section>

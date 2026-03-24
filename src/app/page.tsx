@@ -1,9 +1,10 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import WeNotAlone from "@/components/WeNotAlone";
-import { useState } from "react";
-import { motion } from "framer-motion";
+import { useState, useCallback, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 
 import {
   TrendingDown,
@@ -84,7 +85,23 @@ const problems = [
 ];
 
 export default function HomePage() {
-  const [slideIndex, setSlideIndex] = useState(0);
+  const [slideIndex, setSlideIndex] = useState(1);
+  const [lightbox, setLightbox] = useState<string | null>(null);
+
+  // Close lightbox on Escape + lock body scroll
+  useEffect(() => {
+    const handler = (e: KeyboardEvent) => { if (e.key === 'Escape') setLightbox(null); };
+    if (lightbox) {
+      document.body.style.overflow = 'hidden';
+      window.addEventListener('keydown', handler);
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+      window.removeEventListener('keydown', handler);
+    };
+  }, [lightbox]);
 
   const carriers = [
     {
@@ -116,11 +133,13 @@ export default function HomePage() {
         <div className="absolute inset-0 z-0">
           <div className="absolute inset-0 bg-gradient-to-r from-dark-950 via-dark-950/80 to-transparent z-10" />
           <div className="absolute inset-0 bg-gradient-to-t from-dark-950 via-transparent to-dark-950/40 z-10" />
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
+          <Image
             src="https://imagedelivery.net/5MAOvNjO0OBL917jHWR5AA/7082b468-ee29-4cd8-94aa-acae117f9100/public"
             alt="Cell tower in Liverpool, NY"
-            className="w-full h-full object-cover opacity-50"
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover opacity-50"
           />
         </div>
 
@@ -266,28 +285,6 @@ export default function HomePage() {
               workplaces, restaurants, hotels, playing fields, and parks.
             </p>
 
-            {/* Tab selector */}
-            <div className="flex justify-center mb-6">
-              <div className="inline-flex bg-dark-900 border border-dark-700/50 rounded-xl p-1 gap-1">
-                {["Map", "Photo", "Aviation"].map((label, i) => (
-                  <button
-                    key={label}
-                    onClick={() => setSlideIndex(i)}
-                    className={`px-5 sm:px-6 py-2.5 rounded-lg text-sm font-bold transition-all ${
-                      slideIndex === i
-                        ? i === 0
-                          ? "bg-emerald-600 text-white shadow-lg"
-                          : i === 1
-                            ? "bg-danger-600 text-white shadow-lg"
-                            : "bg-sky-600 text-white shadow-lg"
-                        : "text-dark-400 hover:text-white hover:bg-dark-800"
-                    }`}
-                  >
-                    {label}
-                  </button>
-                ))}
-              </div>
-            </div>
           </motion.div>
 
           <motion.div
@@ -297,106 +294,97 @@ export default function HomePage() {
             variants={fadeUp}
             custom={1}
           >
-            {/* Map */}
-            {slideIndex === 0 && (
-              <div
-                className="rounded-2xl overflow-hidden border border-dark-700/50 shadow-2xl shadow-black/40 relative"
-                style={{ aspectRatio: "16/10" }}
-              >
-                <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d6500!2d-76.18508!3d43.10192!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zNDPCsDA2JzA2LjkiTiA3NsKwMTEnMDYuMyJX!5e1!3m2!1sen!2sus!4v1"
-                  title="Map showing cell tower location in Liverpool, NY"
-                  width="100%"
-                  height="100%"
-                  style={{ border: 0, position: "absolute", inset: 0 }}
-                  allowFullScreen
-                  loading="lazy"
-                  referrerPolicy="no-referrer-when-downgrade"
-                  className="rounded-2xl"
-                />
-              </div>
-            )}
-
-            {/* Tower Photo */}
-            {slideIndex === 1 && (
-              <div
-                className="rounded-2xl overflow-hidden border border-dark-700/50 shadow-2xl shadow-black/40 bg-dark-900"
-                style={{ aspectRatio: "16/10" }}
-              >
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src="https://imagedelivery.net/5MAOvNjO0OBL917jHWR5AA/e9374762-20c4-4f98-84f8-12e8fcdb0800/public"
-                  alt="The 184-foot cell tower being erected in Liverpool, NY"
-                  className="w-full h-full object-contain"
-                />
-              </div>
-            )}
-
-            {/* Aviation */}
-            {slideIndex === 2 && (
-              <div
-                className="rounded-2xl overflow-hidden border border-sky-700/30 shadow-2xl shadow-black/40 bg-dark-900"
-                style={{ aspectRatio: "16/10" }}
-              >
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src="https://imagedelivery.net/5MAOvNjO0OBL917jHWR5AA/82026018-9e77-4ea8-1424-674b34a40100/public"
-                  alt="Flightradar24 showing aircraft on final approach passing directly over the 184-foot unlit cell tower in Liverpool, NY"
-                  className="w-full h-full object-contain"
-                />
-              </div>
-            )}
-          </motion.div>
-
-          {/* Dots */}
-          <div className="flex justify-center gap-2 mt-5">
-            {[0, 1, 2].map((i) => (
-              <button
-                key={i}
-                onClick={() => setSlideIndex(i)}
-                className={`w-2.5 h-2.5 rounded-full transition-all ${
-                  slideIndex === i
-                    ? "bg-danger-500 scale-125"
-                    : "bg-dark-700 hover:bg-dark-500"
-                }`}
-                aria-label={`Go to slide ${i + 1}`}
+            <div
+              className="rounded-2xl overflow-hidden border border-dark-700/50 shadow-2xl shadow-black/40 relative"
+              style={{ aspectRatio: "16/10" }}
+            >
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d6500!2d-76.18508!3d43.10192!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zNDPCsDA2JzA2LjkiTiA3NsKwMTEnMDYuMyJX!5e1!3m2!1sen!2sus!4v1"
+                title="Map showing cell tower location in Liverpool, NY"
+                width="100%"
+                height="100%"
+                style={{ border: 0, position: "absolute", inset: 0 }}
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                className="rounded-2xl"
               />
-            ))}
-          </div>
-          <div className="mt-5 text-center">
-            {slideIndex === 1 && (
-              <div className="bg-dark-900/60 border border-dark-800/50 rounded-xl px-5 py-4 max-w-2xl mx-auto">
-                <p className="text-sm text-dark-200 leading-relaxed">
-                  Taken March 21st, 2026.{" "}
-                  <strong className="text-white">Unlit, 184ft tall.</strong>{" "}
-                  There for over a month, unlit. 200m from 1,000+ homes, playing
-                  fields, and a park for children.
-                </p>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* ═══════════════════ TOWER PHOTOS ═══════════════════ */}
+      <section className="py-12 md:py-16 px-4">
+        <div className="max-w-5xl mx-auto">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeUp}
+            custom={0}
+          >
+            <div className="flex items-center justify-between mb-4">
+              <div className="flex items-center gap-2">
+                <AlertTriangle className="w-4 h-4 text-danger-400" />
+                <span className="text-xs font-bold text-danger-400 uppercase tracking-widest">
+                  See It for Yourself
+                </span>
+              </div>
+              <div className="flex items-center gap-1.5">
                 <button
-                  onClick={() => setSlideIndex(2)}
-                  className="mt-2 text-sm text-sky-400 font-bold hover:underline"
+                  onClick={() => document.getElementById('photo-scroll')?.scrollBy({ left: -340, behavior: 'smooth' })}
+                  className="w-7 h-7 rounded-lg bg-white/5 backdrop-blur-md border border-white/10 flex items-center justify-center text-dark-300 hover:bg-white/10 hover:text-white transition-all"
+                  aria-label="Previous photo"
                 >
-                  See how close to airplanes it really is →
+                  ‹
+                </button>
+                <button
+                  onClick={() => document.getElementById('photo-scroll')?.scrollBy({ left: 340, behavior: 'smooth' })}
+                  className="w-7 h-7 rounded-lg bg-white/5 backdrop-blur-md border border-white/10 flex items-center justify-center text-dark-300 hover:bg-white/10 hover:text-white transition-all"
+                  aria-label="Next photo"
+                >
+                  ›
                 </button>
               </div>
-            )}
-            {slideIndex === 2 && (
-              <div className="bg-danger-950/30 border border-danger-800/30 rounded-xl px-5 py-4 max-w-2xl mx-auto">
-                <p className="text-sm text-dark-200 leading-relaxed">
-                  A Boeing 737 at{" "}
-                  <strong className="text-danger-400">
-                    625 ft. barometric altitude
-                  </strong>{" "}
-                  — just <strong className="text-white">441 feet above</strong>{" "}
-                  a 184-foot unlit tower. 1,000 ft. due south of the final
-                  approach path to Syracuse Hancock International.{" "}
-                  <strong className="text-danger-400">
-                    No lights. Altimetry interference risk.*
-                  </strong>
-                </p>
+            </div>
+            <div id="photo-scroll" className="flex gap-4 overflow-x-auto snap-x snap-mandatory pb-3" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none', WebkitOverflowScrolling: 'touch' }}>
+              {[
+                { src: "https://imagedelivery.net/5MAOvNjO0OBL917jHWR5AA/82026018-9e77-4ea8-1424-674b34a40100/public", caption: "Aircraft on final approach — 441 ft above the tower" },
+                { src: "https://imagedelivery.net/5MAOvNjO0OBL917jHWR5AA/e9374762-20c4-4f98-84f8-12e8fcdb0800/public", caption: "From pickleball courts" },
+                { src: "https://imagedelivery.net/5MAOvNjO0OBL917jHWR5AA/33b628fd-bda4-430c-adbc-791faa8f1b00/public", caption: "From Byrne Dairy" },
+                { src: "https://imagedelivery.net/5MAOvNjO0OBL917jHWR5AA/5692f0d1-2891-43d6-de6b-a15d81b5ae00/public", caption: "From the drugstore" },
+                { src: "https://imagedelivery.net/5MAOvNjO0OBL917jHWR5AA/b5a30c74-5780-4d9f-2d88-8f25d78ad300/public", caption: "From First Republic Business Park" },
+                { src: "https://imagedelivery.net/5MAOvNjO0OBL917jHWR5AA/287235dc-454c-4245-41eb-24cb7fb75500/public", caption: "From youth softball fields (under flight approach path)" },
+                { src: "https://imagedelivery.net/5MAOvNjO0OBL917jHWR5AA/638fe878-42fc-4bc2-2424-0ec641028100/public", caption: "Spicy Wings And Wedges And Radiation 🔥" },
+              ].map((photo, i) => (
+                <div key={i} className="snap-start flex-shrink-0 w-[240px] md:w-[280px] cursor-pointer" onClick={() => setLightbox(photo.src)}>
+                  <div className="relative w-full aspect-[9/16] rounded-xl overflow-hidden border border-dark-700/50 hover:border-dark-500/70 transition-all">
+                    <Image
+                      src={photo.src}
+                      alt={photo.caption}
+                      fill
+                      className="object-cover"
+                      sizes="(max-width: 768px) 320px, 400px"
+                    />
+                  </div>
+                  <p className="text-[11px] text-dark-500 mt-2 text-center">{photo.caption}</p>
+                </div>
+              ))}
+              {/* Video */}
+              <div className="snap-start flex-shrink-0 w-[240px] md:w-[280px]">
+                <div className="relative w-full aspect-[9/16] rounded-xl overflow-hidden border border-dark-700/50">
+                  <iframe
+                    src="https://iframe.videodelivery.net/62d09f292b917265af262289a55029e3"
+                    allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                    className="absolute inset-0 w-full h-full"
+                  />
+                </div>
+                <p className="text-[11px] text-dark-500 mt-2 text-center">📹 School busses always passing</p>
               </div>
-            )}
-          </div>
+            </div>
+          </motion.div>
         </div>
       </section>
 
@@ -423,7 +411,7 @@ export default function HomePage() {
               className="text-dark-300 text-center mb-12 max-w-xl mx-auto leading-relaxed"
               style={{ fontSize: "clamp(0.95rem, 2vw, 1.1rem)" }}
             >
-              An barely-authorized 184-foot unlit tower 1k ft. due south of a
+              A barely-authorized 184-foot unlit tower 1k ft. due south of a
               landing corridor isn't even the worst of it — here's what else is
               in store for our community if we don't demand this thing comes
               down...
@@ -1208,6 +1196,28 @@ export default function HomePage() {
           SIGN THE PETITION & TAKE ACTION
         </Link>
       </div>
+
+      {/* Fullscreen Lightbox */}
+      {lightbox && (
+        <div
+          className="fixed inset-0 z-50 bg-black flex items-center justify-center"
+          onClick={() => setLightbox(null)}
+        >
+          <button
+            onClick={() => setLightbox(null)}
+            className="absolute top-4 right-4 w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-white text-xl hover:bg-white/20 transition-all z-10"
+          >
+            ✕
+          </button>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={lightbox}
+            alt="Tower photo fullscreen"
+            className="max-h-[90vh] max-w-full object-contain"
+            onClick={(e) => e.stopPropagation()}
+          />
+        </div>
+      )}
     </>
   );
 }

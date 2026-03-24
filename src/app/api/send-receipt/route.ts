@@ -3,13 +3,43 @@ import { NextResponse } from "next/server";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
+/** Escape HTML special characters to prevent XSS */
+function esc(str: string | null | undefined): string {
+  if (!str) return "";
+  return str
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
+}
+
 export async function POST(req: Request) {
   try {
-    const { firstName, lastName, email, zipCode, streetAddress, phone, comment, optInContact, canHelp } = await req.json();
+    const body = await req.json();
+
+    // Sanitize + enforce length limits
+    const firstName = esc(String(body.firstName || "").slice(0, 100));
+    const lastName = esc(String(body.lastName || "").slice(0, 100));
+    const email = String(body.email || "").slice(0, 254).trim().toLowerCase();
+    const zipCode = esc(String(body.zipCode || "").slice(0, 10));
+    const streetAddress = esc(String(body.streetAddress || "").slice(0, 200));
+    const phone = esc(String(body.phone || "").slice(0, 20));
+    const comment = esc(String(body.comment || "").slice(0, 2000));
+    const optInContact = Boolean(body.optInContact);
+    const canHelp = Boolean(body.canHelp);
 
     if (!email || !firstName) {
       return NextResponse.json(
         { error: "Missing required fields" },
+        { status: 400 }
+      );
+    }
+
+    // Server-side email format check
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      return NextResponse.json(
+        { error: "Invalid email format" },
         { status: 400 }
       );
     }
