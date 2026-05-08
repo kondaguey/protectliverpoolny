@@ -14,6 +14,7 @@ const factsSubLinks: { href: string; label: string }[] = [
   { href: "/the-facts/wildlife", label: "Wildlife & Environment" },
   { href: "/the-facts/surveillance", label: "The Real Question" },
   { href: "/the-facts/loophole-kings", label: "Loophole Kings" },
+  { href: "/the-facts/foil-evidence", label: "📂 FOIL Evidence" },
   { href: "---", label: "---" },
   { href: "/code-of-conduct", label: "📜 Code of Conduct" },
   { href: "/npc-takes", label: "🎮 NPC Takes" },
