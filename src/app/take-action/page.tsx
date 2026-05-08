@@ -355,8 +355,8 @@ export default function TakeActionPage() {
             Ignore.
           </motion.h1>
 
-          {/* Signature counter — shows once data has loaded */}
-          {signatureCount !== null && signatureCount > 0 && (
+          {/* Signature counter — auto-shows at 100+ signatures */}
+          {signatureCount !== null && signatureCount >= 100 && (
             <motion.div
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
@@ -400,8 +400,8 @@ export default function TakeActionPage() {
                   Your signature has been recorded. But don't stop here—the
                   actions below are how we actually win this fight.
                 </p>
-                {/* Signature count — shows once data has loaded */}
-                {signatureCount !== null && signatureCount > 0 && (
+                {/* Signature count — auto-shows at 100+ */}
+                {signatureCount !== null && signatureCount >= 100 && (
                   <div className="inline-flex items-center gap-2 px-5 py-2 bg-emerald-900/40 border border-emerald-700/30 rounded-full">
                     <Users className="w-4 h-4 text-emerald-400" />
                     <span className="text-emerald-300 font-bold">
