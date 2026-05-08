@@ -414,7 +414,7 @@ export default function WildlifePage() {
                   that an applicant fills out themselves to receive an automated screening result. It is not a USFWS letter. It is not a formal Section 7 consultation under the Endangered Species Act. It is not a site visit. It is a checkbox interview conducted with no biologist in the loop.
                 </p>
                 <p className="text-dark-200 text-sm leading-relaxed">
-                  No bird-flight-path study is attached to the SEQRA file. No project-specific roost survey. No correspondence with a USFWS field biologist. The FOIL response contains <strong className="text-purple-300">zero records</strong> of any direct USFWS consultation.
+                  No bird-flight-path study is attached to the SEQRA file. No project-specific roost survey. No correspondence with a USFWS field biologist. NYSTA&rsquo;s May 8, 2026 production of <strong className="text-white">93 documents</strong> contains <strong className="text-purple-300">zero records</strong> of any direct USFWS consultation.
                 </p>
               </div>
               <p className="text-base font-bold text-white mb-2">What the documented record actually shows:</p>

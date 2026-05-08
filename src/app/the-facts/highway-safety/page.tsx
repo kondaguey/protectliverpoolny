@@ -271,7 +271,7 @@ export default function HighwaySafetyPage() {
             </p>
             <div className="space-y-4 text-dark-200 leading-relaxed">
               <p>
-                Buried in the <strong className="text-white">11/6/2025 PTI Construction Permit</strong> &mdash; signed by applicant Jackie Donahue (Phoenix Tower International), with InfraServices contact Darrell Paulson &mdash; is a piece of equipment never disclosed in any public meeting or community-facing document:
+                Documented in <strong className="text-white">NYSTA Building Permit SYR-2025-003</strong> (issued December 2, 2025 by Code Compliance Specialist Joshua Stagnitti, expires December 1, 2028) and confirmed on AT&amp;T&rsquo;s construction drawings Rev 2 (Sheet T01) &mdash; a piece of equipment never disclosed in any public meeting or community-facing document:
               </p>
               <div className="bg-dark-950/60 border border-amber-700/30 rounded-xl p-5 my-2">
                 <p className="text-base text-white font-semibold mb-2">
@@ -279,14 +279,23 @@ export default function HighwaySafetyPage() {
                   <span className="text-amber-300">145-gallon belly tank</span>, mounted on a steel platform at grade inside a 50&rsquo;&times;50&rsquo; fenced compound, approximately 100 feet from the active I-90 off-ramp.
                 </p>
                 <p className="text-xs text-dark-500 italic">
-                  Source:{" "}
+                  Sources:{" "}
                   <a
-                    href="/foil/us-ny-2029-t3u250002-construction-permit-11-06-2025.pdf"
+                    href="/foil/nysta-building-permit-syr-2025-003-20251202.pdf"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-amber-400 underline decoration-amber-500/40 hover:decoration-amber-400"
                   >
-                    US-NY-2029_T3U250002_CONSTRUCTION_PERMIT.11.06.2025.pdf
+                    NYSTA Building Permit SYR-2025-003
+                  </a>
+                  ;{" "}
+                  <a
+                    href="/foil/att-construction-drawings-rev2-20251107.pdf"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-amber-400 underline decoration-amber-500/40 hover:decoration-amber-400"
+                  >
+                    AT&amp;T Construction Drawings Rev 2 (11/7/2025)
                   </a>
                 </p>
               </div>
@@ -313,6 +322,105 @@ export default function HighwaySafetyPage() {
               <p>
                 None of this was raised in a public meeting because there was no public meeting. None of it was raised in environmental review because, as NYSTA confirmed in the same FOIL response,{" "}
                 <strong className="text-danger-400">no Alternative Site Analysis was ever conducted</strong>.
+              </p>
+            </div>
+          </motion.div>
+
+          {/* ── SABRE DESIGN PARAMETERS ── */}
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeUp}
+            custom={5}
+            className="bg-sky-950/20 border border-sky-800/30 rounded-2xl p-6 md:p-8 mb-6"
+          >
+            <p className="text-xs font-bold text-sky-400 uppercase tracking-widest mb-3">
+              📐 What Sabre Industries Designed &mdash; In Their Own Numbers
+            </p>
+            <div className="space-y-4 text-dark-200 leading-relaxed">
+              <p>
+                The 184-foot monopole was designed by <strong className="text-white">Sabre Industries, Inc.</strong> of Alvarado, Texas. Engineer of record: <strong className="text-white">Robert Beacom</strong>, sealed July 15, 2025 (license expires July 31, 2026). The 36-page sealed structural design report (Job 25-3277-JDS-R1, Rev B) discloses every design parameter that goes into the tower&rsquo;s safety calculations.
+              </p>
+              <div className="overflow-x-auto">
+                <table className="w-full text-sm border-collapse">
+                  <thead>
+                    <tr className="bg-dark-950/60 border-b border-sky-700/30">
+                      <th className="text-left p-3 font-bold text-sky-300">Parameter</th>
+                      <th className="text-left p-3 font-bold text-sky-300">Value</th>
+                      <th className="text-left p-3 font-bold text-sky-300">Notes</th>
+                    </tr>
+                  </thead>
+                  <tbody className="text-dark-200">
+                    <tr className="border-b border-dark-800/40">
+                      <td className="p-3 font-semibold">Standard</td>
+                      <td className="p-3">ANSI/TIA-222-H</td>
+                      <td className="p-3 text-dark-400">NY Building Code Chapter 35 references the older TIA-222-G-2005</td>
+                    </tr>
+                    <tr className="border-b border-dark-800/40">
+                      <td className="p-3 font-semibold">Wind speed (no ice)</td>
+                      <td className="p-3">109 mph</td>
+                      <td className="p-3 text-dark-400">3-second gust</td>
+                    </tr>
+                    <tr className="border-b border-dark-800/40">
+                      <td className="p-3 font-semibold">Wind speed (with ice)</td>
+                      <td className="p-3">40 mph</td>
+                      <td className="p-3 text-dark-400">3-second gust</td>
+                    </tr>
+                    <tr className="border-b border-dark-800/40">
+                      <td className="p-3 font-semibold">Design ice thickness</td>
+                      <td className="p-3"><strong className="text-white">1.50 inches</strong></td>
+                      <td className="p-3 text-dark-400">Drives ice-shedding throw analysis &mdash; see below</td>
+                    </tr>
+                    <tr className="border-b border-dark-800/40">
+                      <td className="p-3 font-semibold">Risk Category</td>
+                      <td className="p-3"><strong className="text-sky-300">II</strong></td>
+                      <td className="p-3 text-dark-400">Lowest meaningful category &mdash; arguably should be III given highway/residential proximity</td>
+                    </tr>
+                    <tr className="border-b border-dark-800/40">
+                      <td className="p-3 font-semibold">Site Class</td>
+                      <td className="p-3">D (DEFAULT)</td>
+                      <td className="p-3 text-dark-400"><em>Not field-verified</em></td>
+                    </tr>
+                    <tr className="border-b border-dark-800/40">
+                      <td className="p-3 font-semibold">Base Moment</td>
+                      <td className="p-3"><strong className="text-white">6,352.75 ft-kips</strong></td>
+                      <td className="p-3 text-dark-400">Overturning load the foundation must resist</td>
+                    </tr>
+                    <tr className="border-b border-dark-800/40">
+                      <td className="p-3 font-semibold">Base Axial / Shear</td>
+                      <td className="p-3">69.92 kips / 48.07 kips</td>
+                      <td className="p-3 text-dark-400">At design wind</td>
+                    </tr>
+                    <tr className="border-b border-dark-800/40">
+                      <td className="p-3 font-semibold">Top Deflection / Sway</td>
+                      <td className="p-3">9.54 ft / 4.99&deg;</td>
+                      <td className="p-3 text-dark-400">At design wind</td>
+                    </tr>
+                    <tr>
+                      <td className="p-3 font-semibold">Foundation</td>
+                      <td className="p-3">Two options designed</td>
+                      <td className="p-3 text-dark-400">Type undecided in this report</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <p>
+                The <strong className="text-sky-300">Risk Category II</strong> selection is the cost-savings choice. ANSI/TIA-222-H assigns Risk Category III to structures whose failure &ldquo;would cause a substantial impact on health, safety, environment, or essential services.&rdquo; A 184-foot tower ~100 feet from an active I-90 off-ramp, adjacent to R-O residential zoning, with 145 gallons of diesel fuel and three-carrier commercial 5G equipment, plausibly meets that bar. Risk Category II reduces required design loads &mdash; an engineering choice with cost implications.
+              </p>
+              <p>
+                <strong className="text-sky-300">Site Class D (DEFAULT)</strong> means the soil class was assumed, not field-verified. Tectonic Engineering&rsquo;s geotechnical boring (B-1, drilled 11/6/2024 to 50 ft depth) showed wet, layered silty sand transitioning to wet sandy silt with rock fragments, and groundwater at 28.10 ft. Default class assumption may underestimate seismic amplification.
+              </p>
+              <p className="text-xs text-dark-500 italic">
+                Source:{" "}
+                <a
+                  href="/foil/sabre-structural-design-report-rev-b-20250715.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-sky-400 underline decoration-sky-500/40 hover:decoration-sky-400"
+                >
+                  25-3277-JDS-R1-RB Permit Package — Sabre Industries Structural Design Report (Rev B)
+                </a>
               </p>
             </div>
           </motion.div>
@@ -450,6 +558,63 @@ export default function HighwaySafetyPage() {
               <p>
                 A foundation-type mismatch between the structural analysis input and the as-built design is a{" "}
                 <strong className="text-danger-400">textbook safety review trigger</strong>. NYSTA closed this item without producing the reconciliation memo &mdash; the document showing that the loads were re-calculated against the actual foundation. We&rsquo;ve asked. It is not in the production.
+              </p>
+            </div>
+          </motion.div>
+
+          {/* ── ICE-SHEDDING FROM SABRE ── */}
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeUp}
+            custom={8}
+            className="bg-cyan-950/20 border border-cyan-800/30 rounded-2xl p-6 md:p-8 mb-6"
+          >
+            <p className="text-xs font-bold text-cyan-400 uppercase tracking-widest mb-3">
+              🧊 Ice-Shedding Hazard &mdash; Calculated From Sabre&rsquo;s Own Numbers
+            </p>
+            <div className="space-y-4 text-dark-200 leading-relaxed">
+              <p>
+                Until May 8, 2026, the campaign&rsquo;s ice-shedding analysis cited{" "}
+                <a href="https://insidetowers.com/its-killer-icicle-season/" target="_blank" rel="noopener noreferrer" className="text-cyan-300 underline decoration-cyan-500/40 hover:decoration-cyan-400">OSHA&rsquo;s 50&ndash;100 ft horizontal heuristic</a>{" "}
+                applied to a generic 184-ft tower in Syracuse weather. Now, with the Sabre design report in hand, we have <strong className="text-white">project-specific design parameters</strong>:
+              </p>
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+                <div className="bg-dark-950/60 border border-cyan-700/30 rounded-xl p-4 text-center">
+                  <p className="text-2xl font-black text-cyan-300">184 ft</p>
+                  <p className="text-[10px] text-dark-400 uppercase tracking-wider font-bold mt-1 leading-tight">Total height (180&rsquo; pole + 4&rsquo; lightning rod)</p>
+                </div>
+                <div className="bg-dark-950/60 border border-cyan-700/30 rounded-xl p-4 text-center">
+                  <p className="text-2xl font-black text-cyan-300">1.50&rdquo;</p>
+                  <p className="text-[10px] text-dark-400 uppercase tracking-wider font-bold mt-1 leading-tight">Design ice thickness (Sabre)</p>
+                </div>
+                <div className="bg-dark-950/60 border border-cyan-700/30 rounded-xl p-4 text-center">
+                  <p className="text-2xl font-black text-cyan-300">109 mph</p>
+                  <p className="text-[10px] text-dark-400 uppercase tracking-wider font-bold mt-1 leading-tight">Design wind speed (Sabre)</p>
+                </div>
+                <div className="bg-dark-950/60 border border-danger-700/30 rounded-xl p-4 text-center">
+                  <p className="text-2xl font-black text-danger-400">~100 ft</p>
+                  <p className="text-[10px] text-dark-400 uppercase tracking-wider font-bold mt-1 leading-tight">Tower base to active off-ramp</p>
+                </div>
+              </div>
+              <p>
+                These are not abstract numbers. They are the <em>design assumptions</em> the manufacturer used to engineer the structure. A 184-ft tower designed to accumulate <strong className="text-white">1.5 inches of radial ice</strong> in <strong className="text-white">109 mph design wind</strong> is, by any reasonable application of OSHA&rsquo;s 50&ndash;100 ft horizontal-throw heuristic, a documented projectile hazard above an active highway off-ramp.
+              </p>
+              <p>
+                The campaign&rsquo;s next step is a project-specific ice-shed calculation using these inputs. Until then, the responsible parties &mdash; PTI, NYSTA, and the FHWA &mdash; can produce one. Our position remains: <strong className="text-cyan-300">Sabre&rsquo;s design parameters are public now. The ice-throw envelope follows from physics. Either someone calculates it, or the public should know it has not been calculated.</strong>
+              </p>
+              <p className="text-xs text-dark-500 italic">
+                Source:{" "}
+                <a
+                  href="/foil/sabre-structural-design-report-rev-b-20250715.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-cyan-400 underline decoration-cyan-500/40 hover:decoration-cyan-400"
+                >
+                  Sabre Industries Structural Design Report Rev B (7/15/2025)
+                </a>
+                .
               </p>
             </div>
           </motion.div>

@@ -44,9 +44,14 @@ const categories: Category[] = [
       "PTI Occupancy Permit T3U250002, Anchor Tenant and Tenant Install Amendments, Construction Permits, Site/Structural Agreements. Section II.A of the PTI Permit is the most consequential sentence in the entire response: \"There is no term. This Occupancy Permit is revocable, unilaterally, upon demand by the Authority.\"",
     produced: [
       {
+        title: "NYSTA Building Permit SYR-2025-003 (12/2/2025)",
+        href: "/foil/nysta-building-permit-syr-2025-003-20251202.pdf",
+        note: "Issued December 2, 2025 by Joshua Stagnitti, Code Compliance Specialist (expires December 1, 2028). Reference R3642. Filename misleadingly labeled 'AT_T_Exit_37_Permit.pdf' — actual permittee is PTI. Documents the 30 kW diesel generator + 145-gallon belly tank. Future FOIL targets: 3rd Party Concrete Inspection Report, 3rd Party Electrical Inspection, Footing before pouring, Final Completion.",
+      },
+      {
         title: "PTI Occupancy Permit T3U250002 (Redacted)",
         href: "/foil/t3u250002-pti-salina-cell-tower-redacted.pdf",
-        note: "22-page Condition Rider issued June 23, 2025. Section II.A: unilaterally revocable by NYSTA. Annual Fee redacted under §87(2)(b) — invalid for corporations.",
+        note: "22-page Condition Rider issued June 23, 2025 by Trevor Thieme. Section II.A: unilaterally revocable by NYSTA. Annual Fee redacted under §87(2)(b) — invalid for corporations. PDF metadata indicates the redacted version was finalized April 28, 2026 — 10 days before NYSTA released it.",
       },
       {
         title: "PTI Occupancy Permit T3U250002 — Occupancy Permit version (Redacted)",
@@ -150,6 +155,31 @@ const categories: Category[] = [
     blurb:
       "SEQRA Negative Declaration with NYSTA as self-designated Lead Agency, NEPA review, ASCE Hazard Reports, structural analyses, geotechnical investigations, wetlands delineation, and the engineering review trail that documents missing structural reports, missing hazard reports, and a foundation-type mismatch caught by NYSTA's own engineer Joshua Stagnitti.",
     produced: [
+      {
+        title: "Sabre Industries Structural Design Report Rev B (7/15/2025)",
+        href: "/foil/sabre-structural-design-report-rev-b-20250715.pdf",
+        note: "36-page sealed structural design report (Job 25-3277-JDS-R1, Rev B). Engineer of record: Robert Beacom, Sabre Industries (Alvarado TX). Standard: ANSI/TIA-222-H (NY Code Chapter 35 references the older TIA-222-G-2005). Design wind 109 mph, design ice 1.50\", Risk Category II, Site Class D (DEFAULT — not field-verified). Base moment 6,352.75 ft-kips. Two foundation options designed; type undecided.",
+      },
+      {
+        title: "AT&T Construction Drawings Rev 2 (11/7/2025) — Liverpool BOCES",
+        href: "/foil/att-construction-drawings-rev2-20251107.pdf",
+        note: "23 sheets. Engineer of Record: Joseph R. Johnston, P.E. (NY License #091187). Sheet T01 discloses zoning district as R-O (Residence-Office), parcel 75-01-11.1, coordinates 43°06'06.87\"N 76°11'06.26\"W, AT&T applicant office 404 Smith St, Syracuse NY 13224. Sheet A05 contains AT&T's RF Table. Confirms 30 kW diesel + 145-gallon belly tank ground scope.",
+      },
+      {
+        title: "AT&T Mount Analysis Report — Airosmith (12/20/2024)",
+        href: "/foil/att-mount-analysis-airosmith-20241220.pdf",
+        note: "Engineer of record: Joseph R. Johnston, P.E. (NY License #091187). Author: Andrew D. Vargo, P.E. Firm: Airosmith Engineering, Saratoga Springs NY (NY COA #17285). Mount: SitePro1 F4P-12W. DCR 71.4% (Pass). Equipment: 8× Commscope NNH4-65C-R6H4 panels + 16 Ericsson radios across Bands 5/12/14/25/66/77 + 3 Raycap surge protectors. AT&T site name 'Liverpool BOCES'.",
+      },
+      {
+        title: "FAA 7460-1 Determination of No Hazard 2024-AEA-11624-OE — TOWER",
+        href: "/foil/faa-7460-tower-2024-aea-11624-oe.pdf",
+        note: "Issued 11/12/2024. Sponsor Mitchell Henry / PTI. Includes full frequency table: 6–7 GHz, 10–11.7 GHz, 17.7–19.7 GHz, 21.2–23.6 GHz (microwave backhaul ERP to 55 dBW); cellular 614–2690 MHz across multiple bands (ERPs up to 1640W PCS, 2000W 700MHz/WCS, 3500W paging). Marking/lighting NOT required for aviation safety.",
+      },
+      {
+        title: "FAA 7460-1 Determination 2025-AEA-11322-OE — CONSTRUCTION CRANE",
+        href: "/foil/faa-7460-crane-2025-aea-11322-oe.pdf",
+        note: "Issued 9/22/2025 (expires 3/22/2027). Crane operator: Clark Rigging & Rental, contact Mike Dombroski, 945 Spencer Street, Syracuse NY 13204. Crane height during construction: 220 ft AGL / 655 ft AMSL — taller than the finished tower.",
+      },
       {
         title: "NYSTA SEQRA R3 Final (Negative Declaration, Type I action)",
         href: "/foil/usny2029-nysta-seqra-r3-final.pdf",
@@ -482,8 +512,18 @@ const categories: Category[] = [
     number: "Item 6",
     label: "Fall Zone & Structural Safety Hazard Reports",
     blurb:
-      "ASCE Hazard Reports, TEP Structural Analyses, Tower/Foundation Drawings, three Construction Drawing versions, the Geotechnical Investigation, Topographic Survey, FAA 1A Survey, and Wetlands Delineation. The TEP Structural Analysis was based on a drilled pier foundation; the approved Construction Drawings show pad/pier — a foundation-type mismatch that NYSTA closed without producing the reconciliation memo.",
+      "Sabre Industries Structural Design Report (with full base reactions, Risk Category, design wind/ice), ASCE Hazard Reports, TEP Structural Analyses, Tower/Foundation Drawings, three Construction Drawing versions, the Geotechnical Investigation, Topographic Survey, FAA 1A Survey, and Wetlands Delineation. The TEP Structural Analysis was based on a drilled pier foundation; the approved Construction Drawings show pad/pier — a foundation-type mismatch that NYSTA closed without producing the reconciliation memo.",
     produced: [
+      {
+        title: "Sabre Industries Structural Design Report Rev B (7/15/2025)",
+        href: "/foil/sabre-structural-design-report-rev-b-20250715.pdf",
+        note: "Engineer of record: Robert Beacom (Sabre, Alvarado TX). Standard ANSI/TIA-222-H. Design wind 109 mph / ice 1.50\". Risk Category II. Site Class D (DEFAULT, not field-verified). Base moment 6,352.75 ft-kips. Two foundation options designed.",
+      },
+      {
+        title: "FAA 7460-1 — Construction Crane (2025-AEA-11322-OE)",
+        href: "/foil/faa-7460-crane-2025-aea-11322-oe.pdf",
+        note: "Crane operator Clark Rigging & Rental (Mike Dombroski). Crane height 220 ft AGL / 655 ft AMSL during construction.",
+      },
       {
         title: "ASCE Hazard Report — Exit 37 Liverpool",
         href: "/foil/us-ny-2029-exit-37-asce-hazard-report.pdf",
@@ -596,7 +636,7 @@ export default function FoilEvidencePage() {
               >
                 What 49 Days of Stalling Bought Us:
                 <br className="hidden sm:block" />{" "}
-                <span className="text-purple-400">81 Documents</span> That Tell the Story{" "}
+                <span className="text-purple-400">93 Documents</span> That Tell the Story{" "}
                 <span className="text-danger-500">NYSTA Tried Not to.</span>
               </motion.h1>
               <motion.p
@@ -619,8 +659,8 @@ export default function FoilEvidencePage() {
                 </p>
                 <div className="grid grid-cols-2 gap-4">
                   <div className="bg-dark-950/60 border border-dark-700/30 rounded-xl p-4 text-center">
-                    <p className="text-3xl font-black text-purple-300">81</p>
-                    <p className="text-[10px] text-dark-400 uppercase tracking-wider font-bold mt-1">unique documents</p>
+                    <p className="text-3xl font-black text-purple-300">93</p>
+                    <p className="text-[10px] text-dark-400 uppercase tracking-wider font-bold mt-1">records produced</p>
                   </div>
                   <div className="bg-dark-950/60 border border-dark-700/30 rounded-xl p-4 text-center">
                     <p className="text-3xl font-black text-danger-400">49</p>
