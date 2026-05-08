@@ -353,7 +353,7 @@ export default function AviationSafetyPage() {
             <p className="text-xs text-dark-500 italic mt-4">
               Source:{" "}
               <a
-                href="/foil/faa-7460-crane-2025-aea-11322-oe.pdf"
+                href="https://media.protectliverpoolny.org/foil/faa-7460-crane-2025-aea-11322-oe.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-orange-400 underline decoration-orange-500/40 hover:decoration-orange-400"
@@ -362,12 +362,12 @@ export default function AviationSafetyPage() {
               </a>
               . The tower&rsquo;s separate FAA filing (2024-AEA-11624-OE, issued 11/12/2024) is also in the FOIL production at{" "}
               <a
-                href="/foil/faa-7460-tower-2024-aea-11624-oe.pdf"
+                href="https://media.protectliverpoolny.org/foil/faa-7460-tower-2024-aea-11624-oe.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-orange-400 underline decoration-orange-500/40 hover:decoration-orange-400"
               >
-                /foil/faa-7460-tower-2024-aea-11624-oe.pdf
+                https://media.protectliverpoolny.org/foil/faa-7460-tower-2024-aea-11624-oe.pdf
               </a>
               .
             </p>

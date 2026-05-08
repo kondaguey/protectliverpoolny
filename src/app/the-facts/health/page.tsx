@@ -683,7 +683,7 @@ export default function HealthSciencePage() {
               <p className="text-xs text-dark-500 italic mt-4">
                 Source:{" "}
                 <a
-                  href="/foil/us-ny-2029-t3u250002-verizon-drawings.pdf"
+                  href="https://media.protectliverpoolny.org/foil/us-ny-2029-t3u250002-verizon-drawings.pdf"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-rose-400 underline decoration-rose-500/40 hover:decoration-rose-400"
@@ -815,7 +815,7 @@ export default function HealthSciencePage() {
             <p className="text-xs text-dark-500 italic mt-4">
               Source:{" "}
               <a
-                href="/foil/att-mount-analysis-airosmith-20241220.pdf"
+                href="https://media.protectliverpoolny.org/foil/att-mount-analysis-airosmith-20241220.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-amber-400 underline decoration-amber-500/40 hover:decoration-amber-400"
@@ -865,7 +865,7 @@ export default function HealthSciencePage() {
             <p className="text-xs text-dark-500 italic mt-4">
               Source:{" "}
               <a
-                href="/foil/faa-7460-tower-2024-aea-11624-oe.pdf"
+                href="https://media.protectliverpoolny.org/foil/faa-7460-tower-2024-aea-11624-oe.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-sky-400 underline decoration-sky-500/40 hover:decoration-sky-400"
@@ -899,7 +899,7 @@ export default function HealthSciencePage() {
               <p className="text-xs text-dark-500 italic">
                 Source:{" "}
                 <a
-                  href="/foil/att-mount-analysis-airosmith-20241220.pdf"
+                  href="https://media.protectliverpoolny.org/foil/att-mount-analysis-airosmith-20241220.pdf"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-fuchsia-400 underline decoration-fuchsia-500/40 hover:decoration-fuchsia-400"

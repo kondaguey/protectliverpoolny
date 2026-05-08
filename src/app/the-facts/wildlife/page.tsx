@@ -438,7 +438,7 @@ export default function WildlifePage() {
               <p className="text-xs text-dark-500 italic mt-4">
                 Source:{" "}
                 <a
-                  href="/foil/seqra-determination-letter-to-salina-final-w-att.pdf"
+                  href="https://media.protectliverpoolny.org/foil/seqra-determination-letter-to-salina-final-w-att.pdf"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-purple-300 underline decoration-purple-500/40 hover:decoration-purple-400"
@@ -447,7 +447,7 @@ export default function WildlifePage() {
                 </a>
                 {" "}and{" "}
                 <a
-                  href="/foil/usny2029-nysta-seqra-r3-final.pdf"
+                  href="https://media.protectliverpoolny.org/foil/usny2029-nysta-seqra-r3-final.pdf"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-purple-300 underline decoration-purple-500/40 hover:decoration-purple-400"

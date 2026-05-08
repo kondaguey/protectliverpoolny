@@ -15,11 +15,18 @@ const nextConfig: NextConfig = {
   },
   async redirects() {
     return [
-      // /foil and /foil/ go to the FOIL evidence catalog page.
-      // Direct file paths like /foil/some-file.pdf are still served
-      // as static files from /public/foil/ — they do not match these.
+      // Bare /foil and /foil/ → the FOIL evidence catalog page.
       { source: "/foil", destination: "/the-facts/foil-evidence", permanent: false },
       { source: "/foil/", destination: "/the-facts/foil-evidence", permanent: false },
+      // /foil/<filename> → the same file on R2 (media.protectliverpoolny.org).
+      // The PDFs were migrated out of public/foil/ to keep the repo and
+      // Vercel deploys lean. This redirect catches any stale links that
+      // still point at the old static path.
+      {
+        source: "/foil/:path+",
+        destination: "https://media.protectliverpoolny.org/foil/:path+",
+        permanent: false,
+      },
     ];
   },
 };

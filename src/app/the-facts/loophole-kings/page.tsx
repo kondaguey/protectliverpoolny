@@ -34,7 +34,7 @@ const loopholes = [
       "Buy a small home in an R-O district and try to install a 12-story office tower in the side yard. The Building Department will tell you which zoning class you're actually in and what it permits. Spoiler: not that.",
     color: "text-rose-400",
     bg: "bg-rose-950/30 border-rose-800/30",
-    link: "/foil/att-construction-drawings-rev2-20251107.pdf",
+    link: "https://media.protectliverpoolny.org/foil/att-construction-drawings-rev2-20251107.pdf",
   },
   {
     icon: FileX,
@@ -54,7 +54,7 @@ const loopholes = [
       "Sign your own home inspection report and send it to the buyer. Let us know how the closing goes.",
     color: "text-purple-400",
     bg: "bg-purple-950/30 border-purple-800/30",
-    link: "/foil/usny2029-nysta-seqra-r3-final.pdf",
+    link: "https://media.protectliverpoolny.org/foil/usny2029-nysta-seqra-r3-final.pdf",
   },
   {
     icon: Coins,
@@ -64,7 +64,7 @@ const loopholes = [
       "Tell the IRS your LLC has \"personal privacy\" rights and refuse to disclose its income. We will visit you in court.",
     color: "text-emerald-400",
     bg: "bg-emerald-950/30 border-emerald-800/30",
-    link: "/foil/t3u250002-pti-salina-cell-tower-redacted.pdf",
+    link: "https://media.protectliverpoolny.org/foil/t3u250002-pti-salina-cell-tower-redacted.pdf",
   },
   {
     icon: Clock,
@@ -74,7 +74,7 @@ const loopholes = [
       "File your taxes on April 28 and tell the IRS you'll be releasing them on June 1 because you weren't ready. The IRS will ask which part of \"weren't ready\" applies to a return you've already finalized.",
     color: "text-yellow-400",
     bg: "bg-yellow-950/30 border-yellow-800/30",
-    link: "/foil/t3u250002-pti-salina-cell-tower-redacted.pdf",
+    link: "https://media.protectliverpoolny.org/foil/t3u250002-pti-salina-cell-tower-redacted.pdf",
   },
   {
     icon: Clock,
@@ -84,7 +84,7 @@ const loopholes = [
       "Tell the IRS you don't have your W-2 — 17 minutes after they ask, without checking the mailbox the W-2 was certified-mailed to. Send your accountant flowers.",
     color: "text-cyan-400",
     bg: "bg-cyan-950/30 border-cyan-800/30",
-    link: "/foil/seqra-determination-letter-cert-mail-receipt.pdf",
+    link: "https://media.protectliverpoolny.org/foil/seqra-determination-letter-cert-mail-receipt.pdf",
   },
   {
     icon: ShieldOff,

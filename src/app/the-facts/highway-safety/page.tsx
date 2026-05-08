@@ -281,7 +281,7 @@ export default function HighwaySafetyPage() {
                 <p className="text-xs text-dark-500 italic">
                   Sources:{" "}
                   <a
-                    href="/foil/nysta-building-permit-syr-2025-003-20251202.pdf"
+                    href="https://media.protectliverpoolny.org/foil/nysta-building-permit-syr-2025-003-20251202.pdf"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-amber-400 underline decoration-amber-500/40 hover:decoration-amber-400"
@@ -290,7 +290,7 @@ export default function HighwaySafetyPage() {
                   </a>
                   ;{" "}
                   <a
-                    href="/foil/att-construction-drawings-rev2-20251107.pdf"
+                    href="https://media.protectliverpoolny.org/foil/att-construction-drawings-rev2-20251107.pdf"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-amber-400 underline decoration-amber-500/40 hover:decoration-amber-400"
@@ -414,7 +414,7 @@ export default function HighwaySafetyPage() {
               <p className="text-xs text-dark-500 italic">
                 Source:{" "}
                 <a
-                  href="/foil/sabre-structural-design-report-rev-b-20250715.pdf"
+                  href="https://media.protectliverpoolny.org/foil/sabre-structural-design-report-rev-b-20250715.pdf"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-sky-400 underline decoration-sky-500/40 hover:decoration-sky-400"
@@ -450,7 +450,7 @@ export default function HighwaySafetyPage() {
                 <p className="text-xs text-dark-500">
                   &mdash; NYSTA review item #3, 8/27/2025; carried unresolved into 11/6/2025 AT&amp;T Round 2. PTI&rsquo;s response was simply &ldquo;DRAWINGS UPDATED.&rdquo; The standards mismatch was never reconciled in writing in the production. Source:{" "}
                   <a
-                    href="/foil/exit-37-att-review-8-27-2025.docx"
+                    href="https://media.protectliverpoolny.org/foil/exit-37-att-review-8-27-2025.docx"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-orange-400 underline decoration-orange-500/40 hover:decoration-orange-400"
@@ -459,7 +459,7 @@ export default function HighwaySafetyPage() {
                   </a>
                   ,{" "}
                   <a
-                    href="/foil/exit-37-att-review-r2-11-6-2025.docx"
+                    href="https://media.protectliverpoolny.org/foil/exit-37-att-review-r2-11-6-2025.docx"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-orange-400 underline decoration-orange-500/40 hover:decoration-orange-400"
@@ -505,7 +505,7 @@ export default function HighwaySafetyPage() {
               <p className="text-xs text-dark-500 italic">
                 Source:{" "}
                 <a
-                  href="/foil/verizon-exit-37-review-10-3-2025.docx"
+                  href="https://media.protectliverpoolny.org/foil/verizon-exit-37-review-10-3-2025.docx"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-rose-400 underline decoration-rose-500/40 hover:decoration-rose-400"
@@ -545,7 +545,7 @@ export default function HighwaySafetyPage() {
                 <p className="text-xs text-dark-500">
                   &mdash; NYSTA review item #18, 8/27/2025, carried into 11/6/2025 AT&amp;T Round 2. Source:{" "}
                   <a
-                    href="/foil/exit-37-att-review-8-27-2025.docx"
+                    href="https://media.protectliverpoolny.org/foil/exit-37-att-review-8-27-2025.docx"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-fuchsia-400 underline decoration-fuchsia-500/40 hover:decoration-fuchsia-400"
@@ -607,7 +607,7 @@ export default function HighwaySafetyPage() {
               <p className="text-xs text-dark-500 italic">
                 Source:{" "}
                 <a
-                  href="/foil/sabre-structural-design-report-rev-b-20250715.pdf"
+                  href="https://media.protectliverpoolny.org/foil/sabre-structural-design-report-rev-b-20250715.pdf"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-cyan-400 underline decoration-cyan-500/40 hover:decoration-cyan-400"
