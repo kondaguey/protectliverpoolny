@@ -2,6 +2,8 @@ import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/Header";
+import { VerificationBanner } from "@/components/VerificationBanner";
+import { DisclaimerBanner } from "@/components/DisclaimerBanner";
 import { Footer } from "@/components/Footer";
 import { CookieBanner } from "@/components/CookieBanner";
 
@@ -130,8 +132,8 @@ export default function RootLayout({
   return (
     <html lang="en" className={inter.variable}>
       <head>
-        <link rel="preconnect" href="https://imagedelivery.net" />
-        <link rel="dns-prefetch" href="https://imagedelivery.net" />
+        <link rel="preconnect" href="https://media.protectliverpoolny.org" />
+        <link rel="dns-prefetch" href="https://media.protectliverpoolny.org" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
@@ -144,10 +146,12 @@ export default function RootLayout({
         >
           Skip to main content
         </a>
+        <VerificationBanner />
         <Header />
         <main id="main-content" className="flex-1" role="main">{children}</main>
         <Footer />
         <CookieBanner />
+        <DisclaimerBanner />
       </body>
     </html>
   );

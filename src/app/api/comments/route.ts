@@ -1,10 +1,5 @@
 import { NextResponse } from "next/server";
-import { createClient } from "@supabase/supabase-js";
-
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-);
+import { supabaseAdmin } from "@/lib/supabase-admin";
 
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
@@ -13,8 +8,10 @@ export async function GET(request: Request) {
   const offset = (page - 1) * limit;
 
   try {
-    // Get comments with content, ordered by newest first
-    const { data, error, count } = await supabase
+    // Server-side, service-role read. RLS on plny_signatures blocks the
+    // anon key, so we use the admin client and hand-pick which columns
+    // and filters are exposed in the JSON response (sanitization below).
+    const { data, error, count } = await supabaseAdmin
       .from("plny_signatures")
       .select("first_name, last_name, comment, created_at, zip_code, comment_anonymous", {
         count: "exact",
