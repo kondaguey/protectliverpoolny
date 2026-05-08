@@ -55,7 +55,7 @@ export default function WildlifePage() {
                 transition={{ duration: 0.6, delay: 0.3 }}
                 className="mt-6 text-xl text-dark-400 max-w-lg leading-relaxed"
               >
-                100+ bald eagles. 1.7 miles away. No environmental review. No USFWS consultation.
+                100+ bald eagles. 1.25 miles away. No environmental review provided. No USFWS consultation on record.
                 An industry already destroying eagle nests across America.
               </motion.p>
             </div>
@@ -66,7 +66,7 @@ export default function WildlifePage() {
             >
               <div className="rounded-2xl overflow-hidden border border-lime-800/30 shadow-2xl shadow-black/40">
                 <Image
-                  src="https://imagedelivery.net/5MAOvNjO0OBL917jHWR5AA/3461547c-bf7c-403d-5f32-d7d6168f8e00/public"
+                  src="https://media.protectliverpoolny.org/evidence/wildlife-tower.png"
                   alt="Bald eagle nesting on a cell tower — a documented phenomenon across the United States"
                   width={1200}
                   height={800}
@@ -109,31 +109,41 @@ export default function WildlifePage() {
               </p>
               <h4 className="font-bold text-white mb-2" style={{ fontSize: "clamp(1.3rem, 3vw, 1.6rem)" }}>
                 We Asked for the Environmental Reviews.{" "}
-                <span className="text-danger-400">They Haven't Answered.</span>
+                <span className="text-danger-400">They Don&apos;t Exist.</span>
               </h4>
               <p className="text-dark-200 text-base leading-relaxed mb-5">
                 Federal guidelines require environmental review when siting towers near protected habitat.{" "}
                 <strong className="text-white">Onondaga Lake hosts 100+ federally
                 protected bald eagles</strong> — the largest urban wintering
                 roost in New York State. This tower sits{" "}
-                <strong className="text-danger-400">1.7 miles away</strong>, within
+                <strong className="text-danger-400">1.25 miles away</strong>, within
                 their confirmed foraging range.
               </p>
 
-              {/* FOIL callout */}
-              <div className="bg-white/5 border border-white/10 rounded-xl p-5 mb-5">
-                <p className="text-base font-bold text-white mb-2">
-                  📄 Freedom of Information Request — Filed & Pending
+              {/* DEC FOIL CONFIRMED */}
+              <div className="bg-danger-950/40 border border-danger-700/40 rounded-xl p-5 mb-5">
+                <p className="text-base font-bold text-danger-400 mb-2">
+                  📄 FOIL Response: NYS DEC Has Zero Records
                 </p>
                 <p className="text-dark-300 text-sm leading-relaxed mb-3">
-                  We filed a FOIL request for{" "}
-                  <strong className="text-white">all SEQRA documents, environmental
-                  impact assessments, RF emissions studies, and USFWS consultations</strong>.{" "}
-                  The response: <em>&quot;We are researching your request and will notify you within 20 business days.&quot;</em>
+                  On March 25, 2026, we filed a Freedom of Information Law (FOIL) request with the{" "}
+                  <strong className="text-white">NYS Department of Environmental Conservation (DEC), Region 7</strong>,
+                  requesting any Environmental Assessment Forms (EAFs), SEQRA determinations, wildlife impact
+                  assessments, or correspondence related to the tower at 474 Electronics Parkway.
                 </p>
+                <p className="text-dark-300 text-sm leading-relaxed mb-3">
+                  On April 1, 2026, the DEC responded:
+                </p>
+                <blockquote className="border-l-3 border-danger-500 pl-4 my-3 italic text-dark-200 text-sm">
+                  &ldquo;Please be advised that a diligent search of the files maintained by DEC produced no responsive records.&rdquo;
+                  <br />
+                  <span className="not-italic text-dark-500 text-xs">
+                    &mdash; Region 7 FOIL Coordinator, NYS Department of Environmental Conservation, FOIL #W162712-032526, April 1, 2026
+                  </span>
+                </blockquote>
                 <p className="text-dark-200 text-base font-semibold">
-                  If the reviews were done — show us.{" "}
-                  <span className="text-danger-400">If they weren't — why not?</span>
+                  No EAFs. No SEQRA review. No wildlife consultation. No correspondence between the DEC and NYSTA or PTI.{" "}
+                  <span className="text-danger-400">The state&apos;s own environmental agency has zero records related to a 184-foot tower being built 1.25 miles from the largest urban bald eagle roost in New York State.</span>
                 </p>
               </div>
 
@@ -196,7 +206,7 @@ export default function WildlifePage() {
                   <p className="text-dark-200 text-sm leading-relaxed">
                     At 184 feet — nearly twice the height of highway light poles — this tower will be{" "}
                     <strong className="text-white">the tallest structure</strong>{" "}
-                    near Onondaga Lake. With 100+ eagles 1.7 miles away, it's not <em>if</em> they
+                    near Onondaga Lake. With 100+ eagles 1.25 miles away, it's not <em>if</em> they
                     find it — it's <em>when</em>.{" "}
                     <strong className="text-white">Tower goes up → eagles nest → telecom
                     upgrades → nest destroyed.</strong>{" "}
@@ -204,6 +214,69 @@ export default function WildlifePage() {
                     <strong className="text-danger-400">6G is already in development</strong> —
                     more upgrades, more nest removals for decades.
                   </p>
+                </div>
+
+                {/* Mount Pleasant case study */}
+                <div className="bg-danger-950/30 border border-danger-500/30 rounded-lg px-4 py-4">
+                  <p className="text-dark-400 text-xs font-bold uppercase tracking-widest mb-2">
+                    It Already Happened
+                  </p>
+                  <p className="text-base font-bold text-white mb-2">
+                    Mount Pleasant, SC: Eagle Nest Illegally Removed from Cell Tower
+                  </p>
+                  <p className="text-dark-200 text-sm leading-relaxed mb-3">
+                    In January 2023, workers removed a bald eagle nest from a cell tower
+                    in Mount Pleasant, South Carolina —{" "}
+                    <strong className="text-danger-400">without a permit from U.S. Fish &amp; Wildlife</strong>.
+                    Removing an active raptor nest without federal authorization is a violation of the{" "}
+                    <strong className="text-white">Bald and Golden Eagle Protection Act</strong> and a federal offense.
+                    The mayor called it &quot;appalling.&quot; Wildlife experts warned it could
+                    disrupt breeding season.
+                  </p>
+                  <p className="text-dark-200 text-sm leading-relaxed mb-3">
+                    This is not hypothetical. This is{" "}
+                    <strong className="text-white">exactly the cycle</strong> we are warning
+                    about: tower goes up → eagles nest → telecom needs upgrades → nest gets destroyed.
+                    It has already happened. It will happen again.
+                  </p>
+
+                  {/* Embedded video */}
+                  <div className="rounded-lg overflow-hidden border border-dark-800/50 mb-3">
+                    <div className="relative w-full" style={{ paddingBottom: "56.25%" }}>
+                      <iframe
+                        src="https://www.youtube.com/embed/fOviJWbRHes"
+                        title="Bald eagle nest removed from cell tower in Mount Pleasant — WPDE ABC15"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowFullScreen
+                        className="absolute inset-0 w-full h-full"
+                      />
+                    </div>
+                  </div>
+                  <p className="text-dark-500 text-xs italic mb-3">
+                    Source: WPDE ABC15, January 2023 — &quot;Controversial bald eagle nest removed
+                    from cell tower in Mount Pleasant; Wildlife experts weigh in&quot;
+                  </p>
+
+                  <div className="flex flex-wrap gap-3">
+                    <a
+                      href="https://wpde.com/news/local/lowcountry-bald-eagle-nest-removed-mount-pleasant-cell-tower"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 text-sm font-semibold text-danger-400 hover:underline"
+                    >
+                      Full Story (WPDE)
+                      <ExternalLink className="w-3.5 h-3.5" />
+                    </a>
+                    <a
+                      href="https://www.youtube.com/watch?v=fOviJWbRHes"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 text-sm font-semibold text-danger-400 hover:underline"
+                    >
+                      Watch on YouTube
+                      <ExternalLink className="w-3.5 h-3.5" />
+                    </a>
+                  </div>
                 </div>
 
                 {/* USFWS guidelines */}
@@ -238,7 +311,7 @@ export default function WildlifePage() {
                   <p className="text-dark-300 text-sm leading-relaxed">
                     Eagle territories span{" "}
                     <strong className="text-danger-400">2.5–15 square miles</strong>.
-                    At 1.7 miles from the roost, this tower sits squarely within foraging range.
+                    At 1.25 miles from the roost, this tower sits squarely within foraging range.
                     Liverpool residents confirm eagles regularly fly over the area.
                   </p>
                   <a
@@ -298,9 +371,95 @@ export default function WildlifePage() {
                   Bald and Golden Eagle Protection Act.</strong>{" "}
                   Fines up to <strong className="text-danger-400">$250,000</strong> and criminal
                   prosecution. Was this tower sited in compliance with federal wildlife guidelines?{" "}
-                  <strong className="text-danger-400">We asked. Still waiting.</strong>
+                  <strong className="text-danger-400">We asked. The DEC has zero records. NYSTA is still stalling.</strong>
                 </p>
               </div>
+            </div>
+          </motion.div>
+
+          {/* ═══════════════════ SEQRA "NO EFFECT" — May 8, 2026 FOIL ═══════════════════ */}
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeUp}
+            custom={0.5}
+          >
+            <div className="bg-purple-950/30 border-2 border-purple-700/40 rounded-2xl p-6 md:p-8 mb-6">
+              <p className="text-purple-300 text-sm font-bold uppercase tracking-widest mb-2">
+                📂 May 8, 2026 FOIL Production — NYSTA SEQRA Determination
+              </p>
+              <h4 className="font-bold text-white mb-4" style={{ fontSize: "clamp(1.3rem, 3vw, 1.6rem)" }}>
+                SEQRA Said &ldquo;No Effect&rdquo; on the Bald Eagle.{" "}
+                <span className="text-purple-300">Here&apos;s What That Was Based On.</span>
+              </h4>
+              <p className="text-dark-200 text-base leading-relaxed mb-4">
+                On May 8, 2026, NYSTA produced its full SEQRA review file in response to FOIL Request{" "}
+                <strong className="text-white">#R000082-032026</strong>. NYSTA&rsquo;s FEAF Part 3 evaluation &mdash; written by NYSTA acting as the self-designated Lead Agency on its own land lease &mdash; reaches the following conclusion about the bald eagle:
+              </p>
+              <blockquote className="border-l-4 border-purple-500 pl-5 my-4 italic text-dark-100 text-base bg-dark-950/40 py-3 rounded-r-lg">
+                &ldquo;The project area does not provide suitable habitat for the Bald Eagle; therefore, the project &lsquo;No Effect&rsquo; on the Bald Eagle.&rdquo;
+                <br />
+                <span className="not-italic text-dark-500 text-xs">
+                  &mdash; NYSTA, FEAF Part 3, transmitted to the Town of Salina with the SEQRA Determination Letter.
+                </span>
+              </blockquote>
+              <p className="text-base font-bold text-white mb-2">What this conclusion was actually based on:</p>
+              <div className="bg-dark-900/40 rounded-xl p-5 mb-4">
+                <p className="text-dark-200 text-sm leading-relaxed mb-3">
+                  The supporting analysis cited by NYSTA is the{" "}
+                  <strong className="text-white">USFWS Northeast Determination Key</strong>{" "}
+                  &mdash; a{" "}
+                  <strong className="text-purple-300">self-serve web tool</strong>{" "}
+                  that an applicant fills out themselves to receive an automated screening result. It is not a USFWS letter. It is not a formal Section 7 consultation under the Endangered Species Act. It is not a site visit. It is a checkbox interview conducted with no biologist in the loop.
+                </p>
+                <p className="text-dark-200 text-sm leading-relaxed">
+                  No bird-flight-path study is attached to the SEQRA file. No project-specific roost survey. No correspondence with a USFWS field biologist. The FOIL response contains <strong className="text-purple-300">zero records</strong> of any direct USFWS consultation.
+                </p>
+              </div>
+              <p className="text-base font-bold text-white mb-2">What the documented record actually shows:</p>
+              <ul className="list-disc pl-5 space-y-1 text-sm text-dark-200 mb-4">
+                <li>
+                  <strong className="text-white">100+ federally protected bald eagles</strong> winter at Onondaga Lake &mdash; the largest urban bald eagle wintering roost in New York State &mdash; <strong className="text-purple-300">1.25 miles from this tower</strong>.
+                </li>
+                <li>
+                  Audubon EagleWatch and direct field observation by Liverpool residents document eagles regularly traveling over the project area.
+                </li>
+                <li>
+                  Bald eagle territories span <strong className="text-white">2.5&ndash;15 square miles</strong>. At 1.25 miles from the roost, this tower sits squarely within foraging range.
+                </li>
+                <li>
+                  The Audubon EagleWatch Program has documented bald eagles nesting on cell towers at rates of <strong className="text-white">20%&ndash;60%</strong> of monitored nests in similar regions.
+                </li>
+              </ul>
+              <p className="text-dark-200 text-base leading-relaxed">
+                A paper conclusion of <em>&ldquo;no suitable habitat&rdquo;</em> reached via a self-screening web tool is not the same as a field-verified, USFWS-signed habitat determination. NYSTA reviewed itself, and NYSTA gave itself a clean bill of health. The bald eagle &mdash; protected under federal law, with criminal penalties up to $250,000 for take &mdash; was dismissed in a single sentence supported by an automated checkbox.
+              </p>
+              <p className="text-xs text-dark-500 italic mt-4">
+                Source:{" "}
+                <a
+                  href="/foil/seqra-determination-letter-to-salina-final-w-att.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-purple-300 underline decoration-purple-500/40 hover:decoration-purple-400"
+                >
+                  SEQRA_Determination_Letter_to_Salina__final__w_att.pdf
+                </a>
+                {" "}and{" "}
+                <a
+                  href="/foil/usny2029-nysta-seqra-r3-final.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-purple-300 underline decoration-purple-500/40 hover:decoration-purple-400"
+                >
+                  USNY2029_NYSTA_SEQRA_R3_Final.pdf
+                </a>
+                . Full FOIL catalog at{" "}
+                <Link href="/the-facts/foil-evidence" className="text-purple-300 underline decoration-purple-500/40 hover:decoration-purple-400">
+                  /the-facts/foil-evidence
+                </Link>
+                .
+              </p>
             </div>
           </motion.div>
 

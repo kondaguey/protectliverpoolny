@@ -81,7 +81,7 @@ export default function HealthSciencePage() {
               <div className="rounded-2xl overflow-hidden border border-dark-700/50 shadow-2xl shadow-black/40">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
-                  src="https://imagedelivery.net/5MAOvNjO0OBL917jHWR5AA/942d82d3-f543-4db2-22fb-1c3f117bfe00/public"
+                  src="https://media.protectliverpoolny.org/evidence/health-effects.png"
                   alt="Health research evidence"
                   className="w-full h-auto"
                 />
@@ -95,6 +95,7 @@ export default function HealthSciencePage() {
         links={[
           { label: "Why It Matters to You", id: "why-it-matters" },
           { label: "What the Research Says", id: "the-science" },
+          { label: "Missing RF Studies (May 8, 2026 FOIL)", id: "missing-rf-studies" },
           { label: "The Federal Trap", id: "federal-trap" },
           { label: "The Real Question", id: "the-real-question" },
         ]}
@@ -622,6 +623,114 @@ export default function HealthSciencePage() {
         </div>
       </section>
 
+      {/* ═══════════════════ MISSING RF STUDIES (May 8, 2026 FOIL) ═══════════════════ */}
+      <section id="missing-rf-studies" className="py-16 md:py-24 px-4 scroll-mt-24">
+        <div className="max-w-4xl mx-auto">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-50px" }}
+            variants={fadeUp}
+            custom={0}
+          >
+            <div className="flex items-center gap-3 mb-6">
+              <div className="w-10 h-10 rounded-xl bg-rose-900/40 border border-rose-800/30 flex items-center justify-center">
+                <Radio className="w-5 h-5 text-rose-400" />
+              </div>
+              <h2 className="text-2xl md:text-3xl font-bold">
+                NYSTA Produced No RF Emissions or Propagation Studies
+              </h2>
+            </div>
+            <p className="text-dark-400 mb-6 max-w-2xl">
+              On May 8, 2026, NYSTA produced 81 documents in response to FOIL Request{" "}
+              <strong className="text-white">#R000082-032026</strong>. The set includes engineering reviews, construction drawings, structural analyses, and SEQRA documents. It does <strong className="text-rose-400">not</strong> include the RF emissions or propagation studies that any siting analysis is supposed to rely on.
+            </p>
+          </motion.div>
+
+          <div className="space-y-5">
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              variants={fadeUp}
+              custom={1}
+              className="bg-rose-950/20 border border-rose-800/30 rounded-2xl p-6 md:p-8"
+            >
+              <p className="text-xs font-bold text-rose-400 uppercase tracking-widest mb-3">
+                Verizon&rsquo;s Own Drawings Reference an RF Document — That Document Is Not in the FOIL
+              </p>
+              <p className="text-dark-200 text-base leading-relaxed mb-4">
+                The Verizon Construction Drawings produced in the FOIL response (sheet C-3) reference an{" "}
+                <strong className="text-white">&ldquo;RF Antenna Design Sheet dated 1/2/25, RFDS Project ID 17326150.&rdquo;</strong>{" "}
+                That document is not in the production. AT&amp;T&rsquo;s RF Design Sheet (RFDS) is also not in the production. T-Mobile is referenced as a future co-locator throughout the engineering files; no T-Mobile RF documentation appears.
+              </p>
+              <div className="bg-dark-950/60 border border-rose-700/30 rounded-xl p-5 mb-4">
+                <p className="text-sm text-dark-300 leading-relaxed mb-2">
+                  An RFDS is the document that defines:
+                </p>
+                <ul className="list-disc pl-5 space-y-1 text-sm text-dark-300">
+                  <li>The frequencies and channel counts on each antenna face.</li>
+                  <li>The transmit power per channel.</li>
+                  <li>The mechanical and electrical down-tilt of every antenna.</li>
+                  <li>The propagation map &mdash; the predicted RF coverage on the ground.</li>
+                  <li>The compliance calculation against FCC OET Bulletin 65 RF exposure limits.</li>
+                </ul>
+              </div>
+              <p className="text-dark-200 text-base leading-relaxed">
+                Without an RFDS, there is no documentary basis for the &ldquo;coverage objective&rdquo; the tower is supposed to serve, no propagation map showing the predicted ground-level RF, and no FCC Bulletin 65 compliance worksheet showing public-exposure limits are met at the nearest residence.
+              </p>
+              <p className="text-xs text-dark-500 italic mt-4">
+                Source:{" "}
+                <a
+                  href="/foil/us-ny-2029-t3u250002-verizon-drawings.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-rose-400 underline decoration-rose-500/40 hover:decoration-rose-400"
+                >
+                  US-NY-2029_T3U250002_VERIZON_DRAWINGS.pdf
+                </a>
+                {" "}sheet C-3 (Drawing Notes).
+              </p>
+            </motion.div>
+
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              variants={fadeUp}
+              custom={2}
+              className="bg-dark-900/60 border border-dark-800/50 rounded-2xl p-6 md:p-8"
+            >
+              <p className="text-xs font-bold text-rose-400 uppercase tracking-widest mb-3">
+                The &ldquo;Coverage Objective&rdquo; Document Doesn&rsquo;t Exist Either
+              </p>
+              <p className="text-dark-200 text-base leading-relaxed mb-3">
+                Under FOIL Item 7, we asked for the engineering or planning analysis showing why this specific site was chosen over alternatives. Per RAO Jill Warner&rsquo;s May 8, 2026 cover letter:{" "}
+                <strong className="text-rose-400">&ldquo;No records responsive to Item 7 were located.&rdquo;</strong>{" "}
+                There is no Alternative Site Analysis, no Coverage Objective study, and no carrier dead-zone analysis in the production. The full breakdown of that admission lives at{" "}
+                <Link
+                  href="/the-facts/loophole-kings"
+                  className="text-rose-400 underline decoration-rose-500/40 hover:decoration-rose-400"
+                >
+                  /the-facts/loophole-kings
+                </Link>
+                {" "}and the full FOIL catalog is at{" "}
+                <Link
+                  href="/the-facts/foil-evidence"
+                  className="text-rose-400 underline decoration-rose-500/40 hover:decoration-rose-400"
+                >
+                  /the-facts/foil-evidence
+                </Link>
+                .
+              </p>
+              <p className="text-dark-200 text-base leading-relaxed">
+                We&rsquo;ve filed a follow-up FOIL targeting the Verizon RFDS (Project ID 17326150) and any AT&amp;T or T-Mobile RF studies. If those documents exist, NYSTA has not yet produced them. If they don&rsquo;t exist, the public-exposure question for this tower has no documentary answer.
+              </p>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
       {/* ═══════════════════ THE FEDERAL TRAP ═══════════════════ */}
       <section id="federal-trap" className="py-16 md:py-24 px-4 bg-dark-900/30 scroll-mt-24">
         <div className="max-w-4xl mx-auto">
@@ -668,13 +777,12 @@ export default function HealthSciencePage() {
                 <strong className="text-white">
                   federal law is stacked against you
                 </strong>{" "}
-                . The telecom industry spent decades lobbying for this
                 protection, and it's baked into the law. In 1996, Congress
                 even{" "}
                 <strong className="text-white">
-                  defunded the EPA from researching RF radiation health effects
+                  eliminated the EPA&apos;s funding for non-ionizing radiation research
                 </strong>{" "}
-                —eliminating the one federal agency that could have set
+                — removing the one federal agency that could have set
                 science-based safety standards.
               </p>
               <p className="text-dark-200 leading-relaxed mb-4">

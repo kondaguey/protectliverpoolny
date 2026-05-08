@@ -27,7 +27,7 @@ import {
   ChevronLeft as ChevronLeftIcon,
   ChevronRight as ChevronRightIcon,
 } from "lucide-react";
-import { supabase } from "@/lib/supabase";
+
 import { CopyButton } from "@/components/CopyButton";
 
 const fadeUp = {
@@ -82,10 +82,10 @@ const localOfficials = [
   },
   {
     role: "Ward 4 Councilor",
-    name: "David Carnie",
+    name: "Eliza Hewitt Driscoll",
     phone: "(315) 457-6661",
     email: "4thWard@salina.ny.us",
-    note: "Town Board member — also Onondaga County District 5 Legislator",
+    note: "Town Board member — Ward 4 covers Electronics Pkwy & Thruway corridor",
     priority: false,
   },
 ];
@@ -141,6 +141,7 @@ export default function TakeActionPage() {
   const [signatureCount, setSignatureCount] = useState<number | null>(null);
   const [copied, setCopied] = useState(false);
   const [optInContact, setOptInContact] = useState(false);
+  const [honeypot, setHoneypot] = useState("");
   const [commentPublic, setCommentPublic] = useState(false);
   const [commentAnonymous, setCommentAnonymous] = useState(false);
   const [canHelp, setCanHelp] = useState(false);
@@ -156,11 +157,10 @@ export default function TakeActionPage() {
 
   const fetchCount = useCallback(async () => {
     try {
-      const { count, error } = await supabase
-        .from("plny_signatures")
-        .select("*", { count: "exact", head: true });
-      if (!error && count !== null) {
-        setSignatureCount(count);
+      const res = await fetch("/api/petition-count");
+      const data = await res.json();
+      if (data.count !== undefined) {
+        setSignatureCount(data.count);
       }
     } catch {
       // silently fail
@@ -251,21 +251,27 @@ export default function TakeActionPage() {
     setSubmitError("");
 
     try {
-      const { error } = await supabase.from("plny_signatures").insert({
-        first_name: form.first_name.trim(),
-        last_name: form.last_name.trim(),
-        email: form.email.trim().toLowerCase(),
-        zip_code: form.zip_code.trim(),
-        street_address: form.street_address.trim() || null,
-        phone: form.phone.trim() || null,
-        comment: form.comment.trim() || null,
-        comment_public: commentPublic,
-        comment_anonymous: commentAnonymous,
-        opt_in_contact: optInContact,
-        can_help: canHelp,
+      const res = await fetch("/api/sign-petition", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          first_name: form.first_name.trim(),
+          last_name: form.last_name.trim(),
+          email: form.email.trim().toLowerCase(),
+          zip_code: form.zip_code.trim(),
+          street_address: form.street_address.trim() || null,
+          phone: form.phone.trim() || null,
+          comment: form.comment.trim() || null,
+          comment_public: commentPublic,
+          comment_anonymous: commentAnonymous,
+          opt_in_contact: optInContact,
+          can_help: canHelp,
+          website: honeypot, // honeypot field — bots fill this, humans don't
+        }),
       });
 
-      if (error) throw error;
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || "Failed to submit");
 
       // Send confirmation email (non-blocking — petition is saved even if email fails)
       try {
@@ -289,7 +295,6 @@ export default function TakeActionPage() {
       }
 
       setSubmitted(true);
-      // Scroll to the confirmation so user sees it
       setTimeout(() => {
         document.getElementById("petition-section")?.scrollIntoView({ behavior: "smooth", block: "start" });
       }, 100);
@@ -427,22 +432,34 @@ export default function TakeActionPage() {
                 {comments.length > 0 && (
                   <div className="mb-6">
                     <div className="flex items-center justify-between mb-3">
-                      <div className="flex items-center gap-2">
+                      <div className="flex items-center gap-2 flex-wrap">
                         <MessageSquareQuote className="w-4 h-4 text-emerald-400" />
                         <span className="text-xs font-bold text-emerald-400 uppercase tracking-widest">
-                          {commentTotal} Public {commentTotal === 1 ? "Comment" : "Comments"}{signatureCount ? ` / ${signatureCount} Signatures` : ""} and counting
+                          {commentTotal} Real, Unedited {commentTotal === 1 ? "Comment" : "Comments"}{signatureCount ? ` / ${signatureCount} Signatures` : ""}
+                        </span>
+                        <span className="text-[10px] text-dark-500 font-medium">
+                          — verified petition signers, not fluffed, not faked
                         </span>
                       </div>
                       <div className="flex items-center gap-1.5">
                         <button
-                          onClick={() => voicesRef.current?.scrollBy({ left: -290, behavior: 'smooth' })}
+                          onClick={() => {
+                            const el = voicesRef.current;
+                            if (el) el.scrollTo({ left: Math.max(0, el.scrollLeft - 290), behavior: 'smooth' });
+                          }}
                           className="w-7 h-7 rounded-lg bg-white/5 backdrop-blur-md border border-white/10 flex items-center justify-center text-emerald-400 hover:bg-white/10 hover:text-emerald-300 transition-all"
                           aria-label="Scroll left"
                         >
                           <ChevronLeftIcon className="w-3.5 h-3.5" />
                         </button>
                         <button
-                          onClick={() => voicesRef.current?.scrollBy({ left: 290, behavior: 'smooth' })}
+                          onClick={() => {
+                            const el = voicesRef.current;
+                            if (el) {
+                              const maxScroll = el.scrollWidth - el.clientWidth;
+                              el.scrollTo({ left: Math.min(maxScroll, el.scrollLeft + 290), behavior: 'smooth' });
+                            }
+                          }}
                           className="w-7 h-7 rounded-lg bg-white/5 backdrop-blur-md border border-white/10 flex items-center justify-center text-emerald-400 hover:bg-white/10 hover:text-emerald-300 transition-all"
                           aria-label="Scroll right"
                         >
@@ -501,18 +518,30 @@ export default function TakeActionPage() {
                         exit={{ opacity: 0, scale: 0.95, y: 10 }}
                         transition={{ duration: 0.2 }}
                         onClick={(e) => e.stopPropagation()}
-                        className="relative w-full max-w-md bg-dark-900/90 backdrop-blur-xl border border-emerald-800/30 rounded-2xl p-6 shadow-2xl"
+                        className="relative w-full max-w-md max-h-[85vh] bg-dark-900/95 backdrop-blur-xl border border-emerald-800/30 rounded-2xl shadow-2xl flex flex-col"
                       >
-                        <button
-                          onClick={() => setExpandedComment(null)}
-                          className="absolute top-3 right-3 w-7 h-7 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center text-dark-400 hover:text-white hover:bg-white/10 transition-all"
-                        >
-                          ✕
-                        </button>
-                        <p className="text-dark-100 text-base leading-relaxed mb-4 pr-8">
-                          &ldquo;{expandedComment.comment}&rdquo;
-                        </p>
-                        <div className="flex items-center gap-2 text-xs text-dark-500">
+                        {/* Sticky header with close button */}
+                        <div className="flex items-center justify-between p-4 pb-2 flex-shrink-0">
+                          <span className="text-[10px] font-bold text-emerald-400 uppercase tracking-widest">
+                            Community Voice
+                          </span>
+                          <button
+                            onClick={() => setExpandedComment(null)}
+                            className="w-8 h-8 rounded-lg bg-white/10 border border-white/10 flex items-center justify-center text-dark-300 hover:text-white hover:bg-white/20 transition-all"
+                          >
+                            ✕
+                          </button>
+                        </div>
+
+                        {/* Scrollable content */}
+                        <div className="overflow-y-auto flex-1 px-6 pb-2 overscroll-contain" style={{ WebkitOverflowScrolling: 'touch' }}>
+                          <p className="text-dark-100 text-base leading-relaxed whitespace-pre-wrap">
+                            &ldquo;{expandedComment.comment}&rdquo;
+                          </p>
+                        </div>
+
+                        {/* Pinned author footer */}
+                        <div className="flex items-center gap-2 text-xs text-dark-500 p-4 pt-3 border-t border-dark-800/50 flex-shrink-0">
                           <span className="w-6 h-6 rounded-full bg-emerald-900/50 border border-emerald-800/30 flex items-center justify-center text-emerald-400 font-bold text-[9px]">
                             {expandedComment.name.charAt(0)}
                           </span>
@@ -548,16 +577,17 @@ export default function TakeActionPage() {
                     By signing below, you are endorsing this formal demand:
                   </p>
                   <div className="max-h-[320px] overflow-y-auto pr-2 custom-scrollbar">
-                    <h3 className="text-base font-black text-white uppercase tracking-wide mb-2">
-                      Official Petition Demand &amp; Mandate for Abatement
+                    <h3 className="text-base font-black text-white uppercase tracking-wide mb-1">
+                      Official Petition Demand for Abatement
                     </h3>
+                    <p className="text-[10px] text-dark-500 mb-2">Petition Last Updated: April 1, 2026</p>
 
                     <p className="text-xs text-dark-300 leading-relaxed mb-3">
-                      <strong className="text-dark-200">TO:</strong> The New York State Thruway Authority (NYSTA); Phoenix Tower International (Attn: Mitchell Henry); Town of Salina Supervisor Raul Huerta; Onondaga County Legislator David Carnie; Village of Liverpool Zoning Chair Jeremiah Thompson; New York State Senator Christopher Ryan (SD-50); New York State Assemblymembers Pamela Hunter (AD-128) and Al Stirpe (AD-127); <strong className="text-white">U.S. Senator Charles Schumer; U.S. Senator Kirsten Gillibrand; U.S. Representative John Mannion (NY-22);</strong> the FAA; the FCC; and the U.S. Fish and Wildlife Service (USFWS).
+                      <strong className="text-dark-200">TO:</strong>{" "}The New York State Thruway Authority (NYSTA); Phoenix Tower International (Attn: Mitchell Henry); Town of Salina Supervisor Raul Huerta; Onondaga County Legislator Jeremiah Thompson (District 4); New York State Senator Christopher Ryan (SD-50); New York State Assemblymembers Pamela Hunter (AD-128), Al Stirpe (AD-127), and William Magnarelli (AD-129, Chair — NYS Assembly Transportation Committee); U.S. Senator Charles Schumer; U.S. Senator Kirsten Gillibrand; U.S. Representative John Mannion (NY-22); the FAA; the FCC; the U.S. Fish and Wildlife Service (USFWS); and the New York State Department of Environmental Conservation (NYS DEC).
                     </p>
 
                     <p className="text-xs text-dark-200 leading-relaxed mb-3 font-medium">
-                      WE, THE UNDERSIGNED residents, taxpayers, and concerned citizens, issue this formal mandate demanding the immediate halt of construction, revocation of all lease agreements, and total physical abatement of the unauthorized commercial infrastructure tower currently being erected at the NYS Thruway (I-90) Exit 37 / 474 Electronics Pkwy site.
+                      WE, THE UNDERSIGNED residents, taxpayers, local workforce, and allied US citizens, issue this formal demand for the immediate halt of construction, revocation of all lease agreements, and total physical abatement of the unauthorized commercial infrastructure tower currently being erected at the NYS Thruway (I-90) Exit 37 / 474 Electronics Pkwy site.
                     </p>
 
                     <div className="bg-dark-900/60 rounded-lg p-3 mb-3 border border-dark-700/30">
@@ -565,24 +595,40 @@ export default function TakeActionPage() {
                         Subject Infrastructure Details
                       </p>
                       <div className="space-y-0.5 text-xs text-dark-300">
-                        <p><strong className="text-dark-200">FCC ASR:</strong> 1329974 (FRN: 0025555459)</p>
-                        <p><strong className="text-dark-200">Coordinates:</strong> 43° 06&apos; 06.9&quot; N, 076° 11&apos; 06.3&quot; W</p>
-                        <p><strong className="text-dark-200">Structure:</strong> MTOWER (Monopole) / 184 ft (56.1 m) AGL</p>
+                        <p><strong className="text-dark-200">FCC ASR:</strong>{" "}1329974 (FRN: 0025555459)</p>
+                        <p><strong className="text-dark-200">Coordinates:</strong>{" "}43° 06&apos; 06.9&quot; N, 076° 11&apos; 06.3&quot; W</p>
+                        <p><strong className="text-dark-200">Structure:</strong>{" "}MTOWER (Monopole) / 184 ft (56.1 m) AGL</p>
                       </div>
                     </div>
 
-                    <div className="space-y-2 mb-3">
+                    <div className="space-y-4 mb-3">
                       <p className="text-xs text-dark-300 leading-relaxed">
-                        <strong className="text-dark-200">WHEREAS,</strong> NYSTA and Phoenix Tower International have weaponized state land exemptions to deliberately bypass the Town of Salina&apos;s zoning laws, evading public hearings, environmental impact transparency, and all forms of democratic community consent;
+                        <strong className="text-dark-200">WHEREAS,</strong>{" "}NYSTA and Phoenix Tower International have weaponized state land exemptions to deliberately bypass the Town of Salina&apos;s zoning laws, evading public hearings, environmental impact transparency, and all forms of democratic community consent;
                       </p>
                       <p className="text-xs text-dark-300 leading-relaxed">
-                        <strong className="text-dark-200">WHEREAS,</strong> this unlit 184-foot (56.1-meter) structure—engineered precisely 16 feet (4.8 meters) below the FAA lighting threshold—sits 0.25 miles from the Syracuse Hancock International Airport (SYR) Runway 10 descent corridor. It introduces a severe physical collision hazard for low-altitude aircraft while contradicting FAA safety warnings regarding 5G C-Band radar altimeter interference;
+                        <strong className="text-dark-200">WHEREAS,</strong>{" "}if NYSTA and Phoenix Tower International assert immunity from the Town of Salina&apos;s zoning jurisdiction under the <em>Matter of County of Monroe</em> balancing test, we stand as follows: the private commercial interests of Phoenix Tower do not automatically inherit absolute state immunity, and the severe detrimental impacts on local land use, wildlife (BGEPA), and residential property values demonstrably outweigh the marginal public benefit of a redundant telecommunications facility &mdash; especially when less intrusive alternative sites exist. This assertion is fundamentally flawed and legally challengeable;
                       </p>
                       <p className="text-xs text-dark-300 leading-relaxed">
-                        <strong className="text-dark-200">WHEREAS,</strong> this 184-foot (56.1-meter) structure acts as an &ldquo;attractive nuisance&rdquo; for raptors, situated 1.7 miles from New York State&apos;s largest urban bald eagle roost. By providing an artificial nesting and perching platform adjacent to a low-altitude flight corridor, this tower actively undermines SYR&apos;s FAA-mandated Wildlife Hazard Management Plan and deterrent protocols. Proceeding without explicit U.S. Fish and Wildlife Service (USFWS) consultation or a rigorous NEPA/SEQRA assessment threatens federally protected wildlife and violates the Bald and Golden Eagle Protection Act (BGEPA);
+                        <strong className="text-dark-200">WHEREAS,</strong>{" "}this unlit 184-foot (56.1-meter) structure—engineered precisely 16 feet (4.8 meters) below the FAA lighting threshold—sits just 0.25 miles from the Syracuse Hancock International Airport (SYR) Runway 10 descent corridor. Despite a remote, desk-reviewed &ldquo;No Hazard&rdquo; determination by the FAA, erecting a massive, unlit steel pole in immediate proximity to a low-altitude flight path remains a profound safety and planning concern for the community below;
                       </p>
                       <p className="text-xs text-dark-300 leading-relaxed">
-                        <strong className="text-dark-200">WHEREAS,</strong> this 184-foot (56.1-meter) commercial structure will irreparably degrade the visual character of our residential neighborhoods, devastate local property values by up to 20%, and force the installation of high-capacity data infrastructure that alters the privacy and nature of our community without our consent;
+                        <strong className="text-dark-200">WHEREAS,</strong>{" "}this 184-foot (56.1-meter) structure acts as a &ldquo;hazardous wildlife attractant&rdquo; for raptors, situated 1.25 miles from New York State&apos;s largest urban bald eagle roost and in an area with a heavy, well-documented concentration of federally protected turkey vultures that actively soar, roost, and forage in the immediate vicinity of this tower site. By providing an artificial nesting and perching platform adjacent to a flight corridor, this tower actively undermines SYR&apos;s Wildlife Hazard Management protocols. Proceeding without producing explicit, localized consultation with the U.S. Fish and Wildlife Service (USFWS) and the NYS DEC, or a transparent NEPA/SEQRA assessment, threatens federally and state-protected wildlife and risks violating the Bald and Golden Eagle Protection Act (BGEPA), the Migratory Bird Treaty Act (MBTA), and New York State endangered species regulations;
+                      </p>
+                      <p className="text-xs text-dark-300 leading-relaxed">
+                        <strong className="text-dark-200">WHEREAS,</strong>{" "}this 184-foot (56.1-meter) commercial structure will irreparably degrade the visual character of our residential neighborhoods, negatively impact local property values, and force the installation of high-capacity data infrastructure that alters the nature of our community without our consent;
+                      </p>
+                      <p className="text-xs text-dark-300 leading-relaxed">
+                        <strong className="text-dark-200">WHEREAS,</strong>{" "}the stated justification that this tower is intended to &ldquo;improve coverage for emergency service providers&rdquo; has been independently investigated and found to be without merit as a primary justification: the Onondaga County Sheriff&apos;s Office has confirmed in writing that there are no known communication dead zones in the Salina area; the equipment currently being installed consists of <strong className="text-danger-400">commercial 5G panel antennas</strong>{" "}used for consumer wireless broadband, indicating this tower is not being built exclusively &mdash; or even primarily &mdash; for emergency service use; the NYS Department of Environmental Conservation has confirmed it has <strong className="text-danger-400">zero records</strong>{" "}of any environmental review for this site (FOIL #W162712-032526, April 1, 2026); and the developer waited over sixteen months after receiving FAA clearance before breaking ground &mdash; a timeline wholly inconsistent with any claim of urgency or emergency need. If emergency service equipment is later added, that does not retroactively justify bypassing zoning, environmental review, and public process for what is, at its core, a commercial telecommunications facility;
+                      </p>
+                      <p className="text-xs text-dark-300 leading-relaxed">
+                        <strong className="text-dark-200">WHEREAS,</strong>{" "}while active construction proceeds rapidly, the New York State Thruway Authority is deliberately obstructing public transparency by invoking a 20-business-day extension to delay the release of basic Master Lease Agreements, fall zone engineering reports, and SEQRA documents (FOIL Reference #R000082-032026). Withholding vital public safety and environmental records regarding an active construction site while allowing the developer to mount commercial 5G antennas constitutes a bad-faith evasion of accountability and a direct violation of the public trust;
+                      </p>
+                      <p className="text-xs text-dark-300 leading-relaxed">
+                        <strong className="text-dark-200">WHEREAS,</strong>{" "}on <strong className="text-danger-400">May 8, 2026</strong>, after a 49-day stall and just two business days after the constructive-denial appeal clock expired, the New York State Thruway Authority produced 81 unique documents in response to FOIL Request{" "}<strong className="text-white">R000082-032026</strong>, and in that production:{" "}
+                        <strong className="text-dark-200">(a)</strong>{" "}the Authority admitted in writing that <strong className="text-danger-400">NO RECORDS</strong>{" "}responsive to a request for &ldquo;Alternative Site Analysis&rdquo; were located, confirming that no engineering or planning analysis was ever conducted to demonstrate why this specific residential site was chosen over alternatives;{" "}
+                        <strong className="text-dark-200">(b)</strong>{" "}the Authority redacted the Annual Fee paid by Phoenix Tower International, a corporate entity, under New York Public Officers Law &sect;87(2)(b) &mdash; a personal-privacy exemption that, under settled New York case law (<em>Matter of Federation of N.Y. State Rifle &amp; Pistol Clubs v. NYPD</em>, 73 N.Y.2d 92), does not apply to corporations;{" "}
+                        <strong className="text-dark-200">(c)</strong>{" "}the Authority&rsquo;s own Occupancy Permit T3U250002, Section II.A, states <em>&ldquo;There is no term. This Occupancy Permit is revocable, unilaterally, upon demand by the Authority,&rdquo;</em>{" "}establishing that the Authority retains the unilateral power to terminate this occupation at any time, for any reason, with no penalty;{" "}
+                        <strong className="text-dark-200">(d)</strong>{" "}the production reveals that the project includes a previously undisclosed <strong className="text-danger-400">30 kilowatt diesel generator with a 145-gallon fuel belly tank</strong>{" "}to be installed on a steel platform at grade within the highway infield approximately 100 feet from the active I-90 off-ramp, with no Spill Prevention Control and Countermeasure plan or air-quality compliance documentation produced;
                       </p>
                     </div>
 
@@ -591,26 +637,39 @@ export default function TakeActionPage() {
                         Therefore, We Demand:
                       </p>
                       <p className="text-xs text-dark-200 leading-relaxed">
-                        <strong className="text-white">1. Immediate Cessation:</strong> NYSTA and Phoenix Tower International must immediately halt all construction. <strong className="text-white">In the event of construction completion, we demand the physical dismantling, relocation, or court-ordered height reduction of the structure.</strong>
+                        <strong className="text-white">1. Immediate Cessation:</strong>{" "}NYSTA and Phoenix Tower International must immediately halt all construction. <strong className="text-white">In the event of construction completion, we demand the complete removal and dismantling of the structure.</strong>
                       </p>
                       <p className="text-xs text-dark-200 leading-relaxed">
-                        <strong className="text-white">2. Municipal &amp; State Legal Action:</strong> We formally mandate that Supervisor Huerta, Legislator Carnie, Chairman Thompson, Senator Ryan, Assemblymember Hunter, and Assemblymember Stirpe exhaust all municipal and state legal resources—including filing an Article 78 proceeding or emergency injunction against NYSTA and PTI—to halt this state-sanctioned overreach.
+                        <strong className="text-white">2. Municipal &amp; State Legal Action:</strong>{" "}We formally demand that Supervisor Huerta, Legislator Thompson, Senator Ryan, Assemblymember Hunter, Assemblymember Stirpe, and Assemblymember Magnarelli (in his capacity as Chair of the NYS Assembly Transportation Committee, which has direct oversight of the Thruway Authority) exhaust all municipal and state legal resources&mdash;including demanding an administrative Stop Work Order or filing an emergency Article 78 proceeding against NYSTA challenging their assumed immunity under the <em>Monroe</em> balancing test&mdash;to halt this state-sanctioned overreach until full environmental transparency is achieved. Furthermore, we demand the NYS DEC launch an immediate investigation into NYSTA&apos;s SEQRA compliance and environmental impact evasion regarding this site.
                       </p>
                       <p className="text-xs text-dark-200 leading-relaxed">
-                        <strong className="text-white">3. Congressional &amp; Federal Intervention:</strong> We demand that Representative Mannion, Senator Schumer, and Senator Gillibrand launch immediate congressional inquiries into the FAA, FCC, and USFWS regarding the siting, environmental impact evasion, unmitigated aviation hazard, and BGEPA violations of ASR #1329974.
+                        <strong className="text-white">3. Congressional &amp; Federal Intervention:</strong>{" "}We demand that Representative Mannion, Senator Schumer, and Senator Gillibrand launch immediate congressional inquiries into the FAA, FCC, and USFWS regarding the siting, environmental impact evasion, and potential BGEPA/MBTA risks of ASR #1329974.
                       </p>
                     </div>
 
                     <p className="text-xs text-dark-200 leading-relaxed font-semibold italic">
-                      By affixing our signatures below, we declare that our community and our airspace are not for sale, we do not consent to this infrastructure, and we will hold every named official electorally and legally accountable for their inaction.
+                      By affixing our signatures below, we declare that our community and our airspace are not for sale, we do not consent to this infrastructure, and we will pursue every democratic and legal remedy available until this tower is removed.
                     </p>
                     <p className="text-[10px] text-dark-500 mt-3 text-right">
-                      Petition Last Updated: March 24, 2026
+                      Petition Last Updated: April 1, 2026
                     </p>
                   </div>
                 </div>
 
                 <form onSubmit={handleSubmit} className="space-y-4">
+                  {/* Honeypot — invisible to humans, bots auto-fill it */}
+                  <div aria-hidden="true" style={{ position: "absolute", left: "-9999px", top: "-9999px", opacity: 0, height: 0, overflow: "hidden" }}>
+                    <label htmlFor="website">Website</label>
+                    <input
+                      type="text"
+                      id="website"
+                      name="website"
+                      tabIndex={-1}
+                      autoComplete="off"
+                      value={honeypot}
+                      onChange={(e) => setHoneypot(e.target.value)}
+                    />
+                  </div>
                   <div className="grid sm:grid-cols-2 gap-4">
                     <div>
                       <label
@@ -793,7 +852,7 @@ export default function TakeActionPage() {
                           Yes, you may contact me with updates about this campaign
                           and ways to get involved.
                         </span>
-                        <p className="text-[10px] text-dark-500 mt-0.5 italic">
+                        <p className="text-xs text-dark-500 mt-0.5 italic">
                           If left unchecked, we will ONLY email you for critical alerts: emergency construction updates, town hall votes, or material updates to our official legal demands.
                         </p>
                       </div>
@@ -856,18 +915,17 @@ export default function TakeActionPage() {
                   </div>
 
                   <div className="bg-dark-800/40 border border-dark-700/40 rounded-xl p-4">
-                    <p className="text-xs text-dark-400 leading-relaxed">
+                    <p className="text-[13px] text-dark-400 leading-relaxed">
                       <span className="font-bold text-dark-300 block mb-1.5 text-sm">Privacy Notice — How Your Signature Will Be Used</span>
-                      This petition will be formally presented to elected officials as a sequentially numbered legal document. Your{" "}
+                      This petition will be formally presented to elected officials as a sequentially numbered document. At a minimum, for your signature to hold official validity, your{" "}
                       <strong className="text-white">full name</strong> and{" "}
                       <strong className="text-white">zip code</strong>{" "}
-                      will appear on the final document alongside the formal petition demand, which is printed on every page per legal petition standards. If provided, your street address will be included to demonstrate direct community impact.
+                      will become part of the public record and appear on the final printed document. If provided, your street address and any optional comments will also be printed and shared with officials to demonstrate direct community impact.
                     </p>
-                    <p className="text-xs text-dark-500 leading-relaxed mt-2">
-                      Your <strong className="text-dark-400">email address</strong> is collected solely for signature verification and will{" "}
-                      <strong className="text-dark-300">never</strong> appear in the document, be shared with officials, or be shared with the public. We will never sell your information.
+                    <p className="text-[13px] text-dark-500 leading-relaxed mt-2.5">
+                      Your email address and phone number (if provided) are collected strictly for signature verification and internal campaign alerts (subject to your opt-in preferences). They will never be printed on the public document, shared with officials, or made public. We will never sell or trade your information.
                     </p>
-                    <p className="text-xs text-dark-500 leading-relaxed mt-2">
+                    <p className="text-[13px] text-dark-500 leading-relaxed mt-2.5">
                       Your signature is entirely voluntary. You may revoke your consent and have your name and data permanently deleted from our records at any time prior to the petition&apos;s formal submission by emailing{" "}
                       <a href="mailto:takeaction@protectliverpoolny.org" className="text-danger-400 hover:text-danger-300 transition-colors font-medium">takeaction@protectliverpoolny.org</a>.
                     </p>
@@ -886,10 +944,10 @@ export default function TakeActionPage() {
                             : "border-dark-600 bg-dark-800 text-danger-500"
                         }`}
                       />
-                      <span className={`text-xs leading-relaxed transition-colors ${
+                      <span className={`text-sm leading-relaxed transition-colors ${
                         consentError ? "text-danger-400" : "text-dark-300 group-hover:text-dark-200"
                       }`}>
-                        I agree to the Privacy Notice and understand that my name and zip code will appear on the formal petition document presented to elected officials. *
+                        I agree to the Privacy Notice and understand that my name and zip code will appear on the formal petition document presented to elected officials.*
                       </span>
                     </label>
                     {consentError && (
@@ -1102,7 +1160,7 @@ export default function TakeActionPage() {
                         🦅 USFWS — Eagle Protection & Bird Strikes
                       </p>
                       <p className="text-dark-400 text-xs leading-relaxed mb-3">
-                        100+ bald eagles roost at Onondaga Lake, 1.7 miles from
+                        100+ bald eagles roost at Onondaga Lake, 1.25 miles from
                         this tower. Report strikes via the FAA Wildlife Strike
                         Database. Report illegal take, unhandled eagle carcasses,
                         or nest destruction directly to USFWS Law Enforcement.
@@ -1381,7 +1439,7 @@ export default function TakeActionPage() {
                       </p>
                       <CopyButton text={`Director Terreri,\n\nAs a resident under the Runway 10 approach, I am urging the Syracuse Regional Airport Authority to publicly oppose the 184-foot unlit Phoenix Tower going up at 474 Electronics Parkway.\n\nGiven SYR's strict Wildlife Hazard Management Plan, allowing a massive steel structure that the FAA explicitly identifies as a raptor attractant just 0.25 miles from the descent corridor is a hazard to our community and the aircraft overhead.\n\nWe are asking you to formally request the NYS Thruway Authority halt this project until a full, public aviation safety and wildlife review is conducted.\n\nRespectfully,\n[YOUR NAME]\n[YOUR ADDRESS]`} />
                     </div>
-                    <div className="text-[11px] text-dark-200 font-mono bg-dark-900/60 rounded-lg p-3 select-all whitespace-pre-line leading-relaxed">
+                    <div className="text-[11px] text-dark-200 bg-transparent rounded-lg p-3 select-all whitespace-pre-line leading-relaxed">
                       {`Director Terreri,
 
 As a resident under the Runway 10 approach, I am urging the Syracuse Regional Airport Authority to publicly oppose the 184-foot unlit Phoenix Tower going up at 474 Electronics Parkway.
@@ -1514,7 +1572,7 @@ Respectfully,
                                 },
                                 {
                                   ward: "Ward 4",
-                                  rep: "David Carnie",
+                                  rep: "Eliza Hewitt Driscoll",
                                   areas:
                                     "SE Salina — Electronics Pkwy, Thruway corridor",
                                   color: "border-danger-800/40",
@@ -2153,25 +2211,42 @@ Respectfully,
                             <p className="text-[10px] font-bold text-purple-400 uppercase tracking-widest mb-1">
                               Suggested Subject Line
                             </p>
-                            <p className="text-xs text-dark-200 font-mono bg-dark-900/60 rounded-lg p-2 select-all mb-3">
+                            <p className="text-xs text-dark-200 bg-transparent rounded-lg p-2 select-all mb-3">
                               Massive 184-Ft Cell Tower Being Built 0.3 Miles
                               From SYR Landing Zone
                             </p>
-                            <p className="text-[10px] font-bold text-purple-400 uppercase tracking-widest mb-1">
-                              Suggested Message — Copy, Paste & Personalize
-                            </p>
-                            <div className="text-[11px] text-dark-200 font-mono bg-dark-900/60 rounded-lg p-3 select-all whitespace-pre-line leading-relaxed">
+                            <div className="flex items-center justify-between mb-1">
+                              <p className="text-[10px] font-bold text-purple-400 uppercase tracking-widest">
+                                Suggested Message — Copy, Paste & Personalize
+                              </p>
+                              <CopyButton text={`Hi,\n\nI'm reaching out about a developing story in Liverpool, NY that I believe warrants immediate coverage.\n\nA 184-foot commercial cell tower is being erected on New York State Thruway Authority land at 474 Electronics Parkway — just 0.25 miles from the Runway 10 approach corridor to Syracuse Hancock International Airport — in a residential neighborhood surrounded by elementary schools, apartment complexes, and assisted living facilities.\n\nHere's what makes this story extraordinary:\n\n• NO COMMUNITY NOTIFICATION — Not a single resident was notified. People discovered the tower when they heard construction equipment in their backyards.\n\n• NO LOCAL ZONING REVIEW — By building on state-owned land, Phoenix Tower International (backed by BlackRock and Blackstone) bypassed the Town of Salina's zoning authority entirely. No hearing. No variance. No vote.\n\n• THE 16-FOOT DODGE — The tower is 184 feet tall — exactly 16 feet below the FAA's 200-foot threshold for mandatory obstruction lighting. It has zero lights, 0.25 miles from an active descent corridor where aircraft pass at 700–1,000 feet.\n\n• THE MONROE TEST — Attorneys have confirmed that NYSTA and PTI are invoking the Monroe Balancing Test (1988) to claim zoning immunity, a legal strategy currently being fought across the state.\n\n• NO ENVIRONMENTAL REVIEW — The NYS DEC has confirmed in writing that they have zero records of any environmental review for this site (FOIL #W162712-032526). Over 100 bald eagles — the largest urban wintering roost in New York State — are 1.25 miles away.\n\n• ZERO LOCAL TAX REVENUE — The community bears the full impact of this commercial infrastructure while Salina and Onondaga County collect $0 in taxes.\n\nThe community has organized at ProtectLiverpoolNY.org, filed a formal petition naming officials from town to federal level, and is demanding congressional intervention from Rep. Mannion, Sen. Schumer, and Sen. Gillibrand.\n\n[PERSONALIZE: Add your connection — Are you a parent at a nearby school? A pilot? A homeowner who was never told?]\n\nI'm happy to connect you with residents, the community organizer, or the attorney handling the case.\n\nThank you for your time,\n[YOUR NAME]\n[YOUR PHONE / EMAIL]`} />
+                            </div>
+                            <div className="text-[11px] text-dark-200 bg-transparent rounded-lg p-3 select-all whitespace-pre-line leading-relaxed">
                               {`Hi,
 
-I'm reaching out about a story developing in Liverpool, NY that I believe deserves coverage.
+I'm reaching out about a developing story in Liverpool, NY that I believe warrants immediate coverage.
 
-A 184-foot commercial cell tower is currently being erected on New York State Thruway Authority land — just 0.3 miles from a landing approach to Syracuse Hancock International Airport — in a residential neighborhood surrounded by elementary schools, apartment complexes, and assisted living facilities.
+A 184-foot commercial cell tower is being erected on New York State Thruway Authority land at 474 Electronics Parkway — just 0.25 miles from the Runway 10 approach corridor to Syracuse Hancock International Airport — in a residential neighborhood surrounded by elementary schools, apartment complexes, and assisted living facilities.
 
-No residents were notified. No local zoning review was conducted. The tower requires zero obstruction lighting under FAA rules because it was built at exactly 184 feet — 16 feet below the federal threshold.
+Here's what makes this story extraordinary:
 
-Residents are concerned about health effects from 24/7 RF radiation, aviation safety, and declining property values. The community has organized at ProtectLiverpoolNY.org and is demanding answers from local and state officials.
+• NO COMMUNITY NOTIFICATION — Not a single resident was notified. People discovered the tower when they heard construction equipment in their backyards.
+
+• NO LOCAL ZONING REVIEW — By building on state-owned land, Phoenix Tower International (backed by BlackRock and Blackstone) bypassed the Town of Salina's zoning authority entirely. No hearing. No variance. No vote.
+
+• THE 16-FOOT DODGE — The tower is 184 feet tall — exactly 16 feet below the FAA's 200-foot threshold for mandatory obstruction lighting. It has zero lights, 0.25 miles from an active descent corridor where aircraft pass at 700–1,000 feet.
+
+• THE MONROE TEST — Attorneys have confirmed that NYSTA and PTI are invoking the Monroe Balancing Test (1988) to claim zoning immunity, a legal strategy currently being fought across the state.
+
+• NO ENVIRONMENTAL REVIEW — The NYS DEC has confirmed in writing that they have zero records of any environmental review for this site (FOIL #W162712-032526). Over 100 bald eagles — the largest urban wintering roost in New York State — are 1.25 miles away.
+
+• ZERO LOCAL TAX REVENUE — The community bears the full impact of this commercial infrastructure while Salina and Onondaga County collect $0 in taxes.
+
+The community has organized at ProtectLiverpoolNY.org, filed a formal petition naming officials from town to federal level, and is demanding congressional intervention from Rep. Mannion, Sen. Schumer, and Sen. Gillibrand.
 
 [PERSONALIZE: Add your connection — Are you a parent at a nearby school? A pilot? A homeowner who was never told?]
+
+I'm happy to connect you with residents, the community organizer, or the attorney handling the case.
 
 Thank you for your time,
 [YOUR NAME]
@@ -2290,7 +2365,7 @@ Thank you for your time,
                               </p>
                               <CopyButton text={`To the Editor,\n\nI am writing to bring attention to a 184-foot commercial cell tower currently being erected in Liverpool, NY — on New York State Thruway Authority land at 474 Electronics Parkway — with zero public notification and no local zoning review.\n\nThis tower sits approximately 0.3 miles from an active landing approach to Syracuse Hancock International Airport. Over 100 bald eagles winter at the Onondaga Lake roost less than two miles away. The tower requires no obstruction lighting because it was built at exactly 184 feet — 16 feet below the FAA threshold.\n\nNo residents were notified. No environmental review was conducted. No community input was sought. The tower is being built by Phoenix Tower International, backed by BlackRock and Blackstone, on a lease with the Thruway Authority that bypasses every local protection on the books.\n\n[PERSONALIZE: Are you a homeowner nearby? A parent at Long Branch Elementary? A pilot who uses SYR? Add your personal stake here.]\n\nResidents have organized at ProtectLiverpoolNY.org and are demanding accountability from local and state officials. This isn't just a Liverpool problem — it's a precedent for every community in New York.\n\nSincerely,\n[YOUR NAME]\n[YOUR ADDRESS]\n[YOUR PHONE]`} />
                             </div>
-                            <div className="text-[11px] text-dark-200 font-mono bg-dark-900/60 rounded-lg p-3 select-all whitespace-pre-line leading-relaxed">
+                            <div className="text-[11px] text-dark-200 bg-transparent rounded-lg p-3 select-all whitespace-pre-line leading-relaxed">
                               {`To the Editor,
 
 I am writing to bring attention to a 184-foot commercial cell tower currently being erected in Liverpool, NY — on New York State Thruway Authority land at 474 Electronics Parkway — with zero public notification and no local zoning review.
