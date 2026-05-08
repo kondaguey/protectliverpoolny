@@ -329,7 +329,7 @@ export default function AviationSafetyPage() {
               <span className="text-orange-400">Taller Than the Finished Tower.</span>
             </h2>
             <p className="text-dark-300 text-base leading-relaxed mb-4">
-              The 93-document FOIL production includes a <strong className="text-white">separate FAA aeronautical study</strong> that was filed for the <strong className="text-white">construction crane</strong>, not the tower itself. FAA Aeronautical Study <strong className="text-white">2025-AEA-11322-OE</strong>, issued <strong className="text-white">September 22, 2025</strong>, determination expires March 22, 2027.
+              The 93-document FOIL production includes a <strong className="text-white">separate FAA aeronautical study</strong>{" "}that was filed for the <strong className="text-white">construction crane</strong>, not the tower itself. FAA Aeronautical Study <strong className="text-white">2025-AEA-11322-OE</strong>, issued <strong className="text-white">September 22, 2025</strong>, determination expires March 22, 2027.
             </p>
             <div className="bg-dark-950/60 border border-orange-700/30 rounded-xl p-5 my-4">
               <p className="text-xs font-bold text-orange-300 uppercase tracking-widest mb-2">Crane Operator</p>
@@ -850,7 +850,7 @@ export default function AviationSafetyPage() {
 
             <p className="text-dark-200 leading-relaxed mb-4">
               That's the airport's own policy — applied to land{" "}
-              <em className="text-white not-italic font-bold">further</em> from the
+              <em className="text-white not-italic font-bold">further</em>{" "}from the
               runway than this tower. Meanwhile,{" "}
               <strong className="text-white">0.25 miles from the active
               descent corridor</strong> — where planes pass at{" "}
@@ -865,7 +865,7 @@ export default function AviationSafetyPage() {
 
             <p className="text-dark-200 leading-relaxed mb-5">
               Over{" "}
-              <strong className="text-white">100 bald eagles</strong> winter at
+              <strong className="text-white">100 bald eagles</strong>{" "}winter at
               the{" "}
               <a href="https://onondagaaudubon.com/" target="_blank" rel="noopener noreferrer" className="text-white font-bold underline decoration-lime-400/40 hover:decoration-lime-400">
                 Onondaga Lake roost
@@ -922,7 +922,7 @@ export default function AviationSafetyPage() {
               </a>{" "}
               in cooperation with the FAA documented 200 bald
               eagle strikes between 1990&ndash;2013 — a{" "}
-              <strong className="text-danger-400">2,200% increase</strong> over
+              <strong className="text-danger-400">2,200% increase</strong>{" "}over
               that period. Over half of all eagle collisions caused aircraft
               damage. Nine people were injured in five separate incidents.
               Strikes primarily occurred near airfields at or below 305 meters
@@ -1004,7 +1004,7 @@ export default function AviationSafetyPage() {
                   10,000 feet of runways serving turbine-powered aircraft
                 </strong>{" "}
                 and within{" "}
-                <strong className="text-white">5 statute miles</strong> to
+                <strong className="text-white">5 statute miles</strong>{" "}to
                 protect approach, departure, and circling airspace.
               </p>
               <p className="text-dark-200 text-base leading-relaxed mb-3">
@@ -1204,7 +1204,7 @@ export default function AviationSafetyPage() {
             </p>
             <p className="text-dark-200 leading-relaxed mb-3">
               Airlines were{" "}
-              <strong className="text-white">prohibited from landing</strong> at
+              <strong className="text-white">prohibited from landing</strong>{" "}at
               affected airports. Buffer zones were mandated around 50+ airports.
               Verizon and AT&T voluntarily limited 5G service because the FAA
               called it{" "}

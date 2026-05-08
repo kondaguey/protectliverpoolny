@@ -158,9 +158,9 @@ export default function WildlifePage() {
                     Audubon: Eagles Nest on Cell Towers — Then Lose Their Homes
                   </p>
                   <p className="text-dark-300 text-sm leading-relaxed">
-                    The <strong className="text-white">Audubon EagleWatch Program</strong> reports{" "}
+                    The <strong className="text-white">Audubon EagleWatch Program</strong>{" "}reports{" "}
                     <strong className="text-danger-400">20% of monitored bald eagle nests
-                    in Florida</strong> are on human-made structures — including cell towers.
+                    in Florida</strong>{" "}are on human-made structures — including cell towers.
                     In some counties,{" "}
                     <strong className="text-danger-400">60% of all nests</strong>{" "}
                     are on man-made structures.
@@ -189,7 +189,7 @@ export default function WildlifePage() {
                     <strong className="text-white">they couldn't rebuild</strong>.
                     Current USFWS permits allow removal but{" "}
                     <strong className="text-danger-400">don't prohibit permanent
-                    alterations</strong> that prevent future nesting.
+                    alterations</strong>{" "}that prevent future nesting.
                   </p>
                   <p className="text-dark-200 text-sm mt-2 font-semibold">
                     &quot;Eliminating cell phone towers as possible nest sites could have a
@@ -206,7 +206,7 @@ export default function WildlifePage() {
                   <p className="text-dark-200 text-sm leading-relaxed">
                     At 184 feet — nearly twice the height of highway light poles — this tower will be{" "}
                     <strong className="text-white">the tallest structure</strong>{" "}
-                    near Onondaga Lake. With 100+ eagles 1.25 miles away, it's not <em>if</em> they
+                    near Onondaga Lake. With 100+ eagles 1.25 miles away, it's not <em>if</em>{" "}they
                     find it — it's <em>when</em>.{" "}
                     <strong className="text-white">Tower goes up → eagles nest → telecom
                     upgrades → nest destroyed.</strong>{" "}
@@ -229,13 +229,13 @@ export default function WildlifePage() {
                     in Mount Pleasant, South Carolina —{" "}
                     <strong className="text-danger-400">without a permit from U.S. Fish &amp; Wildlife</strong>.
                     Removing an active raptor nest without federal authorization is a violation of the{" "}
-                    <strong className="text-white">Bald and Golden Eagle Protection Act</strong> and a federal offense.
+                    <strong className="text-white">Bald and Golden Eagle Protection Act</strong>{" "}and a federal offense.
                     The mayor called it &quot;appalling.&quot; Wildlife experts warned it could
                     disrupt breeding season.
                   </p>
                   <p className="text-dark-200 text-sm leading-relaxed mb-3">
                     This is not hypothetical. This is{" "}
-                    <strong className="text-white">exactly the cycle</strong> we are warning
+                    <strong className="text-white">exactly the cycle</strong>{" "}we are warning
                     about: tower goes up → eagles nest → telecom needs upgrades → nest gets destroyed.
                     It has already happened. It will happen again.
                   </p>
@@ -287,7 +287,7 @@ export default function WildlifePage() {
                   <p className="text-dark-300 text-sm leading-relaxed">
                     USFWS guidelines state towers should be sited &quot;away from nests, foraging areas,
                     and communal roost sites.&quot; Required buffers:{" "}
-                    <strong className="text-danger-400">½-mile (2,640 ft)</strong> from
+                    <strong className="text-danger-400">½-mile (2,640 ft)</strong>{" "}from
                     communal roosts with line of sight, and{" "}
                     <strong className="text-danger-400">660 ft from any nest</strong>.
                     Were these evaluated? No documentation has been produced.
@@ -369,7 +369,7 @@ export default function WildlifePage() {
                 <p className="text-base text-dark-100 leading-relaxed">
                   <strong className="text-white">Protected under the
                   Bald and Golden Eagle Protection Act.</strong>{" "}
-                  Fines up to <strong className="text-danger-400">$250,000</strong> and criminal
+                  Fines up to <strong className="text-danger-400">$250,000</strong>{" "}and criminal
                   prosecution. Was this tower sited in compliance with federal wildlife guidelines?{" "}
                   <strong className="text-danger-400">We asked. The DEC has zero records. NYSTA is still stalling.</strong>
                 </p>
@@ -414,13 +414,13 @@ export default function WildlifePage() {
                   that an applicant fills out themselves to receive an automated screening result. It is not a USFWS letter. It is not a formal Section 7 consultation under the Endangered Species Act. It is not a site visit. It is a checkbox interview conducted with no biologist in the loop.
                 </p>
                 <p className="text-dark-200 text-sm leading-relaxed">
-                  No bird-flight-path study is attached to the SEQRA file. No project-specific roost survey. No correspondence with a USFWS field biologist. NYSTA&rsquo;s May 8, 2026 production of <strong className="text-white">93 documents</strong> contains <strong className="text-purple-300">zero records</strong> of any direct USFWS consultation.
+                  No bird-flight-path study is attached to the SEQRA file. No project-specific roost survey. No correspondence with a USFWS field biologist. NYSTA&rsquo;s May 8, 2026 production of <strong className="text-white">93 documents</strong>{" "}contains <strong className="text-purple-300">zero records</strong>{" "}of any direct USFWS consultation.
                 </p>
               </div>
               <p className="text-base font-bold text-white mb-2">What the documented record actually shows:</p>
               <ul className="list-disc pl-5 space-y-1 text-sm text-dark-200 mb-4">
                 <li>
-                  <strong className="text-white">100+ federally protected bald eagles</strong> winter at Onondaga Lake &mdash; the largest urban bald eagle wintering roost in New York State &mdash; <strong className="text-purple-300">1.25 miles from this tower</strong>.
+                  <strong className="text-white">100+ federally protected bald eagles</strong>{" "}winter at Onondaga Lake &mdash; the largest urban bald eagle wintering roost in New York State &mdash; <strong className="text-purple-300">1.25 miles from this tower</strong>.
                 </li>
                 <li>
                   Audubon EagleWatch and direct field observation by Liverpool residents document eagles regularly traveling over the project area.
@@ -429,11 +429,11 @@ export default function WildlifePage() {
                   Bald eagle territories span <strong className="text-white">2.5&ndash;15 square miles</strong>. At 1.25 miles from the roost, this tower sits squarely within foraging range.
                 </li>
                 <li>
-                  The Audubon EagleWatch Program has documented bald eagles nesting on cell towers at rates of <strong className="text-white">20%&ndash;60%</strong> of monitored nests in similar regions.
+                  The Audubon EagleWatch Program has documented bald eagles nesting on cell towers at rates of <strong className="text-white">20%&ndash;60%</strong>{" "}of monitored nests in similar regions.
                 </li>
               </ul>
               <p className="text-dark-200 text-base leading-relaxed">
-                A paper conclusion of <em>&ldquo;no suitable habitat&rdquo;</em> reached via a self-screening web tool is not the same as a field-verified, USFWS-signed habitat determination. NYSTA reviewed itself, and NYSTA gave itself a clean bill of health. The bald eagle &mdash; protected under federal law, with criminal penalties up to $250,000 for take &mdash; was dismissed in a single sentence supported by an automated checkbox.
+                A paper conclusion of <em>&ldquo;no suitable habitat&rdquo;</em>{" "}reached via a self-screening web tool is not the same as a field-verified, USFWS-signed habitat determination. NYSTA reviewed itself, and NYSTA gave itself a clean bill of health. The bald eagle &mdash; protected under federal law, with criminal penalties up to $250,000 for take &mdash; was dismissed in a single sentence supported by an automated checkbox.
               </p>
               <p className="text-xs text-dark-500 italic mt-4">
                 Source:{" "}
@@ -477,7 +477,7 @@ export default function WildlifePage() {
                 The Birds: 7 Million Deaths Per Year
               </h4>
               <p className="text-dark-200 text-base leading-relaxed mb-4">
-                The <strong className="text-white">American Bird Conservancy</strong> reports
+                The <strong className="text-white">American Bird Conservancy</strong>{" "}reports
                 towers kill{" "}
                 <strong className="text-white">7 million birds per year</strong>{" "}
                 in North America — primarily nocturnal migrants disoriented by tower lights.
@@ -559,7 +559,7 @@ export default function WildlifePage() {
                 The Bees: Peer-Reviewed and Devastating
               </h4>
               <p className="text-dark-200 text-base leading-relaxed mb-4">
-                Peer-reviewed research <strong className="text-white">proves</strong> cell
+                Peer-reviewed research <strong className="text-white">proves</strong>{" "}cell
                 tower RF radiation decimates honeybee populations — disrupting navigation,
                 reducing colony strength, and triggering collapse. Honeybees pollinate{" "}
                 <strong className="text-white">one-third of all food humans eat</strong>.
@@ -595,7 +595,7 @@ export default function WildlifePage() {
               </h4>
 
               <p className="text-dark-200 text-base leading-relaxed mb-5">
-                A 2022 study in <em>Reviews on Environmental Health</em> reviewed
+                A 2022 study in <em>Reviews on Environmental Health</em>{" "}reviewed
                 EMF effects across all wildlife and plant species:{" "}
                 <strong className="text-white">current safety standards offer zero
                 protection for any non-human species</strong> — and the harm is already measurable.
@@ -623,7 +623,7 @@ export default function WildlifePage() {
                   <p className="text-dark-300 text-sm leading-relaxed">
                     FCC/ICNIRP guidelines are <strong className="text-white">strictly
                     human-centric</strong> — protecting only against short-term tissue heating.{" "}
-                    <strong className="text-danger-400">No protection</strong> for birds, bees,
+                    <strong className="text-danger-400">No protection</strong>{" "}for birds, bees,
                     trees, or any other species.
                   </p>
                 </div>
@@ -637,7 +637,7 @@ export default function WildlifePage() {
                 <p className="text-dark-300 text-sm leading-relaxed">
                   Migratory birds, bees, bats, and sea turtles navigate via Earth's
                   magnetic field using{" "}
-                  <strong className="text-white">magnetite crystals</strong> and{" "}
+                  <strong className="text-white">magnetite crystals</strong>{" "}and{" "}
                   <strong className="text-white">cryptochrome proteins</strong>.
                   Artificial tower EMFs overwhelm these sensors — causing disorientation,
                   failed migrations, and population decline.
@@ -692,7 +692,7 @@ export default function WildlifePage() {
               </h4>
               <p className="text-dark-200 text-base leading-relaxed mb-4">
                 Researchers reviewed <strong className="text-white">1,200+
-                peer-reviewed studies</strong> on wireless radiation effects on flora and fauna.
+                peer-reviewed studies</strong>{" "}on wireless radiation effects on flora and fauna.
                 The <strong className="text-white">majority found adverse effects</strong> —
                 even at exposures far below FCC limits:
               </p>
@@ -731,7 +731,7 @@ export default function WildlifePage() {
                 <p className="text-dark-300 text-sm leading-relaxed">
                   The Environmental Health Trust sued the FCC and{" "}
                   <strong className="text-sky-300">won</strong>. The U.S. Court of Appeals
-                  ruled the FCC acted <strong className="text-white">unlawfully</strong> by
+                  ruled the FCC acted <strong className="text-white">unlawfully</strong>{" "}by
                   ignoring scientific evidence of harmful environmental impacts —
                   validating the need for ecosystem-inclusive regulations.
                 </p>

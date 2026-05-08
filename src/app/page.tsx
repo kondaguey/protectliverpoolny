@@ -611,7 +611,7 @@ export default function HomePage() {
           >
             <div className="bg-dark-900/60 border border-dark-800/50 rounded-2xl p-6 md:p-8">
               <p className="text-sm font-bold text-white mb-3">
-                But here's what they will <em>claim</em> it's for: to make the
+                But here's what they will <em>claim</em>{" "}it's for: to make the
                 highways "smart."
               </p>
               <p className="text-dark-300 leading-relaxed mb-4">

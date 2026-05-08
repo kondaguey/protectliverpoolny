@@ -720,7 +720,7 @@ export default function FoilEvidencePage() {
                 for the full breakdown.
               </li>
               <li>
-                Daniel&rsquo;s personal FOIL appeal letter is intentionally <em>not</em> hosted in this catalog — it&rsquo;s a private legal pleading.
+                Daniel&rsquo;s personal FOIL appeal letter is intentionally <em>not</em>{" "}hosted in this catalog — it&rsquo;s a private legal pleading.
               </li>
             </ul>
           </motion.div>
@@ -864,13 +864,13 @@ export default function FoilEvidencePage() {
                 <strong className="text-white">By approximately June 7, 2026</strong> — Filing an administrative redaction appeal with the NYSTA Records Appeals Officer demanding the Annual Fee, the fee check amount, and carrier sub-tenant rent terms. POL §89(4)(c) provides for fee-shifting in any subsequent Article 78.
               </li>
               <li>
-                <strong className="text-white">Follow-up FOIL filed</strong> targeting the Verizon RFDS (Project ID 17326150) and any AT&amp;T or T-Mobile RF emissions/propagation studies.
+                <strong className="text-white">Follow-up FOIL filed</strong>{" "}targeting the Verizon RFDS (Project ID 17326150) and any AT&amp;T or T-Mobile RF emissions/propagation studies.
               </li>
               <li>
-                <strong className="text-white">Referrals sent</strong> to the NYS Authorities Budget Office (financial audit), the Office of the State Comptroller (General Municipal Law §33), and the NYS Committee on Open Government (advisory opinion on §87(2)(b) misapplication).
+                <strong className="text-white">Referrals sent</strong>{" "}to the NYS Authorities Budget Office (financial audit), the Office of the State Comptroller (General Municipal Law §33), and the NYS Committee on Open Government (advisory opinion on §87(2)(b) misapplication).
               </li>
               <li>
-                <strong className="text-white">Article 78 reserved</strong> if administrative appeal denies relief — fee-shifting under POL §89(4)(c) if we substantially prevail.
+                <strong className="text-white">Article 78 reserved</strong>{" "}if administrative appeal denies relief — fee-shifting under POL §89(4)(c) if we substantially prevail.
               </li>
             </ul>
           </motion.div>

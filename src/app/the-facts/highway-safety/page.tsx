@@ -211,7 +211,7 @@ export default function HighwaySafetyPage() {
             <div className="space-y-4 text-dark-200 leading-relaxed">
               <p>
                 Telecom engineers claim towers are designed with &quot;hinge points&quot; to fold rather than fall flat. But an engineered hinge point does not control the{" "}
-                <strong className="text-white">direction</strong> of the collapse. Severe wind and asymmetrical ice loading dictate where the steel goes.
+                <strong className="text-white">direction</strong>{" "}of the collapse. Severe wind and asymmetrical ice loading dictate where the steel goes.
               </p>
               <p>
                 If this tower folds at 90 feet and falls North or East, it hits trees. If it falls South or Southwest, tons of galvanized steel crash{" "}
@@ -219,7 +219,7 @@ export default function HighwaySafetyPage() {
               </p>
               <p>
                 The developer introduced a structure where a{" "}
-                <strong className="text-white">50/50 coin toss</strong> during a failure dictates whether it lands in the dirt or blocks emergency vehicles and causes a highway collision.
+                <strong className="text-white">50/50 coin toss</strong>{" "}during a failure dictates whether it lands in the dirt or blocks emergency vehicles and causes a highway collision.
               </p>
             </div>
           </motion.div>
@@ -300,7 +300,7 @@ export default function HighwaySafetyPage() {
                 </p>
               </div>
               <p className="text-base font-semibold text-white">
-                Risks the FOIL response does <em>not</em> address:
+                Risks the FOIL response does <em>not</em>{" "}address:
               </p>
               <ul className="list-disc pl-5 space-y-1 text-sm">
                 <li>
@@ -340,7 +340,7 @@ export default function HighwaySafetyPage() {
             </p>
             <div className="space-y-4 text-dark-200 leading-relaxed">
               <p>
-                The 184-foot monopole was designed by <strong className="text-white">Sabre Industries, Inc.</strong> of Alvarado, Texas. Engineer of record: <strong className="text-white">Robert Beacom</strong>, sealed July 15, 2025 (license expires July 31, 2026). The 36-page sealed structural design report (Job 25-3277-JDS-R1, Rev B) discloses every design parameter that goes into the tower&rsquo;s safety calculations.
+                The 184-foot monopole was designed by <strong className="text-white">Sabre Industries, Inc.</strong>{" "}of Alvarado, Texas. Engineer of record: <strong className="text-white">Robert Beacom</strong>, sealed July 15, 2025 (license expires July 31, 2026). The 36-page sealed structural design report (Job 25-3277-JDS-R1, Rev B) discloses every design parameter that goes into the tower&rsquo;s safety calculations.
               </p>
               <div className="overflow-x-auto">
                 <table className="w-full text-sm border-collapse">
@@ -406,10 +406,10 @@ export default function HighwaySafetyPage() {
                 </table>
               </div>
               <p>
-                The <strong className="text-sky-300">Risk Category II</strong> selection is the cost-savings choice. ANSI/TIA-222-H assigns Risk Category III to structures whose failure &ldquo;would cause a substantial impact on health, safety, environment, or essential services.&rdquo; A 184-foot tower ~100 feet from an active I-90 off-ramp, adjacent to R-O residential zoning, with 145 gallons of diesel fuel and three-carrier commercial 5G equipment, plausibly meets that bar. Risk Category II reduces required design loads &mdash; an engineering choice with cost implications.
+                The <strong className="text-sky-300">Risk Category II</strong>{" "}selection is the cost-savings choice. ANSI/TIA-222-H assigns Risk Category III to structures whose failure &ldquo;would cause a substantial impact on health, safety, environment, or essential services.&rdquo; A 184-foot tower ~100 feet from an active I-90 off-ramp, adjacent to R-O residential zoning, with 145 gallons of diesel fuel and three-carrier commercial 5G equipment, plausibly meets that bar. Risk Category II reduces required design loads &mdash; an engineering choice with cost implications.
               </p>
               <p>
-                <strong className="text-sky-300">Site Class D (DEFAULT)</strong> means the soil class was assumed, not field-verified. Tectonic Engineering&rsquo;s geotechnical boring (B-1, drilled 11/6/2024 to 50 ft depth) showed wet, layered silty sand transitioning to wet sandy silt with rock fragments, and groundwater at 28.10 ft. Default class assumption may underestimate seismic amplification.
+                <strong className="text-sky-300">Site Class D (DEFAULT)</strong>{" "}means the soil class was assumed, not field-verified. Tectonic Engineering&rsquo;s geotechnical boring (B-1, drilled 11/6/2024 to 50 ft depth) showed wet, layered silty sand transitioning to wet sandy silt with rock fragments, and groundwater at 28.10 ft. Default class assumption may underestimate seismic amplification.
               </p>
               <p className="text-xs text-dark-500 italic">
                 Source:{" "}
@@ -441,7 +441,7 @@ export default function HighwaySafetyPage() {
               <p>
                 The structural design uses the cellular tower industry standard{" "}
                 <strong className="text-white">ANSI/TIA-222-H</strong> (current revision). New York State Building Code Chapter 35 references the{" "}
-                <strong className="text-white">older 222-G-2005</strong> standard. NYSTA&rsquo;s own engineer flagged this in writing.
+                <strong className="text-white">older 222-G-2005</strong>{" "}standard. NYSTA&rsquo;s own engineer flagged this in writing.
               </p>
               <div className="bg-dark-950/60 border border-orange-700/30 rounded-xl p-5">
                 <p className="text-sm text-dark-300 italic mb-2">
@@ -489,7 +489,7 @@ export default function HighwaySafetyPage() {
             </p>
             <div className="space-y-4 text-dark-200 leading-relaxed">
               <p>
-                On the first round of plan review, Verizon&rsquo;s structural footer for its co-located equipment was submitted at <strong className="text-white">3&rsquo;-6&rdquo;</strong> deep. New York Code minimum:{" "}
+                On the first round of plan review, Verizon&rsquo;s structural footer for its co-located equipment was submitted at <strong className="text-white">3&rsquo;-6&rdquo;</strong>{" "}deep. New York Code minimum:{" "}
                 <strong className="text-white">4&rsquo; deep to bottom of footer to finish grade</strong>.
               </p>
               <div className="grid grid-cols-2 gap-3 my-2">
@@ -515,7 +515,7 @@ export default function HighwaySafetyPage() {
                 {" "}(filename misnamed; internal review date 10/3/2025), item C-8 Detail 2. The same engineering firm (Tectonic Engineering) authored the geotechnical investigation. Verizon revised in the second round on 10/10/2025.
               </p>
               <p>
-                Six inches below code on the first round &mdash; on a 184-foot monopole adjacent to an active highway off-ramp &mdash; is not a clerical typo. It is the kind of error that NYSTA&rsquo;s engineering review is supposed to catch <em>before</em> the application clears, not after the public files a FOIL.
+                Six inches below code on the first round &mdash; on a 184-foot monopole adjacent to an active highway off-ramp &mdash; is not a clerical typo. It is the kind of error that NYSTA&rsquo;s engineering review is supposed to catch <em>before</em>{" "}the application clears, not after the public files a FOIL.
               </p>
             </div>
           </motion.div>
@@ -535,8 +535,8 @@ export default function HighwaySafetyPage() {
             <div className="space-y-4 text-dark-200 leading-relaxed">
               <p>
                 The TEP Engineering Structural Analysis Report calculated tower loads against a{" "}
-                <strong className="text-white">drilled pier</strong> foundation. The approved Construction Drawings show a{" "}
-                <strong className="text-white">pad/pier</strong> foundation.
+                <strong className="text-white">drilled pier</strong>{" "}foundation. The approved Construction Drawings show a{" "}
+                <strong className="text-white">pad/pier</strong>{" "}foundation.
               </p>
               <div className="bg-dark-950/60 border border-fuchsia-700/30 rounded-xl p-5">
                 <p className="text-sm text-dark-300 italic mb-2">
@@ -599,7 +599,7 @@ export default function HighwaySafetyPage() {
                 </div>
               </div>
               <p>
-                These are not abstract numbers. They are the <em>design assumptions</em> the manufacturer used to engineer the structure. A 184-ft tower designed to accumulate <strong className="text-white">1.5 inches of radial ice</strong> in <strong className="text-white">109 mph design wind</strong> is, by any reasonable application of OSHA&rsquo;s 50&ndash;100 ft horizontal-throw heuristic, a documented projectile hazard above an active highway off-ramp.
+                These are not abstract numbers. They are the <em>design assumptions</em>{" "}the manufacturer used to engineer the structure. A 184-ft tower designed to accumulate <strong className="text-white">1.5 inches of radial ice</strong>{" "}in <strong className="text-white">109 mph design wind</strong>{" "}is, by any reasonable application of OSHA&rsquo;s 50&ndash;100 ft horizontal-throw heuristic, a documented projectile hazard above an active highway off-ramp.
               </p>
               <p>
                 The campaign&rsquo;s next step is a project-specific ice-shed calculation using these inputs. Until then, the responsible parties &mdash; PTI, NYSTA, and the FHWA &mdash; can produce one. Our position remains: <strong className="text-cyan-300">Sabre&rsquo;s design parameters are public now. The ice-throw envelope follows from physics. Either someone calculates it, or the public should know it has not been calculated.</strong>

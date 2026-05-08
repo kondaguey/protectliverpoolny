@@ -494,7 +494,7 @@ export default function CommunityLegalPage() {
                 </strong>{" "}
                 . Because the land is state-owned, it falls outside the
                 jurisdiction of{" "}
-                <strong className="text-white">Onondaga County</strong> and the{" "}
+                <strong className="text-white">Onondaga County</strong>{" "}and the{" "}
                 <strong className="text-white">Town of Salina</strong>—
                 completely bypassing local government authority.
               </p>

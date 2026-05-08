@@ -606,7 +606,7 @@ export default function TakeActionPage() {
                         <strong className="text-dark-200">WHEREAS,</strong>{" "}NYSTA and Phoenix Tower International have weaponized state land exemptions to deliberately bypass the Town of Salina&apos;s zoning laws, evading public hearings, environmental impact transparency, and all forms of democratic community consent;
                       </p>
                       <p className="text-xs text-dark-300 leading-relaxed">
-                        <strong className="text-dark-200">WHEREAS,</strong>{" "}if NYSTA and Phoenix Tower International assert immunity from the Town of Salina&apos;s zoning jurisdiction under the <em>Matter of County of Monroe</em> balancing test, we stand as follows: the private commercial interests of Phoenix Tower do not automatically inherit absolute state immunity, and the severe detrimental impacts on local land use, wildlife (BGEPA), and residential property values demonstrably outweigh the marginal public benefit of a redundant telecommunications facility &mdash; especially when less intrusive alternative sites exist. This assertion is fundamentally flawed and legally challengeable;
+                        <strong className="text-dark-200">WHEREAS,</strong>{" "}if NYSTA and Phoenix Tower International assert immunity from the Town of Salina&apos;s zoning jurisdiction under the <em>Matter of County of Monroe</em>{" "}balancing test, we stand as follows: the private commercial interests of Phoenix Tower do not automatically inherit absolute state immunity, and the severe detrimental impacts on local land use, wildlife (BGEPA), and residential property values demonstrably outweigh the marginal public benefit of a redundant telecommunications facility &mdash; especially when less intrusive alternative sites exist. This assertion is fundamentally flawed and legally challengeable;
                       </p>
                       <p className="text-xs text-dark-300 leading-relaxed">
                         <strong className="text-dark-200">WHEREAS,</strong>{" "}this unlit 184-foot (56.1-meter) structure—engineered precisely 16 feet (4.8 meters) below the FAA lighting threshold—sits just 0.25 miles from the Syracuse Hancock International Airport (SYR) Runway 10 descent corridor. Despite a remote, desk-reviewed &ldquo;No Hazard&rdquo; determination by the FAA, erecting a massive, unlit steel pole in immediate proximity to a low-altitude flight path remains a profound safety and planning concern for the community below;
@@ -643,7 +643,7 @@ export default function TakeActionPage() {
                         <strong className="text-white">1. Immediate Cessation:</strong>{" "}NYSTA and Phoenix Tower International must immediately halt all construction. <strong className="text-white">In the event of construction completion, we demand the complete removal and dismantling of the structure.</strong>
                       </p>
                       <p className="text-xs text-dark-200 leading-relaxed">
-                        <strong className="text-white">2. Municipal &amp; State Legal Action:</strong>{" "}We formally demand that Supervisor Huerta, Legislator Thompson, Senator Ryan, Assemblymember Hunter, Assemblymember Stirpe, and Assemblymember Magnarelli (in his capacity as Chair of the NYS Assembly Transportation Committee, which has direct oversight of the Thruway Authority) exhaust all municipal and state legal resources&mdash;including demanding an administrative Stop Work Order or filing an emergency Article 78 proceeding against NYSTA challenging their assumed immunity under the <em>Monroe</em> balancing test&mdash;to halt this state-sanctioned overreach until full environmental transparency is achieved. Furthermore, we demand the NYS DEC launch an immediate investigation into NYSTA&apos;s SEQRA compliance and environmental impact evasion regarding this site.
+                        <strong className="text-white">2. Municipal &amp; State Legal Action:</strong>{" "}We formally demand that Supervisor Huerta, Legislator Thompson, Senator Ryan, Assemblymember Hunter, Assemblymember Stirpe, and Assemblymember Magnarelli (in his capacity as Chair of the NYS Assembly Transportation Committee, which has direct oversight of the Thruway Authority) exhaust all municipal and state legal resources&mdash;including demanding an administrative Stop Work Order or filing an emergency Article 78 proceeding against NYSTA challenging their assumed immunity under the <em>Monroe</em>{" "}balancing test&mdash;to halt this state-sanctioned overreach until full environmental transparency is achieved. Furthermore, we demand the NYS DEC launch an immediate investigation into NYSTA&apos;s SEQRA compliance and environmental impact evasion regarding this site.
                       </p>
                       <p className="text-xs text-dark-200 leading-relaxed">
                         <strong className="text-white">3. Congressional &amp; Federal Intervention:</strong>{" "}We demand that Representative Mannion, Senator Schumer, and Senator Gillibrand launch immediate congressional inquiries into the FAA, FCC, and USFWS regarding the siting, environmental impact evasion, and potential BGEPA/MBTA risks of ASR #1329974.
@@ -921,7 +921,7 @@ export default function TakeActionPage() {
                     <p className="text-[13px] text-dark-400 leading-relaxed">
                       <span className="font-bold text-dark-300 block mb-1.5 text-sm">Privacy Notice — How Your Signature Will Be Used</span>
                       This petition will be formally presented to elected officials as a sequentially numbered document. At a minimum, for your signature to hold official validity, your{" "}
-                      <strong className="text-white">full name</strong> and{" "}
+                      <strong className="text-white">full name</strong>{" "}and{" "}
                       <strong className="text-white">zip code</strong>{" "}
                       will become part of the public record and appear on the final printed document. If provided, your street address and any optional comments will also be printed and shared with officials to demonstrate direct community impact.
                     </p>
@@ -1054,7 +1054,7 @@ export default function TakeActionPage() {
               Don't just be angry — be strategic. Follow this pipeline in order.
               Every step creates a paper trail. Every contact generates a
               record. When enough people do this, they{" "}
-              <em className="text-white not-italic font-bold">have</em> to
+              <em className="text-white not-italic font-bold">have</em>{" "}to
               respond.
             </p>
           </motion.div>
@@ -1100,7 +1100,7 @@ export default function TakeActionPage() {
                       <p className="text-dark-400 text-xs leading-relaxed mb-3">
                         Submit a complaint about tower RF interference, safety
                         concerns, or a tower light outage. Click{" "}
-                        <strong className="text-white">&quot;Radio&quot;</strong> or{" "}
+                        <strong className="text-white">&quot;Radio&quot;</strong>{" "}or{" "}
                         <strong className="text-white">&quot;Emergency&quot;</strong>{" "}
                         on the form. Include coordinates, photos, and your
                         narrative.

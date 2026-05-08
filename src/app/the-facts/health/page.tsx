@@ -472,7 +472,7 @@ export default function HealthSciencePage() {
                 </p>
                 <p className="text-dark-300 text-sm leading-relaxed mb-4">
                   Most countries set wireless radiation limits{" "}
-                  <strong className="text-white">100× to 1,000× stricter</strong> than
+                  <strong className="text-white">100× to 1,000× stricter</strong>{" "}than
                   the United States. The FCC's limits haven't been updated since 1996.
                 </p>
 
@@ -613,7 +613,7 @@ export default function HealthSciencePage() {
                 </span>{" "}
                 , the people on the ground fighting for your rights are
                 declaring{" "}
-                <strong className="text-white text-lg">IS</strong> and{" "}
+                <strong className="text-white text-lg">IS</strong>{" "}and{" "}
                 <strong className="text-white text-lg">ARE</strong>.{" "}
                 <span className="text-danger-400 font-black">
                   It's that obvious.
@@ -644,7 +644,7 @@ export default function HealthSciencePage() {
             </div>
             <p className="text-dark-400 mb-6 max-w-2xl">
               On May 8, 2026, NYSTA produced 81 documents in response to FOIL Request{" "}
-              <strong className="text-white">#R000082-032026</strong>. The set includes engineering reviews, construction drawings, structural analyses, and SEQRA documents. It does <strong className="text-rose-400">not</strong> include the RF emissions or propagation studies that any siting analysis is supposed to rely on.
+              <strong className="text-white">#R000082-032026</strong>. The set includes engineering reviews, construction drawings, structural analyses, and SEQRA documents. It does <strong className="text-rose-400">not</strong>{" "}include the RF emissions or propagation studies that any siting analysis is supposed to rely on.
             </p>
           </motion.div>
 
@@ -891,10 +891,10 @@ export default function HealthSciencePage() {
                 Senator Ryan&rsquo;s office relayed PTI&rsquo;s claim that the tower is &ldquo;intended to improve coverage for emergency service providers.&rdquo; The 93-document FOIL response now documents what that actually means in hardware:
               </p>
               <p>
-                AT&amp;T installed <strong className="text-white">four Ericsson 4494 radios on Band 14 (FirstNet)</strong> &mdash; one of <strong className="text-white">four</strong> Ericsson radio types on the tower. The other twelve Ericsson radios are commercial 5G/cellular. The eight Commscope panels carry both. There is no FirstNet-specific equipment package; there is FirstNet capability layered onto a commercial 5G build &mdash; <em>standard AT&amp;T practice on every tower they own equipment on</em>.
+                AT&amp;T installed <strong className="text-white">four Ericsson 4494 radios on Band 14 (FirstNet)</strong> &mdash; one of <strong className="text-white">four</strong>{" "}Ericsson radio types on the tower. The other twelve Ericsson radios are commercial 5G/cellular. The eight Commscope panels carry both. There is no FirstNet-specific equipment package; there is FirstNet capability layered onto a commercial 5G build &mdash; <em>standard AT&amp;T practice on every tower they own equipment on</em>.
               </p>
               <p>
-                Band 14 / FirstNet capability does not transform a commercial 5G site adjacent to R-O zoning into a public-safety-specific facility. It makes it a commercial 5G site that <em>also</em> supports FirstNet, like every other AT&amp;T site. The honest framing: <strong className="text-fuchsia-300">the &ldquo;emergency services&rdquo; justification was used to bypass scrutiny that no commercial 5G site in R-O residential-office zoning would normally pass.</strong> It is not a wholly fabricated claim. It is a materially overstated one.
+                Band 14 / FirstNet capability does not transform a commercial 5G site adjacent to R-O zoning into a public-safety-specific facility. It makes it a commercial 5G site that <em>also</em>{" "}supports FirstNet, like every other AT&amp;T site. The honest framing: <strong className="text-fuchsia-300">the &ldquo;emergency services&rdquo; justification was used to bypass scrutiny that no commercial 5G site in R-O residential-office zoning would normally pass.</strong>{" "}It is not a wholly fabricated claim. It is a materially overstated one.
               </p>
               <p className="text-xs text-dark-500 italic">
                 Source:{" "}

@@ -20,7 +20,7 @@ export default function Terms() {
           <div>
             <h2 className="text-lg font-bold text-white mb-2">About This Site</h2>
             <p>
-              ProtectLiverpoolNY.org is a <strong className="text-white">not-for-profit grassroots community initiative</strong> dedicated to informing residents about the construction of a 184-foot commercial cell tower in Liverpool, NY. This site does not generate revenue and is operated entirely by community volunteers.
+              ProtectLiverpoolNY.org is a <strong className="text-white">not-for-profit grassroots community initiative</strong>{" "}dedicated to informing residents about the construction of a 184-foot commercial cell tower in Liverpool, NY. This site does not generate revenue and is operated entirely by community volunteers.
             </p>
           </div>
 
