@@ -24,6 +24,10 @@ import {
   DollarSign,
   ChevronLeft,
   ChevronRight,
+  Gavel,
+  CheckCircle2,
+  XCircle,
+  HelpCircle,
 } from "lucide-react";
 
 const fadeUp = {
@@ -54,7 +58,7 @@ const rulesData = [
   },
   {
     theirs:
-      "100+ bald eagles roost 1.7 miles away. No wildlife review conducted.",
+      "100+ bald eagles roost 1.25 miles away. No wildlife review provided to date.",
     yours: "Disturb an eagle nest on your property? $100,000 fine.",
   },
   {
@@ -246,7 +250,7 @@ export default function CommunityLegalPage() {
                 transition={{ duration: 0.6, delay: 0.3 }}
                 className="mt-6 text-lg text-dark-400 max-w-lg leading-relaxed"
               >
-                Property values can drop up to 20% near cell towers. A
+                Peer-reviewed research shows property values drop 2-9% or more near cell towers. A
                 documented phenomenon that we can <em>prove</em>.
               </motion.p>
             </div>
@@ -258,7 +262,7 @@ export default function CommunityLegalPage() {
               <div className="rounded-2xl overflow-hidden border border-dark-700/50 shadow-2xl shadow-black/40">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
-                  src="https://imagedelivery.net/5MAOvNjO0OBL917jHWR5AA/615a2f24-06f0-440b-f4a0-4e4a24506900/public"
+                  src="https://media.protectliverpoolny.org/evidence/community.png"
                   alt="Community impact"
                   className="w-full h-auto"
                 />
@@ -272,6 +276,7 @@ export default function CommunityLegalPage() {
         links={[
           { label: "Property Values", id: "property-values" },
           { label: "The State Land Loophole", id: "state-land-loophole" },
+          { label: "The Monroe Test", id: "monroe-test" },
           { label: "What Other Towns Did", id: "social-proof" },
           { label: "Take Action", id: "cta" },
         ]}
@@ -305,14 +310,14 @@ export default function CommunityLegalPage() {
                 {
                   stat: "94%",
                   label:
-                    "of home buyers say they would pay less or avoid a property near a cell tower",
+                    "of surveyed home buyers say they would pay less or avoid a property near a cell tower",
                   source: "NISLAPP Survey",
                 },
                 {
-                  stat: "Up to 20%",
+                  stat: "2–9%+",
                   label:
-                    "decline in property values reported by licensed real estate appraisers and peer-reviewed studies",
-                  source: "Multiple Studies",
+                    "decline in property values reported by peer-reviewed research, with appraiser estimates as high as 20%",
+                  source: "Sander & Polacheck, 2009",
                 },
                 {
                   stat: "79%",
@@ -543,6 +548,214 @@ export default function CommunityLegalPage() {
               ))}
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* ═══════════════════ THE MONROE BALANCING TEST ═══════════════════ */}
+      <section id="monroe-test" className="py-16 md:py-24 px-4 scroll-mt-24">
+        <div className="max-w-4xl mx-auto">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-50px" }}
+            variants={fadeUp}
+            custom={0}
+          >
+            <div className="flex items-center gap-3 mb-6">
+              <div className="w-10 h-10 rounded-xl bg-amber-900/50 border border-amber-800/30 flex items-center justify-center">
+                <Gavel className="w-5 h-5 text-amber-400" />
+              </div>
+              <h2 className="text-3xl md:text-4xl font-bold">
+                The Monroe{" "}
+                <span className="text-amber-400">Balancing Test</span>
+              </h2>
+            </div>
+          </motion.div>
+
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeUp}
+            custom={1}
+            className="bg-dark-900/60 border border-dark-800/50 rounded-2xl p-6 md:p-8 mb-6"
+          >
+            <p className="text-dark-200 text-lg leading-relaxed mb-4">
+              In 1988, the New York Court of Appeals established a{" "}
+              <strong className="text-white">nine-factor legal test</strong>{" "}in{" "}
+              <em>Matter of County of Monroe v. City of Rochester</em>{" "}to determine
+              whether a government entity can{" "}
+              <strong className="text-amber-400">bypass local zoning laws</strong>.
+              It replaced the old "governmental vs. proprietary" distinction with
+              a balancing act that weighs the{" "}
+              <strong className="text-white">public interest</strong>{" "}of a
+              project against its{" "}
+              <strong className="text-white">impact on the local community</strong>.
+            </p>
+            <p className="text-dark-200 text-lg leading-relaxed">
+              This is the legal mechanism NYSTA and Phoenix Tower International
+              are using right now. They argue that because NYSTA is a state
+              entity, the Monroe test applies — and that telecom infrastructure
+              serves the "public good" enough to override your community's
+              rights.
+            </p>
+          </motion.div>
+
+          {/* The 9 Factors */}
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeUp}
+            custom={2}
+          >
+            <p className="text-xs font-bold text-amber-400 uppercase tracking-widest mb-4">
+              The 9 Factors — Applied to This Tower
+            </p>
+            <div className="space-y-3 mb-6">
+              {[
+                {
+                  num: 1,
+                  factor: "Nature and scope of the instrumentality",
+                  spin: "NYSTA is acting as a commercial landlord — collecting lease revenue from a private telecom company. That's not a governmental function, it's a real estate deal. Managing toll roads is NYSTA's mission, not running a cell tower portfolio.",
+                  status: "favor" as const,
+                },
+                {
+                  num: 2,
+                  factor: "Encroaching activities vs. principal activities",
+                  spin: "Leasing land to a private telecom company is not NYSTA's principal activity. Managing the Thruway is.",
+                  status: "favor" as const,
+                },
+                {
+                  num: 3,
+                  factor: "Whether there is a public interest in the project",
+                  spin: "T-Mobile, AT&T, and Verizon already provide full 5G Ultra Wideband coverage across Liverpool — verified on their own coverage maps. There is no coverage gap. This tower adds commercial capacity for carrier revenue, not public service.",
+                  status: "favor" as const,
+                },
+                {
+                  num: 4,
+                  factor: "Whether the facility is essential",
+                  spin: "Multiple carriers already provide coverage in Liverpool. This tower is not filling a coverage gap — it's adding commercial capacity.",
+                  status: "favor" as const,
+                },
+                {
+                  num: 5,
+                  factor: "Whether alternative locations exist",
+                  spin: "No public evidence that NYSTA or PTI evaluated alternative sites, considered co-location on existing structures, or explored less impactful locations. The burden of proof is on them — and they've produced nothing.",
+                  status: "favor" as const,
+                },
+                {
+                  num: 6,
+                  factor: "Impact on the surrounding community",
+                  spin: "2-9%+ property value decline, no environmental review, eagles at risk, aviation hazard, dead vultures at the site, visual blight — devastating and documented.",
+                  status: "favor" as const,
+                },
+                {
+                  num: 7,
+                  factor: "Whether the entity tried to comply with local zoning",
+                  spin: "No. They did not approach Salina, did not seek a variance, held no public hearing. Complete bypass from day one.",
+                  status: "favor" as const,
+                },
+                {
+                  num: 8,
+                  factor: "Whether the entity offered mitigating conditions",
+                  spin: "No lights, no community benefit agreement, no tax sharing, no notification, no mitigation of any kind was ever offered.",
+                  status: "favor" as const,
+                },
+                {
+                  num: 9,
+                  factor: "Whether the site is a greenfield or already developed",
+                  spin: "Thruway corridor is arguably developed — but this is not on the highway itself. It's next to homes.",
+                  status: "contested" as const,
+                },
+              ].map((item) => (
+                <div
+                  key={item.num}
+                  className={`rounded-xl p-4 border ${
+                    item.status === "favor"
+                      ? "bg-emerald-950/20 border-emerald-800/30"
+                      : "bg-amber-950/15 border-amber-800/25"
+                  }`}
+                >
+                  <div className="flex items-start gap-3">
+                    <span
+                      className={`text-xs font-black px-2 py-0.5 rounded-md mt-0.5 flex-shrink-0 ${
+                        item.status === "favor"
+                          ? "bg-emerald-800/40 text-emerald-300"
+                          : "bg-amber-800/30 text-amber-300"
+                      }`}
+                    >
+                      {item.num}
+                    </span>
+                    <div className="flex-1">
+                      <div className="flex items-center gap-2 mb-1">
+                        <p className="text-sm font-bold text-white">
+                          {item.factor}
+                        </p>
+                        {item.status === "favor" ? (
+                          <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 flex-shrink-0" />
+                        ) : (
+                          <HelpCircle className="w-3.5 h-3.5 text-amber-400 flex-shrink-0" />
+                        )}
+                      </div>
+                      <p className="text-sm text-dark-300 leading-relaxed">
+                        {item.spin}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <div className="grid sm:grid-cols-2 gap-4 mb-6">
+              <div className="bg-emerald-950/20 border border-emerald-800/30 rounded-xl p-5 text-center">
+                <p className="text-3xl font-black text-emerald-400 mb-1">6 of 9</p>
+                <p className="text-sm text-dark-300">
+                  Factors clearly favor{" "}
+                  <strong className="text-white">our community</strong>
+                </p>
+              </div>
+              <div className="bg-amber-950/20 border border-amber-800/30 rounded-xl p-5 text-center">
+                <p className="text-3xl font-black text-amber-400 mb-1">3 of 9</p>
+                <p className="text-sm text-dark-300">
+                  Contested — and we're building the evidence
+                </p>
+              </div>
+            </div>
+
+            {/* What this means */}
+            <div className="bg-danger-950/20 border border-danger-800/30 rounded-2xl p-6">
+              <div className="flex items-start gap-3">
+                <Scale className="w-6 h-6 text-danger-400 flex-shrink-0 mt-0.5" />
+                <div>
+                  <h4 className="text-lg font-bold text-white mb-2">
+                    What This Means for You
+                  </h4>
+                  <p className="text-dark-200 text-base leading-relaxed mb-3">
+                    The Monroe test is not a law that{" "}
+                    <em>automatically</em>{" "}grants immunity. It's a{" "}
+                    <strong className="text-white">balancing act</strong> — and
+                    the court weighs{" "}
+                    <strong className="text-danger-400">
+                      documented community opposition
+                    </strong>{" "}
+                    as direct evidence under Factor 6.
+                  </p>
+                  <p className="text-dark-200 text-base leading-relaxed mb-3">
+                    <strong className="text-white">
+                      Every petition signature, every public comment, every
+                      documented concern
+                    </strong>{" "}
+                    strengthens the argument that this tower's community impact
+                    outweighs whatever "public interest" NYSTA claims.
+                  </p>
+                  <p className="text-danger-300 font-bold">
+                    Your signature isn't symbolic. It's legal ammunition.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </motion.div>
         </div>
       </section>
 

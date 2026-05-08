@@ -13,7 +13,7 @@ export default function PrivacyPolicy() {
       <div className="max-w-3xl mx-auto">
         <h1 className="text-3xl md:text-4xl font-black mb-2">Privacy Policy</h1>
         <p className="text-dark-500 text-sm mb-8">
-          Last updated: March 2026
+          Last updated: April 2026
         </p>
 
         <div className="space-y-8 text-dark-300 leading-relaxed text-sm">
@@ -31,6 +31,7 @@ export default function PrivacyPolicy() {
               <li>Your name (as you provide it)</li>
               <li>Your email address (optional)</li>
               <li>Your ZIP code (optional)</li>
+              <li>Your phone number (optional)</li>
             </ul>
             <p className="mt-3">
               This information is used <strong className="text-white">exclusively</strong>{" "}to demonstrate community opposition to the cell tower and to contact you with updates if you opt in.

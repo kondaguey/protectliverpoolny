@@ -2,16 +2,21 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Menu, X, ChevronDown, Shield } from "lucide-react";
 import { usePathname } from "next/navigation";
 
-const factsSubLinks = [
+const factsSubLinks: { href: string; label: string }[] = [
   { href: "/the-facts/community", label: "Community & Land Value" },
   { href: "/the-facts/health", label: "Health Impacts" },
   { href: "/the-facts/aviation", label: "Aviation & Safety" },
+  { href: "/the-facts/highway-safety", label: "Highway Safety" },
   { href: "/the-facts/wildlife", label: "Wildlife & Environment" },
   { href: "/the-facts/surveillance", label: "The Real Question" },
+  { href: "/the-facts/loophole-kings", label: "Loophole Kings" },
+  { href: "---", label: "---" },
+  { href: "/code-of-conduct", label: "📜 Code of Conduct" },
+  { href: "/npc-takes", label: "🎮 NPC Takes" },
 ];
 
 export function Header() {
@@ -19,9 +24,20 @@ export function Header() {
   const [factsOpen, setFactsOpen] = useState(false);
   const pathname = usePathname();
 
+  // Lock body scroll when mobile menu is open
+  useEffect(() => {
+    if (mobileOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => { document.body.style.overflow = ""; };
+  }, [mobileOpen]);
+
   const isFactsActive = pathname.startsWith("/the-facts");
 
   return (
+    <>
     <header className="sticky top-0 z-50 bg-dark-950/90 backdrop-blur-md border-b border-dark-800/50">
       <div className="max-w-6xl mx-auto px-4 h-24 flex items-center justify-between">
         {/* Logo */}
@@ -85,7 +101,10 @@ export function Header() {
                 <div className="absolute top-full left-0 w-full h-2" />
                 <div className="absolute top-full left-0 pt-2 w-52">
                   <div className="bg-dark-900 border border-dark-700/60 rounded-xl shadow-2xl shadow-black/40 overflow-hidden py-1">
-                    {factsSubLinks.map((sub) => (
+                    {factsSubLinks.map((sub) =>
+                      sub.href === "---" ? (
+                        <div key="divider" className="border-t border-dark-700/40 my-1" />
+                      ) : (
                       <Link
                         key={sub.href}
                         href={sub.href}
@@ -98,7 +117,8 @@ export function Header() {
                       >
                         {sub.label}
                       </Link>
-                    ))}
+                      )
+                    )}
                   </div>
                 </div>
               </>
@@ -126,10 +146,41 @@ export function Header() {
           {mobileOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
         </button>
       </div>
+    </header>
 
-      {/* Mobile Nav */}
-      {mobileOpen && (
-        <nav className="md:hidden bg-dark-900 border-t border-dark-800 px-4 py-3 space-y-1">
+    {/* Mobile Nav — Full-viewport takeover (outside header) */}
+    {mobileOpen && (
+      <div className="md:hidden fixed inset-0 z-[100] bg-dark-950 flex flex-col">
+        {/* Mobile menu header */}
+        <div className="flex items-center justify-between px-4 h-24 border-b border-dark-800/50 flex-shrink-0">
+          <Link
+            href="/"
+            className="flex items-center gap-2.5"
+            onClick={() => setMobileOpen(false)}
+          >
+            <span className="relative flex items-center justify-center w-20 h-20">
+              <Image src="/protect-liverpool-ny-logo-160.png" alt="Protect Liverpool NY" width={80} height={80} priority className="w-full h-full object-contain" />
+            </span>
+            <span
+              className="font-black tracking-[-0.03em] leading-none"
+              style={{ fontSize: "1.15rem", fontFamily: "'Inter', system-ui, sans-serif" }}
+            >
+              <span className="text-white">PROTECT</span>
+              <span className="text-danger-500">LIVERPOOL</span>
+              <span className="text-dark-500 font-bold text-xs ml-0.5 tracking-wide">NY</span>
+            </span>
+          </Link>
+          <button
+            onClick={() => setMobileOpen(false)}
+            className="p-2 text-dark-300 hover:text-white transition-colors"
+            aria-label="Close menu"
+          >
+            <X className="w-6 h-6" />
+          </button>
+        </div>
+
+        {/* Mobile menu links */}
+        <nav className="flex-1 overflow-y-auto px-4 py-6 space-y-1">
           <Link
             href="/"
             onClick={() => setMobileOpen(false)}
@@ -158,7 +209,10 @@ export function Header() {
 
             {factsOpen && (
               <div className="ml-4 mt-1 space-y-1 border-l-2 border-dark-700/50 pl-3">
-                {factsSubLinks.map((sub) => (
+                {factsSubLinks.map((sub) =>
+                  sub.href === "---" ? (
+                    <div key="divider-mobile" className="border-t border-dark-700/40 my-1" />
+                  ) : (
                   <Link
                     key={sub.href}
                     href={sub.href}
@@ -171,7 +225,8 @@ export function Header() {
                   >
                     {sub.label}
                   </Link>
-                ))}
+                  )
+                )}
               </div>
             )}
           </div>
@@ -188,7 +243,8 @@ export function Header() {
             Take Action
           </Link>
         </nav>
-      )}
-    </header>
+      </div>
+    )}
+    </>
   );
 }

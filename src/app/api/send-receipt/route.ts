@@ -168,13 +168,31 @@ export async function POST(req: Request) {
       </div>
     </div>
 
+    <!-- Inbox & Removal Notice -->
+    <div style="background-color:#141420;border:1px solid #1e1e2e;border-radius:12px;padding:24px;margin-bottom:24px;">
+      <p style="color:#ffffff;font-size:14px;font-weight:700;margin:0 0 12px;">
+        📬 Respecting Your Inbox
+      </p>
+      <p style="color:#9ca3af;font-size:13px;line-height:1.7;margin:0 0 12px;">
+        To respect your inbox, we do not send routine email updates the way we used to. For all movement updates, FOIL responses, petition changes, and factual corrections, please periodically visit our public Change Log:
+      </p>
+      <div style="text-align:center;margin-bottom:16px;">
+        <a href="https://protectliverpoolny.org/changelog" style="display:inline-block;background-color:#1a1a2e;border:1px solid #2a2a3e;color:#38bdf8;font-weight:700;font-size:13px;padding:10px 24px;border-radius:8px;text-decoration:none;">
+          Movement Updates &amp; Change Log →
+        </a>
+      </div>
+      <p style="color:#6b7280;font-size:12px;line-height:1.7;margin:0;border-left:3px solid #374151;padding-left:12px;">
+        <strong style="color:#9ca3af;">Your rights:</strong> You may remove your name from this petition at any time, for any reason, by emailing <a href="mailto:takeaction@protectliverpoolny.org" style="color:#ef4444;text-decoration:underline;">takeaction@protectliverpoolny.org</a>. No questions asked. If you ever see something on our site that you believe is inaccurate, that same email address is how you tell us — and we will correct it publicly.
+      </p>
+    </div>
+
     <!-- Footer -->
     <div style="text-align:center;">
       <p style="color:#4b5563;font-size:11px;margin:0 0 8px;">
         ProtectLiverpoolNY.org — A grassroots community initiative.
       </p>
       <p style="color:#374151;font-size:10px;margin:0;">
-        You received this because you signed the petition. We will never spam you.
+        You received this because you signed the petition. We respect your inbox.
       </p>
     </div>
   </div>

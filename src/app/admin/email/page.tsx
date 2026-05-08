@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useEffect, useCallback, useRef } from "react";
-import { createClient } from "@supabase/supabase-js";
 import {
   Send,
   Shield,
@@ -13,11 +12,18 @@ import {
   Mail,
   ChevronDown,
 } from "lucide-react";
+import dynamic from "next/dynamic";
 
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-);
+const EmailEditor = dynamic(() => import("@/components/EmailEditor"), {
+  ssr: false,
+  loading: () => (
+    <div className="bg-dark-800 border border-dark-700 rounded-xl h-[300px] flex items-center justify-center">
+      <div className="w-5 h-5 border-2 border-dark-500/30 border-t-dark-400 rounded-full animate-spin" />
+    </div>
+  ),
+});
+
+
 
 /* ────────────────── Email preview template (matches API route) ────────────────── */
 function previewHtml(subject: string, bodyHtml: string): string {
@@ -51,13 +57,7 @@ function previewHtml(subject: string, bodyHtml: string): string {
 </html>`;
 }
 
-/* ────────────────── Convert plain text to HTML paragraphs ────────────────── */
-function textToHtml(text: string): string {
-  return text
-    .split(/\n\n+/)
-    .map((p) => `<p style="margin:0 0 16px;">${p.replace(/\n/g, "<br/>")}</p>`)
-    .join("\n");
-}
+/* ────────────────── Convert plain text to HTML paragraphs (fallback) ────────────────── */
 
 /* ═══════════════════════════════════════════════════════════════════ */
 
@@ -75,7 +75,7 @@ export default function AdminEmailPage() {
 
   // Compose
   const [subject, setSubject] = useState("");
-  const [body, setBody] = useState("");
+  const [bodyHtml, setBodyHtml] = useState("");
   const [showPreview, setShowPreview] = useState(false);
 
   // Send
@@ -102,20 +102,15 @@ export default function AdminEmailPage() {
 
   // Fetch audience counts
   const fetchCounts = useCallback(async () => {
-    const { count: allCount } = await supabase
-      .from("plny_signatures")
-      .select("id", { count: "exact", head: true });
-
-    const { count: optedInCount } = await supabase
-      .from("plny_signatures")
-      .select("id", { count: "exact", head: true })
-      .eq("opt_in_contact", true);
-
-    setCounts({
-      all: allCount || 0,
-      optedIn: optedInCount || 0,
-    });
-  }, []);
+    try {
+      const res = await fetch(`/api/admin/counts?secret=${encodeURIComponent(secret)}`);
+      if (!res.ok) return;
+      const data = await res.json();
+      setCounts({ all: data.all || 0, optedIn: data.optedIn || 0 });
+    } catch {
+      // silently fail
+    }
+  }, [secret]);
 
   useEffect(() => {
     if (authed) fetchCounts();
@@ -132,11 +127,11 @@ export default function AdminEmailPage() {
       const doc = iframeRef.current.contentDocument;
       if (doc) {
         doc.open();
-        doc.write(previewHtml(subject || "Subject Preview", textToHtml(body || "Email body will appear here...")));
+        doc.write(previewHtml(subject || "Subject Preview", bodyHtml || "<p>Email body will appear here...</p>"));
         doc.close();
       }
     }
-  }, [showPreview, subject, body]);
+  }, [showPreview, subject, bodyHtml]);
 
   const handleSend = async () => {
     setSending(true);
@@ -150,7 +145,7 @@ export default function AdminEmailPage() {
         body: JSON.stringify({
           secret,
           subject: subject.trim(),
-          bodyHtml: textToHtml(body),
+          bodyHtml,
           audience,
         }),
       });
@@ -324,16 +319,10 @@ export default function AdminEmailPage() {
                 <label className="block text-sm font-medium text-dark-300 mb-1.5">
                   Body{" "}
                   <span className="text-dark-500 font-normal">
-                    (use {"{firstName}"} to personalize)
+                    (type {"\{firstName\}"} to personalize)
                   </span>
                 </label>
-                <textarea
-                  value={body}
-                  onChange={(e) => setBody(e.target.value)}
-                  rows={10}
-                  placeholder={`Hi {firstName},\n\nWe recently updated the official demand and Privacy Notice of the Protect Liverpool NY petition...\n\nThank you for being one of the first to stand up for our community.\n\nBest,\nThe Protect Liverpool NY Team`}
-                  className="w-full px-4 py-3 bg-dark-800 border border-dark-700 rounded-xl text-white placeholder-dark-500 focus:outline-none focus:ring-2 focus:ring-danger-500/50 focus:border-danger-500 transition-all resize-y font-mono text-sm leading-relaxed"
-                />
+                <EmailEditor onHtmlChange={setBodyHtml} />
               </div>
             </div>
           </div>
@@ -396,7 +385,7 @@ export default function AdminEmailPage() {
                 onClick={() => {
                   setResult(null);
                   setSubject("");
-                  setBody("");
+                  setBodyHtml("");
                 }}
                 className="mt-4 px-6 py-2 bg-white/5 border border-white/10 text-dark-200 hover:text-white hover:bg-white/10 font-bold rounded-xl transition-all text-sm"
               >
@@ -416,7 +405,7 @@ export default function AdminEmailPage() {
                 <button
                   onClick={() => setConfirming(true)}
                   disabled={
-                    !subject.trim() || !body.trim() || recipientCount === 0
+                    !subject.trim() || !bodyHtml.trim() || recipientCount === 0
                   }
                   className="w-full flex items-center justify-center gap-2 py-4 bg-danger-600 hover:bg-danger-500 disabled:bg-danger-800 disabled:cursor-not-allowed text-white font-bold text-lg rounded-xl transition-all duration-200 shadow-lg shadow-danger-900/40"
                 >

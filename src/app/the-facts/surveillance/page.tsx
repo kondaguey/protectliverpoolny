@@ -85,7 +85,7 @@ export default function SurveillancePage() {
               <div className="rounded-2xl overflow-hidden border border-dark-700/50 shadow-2xl shadow-black/40">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
-                  src="https://imagedelivery.net/5MAOvNjO0OBL917jHWR5AA/87517ceb-e6c4-45e6-6dfe-1f0ce181f200/public"
+                  src="https://media.protectliverpoolny.org/evidence/mass-surveillance.png"
                   alt="Surveillance infrastructure"
                   className="w-full h-auto"
                 />
@@ -147,7 +147,7 @@ export default function SurveillancePage() {
               {
                 step: "3",
                 question: "If it's for our \"safety,\" why is it making us less safe?",
-                answer: "RF radiation risk to 1,000+ homes. Aviation hazard at 441 feet below a Boeing 737. Property values dropping 20%. Eagle habitat disrupted. Zero public notice. That's not safety — that's a liability they're asking you to absorb.",
+                answer: "RF radiation risk to 1,000+ homes. Aviation hazard at 441 feet below a Boeing 737. Property values dropping 2-9%+. Eagle habitat disrupted. Zero public notice. That's not safety — that's a liability they're asking you to absorb.",
                 color: "text-danger-400",
                 border: "border-danger-800/30",
                 bg: "bg-danger-950/20",
@@ -501,7 +501,7 @@ export default function SurveillancePage() {
             <div className="rounded-2xl overflow-hidden border border-dark-700/50 shadow-2xl shadow-black/40 mb-5">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
-                src="https://imagedelivery.net/5MAOvNjO0OBL917jHWR5AA/4509fb8f-230d-4608-7d36-4dd2a3679a00/public"
+                src="https://media.protectliverpoolny.org/evidence/surveillance-detail.png"
                 alt="Map showing Flock surveillance camera locations currently deployed in Liverpool and Salina, NY"
                 className="w-full h-auto"
               />
