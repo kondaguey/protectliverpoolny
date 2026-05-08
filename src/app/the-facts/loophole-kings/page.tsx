@@ -57,6 +57,16 @@ const loopholes = [
     link: "/foil/t3u250002-pti-salina-cell-tower-redacted.pdf",
   },
   {
+    icon: Clock,
+    move: "Say \"No Records\" in 17 Minutes — While the Records Are Sitting in Your Boss's Inbox",
+    what: "On March 20, 2026 at 2:29 PM, we filed a parallel FOIL with the Town of Salina. 17 minutes later — at 2:46 PM — Town Clerk and FOIL Records Officer Paula Primerano replied: \"The Town of Salina is not in possession of any of the requested documents.\" Then NYSTA produced USPS Certified Mail return receipt #7019 1640 0000 0800 4105, addressed to former Town Supervisor Nicholas Paro at the same Town Hall address, signed for in approximately May 2025. The certified package contained the SEQRA Determination Letter and Full Environmental Assessment Form Part 3. The Town received the records. The Town Clerk said the Town didn't have them. 17 minutes is not a search — it is a categorical assumption. We've filed a follow-up FOIL today citing the certified-mail tracking number and demanding a sworn §89(3)(a) diligent-search certification. Framing: this is a process failure inherited by a new Supervisor — Raul Huerta took office January 2026 and is being given every opportunity to correct it.",
+    youTry:
+      "Tell the IRS you don't have your W-2 — 17 minutes after they ask, without checking the mailbox the W-2 was certified-mailed to. Send your accountant flowers.",
+    color: "text-cyan-400",
+    bg: "bg-cyan-950/30 border-cyan-800/30",
+    link: "/foil/seqra-determination-letter-cert-mail-receipt.pdf",
+  },
+  {
     icon: ShieldOff,
     move: "Build on State Land",
     what: "Lease a patch of NYSTA dirt and suddenly you're immune to local zoning. No variance. No hearing. No Town Board. Nothing. You just... build.",
