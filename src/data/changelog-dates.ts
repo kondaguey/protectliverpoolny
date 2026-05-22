@@ -4,6 +4,8 @@
  * The VerificationBanner reads this to show a "NEW TODAY" indicator.
  */
 export const updateDates = [
+  "May 22, 2026",
+  "May 20, 2026",
   "May 8, 2026",
   "April 22, 2026",
   "April 2, 2026",
@@ -16,6 +18,7 @@ export const updateDates = [
 ];
 
 export const correctionDates = [
+  "May 22, 2026",
   "May 8, 2026",
   "April 22, 2026",
   "April 2, 2026",

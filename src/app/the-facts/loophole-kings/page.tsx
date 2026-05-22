@@ -58,10 +58,10 @@ const loopholes = [
   },
   {
     icon: Coins,
-    move: "Hide the Rent Behind a Privacy Law That Doesn't Apply to Corporations",
-    what: "The Annual Fee paid by Phoenix Tower International — the rent for occupying public state land — is fully redacted under New York Public Officers Law §87(2)(b), the personal-privacy exemption. PTI is a Delaware/Florida limited liability company. Under settled New York case law (Matter of Federation of N.Y. State Rifle & Pistol Clubs v. NYPD, 73 N.Y.2d 92), §87(2)(b) protects natural persons, not corporations. The Committee on Open Government has issued multiple advisory opinions confirming corporate financial terms in contracts with state agencies are not personal-privacy material. NYSTA cited a statute that doesn't authorize the redaction it made.",
+    move: "Won't State the Rent It Collects on Public Land — Then Switched Legal Excuses When Caught",
+    what: "The Annual Fee Phoenix Tower International pays NYSTA for occupying public state land — the central financial number of this project — appears nowhere in the production. NYSTA's own Condition Rider says it is \"stated on the first page of this Occupancy Permit\" (§III.A) and billed in quarterly installments (§III.B); no figure and no invoice was produced. NYSTA first invoked §87(2)(b) (personal privacy) on this corporate financial material — an exemption that, under settled case law (Matter of Federation of N.Y. State Rifle & Pistol Clubs v. NYPD, 73 N.Y.2d 92), protects natural persons, not corporations like PTI US Towers I, LLC. On appeal (May 22, 2026), NYSTA CONCEDED §87(2)(b) was likely wrong and switched to §87(2)(i), the IT-asset-security exemption — which has nothing to do with a contract fee. Meanwhile NYSTA released the carrier co-locator agreements unredacted (Verizon $2,950/mo, AT&T $2,750/mo). Using NYSTA's own 50%-of-co-locator-fee formula (§III.D), the Authority's take reconstructs to roughly $34,200/year today, rising toward ~$50,000/year as more carriers load on — across a 25-year carrier horizon. They hid a number anyone can now calculate from the documents they were forced to release.",
     youTry:
-      "Tell the IRS your LLC has \"personal privacy\" rights and refuse to disclose its income. We will visit you in court.",
+      "Tell the IRS your LLC has \"personal privacy\" rights — then, when caught, claim it's an \"IT security\" matter, while handing over your tenants' rent checks. We will visit you in court.",
     color: "text-emerald-400",
     bg: "bg-emerald-950/30 border-emerald-800/30",
     link: "https://media.protectliverpoolny.org/foil/t3u250002-pti-salina-cell-tower-redacted.pdf",

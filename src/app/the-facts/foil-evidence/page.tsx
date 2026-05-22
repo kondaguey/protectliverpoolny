@@ -51,7 +51,7 @@ const categories: Category[] = [
       {
         title: "PTI Occupancy Permit T3U250002 (Redacted)",
         href: "https://media.protectliverpoolny.org/foil/t3u250002-pti-salina-cell-tower-redacted.pdf",
-        note: "22-page Condition Rider issued June 23, 2025 by Trevor Thieme. Section II.A: unilaterally revocable by NYSTA. Annual Fee redacted under §87(2)(b) — invalid for corporations. PDF metadata indicates the redacted version was finalized April 28, 2026 — 10 days before NYSTA released it.",
+        note: "22-page Condition Rider issued June 23, 2025 by Trevor Thieme. Section II.A: unilaterally revocable by NYSTA. The Annual Fee the Rider says is 'stated on the first page' (§III.A) does not appear in the production. PDF metadata indicates the redacted version was finalized April 28, 2026 — 10 days before NYSTA released it.",
       },
       {
         title: "PTI Occupancy Permit T3U250002 — Occupancy Permit version (Redacted)",
@@ -138,14 +138,14 @@ const categories: Category[] = [
       },
     ],
     redacted: [
-      "Annual Fee in Section III of the PTI Occupancy Permit (corporate financial term — §87(2)(b) does not apply to corporations).",
       "Personal phone numbers and email addresses for individual NYSTA staff and PTI personnel.",
+      "The Annual Fee figure the Rider says is stated on the permit's first page (§III.A) does not appear — withheld or never produced, not visibly redacted.",
     ],
     notProduced: [
-      "The Crown Castle / American Tower master lease referenced in FCC and Salina-side documents.",
-      "Co-locator agreements between PTI and Verizon, T-Mobile, and AT&T (referenced in Section I.F-H of the Condition Rider).",
+      "The PTI–AT&T Master Lease Agreement dated 8/22/2017 (referenced in the AT&T Site Lease).",
+      "The PTI–T-Mobile co-location agreement (Verizon and AT&T agreements were produced on appeal; T-Mobile's was not).",
       "Insurance certificates (ACORD 25, U-26.3) referenced in the application.",
-      "$50,000 surety bond instrument referenced in Section VIII.A.",
+      "The $50,000 Performance/Restoration bond instrument required by Condition Rider §IX.B — NYSTA's §89(3)(a) certification swears no such record exists, though its own permit requires it.",
     ],
   },
   {
@@ -443,7 +443,7 @@ const categories: Category[] = [
     number: "Item 4",
     label: "Public Notices & Municipal Coordination",
     blurb:
-      "Salina was certified-mail noticed under SEQRA — but to former Supervisor Nicholas Paro at 201 School Road, signed for in mid-2025. The FOIL response contains no record of any reply from the Town under that prior administration. Current Supervisor Raul Huerta inherited this.",
+      "Salina was certified-mail noticed under SEQRA — to former Supervisor Nicholas Paro at 201 School Road, signed for in mid-2025 (USPS 7019 1640 0000 0800 4105). But when we asked the Town for that package, the Town Clerk searched and reported NO responsive records — even after we sent her the proof NYSTA produced. On May 20, 2026 the Clerk conceded in writing that destruction of the signed-for SEQRA correspondence is \"possible.\" The Town received the record and now cannot find it — a Local Government Records Law (ACAL Art. 57-A / LGS-1) problem on top of a FOIL one. Current Supervisor Raul Huerta took office after the package arrived and remains an ally; the loss traces to the prior administration. See the May 20 movement update for the full email trail.",
     produced: [
       {
         title: "ENB Notice (Environmental Notice Bulletin)",
@@ -481,30 +481,39 @@ const categories: Category[] = [
     number: "Item 5",
     label: "Financial Compensation & Revenue",
     blurb:
-      "NYSTA redacted the central financial number of the project — the Annual Fee paid by PTI for occupying public state land — under New York Public Officers Law §87(2)(b). Under settled case law (Matter of Federation of N.Y. State Rifle & Pistol Clubs v. NYPD, 73 N.Y.2d 92), §87(2)(b) does not apply to corporations.",
+      "The central financial number — the Annual Fee PTI pays NYSTA for occupying public state land — was never disclosed. The Condition Rider says it is \"stated on the first page of this Occupancy Permit\" (§III.A) and billed in quarterly installments (§III.B), yet no figure and no invoice appears in the production. NYSTA originally invoked §87(2)(b) (personal privacy) on this corporate financial material; on appeal (May 22, 2026) it conceded that exemption was likely wrong and switched to §87(2)(i). It then released the carrier co-locator agreements unredacted — and NYSTA's own 50%-of-co-locator-fee formula (§III.D), applied to those rents, reconstructs the Authority's take at roughly $34,200/year today, rising toward ~$50,000/year as more carriers load on.",
     produced: [
       {
-        title: "Permit Fee Check (Redacted)",
-        href: "https://media.protectliverpoolny.org/foil/us-ny-2029-t3u250002-permit-fee-check-redacted.pdf",
-        note: "Dollar amount and bank info redacted. The visible permit fee per the cover letter is $750 administrative.",
+        title: "Verizon License Agreement (7/23/2025) — produced on appeal",
+        href: "https://media.protectliverpoolny.org/foil/us-ny-2029-verizon-sla-fe-07232025.pdf",
+        note: "UNREDACTED. §6: $2,950.00/month, +1.5%/year. §5: 5-year term auto-renewing for four more 5-year terms (25-year potential). Releasing this undercuts NYSTA's claim that carrier financial terms are confidential.",
       },
       {
-        title: "Additional Check (Redacted)",
+        title: "AT&T Site Lease (2/18/2025)",
+        href: "https://media.protectliverpoolny.org/foil/us-ny-2029-att-sla-fe-02182025.pdf",
+        note: "§5: $2,750.00/month, escalating per §6.3 of a Master Lease Agreement dated 8/22/2017 — the MLA itself was not produced.",
+      },
+      {
+        title: "Permit Fee Check — $750 (Redacted)",
+        href: "https://media.protectliverpoolny.org/foil/us-ny-2029-t3u250002-permit-fee-check-redacted.pdf",
+        note: "The $750 administrative application fee. Dollar amount is VISIBLE; only the check number and the MICR bank/routing line are redacted.",
+      },
+      {
+        title: "Additional Check — $500 (Redacted)",
         href: "https://media.protectliverpoolny.org/foil/us-ny-2029-check-redacted.pdf",
+        note: "Pyramid Network Services → NYSTA, the annual Ground-Based Site Inspection offset fee (Condition Rider §IV.C.3). Dollar amount VISIBLE; only the check number and MICR line redacted.",
       },
     ],
     redacted: [
-      "The Annual Fee dollar amount (Section III of the PTI Permit) — corporate financial data, §87(2)(b) does not apply.",
-      "The fee check amount — public revenue from a corporation to a state authority, §87(2)(b) does not apply.",
-      "Bank routing and account information on the check (legitimate redaction — disclosure would expose the corporate account to fraud).",
-      "Verizon and AT&T sub-tenant rent amounts (referenced in the Condition Rider, not in the production).",
+      "On the two checks: only the check numbers and the MICR bank/routing lines — the dollar amounts ($750 and $500) are visible.",
+      "The Annual Fee was not redacted so much as never disclosed: no dollar figure appears on the produced permit, and no quarterly invoice was produced.",
+      "On appeal, NYSTA conceded §87(2)(b) was likely the wrong exemption and substituted §87(2)(i) (IT-asset security) — an exemption that does not fit a contract fee.",
     ],
     notProduced: [
-      "PTI–Verizon Co-location Agreement (which feeds the 50% pass-through to NYSTA per Section I.H).",
-      "PTI–AT&T Anchor Tenant Agreement showing AT&T's rent.",
-      "PTI–T-Mobile Co-location Agreement.",
-      "5%/annum escalation history referenced in Section I.H.",
-      "Field payment receipt for the $750 administrative fee referenced in the transmittal letter.",
+      "The Annual Fee dollar figure 'stated on the first page' of Permit T3U250002 (§III.A) — the recurring rent NYSTA collects.",
+      "Any quarterly Annual-Fee invoice or remittance record (§III.B) — squarely responsive to Item 5, never produced.",
+      "PTI–AT&T Master Lease Agreement dated 8/22/2017 (governs AT&T's rent escalation; referenced in the AT&T Site Lease).",
+      "PTI–T-Mobile co-location agreement (T-Mobile is a designed co-locator per the TA-W5123 supplement and the elevation drawing).",
     ],
   },
   {
@@ -517,7 +526,7 @@ const categories: Category[] = [
       {
         title: "Sabre Industries Structural Design Report Rev B (7/15/2025)",
         href: "https://media.protectliverpoolny.org/foil/sabre-structural-design-report-rev-b-20250715.pdf",
-        note: "Engineer of record: Robert Beacom (Sabre, Alvarado TX). Standard ANSI/TIA-222-H. Design wind 109 mph / ice 1.50\". Risk Category II. Site Class D (DEFAULT, not field-verified). Base moment 6,352.75 ft-kips. Two foundation options designed.",
+        note: "Engineer of record: Robert Beacom (Sabre, Alvarado TX). Standard ANSI/TIA-222-H (NY Code Chapter 35 references the older 222-G-2005 — the live mismatch). Design wind 109 mph / ice 1.50\". Risk Category II. Site Class D (the project's Delta Oaks geotech boring independently characterizes Seismic Site Class D). Base moment 6,352.75 ft-kips. Two foundation options designed — the foundation-type mismatch NYSTA closed without a reconciliation memo.",
       },
       {
         title: "FAA 7460-1 — Construction Crane (2025-AEA-11322-OE)",
@@ -597,7 +606,7 @@ const categories: Category[] = [
     number: "Item 7",
     label: "Alternative Site Analysis",
     blurb:
-      'NYSTA Records Access Officer Jill B. Warner, May 8, 2026: "No records responsive to Item 7 were located." NYSTA admitted in writing that no engineering or planning analysis was ever conducted to demonstrate why this specific residential site was chosen over alternatives. This is the showcase finding for any administrative appeal, hearing, or media engagement.',
+      'NYSTA Records Access Officer Jill B. Warner, May 8, 2026: "No records responsive to Item 7 were located." NYSTA admitted in writing that no engineering or planning analysis was ever conducted to demonstrate why this specific residential site was chosen over alternatives. On appeal (May 22, 2026), NYSTA certified this absence UNDER OATH in a sworn §89(3)(a) certification. This is the showcase finding for any Article 78 proceeding, hearing, or media engagement: the State swears, under oath, that nothing justifies putting a 184-foot commercial tower in a residential highway infield.',
     produced: [],
     notProduced: [
       "Coverage Objective + Alternatives Analysis showing nearby candidate locations were rejected for engineering, environmental, or land-availability reasons.",
@@ -660,7 +669,7 @@ export default function FoilEvidencePage() {
                 <div className="grid grid-cols-2 gap-4">
                   <div className="bg-dark-950/60 border border-dark-700/30 rounded-xl p-4 text-center">
                     <p className="text-3xl font-black text-purple-300">93</p>
-                    <p className="text-[10px] text-dark-400 uppercase tracking-wider font-bold mt-1">records produced</p>
+                    <p className="text-[10px] text-dark-400 uppercase tracking-wider font-bold mt-1">records catalogued</p>
                   </div>
                   <div className="bg-dark-950/60 border border-dark-700/30 rounded-xl p-4 text-center">
                     <p className="text-3xl font-black text-danger-400">49</p>
@@ -676,11 +685,124 @@ export default function FoilEvidencePage() {
                   </div>
                 </div>
                 <p className="text-xs text-dark-500 italic mt-4 leading-relaxed">
-                  Records arrived on May 8, 2026 — two business days after our constructive-denial appeal clock expired.
+                  Records arrived on May 8, 2026 — two business days after our constructive-denial appeal clock expired. NYSTA's own appeal determination counts the production as &ldquo;94 records … 1,664 pages.&rdquo; The appeal was denied in full on May 22, 2026; the next step is an Article 78 proceeding.
                 </p>
               </div>
             </motion.div>
           </div>
+        </div>
+      </section>
+
+      {/* ═══════════════════ APPEAL RESPONSE BATCH ═══════════════════ */}
+      <section id="appeal-response" className="py-10 px-4 scroll-mt-24">
+        <div className="max-w-5xl mx-auto">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeUp}
+            custom={0}
+            className="bg-danger-950/30 border-2 border-danger-700/40 rounded-2xl p-6 md:p-8 shadow-2xl shadow-black/40"
+          >
+            <span className="inline-flex items-center gap-2 px-3 py-1.5 bg-danger-900/50 border border-danger-700/40 rounded-full text-danger-300 text-[11px] font-bold uppercase tracking-wider mb-4">
+              <AlertTriangle className="w-3.5 h-3.5" />
+              Update — May 22, 2026: Appeal Denied in Full
+            </span>
+            <h2 className="text-2xl md:text-3xl font-black text-white leading-tight">
+              We Appealed. They Denied Everything &mdash; and Handed Us{" "}
+              <span className="text-danger-400">the Number They Were Hiding.</span>
+            </h2>
+            <p className="text-dark-300 text-sm md:text-base leading-relaxed mt-4">
+              On May 8 we appealed the redactions and the missing records. On May 22, NYSTA Appeals Officer <strong className="text-white">Christine Fernandez</strong> denied the appeal in its entirety, calling it &ldquo;final agency action&rdquo; under POL &sect;89(4)(b). But the denial came with <strong className="text-white">four more documents</strong> &mdash; and they do more damage than the silence did. Here is the follow-up production, and what it proves.
+            </p>
+
+            <p className="text-xs font-bold text-emerald-400 uppercase tracking-widest mt-6 mb-3">
+              The Follow-Up Documents (4)
+            </p>
+            <div className="space-y-2">
+              {[
+                {
+                  title: "NYSTA Appeal Determination — DENIED IN FULL (5/22/2026)",
+                  href: "https://media.protectliverpoolny.org/foil/nysta-foil-appeal-determination-r000082-032026.pdf",
+                  note: "Christine Fernandez, FOIL Appeals Officer. Final agency action; Article 78 review available. CONCEDES the original §87(2)(b) privacy exemption was likely wrong and substitutes §87(2)(i). Claims no records for items 1, 2, 3, 8, 9, 10, 11.",
+                },
+                {
+                  title: "Sworn §89(3)(a) Certification — Jill B. Warner, notarized (5/22/2026)",
+                  href: "https://media.protectliverpoolny.org/foil/nysta-foil-89-3a-certification-20260522.pdf",
+                  note: "Swears, under oath, that no responsive records exist for items 1, 2, 3, 8, 9, 10, 11 — including the Alternative Site Analysis. Paragraph 2, where the description of the search belongs, is BLANK.",
+                },
+                {
+                  title: "Verizon License Agreement (7/23/2025) — UNREDACTED",
+                  href: "https://media.protectliverpoolny.org/foil/us-ny-2029-verizon-sla-fe-07232025.pdf",
+                  note: "§6: $2,950.00/month, +1.5%/year. §5: 5-year term auto-renewing four more times — a 25-year horizon. Releasing this guts NYSTA's claim that carrier financial terms are confidential.",
+                },
+                {
+                  title: "AT&T Site Lease (2/18/2025)",
+                  href: "https://media.protectliverpoolny.org/foil/us-ny-2029-att-sla-fe-02182025.pdf",
+                  note: "§5: $2,750.00/month, escalating per §6.3 of a 2017 Master Lease Agreement — the MLA itself was not produced.",
+                },
+              ].map((doc) => (
+                <a
+                  key={doc.href}
+                  href={doc.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group flex items-start gap-3 bg-dark-950/50 hover:bg-dark-950/80 border border-dark-800/30 hover:border-emerald-700/30 rounded-xl px-4 py-3 transition-all"
+                >
+                  <FileText className="w-4 h-4 text-emerald-400 flex-shrink-0 mt-0.5" />
+                  <div className="flex-1 min-w-0">
+                    <p className="text-sm font-semibold text-dark-100 group-hover:text-white transition-colors leading-snug">
+                      {doc.title}
+                      <ExternalLink className="inline-block w-3 h-3 ml-1 text-dark-500" />
+                    </p>
+                    <p className="text-xs text-dark-400 mt-1 leading-relaxed">
+                      {doc.note}
+                    </p>
+                  </div>
+                </a>
+              ))}
+            </div>
+
+            <p className="text-xs font-bold text-danger-400 uppercase tracking-widest mt-6 mb-3">
+              What the Follow-Up Proves
+            </p>
+            <ul className="space-y-2.5 list-disc pl-5">
+              <li className="text-sm text-dark-200 leading-relaxed">
+                <strong className="text-white">The rent reconstructs itself.</strong> NYSTA&rsquo;s own Condition Rider (&sect;III.D) says the Authority&rsquo;s Annual Fee rises by <strong className="text-white">50% of each carrier&rsquo;s co-locator fee</strong>. Apply that to the rents they just released &mdash; Verizon $2,950/mo + AT&amp;T $2,750/mo &mdash; and NYSTA&rsquo;s take is roughly{" "}
+                <span className="text-danger-400 font-bold">$2,850/month &asymp; $34,200/year today</span>, climbing toward <strong className="text-white">~$50,000/year</strong> once T-Mobile (already a designed co-locator) loads on, across a 25-year horizon. They redacted the number; their own formula plus their own disclosure rebuilds it.{" "}
+                <em className="text-dark-400">(Reconstruction, not a figure NYSTA disclosed.)</em>
+              </li>
+              <li className="text-sm text-dark-200 leading-relaxed">
+                <strong className="text-white">They never produced the fee at all.</strong> The Rider says the Annual Fee is &ldquo;stated on the first page of this Occupancy Permit&rdquo; (&sect;III.A) and billed in quarterly installments (&sect;III.B). No figure, no invoice &mdash; despite Item 5 expressly demanding the payment records of what NYSTA receives. That is a constructive denial.
+              </li>
+              <li className="text-sm text-dark-200 leading-relaxed">
+                <strong className="text-white">They switched legal excuses mid-stream.</strong> Fernandez concedes &sect;87(2)(b) was likely wrong and reaches for &sect;87(2)(i) &mdash; an <em>IT-security</em> exemption that has nothing to do with a contract fee &mdash; while voluntarily releasing comparable carrier financial terms in the same breath.
+              </li>
+              <li className="text-sm text-dark-200 leading-relaxed">
+                <strong className="text-white">Their sworn certification contradicts their own files.</strong> It swears &ldquo;no records&rdquo; for the Verizon RFDS (a <em>required</em> submission per the produced collocation application), the $50,000 bond (required by produced permit &sect;IX.B), and the lift plan (required by NYSTA&rsquo;s own engineering review) &mdash; and its search-methodology paragraph is blank.
+              </li>
+              <li className="text-sm text-dark-200 leading-relaxed">
+                <strong className="text-white">No Alternative Site Analysis &mdash; now under oath.</strong> The State has sworn that no engineering or planning record justifies putting a 184-foot commercial tower in a residential highway infield.
+              </li>
+            </ul>
+
+            <div className="mt-6 pt-5 border-t border-danger-800/30">
+              <p className="text-sm md:text-base text-danger-300 font-bold leading-relaxed" style={{ textShadow: "0 0 8px rgba(239,68,68,0.35)" }}>
+                The administrative road is over. The next filing is an Article 78 in NYS Supreme Court &mdash; to compel the Annual Fee, the quarterly invoices, the underlying agreements, and a conforming certification &mdash; plus a &sect;89(4)(c) fee demand, a Committee on Open Government advisory opinion, and Authorities Budget Office / State Comptroller referrals.
+              </p>
+              <p className="text-xs text-dark-500 italic mt-3">
+                Full breakdown in the{" "}
+                <Link href="/changelog" className="text-danger-300 underline decoration-danger-500/40 hover:decoration-danger-400">
+                  May 22 movement update
+                </Link>
+                . The financial mechanics are dissected on{" "}
+                <Link href="/the-facts/loophole-kings" className="text-danger-300 underline decoration-danger-500/40 hover:decoration-danger-400">
+                  The Loophole Kings
+                </Link>
+                .
+              </p>
+            </div>
+          </motion.div>
         </div>
       </section>
 
