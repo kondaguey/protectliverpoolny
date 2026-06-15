@@ -96,6 +96,7 @@ export default function HealthSciencePage() {
           { label: "Why It Matters to You", id: "why-it-matters" },
           { label: "What the Research Says", id: "the-science" },
           { label: "Missing RF Studies (May 8, 2026 FOIL)", id: "missing-rf-studies" },
+          { label: "AT&T Equipment Manifest & RF Spectrum", id: "att-manifest" },
           { label: "The Federal Trap", id: "federal-trap" },
           { label: "The Real Question", id: "the-real-question" },
         ]}
@@ -471,7 +472,7 @@ export default function HealthSciencePage() {
                 </p>
                 <p className="text-dark-300 text-sm leading-relaxed mb-4">
                   Most countries set wireless radiation limits{" "}
-                  <strong className="text-white">100× to 1,000× stricter</strong> than
+                  <strong className="text-white">100× to 1,000× stricter</strong>{" "}than
                   the United States. The FCC's limits haven't been updated since 1996.
                 </p>
 
@@ -612,7 +613,7 @@ export default function HealthSciencePage() {
                 </span>{" "}
                 , the people on the ground fighting for your rights are
                 declaring{" "}
-                <strong className="text-white text-lg">IS</strong> and{" "}
+                <strong className="text-white text-lg">IS</strong>{" "}and{" "}
                 <strong className="text-white text-lg">ARE</strong>.{" "}
                 <span className="text-danger-400 font-black">
                   It's that obvious.
@@ -643,7 +644,7 @@ export default function HealthSciencePage() {
             </div>
             <p className="text-dark-400 mb-6 max-w-2xl">
               On May 8, 2026, NYSTA produced 81 documents in response to FOIL Request{" "}
-              <strong className="text-white">#R000082-032026</strong>. The set includes engineering reviews, construction drawings, structural analyses, and SEQRA documents. It does <strong className="text-rose-400">not</strong> include the RF emissions or propagation studies that any siting analysis is supposed to rely on.
+              <strong className="text-white">#R000082-032026</strong>. The set includes engineering reviews, construction drawings, structural analyses, and SEQRA documents. It does <strong className="text-rose-400">not</strong>{" "}include the RF emissions or propagation studies that any siting analysis is supposed to rely on.
             </p>
           </motion.div>
 
@@ -682,7 +683,7 @@ export default function HealthSciencePage() {
               <p className="text-xs text-dark-500 italic mt-4">
                 Source:{" "}
                 <a
-                  href="/foil/us-ny-2029-t3u250002-verizon-drawings.pdf"
+                  href="https://media.protectliverpoolny.org/foil/us-ny-2029-t3u250002-verizon-drawings.pdf"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-rose-400 underline decoration-rose-500/40 hover:decoration-rose-400"
@@ -728,6 +729,186 @@ export default function HealthSciencePage() {
               </p>
             </motion.div>
           </div>
+        </div>
+      </section>
+
+      {/* ═══════════════════ AT&T EQUIPMENT MANIFEST ═══════════════════ */}
+      <section id="att-manifest" className="py-16 md:py-24 px-4 scroll-mt-24 bg-dark-900/20">
+        <div className="max-w-4xl mx-auto">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-50px" }}
+            variants={fadeUp}
+            custom={0}
+          >
+            <div className="flex items-center gap-3 mb-3">
+              <div className="w-10 h-10 rounded-xl bg-amber-900/40 border border-amber-800/30 flex items-center justify-center">
+                <Radio className="w-5 h-5 text-amber-400" />
+              </div>
+              <h2 className="text-2xl md:text-3xl font-bold">
+                What&rsquo;s Actually on the Tower &mdash; AT&amp;T&rsquo;s Equipment Manifest
+              </h2>
+            </div>
+            <p className="text-dark-400 mb-6 max-w-2xl">
+              The 93-document FOIL production includes Airosmith Engineering&rsquo;s sealed Mount Analysis Report for AT&amp;T (December 20, 2024). It documents every piece of antenna and radio hardware AT&amp;T installed on the tower.
+            </p>
+          </motion.div>
+
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeUp}
+            custom={1}
+            className="bg-amber-950/20 border border-amber-800/30 rounded-2xl p-6 md:p-8 mb-5"
+          >
+            <p className="text-xs font-bold text-amber-400 uppercase tracking-widest mb-4">
+              AT&amp;T Equipment (Per Airosmith Mount Analysis, 12/20/2024)
+            </p>
+            <div className="overflow-x-auto">
+              <table className="w-full text-sm border-collapse">
+                <thead>
+                  <tr className="bg-dark-950/60 border-b border-amber-700/30">
+                    <th className="text-left p-3 font-bold text-amber-300">Qty</th>
+                    <th className="text-left p-3 font-bold text-amber-300">Equipment</th>
+                    <th className="text-left p-3 font-bold text-amber-300">Type / Band</th>
+                  </tr>
+                </thead>
+                <tbody className="text-dark-200">
+                  <tr className="border-b border-dark-800/40">
+                    <td className="p-3 font-semibold">8&times;</td>
+                    <td className="p-3">Commscope NNH4-65C-R6H4</td>
+                    <td className="p-3 text-dark-400">Panel antennas</td>
+                  </tr>
+                  <tr className="border-b border-dark-800/40">
+                    <td className="p-3 font-semibold">4&times;</td>
+                    <td className="p-3">Ericsson AIR 6472</td>
+                    <td className="p-3 text-dark-400">Band 77 / C-band 5G</td>
+                  </tr>
+                  <tr className="border-b border-dark-800/40">
+                    <td className="p-3 font-semibold">4&times;</td>
+                    <td className="p-3">Ericsson 4490</td>
+                    <td className="p-3 text-dark-400">Bands 5 + 12</td>
+                  </tr>
+                  <tr className="border-b border-dark-800/40">
+                    <td className="p-3 font-semibold">4&times;</td>
+                    <td className="p-3">Ericsson 4890</td>
+                    <td className="p-3 text-dark-400">Bands 25 + 66 / AWS</td>
+                  </tr>
+                  <tr className="border-b border-dark-800/40">
+                    <td className="p-3 font-semibold">4&times;</td>
+                    <td className="p-3"><strong className="text-white">Ericsson 4494</strong></td>
+                    <td className="p-3 text-amber-300"><strong>Band 14 / FirstNet</strong> &mdash; 1 of 4 Ericsson radio types</td>
+                  </tr>
+                  <tr>
+                    <td className="p-3 font-semibold">3&times;</td>
+                    <td className="p-3">Raycap DC9-48-60-24-8C-EV</td>
+                    <td className="p-3 text-dark-400">Surge protectors</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <p className="text-dark-300 text-sm leading-relaxed mt-4">
+              Plus T-Mobile and Verizon equipment (their RFDS documents are not in the FOIL production). The mount&rsquo;s demand-capacity ratio under loaded condition: 71.4% (Pass).
+            </p>
+            <p className="text-xs text-dark-500 italic mt-4">
+              Source:{" "}
+              <a
+                href="https://media.protectliverpoolny.org/foil/att-mount-analysis-airosmith-20241220.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-amber-400 underline decoration-amber-500/40 hover:decoration-amber-400"
+              >
+                Airosmith Mount Analysis Report (12/20/2024) — engineer of record Joseph R. Johnston, P.E. NY License #091187
+              </a>
+            </p>
+          </motion.div>
+
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeUp}
+            custom={2}
+            className="bg-sky-950/20 border border-sky-800/30 rounded-2xl p-6 md:p-8 mb-5"
+          >
+            <p className="text-xs font-bold text-sky-400 uppercase tracking-widest mb-4">
+              The Full Licensed RF Spectrum &mdash; Per the FAA&rsquo;s Own Filing
+            </p>
+            <p className="text-dark-200 text-base leading-relaxed mb-4">
+              FAA 7460-1 Determination of No Hazard <strong className="text-white">2024-AEA-11624-OE</strong>, filed 11/12/2024 by Mitchell Henry (Phoenix Tower International), discloses every RF band that PTI applied to operate from this tower. The list is not on AT&amp;T&rsquo;s drawings &mdash; it is on the FAA aeronautical study.
+            </p>
+            <div className="grid md:grid-cols-2 gap-4">
+              <div className="bg-dark-950/60 border border-sky-700/30 rounded-xl p-4">
+                <p className="text-sm font-bold text-sky-300 mb-2">Microwave Backhaul</p>
+                <ul className="text-sm text-dark-300 list-disc pl-5 space-y-1">
+                  <li>6&ndash;7 GHz</li>
+                  <li>10&ndash;11.7 GHz</li>
+                  <li>17.7&ndash;19.7 GHz</li>
+                  <li>21.2&ndash;23.6 GHz</li>
+                  <li className="text-sky-300 italic">ERP up to 55 dBW</li>
+                </ul>
+              </div>
+              <div className="bg-dark-950/60 border border-sky-700/30 rounded-xl p-4">
+                <p className="text-sm font-bold text-sky-300 mb-2">Cellular</p>
+                <ul className="text-sm text-dark-300 list-disc pl-5 space-y-1">
+                  <li>614&ndash;698 MHz, 698&ndash;806 MHz</li>
+                  <li>806&ndash;901 MHz, 901&ndash;941 MHz</li>
+                  <li>1670&ndash;1675 MHz, 1710&ndash;1755 MHz</li>
+                  <li>1850&ndash;2025 MHz, 2110&ndash;2200 MHz</li>
+                  <li>2305&ndash;2360 MHz, 2496&ndash;2690 MHz</li>
+                  <li className="text-sky-300 italic">ERPs up to 1640 W (PCS), 2000 W (700 MHz/WCS), 3500 W (paging)</li>
+                </ul>
+              </div>
+            </div>
+            <p className="text-xs text-dark-500 italic mt-4">
+              Source:{" "}
+              <a
+                href="https://media.protectliverpoolny.org/foil/faa-7460-tower-2024-aea-11624-oe.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-sky-400 underline decoration-sky-500/40 hover:decoration-sky-400"
+              >
+                FAA 7460-1 Determination of No Hazard 2024-AEA-11624-OE
+              </a>
+            </p>
+          </motion.div>
+
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeUp}
+            custom={3}
+            className="bg-fuchsia-950/20 border border-fuchsia-800/30 rounded-2xl p-6 md:p-8"
+          >
+            <p className="text-xs font-bold text-fuchsia-400 uppercase tracking-widest mb-3">
+              The &ldquo;Emergency Services&rdquo; Justification Is FirstNet Capability &mdash; One Band Among Many
+            </p>
+            <div className="space-y-4 text-dark-200 leading-relaxed">
+              <p>
+                Senator Ryan&rsquo;s office relayed PTI&rsquo;s claim that the tower is &ldquo;intended to improve coverage for emergency service providers.&rdquo; The 93-document FOIL response now documents what that actually means in hardware:
+              </p>
+              <p>
+                AT&amp;T installed <strong className="text-white">four Ericsson 4494 radios on Band 14 (FirstNet)</strong> &mdash; one of <strong className="text-white">four</strong>{" "}Ericsson radio types on the tower. The other twelve Ericsson radios are commercial 5G/cellular. The eight Commscope panels carry both. There is no FirstNet-specific equipment package; there is FirstNet capability layered onto a commercial 5G build &mdash; <em>standard AT&amp;T practice on every tower they own equipment on</em>.
+              </p>
+              <p>
+                Band 14 / FirstNet capability does not transform a commercial 5G site adjacent to R-O zoning into a public-safety-specific facility. It makes it a commercial 5G site that <em>also</em>{" "}supports FirstNet, like every other AT&amp;T site. The honest framing: <strong className="text-fuchsia-300">the &ldquo;emergency services&rdquo; justification was used to bypass scrutiny that no commercial 5G site in R-O residential-office zoning would normally pass.</strong>{" "}It is not a wholly fabricated claim. It is a materially overstated one.
+              </p>
+              <p className="text-xs text-dark-500 italic">
+                Source:{" "}
+                <a
+                  href="https://media.protectliverpoolny.org/foil/att-mount-analysis-airosmith-20241220.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-fuchsia-400 underline decoration-fuchsia-500/40 hover:decoration-fuchsia-400"
+                >
+                  AT&amp;T Mount Analysis (Airosmith, 12/20/2024)
+                </a>
+              </p>
+            </div>
+          </motion.div>
         </div>
       </section>
 

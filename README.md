@@ -146,9 +146,10 @@ vercel --prod
 ## Agent Handoff Notes
 
 ### Content Tone
-- **Allies-first framing** for local officials (Huerta, Driscoll, Thompson) — they had no jurisdiction and were not notified. Position them as partners, not adversaries.
+- **Allies-first framing** for current local officials (Huerta, Driscoll, Thompson) — they had no jurisdiction over state land and inherited the situation. Position them as partners, not adversaries. Note: the SEQRA Determination cert-mail receipt (USPS 7019 1640 0000 0800 4105) was addressed to **former Supervisor Nicholas Paro** under the prior administration; the FOIL response contains no record of any reply from the Town under that prior tenure. Direct accountability for the Town's non-response upstream of Huerta.
 - **Transparency-first** — publish official responses even when unfavorable (e.g., FAA "No Hazard" determination). Credibility > persuasion.
 - **Hedged claims** — use "provided" not "conducted" for unverified FOIL items. Cite sources inline. Qualify survey data vs. peer-reviewed research.
+- **Emergency services nuance** — AT&T includes Band 14 (FirstNet) capability as part of standard rooftop equipment (1 of 4 Ericsson radio types). It does not transform a commercial 5G site adjacent to R-O zoning into a public-safety facility. Frame as: justification "materially overstated," not "wholly fabricated."
 
 ### Key People
 | Name | Role | Notes |
@@ -160,14 +161,17 @@ vercel --prod
 | Jason Terreri | Syracuse Airport Authority ED | Confirmed airport not consulted |
 
 ### Pending Actions
-- ~~FOIL request response (environmental reviews, SEQRA docs, RF studies, USFWS consultations)~~ — **RESOLVED May 8, 2026.** NYSTA produced 81 unique documents (FOIL #R000082-032026). Item 7 admission: "No records responsive to Item 7 were located." Files hosted at `/public/foil/`, catalogued at `/the-facts/foil-evidence`.
-- **Administrative redaction appeal** to NYSTA Records Appeals Officer (deadline ~June 7, 2026) targeting Annual Fee, fee check amount, and carrier sub-tenant rent terms. Cite *Matter of Federation of N.Y. State Rifle & Pistol Clubs v. NYPD*, 73 N.Y.2d 92 — §87(2)(b) does not apply to corporations. Demand a Vaughn-style redaction index under POL §89(4)(a).
-- **Article 78 leverage** if redaction appeal is denied — fee-shifting available under POL §89(4)(c) if we substantially prevail.
-- **Follow-up FOIL** targeting the Verizon RF Antenna Design Sheet (RFDS Project ID 17326150) and any AT&T/T-Mobile RF emissions/propagation studies — referenced in the construction drawings but not in the May 8 production.
-- **COOG advisory opinion request** on the §87(2)(b) and §87(2)(g) misapplication.
-- **NYS Authorities Budget Office** financial-audit referral on PTI lease.
+- ~~FOIL request response (environmental reviews, SEQRA docs, RF studies, USFWS consultations)~~ — **RESOLVED May 8, 2026.** NYSTA produced **93 records** (FOIL #R000082-032026). Item 7 admission: "No records responsive to Item 7 were located." Files hosted at `/public/foil/`, catalogued at `/the-facts/foil-evidence`. One record (UUID `c620d65e-7309-44e0-8c93-1c57a61768ef.pdf`) still requires download from the FOIL portal.
+- **Administrative redaction appeal** to NYSTA Records Appeals Officer (deadline ~June 7, 2026) targeting Annual Fee, fee check amount, and carrier sub-tenant rent terms. Cite *Matter of Federation of N.Y. State Rifle & Pistol Clubs v. NYPD*, 73 N.Y.2d 92 — §87(2)(b) does not apply to corporations. Demand a Vaughn-style redaction index under POL §89(4)(a). PDF metadata showing the redacted PTI Permit was finalized April 28, 2026 (10 days before release) supports a POL §89(4)(c) finding of no reasonable basis for the period of denial.
+- **Follow-up FOIL to NYSTA** narrowly targeting Verizon RFDS Project ID 17326150, T-Mobile RFDS, the SPCC plan for the 30 kW diesel generator + 145-gal fuel storage, the lift plan as approved by NYSTA Traffic Control, and the $50,000 surety bond instrument referenced in PTI Permit Section VIII.A.
+- **Follow-up FOIL to Town of Salina** citing USPS certified-mail receipt #7019 1640 0000 0800 4105 as proof the Town possesses responsive records. Demand sworn §89(3)(a) diligent-search certification.
+- **Verify proximity to OCM BOCES Liverpool facilities** — AT&T's internal site name "Liverpool BOCES" suggests school proximity worth confirming. Tower coordinates: 43°06'06.87"N 76°11'06.26"W.
+- **Calculate ice-shedding throw envelope** using Sabre's design parameters (1.5" design ice, 109 mph design wind, 184-ft tower height) against the ~100 ft distance to the active I-90 off-ramp.
+- **Article 78 leverage** if redaction appeal is denied — fee-shifting available under POL §89(4)(c), now supported by the April 28 redaction-completion timestamp evidencing deliberate withholding.
+- **COOG advisory opinion request** on the §87(2)(b) (corporate-non-applicability) and §87(2)(g) (factual-data carve-out) misapplication.
+- **NYS Authorities Budget Office** financial-audit referral on PTI lease + parallel referral to **Office of the State Comptroller** under General Municipal Law §33.
 - Thompson's ZBA role needs re-verification for consistency between homepage and petition
-- Email blast to subscriber list re: fact-check corrections (draft needed)
+- Email blast to subscriber list re: 93-document FOIL findings (draft needed)
 
 ### Content Rules
 1. Any new factual claim must cite a source

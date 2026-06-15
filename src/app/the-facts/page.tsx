@@ -19,7 +19,7 @@ const sections = [
     title: "Community & Land Value Impact",
     subtitle: "Your neighborhood. Your home value. Their profit.",
     description:
-      "Property values can drop up to 20% near cell towers. Federal law was written to silence you. And nobody asked your permission.",
+      "Peer-reviewed research shows property values drop 2-9% or more near cell towers. Federal law was written to silence you. And nobody asked your permission.",
     image: "/5g-protest-proof.jpg",
     color: "border-amber-700/40",
     hoverColor: "group-hover:text-amber-400",
@@ -31,7 +31,7 @@ const sections = [
     title: "Health Impacts",
     subtitle: "What the independent research actually says.",
     description:
-      "Peer-reviewed studies, the NTP's $30M cancer finding, children's RF absorption 10× higher than adults, and the 1996 safety limits a court called \"arbitrary.\"",
+      "Peer-reviewed studies, the NTP's $30M cancer finding, children's cumulative RF absorption 10× higher from towers than a phone call, and the 1996 safety limits a court called \"arbitrary.\"",
     image: "/5g-tower-liverpool-ny-protest-installation-nys-salina.png",
     color: "border-sky-700/40",
     hoverColor: "group-hover:text-sky-400",
@@ -54,15 +54,28 @@ const sections = [
   {
     href: "/the-facts/wildlife",
     title: "Wildlife & Environmental Concerns",
-    subtitle: "100+ eagles. 1.7 miles away.",
+    subtitle: "100+ eagles. 1.25 miles away.",
     description:
       "Bald Eagles are well documented to nest on these types of monopole cell towers — then lose their homes to 5G upgrades / tower maintenance. The Audubon Society has documented it. Nobody asked if it will happen here.",
     image:
-      "https://imagedelivery.net/5MAOvNjO0OBL917jHWR5AA/3461547c-bf7c-403d-5f32-d7d6168f8e00/public",
+      "https://media.protectliverpoolny.org/evidence/wildlife-tower.png",
     color: "border-lime-700/40",
     hoverColor: "group-hover:text-lime-400",
     accent: "text-lime-400",
     badge: "🦅 Federal Wildlife Law",
+  },
+  {
+    href: "/the-facts/highway-safety",
+    title: "Highway Safety & Physical Hazards",
+    subtitle: "Welcome to Syracuse, Phoenix Tower.",
+    description:
+      "OSHA says ice from towers travels 100 feet. The off-ramp is 100 feet away. Local fire departments can't reach 184 feet. And the Town of Salina has zero records of this project — because they were never asked.",
+    image:
+      "https://media.protectliverpoolny.org/evidence/highway-safety.png",
+    color: "border-orange-700/40",
+    hoverColor: "group-hover:text-orange-400",
+    accent: "text-orange-400",
+    badge: "⚠️ Highway Safety",
   },
   {
     href: "/the-facts/surveillance",
@@ -72,7 +85,7 @@ const sections = [
     description:
       "Flock AI-driven ALPR cameras are already photographing every vehicle in the area that passes them. Private companies are already building watchlists. And this tower is providing the backbone.",
     image:
-      "https://imagedelivery.net/5MAOvNjO0OBL917jHWR5AA/87517ceb-e6c4-45e6-6dfe-1f0ce181f200/public",
+      "https://media.protectliverpoolny.org/evidence/mass-surveillance.png",
     color: "border-purple-700/40",
     hoverColor: "group-hover:text-purple-400",
     accent: "text-purple-400",
@@ -104,7 +117,7 @@ export default function TheFactsLanding() {
             transition={{ duration: 0.6, delay: 0.3 }}
             className="mt-6 text-lg text-dark-400 max-w-2xl mx-auto leading-relaxed"
           >
-            Five areas of evidence and the question nobody's answering. No
+            Six areas of evidence and the question nobody's answering. No
             opinions — just sourced data, federal documents, and peer-reviewed
             science.
           </motion.p>
@@ -167,6 +180,37 @@ export default function TheFactsLanding() {
               </Link>
             </motion.div>
           ))}
+        </div>
+      </section>
+
+      {/* ═══════════════════ NPC TAKES ═══════════════════ */}
+      <section className="pb-16 md:pb-24 px-4">
+        <div className="max-w-5xl mx-auto">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeUp}
+            custom={6}
+          >
+            <Link
+              href="/npc-takes"
+              className="group flex items-center justify-between bg-purple-950/20 border border-purple-800/30 hover:border-purple-700/50 rounded-2xl p-6 md:p-8 transition-all duration-300 hover:scale-[1.01]"
+            >
+              <div>
+                <span className="text-[10px] font-bold uppercase tracking-widest text-purple-400 mb-2 block">
+                  🎮 Community Fact-Check
+                </span>
+                <h2 className="text-xl md:text-2xl font-black text-white group-hover:text-purple-400 transition-colors mb-1">
+                  NPC Takes
+                </h2>
+                <p className="text-sm text-dark-400 leading-relaxed">
+                  A limited few haters are publicly criticizing this site without reading it. So we&apos;re fact-checking their fact-checks — with receipts.
+                </p>
+              </div>
+              <ArrowRight className="w-6 h-6 text-purple-400 flex-shrink-0 group-hover:translate-x-1 transition-transform" />
+            </Link>
+          </motion.div>
         </div>
       </section>
     </>

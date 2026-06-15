@@ -81,7 +81,7 @@ export default function AviationSafetyPage() {
               <div className="rounded-2xl overflow-hidden border border-dark-700/50 shadow-2xl shadow-black/40">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
-                  src="https://imagedelivery.net/5MAOvNjO0OBL917jHWR5AA/82026018-9e77-4ea8-1424-674b34a40100/public"
+                  src="https://media.protectliverpoolny.org/evidence/flight-path-absurdity.png"
                   alt="Flightradar24 showing aircraft on final approach near the tower"
                   className="w-full h-auto"
                 />
@@ -97,6 +97,8 @@ export default function AviationSafetyPage() {
 
       <QuickLinks
         links={[
+          { label: "FAA Determination", id: "faa-determination" },
+          { label: "The Crane That Built It", id: "crane-faa" },
           { label: "Altitude & Obstruction", id: "altitude" },
           { label: "Flight Path Proximity", id: "flight-path" },
           { label: "Bird Strike Hazard", id: "bird-strike" },
@@ -104,6 +106,274 @@ export default function AviationSafetyPage() {
           { label: "Lights Won't Fix It", id: "lights-wont-fix" },
         ]}
       />
+
+      {/* ═══════════════════ FAA DETERMINATION ═══════════════════ */}
+      <section id="faa-determination" className="py-16 md:py-24 px-4 scroll-mt-24">
+        <div className="max-w-4xl mx-auto">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeUp}
+            custom={0}
+            className="bg-amber-950/30 border-2 border-amber-600/50 rounded-2xl p-6 md:p-8 mb-8"
+          >
+            <div className="flex items-start gap-3 mb-4">
+              <AlertTriangle className="w-6 h-6 text-amber-400 flex-shrink-0 mt-0.5" />
+              <div>
+                <p className="text-sm font-black text-amber-300 uppercase tracking-wider mb-1">
+                  Full Transparency — March 24, 2026
+                </p>
+                <p className="text-sm text-amber-100/80 leading-relaxed">
+                  We contacted the Syracuse Regional Airport Authority directly.
+                  The Executive Director responded. The FAA has issued a formal
+                  determination on this tower. We&apos;re posting everything — even
+                  the parts that aren&apos;t in our favor — because that&apos;s what
+                  separates us from the people who built this thing without
+                  telling anyone.
+                </p>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Terreri Response */}
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeUp}
+            custom={0.5}
+            className="bg-dark-900/60 border border-dark-800/50 rounded-2xl p-6 md:p-8 mb-6"
+          >
+            <p className="text-xs font-bold text-sky-400 uppercase tracking-widest mb-3">
+              Airport Director&apos;s Response
+            </p>
+            <p className="text-dark-200 leading-relaxed mb-4">
+              On March 24, 2026, we emailed{" "}
+              <strong className="text-white">Jason Terreri, Executive Director
+              of the Syracuse Regional Airport Authority</strong>, asking
+              whether the airport was formally consulted by NYSTA or Phoenix
+              Tower International during the tower&apos;s environmental review.
+            </p>
+            <blockquote className="border-l-4 border-sky-500/50 pl-4 mb-5">
+              <p className="text-dark-100 italic leading-relaxed mb-2">
+                &quot;For projects located off airport property, we are typically
+                not consulted unless there is a potential issue or conflict with
+                FAA regulations. In this case, the project was evaluated by the
+                FAA in 2024 and determined to be a no hazard to navigation.
+                With respect to our Wildlife Management Plan, the location of
+                the tower does not present a wildlife hazard to aircraft.&quot;
+              </p>
+              <cite className="text-xs text-dark-400 not-italic">
+                — Jason Terreri, Executive Director, Syracuse Regional Airport
+                Authority (March 24, 2026)
+              </cite>
+            </blockquote>
+          </motion.div>
+
+          {/* FAA Determination Details */}
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeUp}
+            custom={1}
+            className="bg-dark-900/60 border border-dark-800/50 rounded-2xl p-6 md:p-8 mb-6"
+          >
+            <p className="text-xs font-bold text-dark-500 uppercase tracking-widest mb-3">
+              FAA Aeronautical Study
+            </p>
+            <div className="bg-dark-800/50 rounded-xl p-4 mb-5 border border-dark-700/30">
+              <div className="grid grid-cols-2 gap-x-6 gap-y-1 text-xs">
+                <span className="text-dark-400">Study No.</span>
+                <span className="text-white font-semibold">2024-AEA-11624-OE</span>
+                <span className="text-dark-400">Issued</span>
+                <span className="text-white font-semibold">November 12, 2024</span>
+                <span className="text-dark-400">Applicant</span>
+                <span className="text-white font-semibold">Mitchell Henry — Phoenix Tower International</span>
+                <span className="text-dark-400">Result</span>
+                <span className="text-emerald-400 font-bold">No Hazard to Air Navigation</span>
+                <span className="text-dark-400">Lighting</span>
+                <span className="text-amber-400 font-semibold">&quot;Not necessary for aviation safety&quot;</span>
+                <span className="text-dark-400">Expires</span>
+                <span className="text-white font-semibold">May 12, 2026 (unless construction started)</span>
+                <span className="text-dark-400">Reviewed By</span>
+                <span className="text-white font-semibold">FAA Southwest Regional Office — Fort Worth, TX</span>
+              </div>
+            </div>
+            <p className="text-dark-200 leading-relaxed">
+              The FAA determined that this 184-foot monopole{" "}
+              <strong className="text-white">&quot;does not exceed obstruction
+              standards and would not be a hazard to air navigation.&quot;</strong>{" "}
+              Marking and lighting were deemed not necessary. The determination
+              was issued by the FAA&apos;s Obstruction Evaluation Group in Fort
+              Worth, Texas.
+            </p>
+          </motion.div>
+
+          {/* What This Means — The Reframe */}
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeUp}
+            custom={1.5}
+            className="bg-danger-950/20 border border-danger-800/30 rounded-2xl p-6 md:p-8 mb-6"
+          >
+            <p className="text-xs font-bold text-danger-400 uppercase tracking-widest mb-3">
+              What This Means — And What It Doesn&apos;t
+            </p>
+            <p className="text-dark-200 leading-relaxed mb-4">
+              We respect the FAA&apos;s process and we&apos;re sharing the
+              determination in full. But a &quot;No Hazard&quot; classification
+              does not mean this tower is safe, appropriate, or welcome. Here&apos;s
+              what the determination does and does not cover:
+            </p>
+            <div className="grid sm:grid-cols-2 gap-3">
+              {[
+                {
+                  status: "does",
+                  title: "Clears obstruction standards",
+                  detail: "The tower does not exceed the FAA's height/slope thresholds for the airspace. It's legally short enough.",
+                },
+                {
+                  status: "doesnt",
+                  title: "No site inspection",
+                  detail: "This was a desk review conducted from Fort Worth, Texas. No FAA inspector visited Liverpool or the tower site.",
+                },
+                {
+                  status: "does",
+                  title: "Confirms no lighting required",
+                  detail: "Under current FAA rules, structures under 200 feet AGL do not require obstruction lighting.",
+                },
+                {
+                  status: "doesnt",
+                  title: "No wildlife study provided",
+                  detail: "The determination does not address eagles, raptors, or bird strike risk. That's a USFWS matter — and no USFWS consultation has been produced to date.",
+                },
+                {
+                  status: "does",
+                  title: "Airport was not consulted",
+                  detail: "Director Terreri confirmed this is standard for off-airport projects. The airport had no input.",
+                },
+                {
+                  status: "doesnt",
+                  title: "No 5G interference analysis",
+                  detail: "The determination evaluates physical obstruction only — not RF interference with radar altimeters, which the FAA itself called 'catastrophic' in 2022.",
+                },
+              ].map((item) => (
+                <div
+                  key={item.title}
+                  className={`rounded-xl p-4 border ${
+                    item.status === "does"
+                      ? "bg-emerald-950/20 border-emerald-800/30"
+                      : "bg-danger-950/20 border-danger-800/30"
+                  }`}
+                >
+                  <p className={`text-[10px] font-bold uppercase tracking-widest mb-1 ${
+                    item.status === "does" ? "text-emerald-400" : "text-danger-400"
+                  }`}>
+                    {item.status === "does" ? "What it covers" : "What it doesn't"}
+                  </p>
+                  <p className="text-sm font-bold text-white mb-1">
+                    {item.title}
+                  </p>
+                  <p className="text-xs text-dark-300 leading-relaxed">
+                    {item.detail}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </motion.div>
+
+          {/* Bottom line */}
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeUp}
+            custom={2}
+            className="bg-dark-900/60 border border-dark-800/50 rounded-2xl p-6 text-center mb-6"
+          >
+            <p className="text-lg md:text-xl font-black text-white leading-relaxed">
+              The FAA says it&apos;s not a hazard.{" "}
+              <span className="text-danger-400">
+                The FAA also wasn&apos;t asked about eagles, altimeter
+                interference, or the community.
+              </span>
+            </p>
+            <p className="text-sm text-dark-400 mt-2">
+              A rubber stamp from Fort Worth doesn&apos;t make it right. The
+              rest of this page explains why.
+            </p>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* ═══════════════════ CRANE FAA FILING (May 8, 2026 FOIL) ═══════════════════ */}
+      <section id="crane-faa" className="py-16 md:py-24 px-4 scroll-mt-24 bg-dark-900/20">
+        <div className="max-w-4xl mx-auto">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeUp}
+            custom={0}
+            className="bg-orange-950/20 border border-orange-800/30 rounded-2xl p-6 md:p-8"
+          >
+            <p className="text-xs font-bold text-orange-400 uppercase tracking-widest mb-3">
+              🏗️ The Crane That Built It &mdash; FAA Filed Separately (May 8, 2026 FOIL Production)
+            </p>
+            <h2 className="text-2xl md:text-3xl font-black text-white mb-3">
+              The Crane Was 220 ft AGL.{" "}
+              <span className="text-orange-400">Taller Than the Finished Tower.</span>
+            </h2>
+            <p className="text-dark-300 text-base leading-relaxed mb-4">
+              The 93-document FOIL production includes a <strong className="text-white">separate FAA aeronautical study</strong>{" "}that was filed for the <strong className="text-white">construction crane</strong>, not the tower itself. FAA Aeronautical Study <strong className="text-white">2025-AEA-11322-OE</strong>, issued <strong className="text-white">September 22, 2025</strong>, determination expires March 22, 2027.
+            </p>
+            <div className="bg-dark-950/60 border border-orange-700/30 rounded-xl p-5 my-4">
+              <p className="text-xs font-bold text-orange-300 uppercase tracking-widest mb-2">Crane Operator</p>
+              <p className="text-base text-white font-semibold">Clark Rigging &amp; Rental</p>
+              <p className="text-sm text-dark-300">Mike Dombroski, Project Contact</p>
+              <p className="text-sm text-dark-400">945 Spencer Street, Syracuse NY 13204</p>
+            </div>
+            <div className="grid grid-cols-2 gap-3 my-4">
+              <div className="bg-dark-950/60 border border-orange-700/30 rounded-xl p-4 text-center">
+                <p className="text-3xl font-black text-orange-300">220 ft</p>
+                <p className="text-[10px] text-dark-400 uppercase tracking-wider font-bold mt-1">Crane height AGL</p>
+              </div>
+              <div className="bg-dark-950/60 border border-orange-700/30 rounded-xl p-4 text-center">
+                <p className="text-3xl font-black text-orange-300">655 ft</p>
+                <p className="text-[10px] text-dark-400 uppercase tracking-wider font-bold mt-1">Crane height AMSL</p>
+              </div>
+            </div>
+            <p className="text-dark-300 text-base leading-relaxed">
+              The crane stood <strong className="text-white">36 feet taller than the finished 184-foot tower</strong>. During construction, it was the tallest structure within the I-90 Exit 37 right-of-way. The fact that the FAA required a separate aeronautical study for the crane &mdash; and that PTI&rsquo;s applicant filed one &mdash; underscores how close this site sits to the Syracuse Hancock International Airport descent corridor: even a temporary 220-ft obstruction needed federal review.
+            </p>
+            <p className="text-xs text-dark-500 italic mt-4">
+              Source:{" "}
+              <a
+                href="https://media.protectliverpoolny.org/foil/faa-7460-crane-2025-aea-11322-oe.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-orange-400 underline decoration-orange-500/40 hover:decoration-orange-400"
+              >
+                FAA Aeronautical Study 2025-AEA-11322-OE
+              </a>
+              . The tower&rsquo;s separate FAA filing (2024-AEA-11624-OE, issued 11/12/2024) is also in the FOIL production at{" "}
+              <a
+                href="https://media.protectliverpoolny.org/foil/faa-7460-tower-2024-aea-11624-oe.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-orange-400 underline decoration-orange-500/40 hover:decoration-orange-400"
+              >
+                https://media.protectliverpoolny.org/foil/faa-7460-tower-2024-aea-11624-oe.pdf
+              </a>
+              .
+            </p>
+          </motion.div>
+        </div>
+      </section>
 
       {/* ═══════════════════ ALTITUDE & OBSTRUCTION ═══════════════════ */}
       <section id="altitude" className="py-16 md:py-24 px-4 scroll-mt-24">
@@ -231,55 +501,6 @@ export default function AviationSafetyPage() {
                   label: "✈️ Regional Jets — Oldest Avionics",
                   detail:
                     "SYR is served heavily by regional carriers using the oldest, most vulnerable altimeters — the same ones the FAA said can't be trusted around 5G.",
-                },
-              ].map((item) => (
-                <div
-                  key={item.label}
-                  className="bg-dark-900/60 border border-dark-800/50 rounded-xl p-4"
-                >
-                  <p className="text-sm font-bold text-white mb-1">
-                    {item.label}
-                  </p>
-                  <p className="text-xs text-dark-300 leading-relaxed">
-                    {item.detail}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </motion.div>
-
-          {/* Who uses this approach */}
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={fadeUp}
-            custom={0.5}
-            className="bg-sky-950/20 border border-sky-800/30 rounded-2xl p-6 md:p-8 mb-10"
-          >
-            <p className="text-xs font-bold text-sky-400 uppercase tracking-widest mb-3">
-              Who Flies This Approach?
-            </p>
-            <p className="text-dark-200 text-base leading-relaxed mb-5">
-              Runway 10 isn't some low-traffic strip. This corridor handles some of the
-              heaviest, most critical air traffic in Central New York:
-            </p>
-            <div className="grid sm:grid-cols-2 gap-3">
-              {[
-                {
-                  label: "🛩️ 174th Attack Wing — NY Air National Guard",
-                  detail:
-                    "Military operations at SYR including MQ-9 Reapers and military transport aircraft. A 184-foot unlit tower near their approach path.",
-                },
-                {
-                  label: "📦 FedEx & UPS Cargo Freighters",
-                  detail:
-                    "Heavy cargo planes landing at night, often in poor weather — exactly when an invisible steel pole is most dangerous.",
-                },
-                {
-                  label: "✈️ Regional Jets — Oldest Avionics",
-                  detail:
-                    "SYR is served heavily by regional carriers with the oldest, most vulnerable altimeters — the same ones the FAA said can't be trusted around 5G.",
                 },
                 {
                   label: "🎓 Low-Altitude Flight Training",
@@ -629,7 +850,7 @@ export default function AviationSafetyPage() {
 
             <p className="text-dark-200 leading-relaxed mb-4">
               That's the airport's own policy — applied to land{" "}
-              <em className="text-white not-italic font-bold">further</em> from the
+              <em className="text-white not-italic font-bold">further</em>{" "}from the
               runway than this tower. Meanwhile,{" "}
               <strong className="text-white">0.25 miles from the active
               descent corridor</strong> — where planes pass at{" "}
@@ -644,12 +865,12 @@ export default function AviationSafetyPage() {
 
             <p className="text-dark-200 leading-relaxed mb-5">
               Over{" "}
-              <strong className="text-white">100 bald eagles</strong> winter at
+              <strong className="text-white">100 bald eagles</strong>{" "}winter at
               the{" "}
               <a href="https://onondagaaudubon.com/" target="_blank" rel="noopener noreferrer" className="text-white font-bold underline decoration-lime-400/40 hover:decoration-lime-400">
                 Onondaga Lake roost
               </a>{" "}
-              — <strong className="text-danger-400">1.7 miles away</strong>.
+              — <strong className="text-danger-400">1.25 miles away</strong>.
               The airport spends millions pushing eagles out.
               This tower pulls them back in.
             </p>
@@ -701,7 +922,7 @@ export default function AviationSafetyPage() {
               </a>{" "}
               in cooperation with the FAA documented 200 bald
               eagle strikes between 1990&ndash;2013 — a{" "}
-              <strong className="text-danger-400">2,200% increase</strong> over
+              <strong className="text-danger-400">2,200% increase</strong>{" "}over
               that period. Over half of all eagle collisions caused aircraft
               damage. Nine people were injured in five separate incidents.
               Strikes primarily occurred near airfields at or below 305 meters
@@ -783,7 +1004,7 @@ export default function AviationSafetyPage() {
                   10,000 feet of runways serving turbine-powered aircraft
                 </strong>{" "}
                 and within{" "}
-                <strong className="text-white">5 statute miles</strong> to
+                <strong className="text-white">5 statute miles</strong>{" "}to
                 protect approach, departure, and circling airspace.
               </p>
               <p className="text-dark-200 text-base leading-relaxed mb-3">
@@ -983,7 +1204,7 @@ export default function AviationSafetyPage() {
             </p>
             <p className="text-dark-200 leading-relaxed mb-3">
               Airlines were{" "}
-              <strong className="text-white">prohibited from landing</strong> at
+              <strong className="text-white">prohibited from landing</strong>{" "}at
               affected airports. Buffer zones were mandated around 50+ airports.
               Verizon and AT&T voluntarily limited 5G service because the FAA
               called it{" "}

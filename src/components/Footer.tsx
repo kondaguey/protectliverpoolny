@@ -4,7 +4,7 @@ import { CopyButton } from "./CopyButton";
 
 export function Footer() {
   return (
-    <footer className="bg-dark-950 border-t border-dark-800/50 py-10 px-4">
+    <footer className="bg-dark-950 border-t border-dark-800/50 py-10 pb-24 md:pb-10 px-4">
       <div className="max-w-6xl mx-auto">
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
           {/* Logo */}
@@ -42,6 +42,9 @@ export function Footer() {
             <a href="/the-facts/aviation" className="hover:text-white transition-colors">
               Aviation & Safety
             </a>
+            <a href="/the-facts/highway-safety" className="hover:text-white transition-colors">
+              Highway Safety
+            </a>
             <a href="/the-facts/health" className="hover:text-white transition-colors">
               Health & Science
             </a>
@@ -63,7 +66,7 @@ export function Footer() {
             All information presented is sourced from public records and
             community testimony.
           </p>
-          <div className="flex justify-center gap-4 mt-4">
+          <div className="grid grid-cols-2 sm:flex sm:flex-wrap justify-center gap-x-6 gap-y-2 mt-4 text-center">
             <a href="/privacy" className="text-xs text-dark-500 hover:text-dark-300 transition-colors">
               Privacy Policy
             </a>
@@ -71,7 +74,16 @@ export function Footer() {
               Terms
             </a>
             <a href="/disclaimer" className="text-xs text-dark-500 hover:text-dark-300 transition-colors">
-              Disclaimer
+              About &amp; Disclaimer
+            </a>
+            <a href="/changelog" className="text-xs text-dark-500 hover:text-dark-300 transition-colors">
+              Updates & Change Log
+            </a>
+            <a href="/npc-takes" className="text-xs text-dark-500 hover:text-dark-300 transition-colors">
+              🎮 NPC Takes
+            </a>
+            <a href="/code-of-conduct" className="text-xs text-dark-500 hover:text-dark-300 transition-colors">
+              📜 Code of Conduct
             </a>
           </div>
           <p className="text-xs text-dark-600 text-center mt-3">

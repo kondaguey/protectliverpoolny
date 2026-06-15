@@ -27,6 +27,16 @@ const fadeUp = {
 
 const loopholes = [
   {
+    icon: Landmark,
+    move: "Build a 184-Foot Commercial Tower in R-O (Residence-Office) Zoning",
+    what: "AT&T's own construction drawings (Rev 2, November 7, 2025), Sheet T01, list the surrounding parcel's zoning district as R-O — Residence-Office. R-O is a residential class designed for low-impact homes and small offices. A 184-foot commercial telecommunications structure does not belong on R-O zoning under any local approval process. Phoenix Tower and NYSTA used the state-land preemption — a tower built on NYSTA right-of-way is exempt from local zoning — to bypass the R-O classification entirely. The classification is right there on AT&T's own drawing, in the corner of Sheet T01, where it has been hiding since March 2025.",
+    youTry:
+      "Buy a small home in an R-O district and try to install a 12-story office tower in the side yard. The Building Department will tell you which zoning class you're actually in and what it permits. Spoiler: not that.",
+    color: "text-rose-400",
+    bg: "bg-rose-950/30 border-rose-800/30",
+    link: "https://media.protectliverpoolny.org/foil/att-construction-drawings-rev2-20251107.pdf",
+  },
+  {
     icon: FileX,
     move: "Approve a 184-Foot Tower Without an Alternative Site Analysis",
     what: "Standard wireless siting practice requires the applicant to show why a specific site was chosen over alternatives — a Coverage Objective + Alternatives Analysis evaluating other candidate locations and explaining why they were rejected. Phoenix Tower never produced one. NYSTA never required one. We asked for it under FOIL Item 7. NYSTA's response, in writing on May 8, 2026: \"No records responsive to Item 7 were located.\" There is no engineering or planning analysis explaining why a 184-foot commercial tower had to go on top of a residential neighborhood, 1.25 miles from a bald eagle roost, ~100 feet from an active highway off-ramp.",
@@ -44,17 +54,27 @@ const loopholes = [
       "Sign your own home inspection report and send it to the buyer. Let us know how the closing goes.",
     color: "text-purple-400",
     bg: "bg-purple-950/30 border-purple-800/30",
-    link: "/foil/usny2029-nysta-seqra-r3-final.pdf",
+    link: "https://media.protectliverpoolny.org/foil/usny2029-nysta-seqra-r3-final.pdf",
   },
   {
     icon: Coins,
-    move: "Hide the Rent Behind a Privacy Law That Doesn't Apply to Corporations",
-    what: "The Annual Fee paid by Phoenix Tower International — the rent for occupying public state land — is fully redacted under New York Public Officers Law §87(2)(b), the personal-privacy exemption. PTI is a Delaware/Florida limited liability company. Under settled New York case law (Matter of Federation of N.Y. State Rifle & Pistol Clubs v. NYPD, 73 N.Y.2d 92), §87(2)(b) protects natural persons, not corporations. The Committee on Open Government has issued multiple advisory opinions confirming corporate financial terms in contracts with state agencies are not personal-privacy material. NYSTA cited a statute that doesn't authorize the redaction it made.",
+    move: "Won't State the Rent It Collects on Public Land — Then Switched Legal Excuses When Caught",
+    what: "The Annual Fee Phoenix Tower International pays NYSTA for occupying public state land — the central financial number of this project — appears nowhere in the production. NYSTA's own Condition Rider says it is \"stated on the first page of this Occupancy Permit\" (§III.A) and billed in quarterly installments (§III.B); no figure and no invoice was produced. NYSTA first invoked §87(2)(b) (personal privacy) on this corporate financial material — an exemption that, under settled case law (Matter of Federation of N.Y. State Rifle & Pistol Clubs v. NYPD, 73 N.Y.2d 92), protects natural persons, not corporations like PTI US Towers I, LLC. On appeal (May 22, 2026), NYSTA CONCEDED §87(2)(b) was likely wrong and switched to §87(2)(i), the IT-asset-security exemption — which has nothing to do with a contract fee. Meanwhile NYSTA released the carrier co-locator agreements unredacted (Verizon $2,950/mo, AT&T $2,750/mo). Using NYSTA's own 50%-of-co-locator-fee formula (§III.D), the Authority's take reconstructs to roughly $34,200/year today, rising toward ~$50,000/year as more carriers load on — across a 25-year carrier horizon. They hid a number anyone can now calculate from the documents they were forced to release.",
     youTry:
-      "Tell the IRS your LLC has \"personal privacy\" rights and refuse to disclose its income. We will visit you in court.",
+      "Tell the IRS your LLC has \"personal privacy\" rights — then, when caught, claim it's an \"IT security\" matter, while handing over your tenants' rent checks. We will visit you in court.",
     color: "text-emerald-400",
     bg: "bg-emerald-950/30 border-emerald-800/30",
-    link: "/foil/t3u250002-pti-salina-cell-tower-redacted.pdf",
+    link: "https://media.protectliverpoolny.org/foil/t3u250002-pti-salina-cell-tower-redacted.pdf",
+  },
+  {
+    icon: Clock,
+    move: "Have the Documents Ready by April 28 — and Sit on Them Until May 8",
+    what: "PDF metadata of the redacted PTI Occupancy Permit (triple-verified via exiftool, pdfinfo, and the embedded XMP byte stream) carries Adobe Acrobat redaction-completion timestamps of April 28, 2026 — 10:46:33 EDT on the occupancy-permit copy, 10:50:43 EDT on the cell-tower copy, four minutes apart in a single sitting. The XMP toolkit signature confirms the redaction tool was Adobe Acrobat. That is six days after the agency's own extended deadline of April 22, 2026 (the deadline they 'blew' that triggered our constructive-denial appeal). NYSTA then withheld the finalized records for ten more days, releasing them on May 8 — two business days after the appeal clock expired. This is not a search-and-redaction timeline. It is a finalize-then-withhold timeline. Under New York Public Officers Law §89(4)(c), a court awarding attorney's fees in any subsequent Article 78 must find the agency had no reasonable basis for the period of denial. Adobe-Acrobat-saved-on-April-28 / released-on-May-8 is exactly the kind of evidence that standard contemplates.",
+    youTry:
+      "File your taxes on April 28 and tell the IRS you'll be releasing them on June 1 because you weren't ready. The IRS will ask which part of \"weren't ready\" applies to a return you've already finalized.",
+    color: "text-yellow-400",
+    bg: "bg-yellow-950/30 border-yellow-800/30",
+    link: "https://media.protectliverpoolny.org/foil/t3u250002-pti-salina-cell-tower-redacted.pdf",
   },
   {
     icon: Clock,
@@ -64,7 +84,7 @@ const loopholes = [
       "Tell the IRS you don't have your W-2 — 17 minutes after they ask, without checking the mailbox the W-2 was certified-mailed to. Send your accountant flowers.",
     color: "text-cyan-400",
     bg: "bg-cyan-950/30 border-cyan-800/30",
-    link: "/foil/seqra-determination-letter-cert-mail-receipt.pdf",
+    link: "https://media.protectliverpoolny.org/foil/seqra-determination-letter-cert-mail-receipt.pdf",
   },
   {
     icon: ShieldOff,

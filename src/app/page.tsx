@@ -33,10 +33,10 @@ const problems = [
   {
     icon: TrendingDown,
     title: "Your Home Is Worth Less. Right Now.",
-    stat: "Up to 20%",
+    stat: "2–9%+",
     bullets: [
-      "2-20% property value decrease within sight of the tower with 94% of buyers extremely hesitant to buy near a cell tower.",
-      'HUD classifies cell towers as "Hazards and Nuisances" — your home is now flagged.',
+      "Peer-reviewed research shows 2-9% property value decreases near cell towers, with appraiser estimates as high as 20% (Sander & Polacheck, 2009). Surveys show most buyers are hesitant to purchase near a tower.",
+      "HUD guidelines flag cell tower proximity as an environmental concern in property assessments — your home may now be affected.",
     ],
     href: "/the-facts/community",
     color: "text-danger-500",
@@ -49,7 +49,7 @@ const problems = [
     stat: '"Clear Evidence"',
     bullets: [
       'The NTP\'s $30M study found "clear evidence" of cancer from RF — the same radiation this tower emits',
-      "73.6% of peer-reviewed studies on people living near towers found harmful health effects",
+      "Per a 2022 systematic review (Balmori), 73.6% of peer-reviewed studies on people living near towers found harmful health effects",
     ],
     href: "/the-facts/health",
     color: "text-amber-500",
@@ -90,16 +90,18 @@ export default function HomePage() {
 
   // Close lightbox on Escape + lock body scroll
   useEffect(() => {
-    const handler = (e: KeyboardEvent) => { if (e.key === 'Escape') setLightbox(null); };
+    const handler = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setLightbox(null);
+    };
     if (lightbox) {
-      document.body.style.overflow = 'hidden';
-      window.addEventListener('keydown', handler);
+      document.body.style.overflow = "hidden";
+      window.addEventListener("keydown", handler);
     } else {
-      document.body.style.overflow = '';
+      document.body.style.overflow = "";
     }
     return () => {
-      document.body.style.overflow = '';
-      window.removeEventListener('keydown', handler);
+      document.body.style.overflow = "";
+      window.removeEventListener("keydown", handler);
     };
   }, [lightbox]);
 
@@ -108,19 +110,19 @@ export default function HomePage() {
       name: "T-Mobile",
       color: "text-pink-400",
       bg: "bg-pink-600",
-      img: "https://imagedelivery.net/5MAOvNjO0OBL917jHWR5AA/930e948c-09a2-4aa1-e5b0-85a49d626c00/public",
+      img: "https://media.protectliverpoolny.org/evidence/cancer-cluster-children.png",
     },
     {
       name: "AT&T",
       color: "text-sky-400",
       bg: "bg-sky-600",
-      img: "https://imagedelivery.net/5MAOvNjO0OBL917jHWR5AA/dff653c7-1bfc-4af3-2ae0-58585acc3700/public",
+      img: "https://media.protectliverpoolny.org/evidence/property-value-drop.png",
     },
     {
       name: "Verizon",
       color: "text-red-400",
       bg: "bg-red-600",
-      img: "https://imagedelivery.net/5MAOvNjO0OBL917jHWR5AA/ba9ea101-8bdd-4b05-9d37-ad39e509c200/public",
+      img: "https://media.protectliverpoolny.org/evidence/property-value-tank.png",
     },
   ];
   const [carrierIndex, setCarrierIndex] = useState(0);
@@ -134,7 +136,7 @@ export default function HomePage() {
           <div className="absolute inset-0 bg-gradient-to-r from-dark-950 via-dark-950/80 to-transparent z-10" />
           <div className="absolute inset-0 bg-gradient-to-t from-dark-950 via-transparent to-dark-950/40 z-10" />
           <Image
-            src="https://imagedelivery.net/5MAOvNjO0OBL917jHWR5AA/7082b468-ee29-4cd8-94aa-acae117f9100/public"
+            src="https://media.protectliverpoolny.org/evidence/monopole-prepping.png"
             alt="Cell tower in Liverpool, NY"
             fill
             priority
@@ -166,7 +168,7 @@ export default function HomePage() {
             className="font-black leading-[1.05] tracking-tight max-w-4xl"
             style={{ fontSize: "clamp(2.5rem, 6vw, 5rem)" }}
           >
-            A 17-Story Cellular Tower
+            A 17-Story "Cellular" Tower
             <br />
             <span className="text-danger-500">In Our Backyards.</span>
             <br />
@@ -225,7 +227,7 @@ export default function HomePage() {
           <div className="max-w-5xl mx-auto px-4 md:px-12 lg:px-24 py-4 md:py-5 grid grid-cols-4 gap-2 md:gap-8">
             {[
               {
-                value: "2–20%",
+                value: "2–9%+",
                 label: "Property Value\nDecrease",
                 color: "text-danger-400",
               },
@@ -284,7 +286,6 @@ export default function HomePage() {
               is surrounded by residential neighborhoods, grade schools,
               workplaces, restaurants, hotels, playing fields, and parks.
             </p>
-
           </motion.div>
 
           <motion.div
@@ -333,14 +334,22 @@ export default function HomePage() {
               </div>
               <div className="flex items-center gap-1.5">
                 <button
-                  onClick={() => document.getElementById('photo-scroll')?.scrollBy({ left: -340, behavior: 'smooth' })}
+                  onClick={() =>
+                    document
+                      .getElementById("photo-scroll")
+                      ?.scrollBy({ left: -340, behavior: "smooth" })
+                  }
                   className="w-7 h-7 rounded-lg bg-white/5 backdrop-blur-md border border-white/10 flex items-center justify-center text-dark-300 hover:bg-white/10 hover:text-white transition-all"
                   aria-label="Previous photo"
                 >
                   ‹
                 </button>
                 <button
-                  onClick={() => document.getElementById('photo-scroll')?.scrollBy({ left: 340, behavior: 'smooth' })}
+                  onClick={() =>
+                    document
+                      .getElementById("photo-scroll")
+                      ?.scrollBy({ left: 340, behavior: "smooth" })
+                  }
                   className="w-7 h-7 rounded-lg bg-white/5 backdrop-blur-md border border-white/10 flex items-center justify-center text-dark-300 hover:bg-white/10 hover:text-white transition-all"
                   aria-label="Next photo"
                 >
@@ -348,40 +357,87 @@ export default function HomePage() {
                 </button>
               </div>
             </div>
-            <div id="photo-scroll" className="flex gap-4 overflow-x-auto snap-x snap-mandatory pb-3" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none', WebkitOverflowScrolling: 'touch' }}>
+            <div
+              id="photo-scroll"
+              className="flex gap-4 overflow-x-auto snap-x snap-mandatory pb-3"
+              style={{
+                scrollbarWidth: "none",
+                msOverflowStyle: "none",
+                WebkitOverflowScrolling: "touch",
+              }}
+            >
               {[
-                { src: "https://imagedelivery.net/5MAOvNjO0OBL917jHWR5AA/82026018-9e77-4ea8-1424-674b34a40100/public", caption: "Aircraft on final approach — 441 ft above the tower" },
-                { src: "https://imagedelivery.net/5MAOvNjO0OBL917jHWR5AA/e9374762-20c4-4f98-84f8-12e8fcdb0800/public", caption: "From pickleball courts" },
-                { src: "https://imagedelivery.net/5MAOvNjO0OBL917jHWR5AA/33b628fd-bda4-430c-adbc-791faa8f1b00/public", caption: "From Byrne Dairy" },
-                { src: "https://imagedelivery.net/5MAOvNjO0OBL917jHWR5AA/5692f0d1-2891-43d6-de6b-a15d81b5ae00/public", caption: "From the drugstore" },
-                { src: "https://imagedelivery.net/5MAOvNjO0OBL917jHWR5AA/b5a30c74-5780-4d9f-2d88-8f25d78ad300/public", caption: "From First Republic Business Park" },
-                { src: "https://imagedelivery.net/5MAOvNjO0OBL917jHWR5AA/287235dc-454c-4245-41eb-24cb7fb75500/public", caption: "From youth softball fields (under flight approach path)" },
-                { src: "https://imagedelivery.net/5MAOvNjO0OBL917jHWR5AA/638fe878-42fc-4bc2-2424-0ec641028100/public", caption: "Spicy Wings And Wedges And Radiation 🔥" },
+                {
+                  src: "https://media.protectliverpoolny.org/evidence/flight-path-absurdity.png",
+                  caption:
+                    "Aircraft on final approach — 441 ft above the tower",
+                },
+                {
+                  src: "https://media.protectliverpoolny.org/evidence/flock-surveillance-cam.png",
+                  caption: "From pickleball courts",
+                },
+                {
+                  src: "https://media.protectliverpoolny.org/evidence/monopole-imposing.png",
+                  caption: "From Byrne Dairy",
+                },
+                {
+                  src: "https://media.protectliverpoolny.org/evidence/country-comparison-5g.png",
+                  caption: "From the drugstore",
+                },
+                {
+                  src: "https://media.protectliverpoolny.org/evidence/monopole-look-like.png",
+                  caption: "From First Republic Business Park",
+                },
+                {
+                  src: "https://media.protectliverpoolny.org/evidence/bald-eagle-5g.png",
+                  caption:
+                    "From youth softball fields (under flight approach path)",
+                },
+                {
+                  src: "https://media.protectliverpoolny.org/evidence/coverage-maps.png",
+                  caption: "Spicy Wings And Wedges And Radiation 🔥",
+                },
               ].map((photo, i) => (
-                <div key={i} className="snap-start flex-shrink-0 w-[240px] md:w-[280px] cursor-pointer" onClick={() => setLightbox(photo.src)}>
-                  <div className="relative w-full aspect-[9/16] rounded-xl overflow-hidden border border-dark-700/50 hover:border-dark-500/70 transition-all">
+                <div
+                  key={i}
+                  className="snap-start flex-shrink-0 w-[240px] md:w-[280px] cursor-pointer"
+                  onClick={() => setLightbox(photo.src)}
+                >
+                  <div className="relative w-full aspect-[9/16] rounded-xl overflow-hidden border border-dark-700/50 hover:border-dark-500/70 transition-all bg-dark-900">
                     <Image
                       src={photo.src}
                       alt={photo.caption}
                       fill
-                      className="object-cover"
+                      className="object-contain"
                       sizes="(max-width: 768px) 320px, 400px"
                     />
                   </div>
-                  <p className="text-[11px] text-dark-500 mt-2 text-center">{photo.caption}</p>
+                  <p className="text-[11px] text-dark-500 mt-2 text-center">
+                    {photo.caption}
+                  </p>
                 </div>
               ))}
-              {/* Video */}
-              <div className="snap-start flex-shrink-0 w-[240px] md:w-[280px]">
-                <div className="relative w-full aspect-[9/16] rounded-xl overflow-hidden border border-dark-700/50">
-                  <iframe
-                    src="https://iframe.videodelivery.net/62d09f292b917265af262289a55029e3"
-                    allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                    className="absolute inset-0 w-full h-full"
+              {/* Closing Image */}
+              <div
+                className="snap-start flex-shrink-0 w-[240px] md:w-[280px] cursor-pointer"
+                onClick={() =>
+                  setLightbox(
+                    "https://media.protectliverpoolny.org/evidence/school-busses-5g.png",
+                  )
+                }
+              >
+                <div className="relative w-full aspect-[9/16] rounded-xl overflow-hidden border border-dark-700/50 hover:border-dark-500/70 transition-all bg-dark-900">
+                  <Image
+                    src="https://media.protectliverpoolny.org/evidence/school-busses-5g.png"
+                    alt="Nothing to see here."
+                    fill
+                    className="object-contain"
+                    sizes="(max-width: 768px) 320px, 400px"
                   />
                 </div>
-                <p className="text-[11px] text-dark-500 mt-2 text-center">📹 School busses always passing</p>
+                <p className="text-[11px] text-dark-500 mt-2 text-center">
+                  Nothing to see here.
+                </p>
               </div>
             </div>
           </motion.div>
@@ -611,7 +667,7 @@ export default function HomePage() {
           >
             <div className="bg-dark-900/60 border border-dark-800/50 rounded-2xl p-6 md:p-8">
               <p className="text-sm font-bold text-white mb-3">
-                But here's what they will <em>claim</em> it's for: to make the
+                But here's what they will <em>claim</em>{" "}it's for: to make the
                 highways "smart."
               </p>
               <p className="text-dark-300 leading-relaxed mb-4">
@@ -647,7 +703,7 @@ export default function HomePage() {
                 {
                   label: "Your Patterns",
                   detail:
-                    "Where you go, when, how often. Stored indefinitely. Sold to the highest bidder.",
+                    "Where you go, when, how often. Cell tower location data has been stored and sold — exposed in the 2018 Securus/LocationSmart scandals.",
                 },
               ].map((item) => (
                 <div
@@ -893,7 +949,44 @@ export default function HomePage() {
               </ul>
             </motion.div>
 
-            {/* The Complicit */}
+            {/* Correction Notice */}
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: "-30px" }}
+              variants={fadeUp}
+              custom={2.5}
+              className="bg-amber-950/30 border-2 border-amber-600/50 rounded-2xl p-5 md:p-6"
+            >
+              <div className="flex items-start gap-3">
+                <AlertTriangle className="w-6 h-6 text-amber-400 flex-shrink-0 mt-0.5" />
+                <div>
+                  <p className="text-sm font-black text-amber-300 uppercase tracking-wider mb-1">
+                    ⚠️ Major Update — March 24, 2026
+                  </p>
+                  <p className="text-sm text-amber-100/80 leading-relaxed">
+                    We are actively incorporating community feedback and
+                    correcting this page as fast as possible. A previous version
+                    of this section framed the Town of Salina's elected
+                    officials as complicit in allowing this tower. After doing
+                    our due diligence — attending a town hall meeting, looking
+                    these officials in the face, and listening to residents — we
+                    determined that{" "}
+                    <strong className="text-white">
+                      the state went over their heads just like it went over
+                      ours.
+                    </strong>{" "}
+                    Local officials have no zoning authority over state-owned
+                    land and were not required to be notified — they are our
+                    only political allies in this. We've corrected the record
+                    below and we thank every community member who held us
+                    accountable.
+                  </p>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Our Local Leaders */}
             <motion.div
               initial="hidden"
               whileInView="visible"
@@ -908,14 +1001,17 @@ export default function HomePage() {
                 </div>
                 <div>
                   <p className="text-xs font-bold text-dark-500 uppercase tracking-wider mb-1">
-                    The Complicit
+                    Our Local Leaders
                   </p>
                   <h3 className="font-black text-white text-xl">
-                    Local Officials Who Stayed Silent
+                    This Went Over Everyone's Heads — Including Theirs.
                   </h3>
                   <p className="text-dark-400 text-sm mt-1">
-                    The Town of Salina and Onondaga County officials who were
-                    either not informed — or chose not to inform you.
+                    NYSTA and PTI used state land to bypass local jurisdiction
+                    entirely. Our elected officials were not consulted, not
+                    notified, and had no authority to stop it. Now that we all
+                    know, these are the people best positioned to fight
+                    alongside us.
                   </p>
                 </div>
               </div>
@@ -929,9 +1025,11 @@ export default function HomePage() {
                     <strong className="text-white">
                       Town Supervisor Raul Huerta
                     </strong>{" "}
-                    — head of the Town of Salina. Either knew about the tower
-                    and said nothing, or failed in the basic duty to know what's
-                    being built in his own town.
+                    — the Town of Salina has no zoning authority over
+                    state-owned land, and NYSTA was not required to notify
+                    anyone. We're asking the Supervisor to use his platform to
+                    publicly oppose this project and pursue every legal avenue
+                    available to protect Salina residents.
                   </span>
                 </li>
                 <li className="flex items-start gap-3 bg-black/20 rounded-lg px-3 py-2.5">
@@ -941,10 +1039,12 @@ export default function HomePage() {
                     style={{ fontSize: "0.9rem" }}
                   >
                     <strong className="text-white">
-                      Onondaga County Legislator David Carnie
+                      Ward 4 Councilor Eliza Hewitt Driscoll
                     </strong>{" "}
-                    (Ward 4) — sits on both the Town Board AND the County
-                    Legislature. Double the access, double the silence.
+                    — took office January 2026 and inherited this situation.
+                    Ward 4 covers the tower site at Electronics Pkwy. She's in
+                    the strongest position on the Town Board to champion this
+                    cause.
                   </span>
                 </li>
                 <li className="flex items-start gap-3 bg-black/20 rounded-lg px-3 py-2.5">
@@ -954,9 +1054,10 @@ export default function HomePage() {
                     style={{ fontSize: "0.9rem" }}
                   >
                     <strong className="text-white">Jeremiah Thompson</strong>{" "}
-                    (Onondaga County 4th District) — chairs the Village of
-                    Liverpool Zoning Board of Appeals. Elected November 2025 —
-                    the person best positioned to flag this now.
+                    (Onondaga County 4th District) — serves as both County
+                    Legislator and Chair of the Village of Liverpool Zoning
+                    Board of Appeals. Elected November 2025. The person best
+                    positioned to bridge local and county action on this.
                   </span>
                 </li>
               </ul>
@@ -964,7 +1065,7 @@ export default function HomePage() {
                 href="/take-action#contact-officials"
                 className="inline-flex items-center gap-2 text-sm font-bold text-danger-400 hover:text-danger-300 hover:underline transition-colors"
               >
-                Call every one of them
+                Reach out and let them know we need their help
                 <ArrowRight className="w-4 h-4" />
               </Link>
             </motion.div>
@@ -1100,10 +1201,10 @@ export default function HomePage() {
               <div className="md:col-span-2 bg-sky-950/30 border border-sky-800/30 rounded-2xl md:rounded-r-none p-5 md:p-6">
                 <ul className="space-y-2">
                   {[
-                    "A bald eagle nesting zone 1.7 miles away — no environmental review",
+                    "A bald eagle nesting zone 1.25 miles away — no environmental review",
                     "A private corporation profiting off public Thruway land",
                     "Zero community consent — no hearing, no vote, no notification",
-                    "Children absorb 10× more RF radiation — and Chestnut Ridge is right there",
+                    "Children absorb 10× more cumulative RF from towers than from a phone call (Lee & Choi, 2023)",
                   ].map((item) => (
                     <li
                       key={item}
@@ -1135,7 +1236,7 @@ export default function HomePage() {
                 <ul className="space-y-2">
                   {[
                     "Government making backroom deals — no elected official was consulted",
-                    "Your home value tanks up to 20% the day this thing goes up",
+                    "Peer-reviewed research shows 2-9%+ property value drops near cell towers",
                     "Your tax dollars funding a surveillance backbone you never approved",
                     "4th Amendment? They don't need a warrant to track your car. It's already happening.",
                   ].map((item) => (

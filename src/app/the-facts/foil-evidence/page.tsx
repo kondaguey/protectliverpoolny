@@ -44,103 +44,108 @@ const categories: Category[] = [
       "PTI Occupancy Permit T3U250002, Anchor Tenant and Tenant Install Amendments, Construction Permits, Site/Structural Agreements. Section II.A of the PTI Permit is the most consequential sentence in the entire response: \"There is no term. This Occupancy Permit is revocable, unilaterally, upon demand by the Authority.\"",
     produced: [
       {
+        title: "NYSTA Building Permit SYR-2025-003 (12/2/2025)",
+        href: "https://media.protectliverpoolny.org/foil/nysta-building-permit-syr-2025-003-20251202.pdf",
+        note: "Issued December 2, 2025 by Joshua Stagnitti, Code Compliance Specialist (expires December 1, 2028). Reference R3642. Filename misleadingly labeled 'AT_T_Exit_37_Permit.pdf' — actual permittee is PTI. Documents the 30 kW diesel generator + 145-gallon belly tank. Future FOIL targets: 3rd Party Concrete Inspection Report, 3rd Party Electrical Inspection, Footing before pouring, Final Completion.",
+      },
+      {
         title: "PTI Occupancy Permit T3U250002 (Redacted)",
-        href: "/foil/t3u250002-pti-salina-cell-tower-redacted.pdf",
-        note: "22-page Condition Rider issued June 23, 2025. Section II.A: unilaterally revocable by NYSTA. Annual Fee redacted under §87(2)(b) — invalid for corporations.",
+        href: "https://media.protectliverpoolny.org/foil/t3u250002-pti-salina-cell-tower-redacted.pdf",
+        note: "22-page Condition Rider issued June 23, 2025 by Trevor Thieme. Section II.A: unilaterally revocable by NYSTA. The Annual Fee the Rider says is 'stated on the first page' (§III.A) does not appear in the production. PDF metadata indicates the redacted version was finalized April 28, 2026 — 10 days before NYSTA released it.",
       },
       {
         title: "PTI Occupancy Permit T3U250002 — Occupancy Permit version (Redacted)",
-        href: "/foil/t3u250002-pti-salina-occupancy-permit-redacted.pdf",
+        href: "https://media.protectliverpoolny.org/foil/t3u250002-pti-salina-occupancy-permit-redacted.pdf",
       },
       {
         title: "AT&T Anchor Tenant Amendment (Redacted)",
-        href: "/foil/t3u250002-int-37-amendment-att-anchor-tenant-redacted.pdf",
+        href: "https://media.protectliverpoolny.org/foil/t3u250002-int-37-amendment-att-anchor-tenant-redacted.pdf",
         note: "Filed jointly under PTI / AT&T. Duration: \"TBD\" for both start and end dates.",
       },
       {
         title: "Verizon Tenant Install Amendment (Redacted)",
-        href: "/foil/t3u250002-int-37-amendment-verizon-tenant-install-redacted.pdf",
+        href: "https://media.protectliverpoolny.org/foil/t3u250002-int-37-amendment-verizon-tenant-install-redacted.pdf",
         note: "Verizon contracting entity is Bell Atlantic Mobile Systems LLC, signed by Jack Redmond.",
       },
       {
         title: "PTI Occupancy & Work Permit (ta-w5124)",
-        href: "/foil/us-ny-2029-phoenix-tower-occupancy-work-permit-ta-w5124.pdf",
+        href: "https://media.protectliverpoolny.org/foil/us-ny-2029-phoenix-tower-occupancy-work-permit-ta-w5124.pdf",
       },
       {
         title: "Verizon Occupancy & Work Permit (ta-w5124)",
-        href: "/foil/us-ny-2029-t3u250002-verizon-occupancy-work-permit-ta-w5124.pdf",
+        href: "https://media.protectliverpoolny.org/foil/us-ny-2029-t3u250002-verizon-occupancy-work-permit-ta-w5124.pdf",
       },
       {
         title: "Verizon Occupancy Supplement (ta-w5123)",
-        href: "/foil/us-ny-2029-t3u250002-verizon-occupancy-supplement-ta-w5123.pdf",
+        href: "https://media.protectliverpoolny.org/foil/us-ny-2029-t3u250002-verizon-occupancy-supplement-ta-w5123.pdf",
       },
       {
         title: "PTI Construction Permit (original)",
-        href: "/foil/us-ny-2029-t3u250002-construction-permit.pdf",
+        href: "https://media.protectliverpoolny.org/foil/us-ny-2029-t3u250002-construction-permit.pdf",
       },
       {
         title: "PTI Construction Permit — 11/6/2025 (final)",
-        href: "/foil/us-ny-2029-t3u250002-construction-permit-11-06-2025.pdf",
+        href: "https://media.protectliverpoolny.org/foil/us-ny-2029-t3u250002-construction-permit-11-06-2025.pdf",
         note: "Final construction permit. Discloses 30 kW diesel generator + 145-gallon belly tank.",
       },
       {
         title: "Verizon Electronics Parkway CP Application — 8/27/2025",
-        href: "/foil/us-ny-2029-verizon-electronics-parkway-cp-application-20250827.pdf",
+        href: "https://media.protectliverpoolny.org/foil/us-ny-2029-verizon-electronics-parkway-cp-application-20250827.pdf",
       },
       {
         title: "PTI / General Contractor Access Permit",
-        href: "/foil/int-37-pti-and-general-contractor-access.pdf",
+        href: "https://media.protectliverpoolny.org/foil/int-37-pti-and-general-contractor-access.pdf",
       },
       {
         title: "AT&T Site License Agreement (2/18/2025)",
-        href: "/foil/us-ny-2029-att-sla-fe-02182025.pdf",
+        href: "https://media.protectliverpoolny.org/foil/us-ny-2029-att-sla-fe-02182025.pdf",
       },
       {
         title: "AT&T Updates to Structural Analysis",
-        href: "/foil/us-ny-2029-t3u250002-att-updates-to-sa.pdf",
+        href: "https://media.protectliverpoolny.org/foil/us-ny-2029-t3u250002-att-updates-to-sa.pdf",
       },
       {
         title: "Verizon Structural Analysis (TEP)",
-        href: "/foil/us-ny-2029-t3u250002-vz-sa.pdf",
+        href: "https://media.protectliverpoolny.org/foil/us-ny-2029-t3u250002-vz-sa.pdf",
       },
       {
         title: "Park & Ride Sister Site — Verizon Structural Analysis",
-        href: "/foil/us-ny-2030-t3u250001-verizon-sa.pdf",
+        href: "https://media.protectliverpoolny.org/foil/us-ny-2030-t3u250001-verizon-sa.pdf",
       },
       {
         title: "AT&T Scope of Work",
-        href: "/foil/us-ny-2029-t3u250002-att-sow.pdf",
+        href: "https://media.protectliverpoolny.org/foil/us-ny-2029-t3u250002-att-sow.pdf",
       },
       {
         title: "AT&T Updated Platform",
-        href: "/foil/us-ny-2029-t3u250002-att-updated-platform.pdf",
+        href: "https://media.protectliverpoolny.org/foil/us-ny-2029-t3u250002-att-updated-platform.pdf",
       },
       {
         title: "Verizon Exit 37 Permit",
-        href: "/foil/verizon-exit-37-permit.pdf",
+        href: "https://media.protectliverpoolny.org/foil/verizon-exit-37-permit.pdf",
       },
       {
         title: "Exit 37 Cell Tower Permit",
-        href: "/foil/exit-37-cell-tower-permit.pdf",
+        href: "https://media.protectliverpoolny.org/foil/exit-37-cell-tower-permit.pdf",
       },
       {
         title: "US-NY-2029 / NY-2030 New Site Builds",
-        href: "/foil/us-ny-2029-ny-2030-new-site-builds.pdf",
+        href: "https://media.protectliverpoolny.org/foil/us-ny-2029-ny-2030-new-site-builds.pdf",
       },
       {
         title: "Electronics Parkway PTI Scope of Work (RTF)",
-        href: "/foil/electronics-parkway-pti-scope-of-work.rtf",
+        href: "https://media.protectliverpoolny.org/foil/electronics-parkway-pti-scope-of-work.rtf",
       },
     ],
     redacted: [
-      "Annual Fee in Section III of the PTI Occupancy Permit (corporate financial term — §87(2)(b) does not apply to corporations).",
       "Personal phone numbers and email addresses for individual NYSTA staff and PTI personnel.",
+      "The Annual Fee figure the Rider says is stated on the permit's first page (§III.A) does not appear — withheld or never produced, not visibly redacted.",
     ],
     notProduced: [
-      "The Crown Castle / American Tower master lease referenced in FCC and Salina-side documents.",
-      "Co-locator agreements between PTI and Verizon, T-Mobile, and AT&T (referenced in Section I.F-H of the Condition Rider).",
+      "The PTI–AT&T Master Lease Agreement dated 8/22/2017 (referenced in the AT&T Site Lease).",
+      "The PTI–T-Mobile co-location agreement (Verizon and AT&T agreements were produced on appeal; T-Mobile's was not).",
       "Insurance certificates (ACORD 25, U-26.3) referenced in the application.",
-      "$50,000 surety bond instrument referenced in Section VIII.A.",
+      "The $50,000 Performance/Restoration bond instrument required by Condition Rider §IX.B — NYSTA's §89(3)(a) certification swears no such record exists, though its own permit requires it.",
     ],
   },
   {
@@ -151,151 +156,176 @@ const categories: Category[] = [
       "SEQRA Negative Declaration with NYSTA as self-designated Lead Agency, NEPA review, ASCE Hazard Reports, structural analyses, geotechnical investigations, wetlands delineation, and the engineering review trail that documents missing structural reports, missing hazard reports, and a foundation-type mismatch caught by NYSTA's own engineer Joshua Stagnitti.",
     produced: [
       {
+        title: "Sabre Industries Structural Design Report Rev B (7/15/2025)",
+        href: "https://media.protectliverpoolny.org/foil/sabre-structural-design-report-rev-b-20250715.pdf",
+        note: "36-page sealed structural design report (Job 25-3277-JDS-R1, Rev B). Engineer of record: Robert Beacom, Sabre Industries (Alvarado TX). Standard: ANSI/TIA-222-H (NY Code Chapter 35 references the older TIA-222-G-2005). Design wind 109 mph, design ice 1.50\", Risk Category II, Site Class D (DEFAULT — not field-verified). Base moment 6,352.75 ft-kips. Two foundation options designed; type undecided.",
+      },
+      {
+        title: "AT&T Construction Drawings Rev 2 (11/7/2025) — Liverpool BOCES",
+        href: "https://media.protectliverpoolny.org/foil/att-construction-drawings-rev2-20251107.pdf",
+        note: "23 sheets. Engineer of Record: Joseph R. Johnston, P.E. (NY License #091187). Sheet T01 discloses zoning district as R-O (Residence-Office), parcel 75-01-11.1, coordinates 43°06'06.87\"N 76°11'06.26\"W, AT&T applicant office 404 Smith St, Syracuse NY 13224. Sheet A05 contains AT&T's RF Table. Confirms 30 kW diesel + 145-gallon belly tank ground scope.",
+      },
+      {
+        title: "AT&T Mount Analysis Report — Airosmith (12/20/2024)",
+        href: "https://media.protectliverpoolny.org/foil/att-mount-analysis-airosmith-20241220.pdf",
+        note: "Engineer of record: Joseph R. Johnston, P.E. (NY License #091187). Author: Andrew D. Vargo, P.E. Firm: Airosmith Engineering, Saratoga Springs NY (NY COA #17285). Mount: SitePro1 F4P-12W. DCR 71.4% (Pass). Equipment: 8× Commscope NNH4-65C-R6H4 panels + 16 Ericsson radios across Bands 5/12/14/25/66/77 + 3 Raycap surge protectors. AT&T site name 'Liverpool BOCES'.",
+      },
+      {
+        title: "FAA 7460-1 Determination of No Hazard 2024-AEA-11624-OE — TOWER",
+        href: "https://media.protectliverpoolny.org/foil/faa-7460-tower-2024-aea-11624-oe.pdf",
+        note: "Issued 11/12/2024. Sponsor Mitchell Henry / PTI. Includes full frequency table: 6–7 GHz, 10–11.7 GHz, 17.7–19.7 GHz, 21.2–23.6 GHz (microwave backhaul ERP to 55 dBW); cellular 614–2690 MHz across multiple bands (ERPs up to 1640W PCS, 2000W 700MHz/WCS, 3500W paging). Marking/lighting NOT required for aviation safety.",
+      },
+      {
+        title: "FAA 7460-1 Determination 2025-AEA-11322-OE — CONSTRUCTION CRANE",
+        href: "https://media.protectliverpoolny.org/foil/faa-7460-crane-2025-aea-11322-oe.pdf",
+        note: "Issued 9/22/2025 (expires 3/22/2027). Crane operator: Clark Rigging & Rental, contact Mike Dombroski, 945 Spencer Street, Syracuse NY 13204. Crane height during construction: 220 ft AGL / 655 ft AMSL — taller than the finished tower.",
+      },
+      {
         title: "NYSTA SEQRA R3 Final (Negative Declaration, Type I action)",
-        href: "/foil/usny2029-nysta-seqra-r3-final.pdf",
+        href: "https://media.protectliverpoolny.org/foil/usny2029-nysta-seqra-r3-final.pdf",
         note: "NYSTA self-designated Lead Agency. The bald eagle dismissal cites the USFWS Northeast Determination Key — a self-serve web tool, not a USFWS letter.",
       },
       {
         title: "SEQRA Determination Letter to Salina (final, with attachments)",
-        href: "/foil/seqra-determination-letter-to-salina-final-w-att.pdf",
+        href: "https://media.protectliverpoolny.org/foil/seqra-determination-letter-to-salina-final-w-att.pdf",
       },
       {
         title: "SEQRA Determination Letter — Certified Mail Receipt",
-        href: "/foil/seqra-determination-letter-cert-mail-receipt.pdf",
+        href: "https://media.protectliverpoolny.org/foil/seqra-determination-letter-cert-mail-receipt.pdf",
         note: "USPS Certified Mail #7019 1640 0000 0800 4105, addressed to former Town Supervisor Nicholas Paro.",
       },
       {
         title: "NEPA Review R1 (3/24/2025)",
-        href: "/foil/usny2029-nepa-review-r1-03-24-2025.pdf",
+        href: "https://media.protectliverpoolny.org/foil/usny2029-nepa-review-r1-03-24-2025.pdf",
       },
       {
         title: "NEPA Correspondence and Public Notice",
-        href: "/foil/usny2029-nepa-correspondence-and-public-notice.pdf",
+        href: "https://media.protectliverpoolny.org/foil/usny2029-nepa-correspondence-and-public-notice.pdf",
       },
       {
         title: "ENB Notice (Environmental Notice Bulletin)",
-        href: "/foil/enb-notice.jpg",
+        href: "https://media.protectliverpoolny.org/foil/enb-notice.jpg",
       },
       {
         title: "ASCE Design Hazards Report — Exit 37 Liverpool",
-        href: "/foil/us-ny-2029-exit-37-asce-design-hazards-report.pdf",
+        href: "https://media.protectliverpoolny.org/foil/us-ny-2029-exit-37-asce-design-hazards-report.pdf",
       },
       {
         title: "ASCE Hazard Report — Exit 37 Liverpool",
-        href: "/foil/us-ny-2029-exit-37-asce-hazard-report.pdf",
+        href: "https://media.protectliverpoolny.org/foil/us-ny-2029-exit-37-asce-hazard-report.pdf",
       },
       {
         title: "ASCE Hazard Report — Park & Ride sister site",
-        href: "/foil/us-ny-2029-t3u250002-park-n-ride-asce-hazard-report.pdf",
+        href: "https://media.protectliverpoolny.org/foil/us-ny-2029-t3u250002-park-n-ride-asce-hazard-report.pdf",
       },
       {
         title: "Tower Drawings + Foundation Drawings (Stamped)",
-        href: "/foil/us-ny-2029-exit-37-td-fd-stamped.pdf",
+        href: "https://media.protectliverpoolny.org/foil/us-ny-2029-exit-37-td-fd-stamped.pdf",
       },
       {
         title: "Verizon Drawings (T3U250002)",
-        href: "/foil/us-ny-2029-t3u250002-verizon-drawings.pdf",
+        href: "https://media.protectliverpoolny.org/foil/us-ny-2029-t3u250002-verizon-drawings.pdf",
         note: "Sheet C-3 references RF Antenna Design Sheet (RFDS Project ID 17326150). That document is not in the FOIL response.",
       },
       {
         title: "Verizon Construction Drawings",
-        href: "/foil/us-ny-2029-verizon-construction-drawings.pdf",
+        href: "https://media.protectliverpoolny.org/foil/us-ny-2029-verizon-construction-drawings.pdf",
       },
       {
         title: "Verizon Electronics Parkway CDfinal — 10/7/2025",
-        href: "/foil/us-ny-2029-t3u250002-vz-cdfinal-20251007.pdf",
+        href: "https://media.protectliverpoolny.org/foil/us-ny-2029-t3u250002-vz-cdfinal-20251007.pdf",
       },
       {
         title: "Electronics Parkway CDfinal — 10/10/2025",
-        href: "/foil/electronics-parkway-cdfinal-20251010.pdf",
+        href: "https://media.protectliverpoolny.org/foil/electronics-parkway-cdfinal-20251010.pdf",
       },
       {
         title: "NYSTA Exit 37 CDfinal — 6/17/2025",
-        href: "/foil/us-ny-2029-nysta-exit37-cdfinal-20250617.pdf",
+        href: "https://media.protectliverpoolny.org/foil/us-ny-2029-nysta-exit37-cdfinal-20250617.pdf",
       },
       {
         title: "NYSTA Exit 37 Sketch — 9/4/2024 (earliest design artifact)",
-        href: "/foil/us-ny-2029-nysta-exit37-sketch-20240904.pdf",
+        href: "https://media.protectliverpoolny.org/foil/us-ny-2029-nysta-exit37-sketch-20240904.pdf",
       },
       {
         title: "NYSTA Exit 37 Sketch — 10/1/2024 (revision)",
-        href: "/foil/us-ny-2029-nysta-exit37-sketch-20241001.pdf",
+        href: "https://media.protectliverpoolny.org/foil/us-ny-2029-nysta-exit37-sketch-20241001.pdf",
       },
       {
         title: "First Plan Submission — 10/10/2024",
-        href: "/foil/first-plan-submission-10-10-2024.pdf",
+        href: "https://media.protectliverpoolny.org/foil/first-plan-submission-10-10-2024.pdf",
       },
       {
         title: "Second Plan Submission — 4/11/2025",
-        href: "/foil/second-plan-submission-4-11-2025.pdf",
+        href: "https://media.protectliverpoolny.org/foil/second-plan-submission-4-11-2025.pdf",
       },
       {
         title: "Geotechnical Investigation — Exit 37 Liverpool",
-        href: "/foil/us-ny-2029-exit-37-geo.pdf",
+        href: "https://media.protectliverpoolny.org/foil/us-ny-2029-exit-37-geo.pdf",
       },
       {
         title: "Geotechnical Investigation — T3U250002",
-        href: "/foil/us-ny-2029-t3u250002-geo.pdf",
+        href: "https://media.protectliverpoolny.org/foil/us-ny-2029-t3u250002-geo.pdf",
         note: "Tectonic Engineering, B-1 boring drilled 11/6/2024 to 50 ft depth. Groundwater at 28.10 ft below grade.",
       },
       {
         title: "Geotechnical Investigation — Park & Ride sister site",
-        href: "/foil/us-ny-2030-t3u25000-geo.pdf",
+        href: "https://media.protectliverpoolny.org/foil/us-ny-2030-t3u25000-geo.pdf",
       },
       {
         title: "Wetlands Delineation Report",
-        href: "/foil/us-ny-2029-exit-37-wetlands-delineation-report.pdf",
+        href: "https://media.protectliverpoolny.org/foil/us-ny-2029-exit-37-wetlands-delineation-report.pdf",
       },
       {
         title: "FAA 1A Survey Certification",
-        href: "/foil/us-ny-2029-exit-37-faa-1a-survey-certification.pdf",
+        href: "https://media.protectliverpoolny.org/foil/us-ny-2029-exit-37-faa-1a-survey-certification.pdf",
       },
       {
         title: "Topographic Survey",
-        href: "/foil/us-ny-2029-exit-37-topographic-survey.pdf",
+        href: "https://media.protectliverpoolny.org/foil/us-ny-2029-exit-37-topographic-survey.pdf",
       },
       {
         title: "Engineering Review — Verizon, 10/3/2025",
-        href: "/foil/verizon-exit-37-review-10-3-2025.docx",
+        href: "https://media.protectliverpoolny.org/foil/verizon-exit-37-review-10-3-2025.docx",
         note: "Item C-8 Detail 2: Verizon's first-round footer at 3'-6\" was below NY Code minimum of 4'.",
       },
       {
         title: "Engineering Review — Verizon Round 2, 10/10/2025",
-        href: "/foil/verizon-exit-37-review-r2-10-10-2025.docx",
+        href: "https://media.protectliverpoolny.org/foil/verizon-exit-37-review-r2-10-10-2025.docx",
       },
       {
         title: "Verizon Exit 37 Review Responses — 10/7/2025",
-        href: "/foil/us-ny-2029-t3u250002-verizon-review-responses-10-7-2025.docx",
+        href: "https://media.protectliverpoolny.org/foil/us-ny-2029-t3u250002-verizon-review-responses-10-7-2025.docx",
       },
       {
         title: "Engineering Review — 6/2/2025 (DOCX)",
-        href: "/foil/exit-37-review-comments-6-2-2025.docx",
+        href: "https://media.protectliverpoolny.org/foil/exit-37-review-comments-6-2-2025.docx",
         note: "Stagnitti: \"Structural Analysis Reports have not been submitted. Hazard Reports have not been submitted. Engineered lift plans have not been submitted.\"",
       },
       {
         title: "Engineering Review — 6/2/2025 (PDF)",
-        href: "/foil/exit-37-review-comments-6-2-2025.pdf",
+        href: "https://media.protectliverpoolny.org/foil/exit-37-review-comments-6-2-2025.pdf",
       },
       {
         title: "NYSTA Comments — Engineering Review 6/2/2025",
-        href: "/foil/us-ny-2029-nysta-comments-exit-37-review-6-2-2025.pdf",
+        href: "https://media.protectliverpoolny.org/foil/us-ny-2029-nysta-comments-exit-37-review-6-2-2025.pdf",
       },
       {
         title: "Engineering Review Round 2 — 6/26/2025",
-        href: "/foil/exit-37-review-comments-r2-6-26-2025.docx",
+        href: "https://media.protectliverpoolny.org/foil/exit-37-review-comments-r2-6-26-2025.docx",
       },
       {
         title: "Engineering Review Round 2 — Responses 6/26/2025",
-        href: "/foil/exit-37-review-comments-r2-6-26-2025-responses.docx",
+        href: "https://media.protectliverpoolny.org/foil/exit-37-review-comments-r2-6-26-2025-responses.docx",
       },
       {
         title: "Engineering Review — AT&T 8/27/2025",
-        href: "/foil/exit-37-att-review-8-27-2025.docx",
+        href: "https://media.protectliverpoolny.org/foil/exit-37-att-review-8-27-2025.docx",
         note: "Items #20–23: Construction Permit Application, Geotechnical Report, ASCE Hazard Reports, and FEAF all not submitted as of late August 2025. Item #18: foundation-type mismatch (drilled pier vs. pad/pier). Item #3: ANSI/TIA-222-H standard mismatch with NY Building Code Chapter 35 (which references 222-G-2005).",
       },
       {
         title: "Engineering Review — AT&T Round 2, 11/6/2025",
-        href: "/foil/exit-37-att-review-r2-11-6-2025.docx",
+        href: "https://media.protectliverpoolny.org/foil/exit-37-att-review-r2-11-6-2025.docx",
       },
     ],
     redacted: [
@@ -322,79 +352,79 @@ const categories: Category[] = [
     produced: [
       {
         title: "Email transmittal — Geotech delivery (Outlook .msg)",
-        href: "/foil/emailing-us-ny-2029-t3u250002-geo.msg",
+        href: "https://media.protectliverpoolny.org/foil/emailing-us-ny-2029-t3u250002-geo.msg",
       },
       {
         title: "RE: Exit 37 Liverpool Cell Tower Review Comments — base file (Redacted)",
-        href: "/foil/re-review-comments-redacted.pdf",
+        href: "https://media.protectliverpoolny.org/foil/re-review-comments-redacted.pdf",
       },
       {
         title: "Chain #1 (Redacted)",
-        href: "/foil/re-review-comments-01-redacted.pdf",
+        href: "https://media.protectliverpoolny.org/foil/re-review-comments-01-redacted.pdf",
       },
       {
         title: "Chain #2 (Redacted)",
-        href: "/foil/re-review-comments-02-redacted.pdf",
+        href: "https://media.protectliverpoolny.org/foil/re-review-comments-02-redacted.pdf",
       },
       {
         title: "Chain #3 (Redacted)",
-        href: "/foil/re-review-comments-03-redacted.pdf",
+        href: "https://media.protectliverpoolny.org/foil/re-review-comments-03-redacted.pdf",
       },
       {
         title: "Chain #4 (Redacted)",
-        href: "/foil/re-review-comments-04-redacted.pdf",
+        href: "https://media.protectliverpoolny.org/foil/re-review-comments-04-redacted.pdf",
       },
       {
         title: "Chain #5 (Redacted)",
-        href: "/foil/re-review-comments-05-redacted.pdf",
+        href: "https://media.protectliverpoolny.org/foil/re-review-comments-05-redacted.pdf",
       },
       {
         title: "Chain #6 (Redacted)",
-        href: "/foil/re-review-comments-06-redacted.pdf",
+        href: "https://media.protectliverpoolny.org/foil/re-review-comments-06-redacted.pdf",
       },
       {
         title: "Chain #7 (Redacted)",
-        href: "/foil/re-review-comments-07-redacted.pdf",
+        href: "https://media.protectliverpoolny.org/foil/re-review-comments-07-redacted.pdf",
       },
       {
         title: "Chain #8 (Redacted)",
-        href: "/foil/re-review-comments-08-redacted.pdf",
+        href: "https://media.protectliverpoolny.org/foil/re-review-comments-08-redacted.pdf",
       },
       {
         title: "Chain #9 (Redacted)",
-        href: "/foil/re-review-comments-09-redacted.pdf",
+        href: "https://media.protectliverpoolny.org/foil/re-review-comments-09-redacted.pdf",
       },
       {
         title: "Chain #10 (Redacted)",
-        href: "/foil/re-review-comments-10-redacted.pdf",
+        href: "https://media.protectliverpoolny.org/foil/re-review-comments-10-redacted.pdf",
       },
       {
         title: "Chain #11 (Redacted)",
-        href: "/foil/re-review-comments-11-redacted.pdf",
+        href: "https://media.protectliverpoolny.org/foil/re-review-comments-11-redacted.pdf",
       },
       {
         title: "Chain #12 (Redacted)",
-        href: "/foil/re-review-comments-12-redacted.pdf",
+        href: "https://media.protectliverpoolny.org/foil/re-review-comments-12-redacted.pdf",
       },
       {
         title: "Chain #13 (Redacted)",
-        href: "/foil/re-review-comments-13-redacted.pdf",
+        href: "https://media.protectliverpoolny.org/foil/re-review-comments-13-redacted.pdf",
       },
       {
         title: "Chain #14 (Redacted)",
-        href: "/foil/re-review-comments-14-redacted.pdf",
+        href: "https://media.protectliverpoolny.org/foil/re-review-comments-14-redacted.pdf",
       },
       {
         title: "Chain #15 (Redacted)",
-        href: "/foil/re-review-comments-15-redacted.pdf",
+        href: "https://media.protectliverpoolny.org/foil/re-review-comments-15-redacted.pdf",
       },
       {
         title: "Chain #16 (Redacted)",
-        href: "/foil/re-review-comments-16-redacted.pdf",
+        href: "https://media.protectliverpoolny.org/foil/re-review-comments-16-redacted.pdf",
       },
       {
         title: "Chain #17 (Redacted)",
-        href: "/foil/re-review-comments-17-redacted.pdf",
+        href: "https://media.protectliverpoolny.org/foil/re-review-comments-17-redacted.pdf",
       },
     ],
     redacted: [
@@ -413,27 +443,27 @@ const categories: Category[] = [
     number: "Item 4",
     label: "Public Notices & Municipal Coordination",
     blurb:
-      "Salina was certified-mail noticed under SEQRA — but to former Supervisor Nicholas Paro at 201 School Road, signed for in mid-2025. The FOIL response contains no record of any reply from the Town under that prior administration. Current Supervisor Raul Huerta inherited this.",
+      "Salina was certified-mail noticed under SEQRA — to former Supervisor Nicholas Paro at 201 School Road, signed for in mid-2025 (USPS 7019 1640 0000 0800 4105). But when we asked the Town for that package, the Town Clerk searched and reported NO responsive records — even after we sent her the proof NYSTA produced. On May 20, 2026 the Clerk conceded in writing that destruction of the signed-for SEQRA correspondence is \"possible.\" The Town received the record and now cannot find it — a Local Government Records Law (ACAL Art. 57-A / LGS-1) problem on top of a FOIL one. Current Supervisor Raul Huerta took office after the package arrived and remains an ally; the loss traces to the prior administration. See the May 20 movement update for the full email trail.",
     produced: [
       {
         title: "ENB Notice (Environmental Notice Bulletin)",
-        href: "/foil/enb-notice.jpg",
+        href: "https://media.protectliverpoolny.org/foil/enb-notice.jpg",
       },
       {
         title: "SEQRA Determination Letter to Salina (final, with attachments)",
-        href: "/foil/seqra-determination-letter-to-salina-final-w-att.pdf",
+        href: "https://media.protectliverpoolny.org/foil/seqra-determination-letter-to-salina-final-w-att.pdf",
       },
       {
         title: "Certified Mail Receipt — addressed to Nicholas Paro",
-        href: "/foil/seqra-determination-letter-cert-mail-receipt.pdf",
+        href: "https://media.protectliverpoolny.org/foil/seqra-determination-letter-cert-mail-receipt.pdf",
       },
       {
         title: "Adjacent Property Owner Survey",
-        href: "/foil/us-ny-2029-property-owner-survey.pdf",
+        href: "https://media.protectliverpoolny.org/foil/us-ny-2029-property-owner-survey.pdf",
       },
       {
         title: "NEPA Correspondence and Public Notice",
-        href: "/foil/usny2029-nepa-correspondence-and-public-notice.pdf",
+        href: "https://media.protectliverpoolny.org/foil/usny2029-nepa-correspondence-and-public-notice.pdf",
       },
     ],
     redacted: [
@@ -451,30 +481,39 @@ const categories: Category[] = [
     number: "Item 5",
     label: "Financial Compensation & Revenue",
     blurb:
-      "NYSTA redacted the central financial number of the project — the Annual Fee paid by PTI for occupying public state land — under New York Public Officers Law §87(2)(b). Under settled case law (Matter of Federation of N.Y. State Rifle & Pistol Clubs v. NYPD, 73 N.Y.2d 92), §87(2)(b) does not apply to corporations.",
+      "The central financial number — the Annual Fee PTI pays NYSTA for occupying public state land — was never disclosed. The Condition Rider says it is \"stated on the first page of this Occupancy Permit\" (§III.A) and billed in quarterly installments (§III.B), yet no figure and no invoice appears in the production. NYSTA originally invoked §87(2)(b) (personal privacy) on this corporate financial material; on appeal (May 22, 2026) it conceded that exemption was likely wrong and switched to §87(2)(i). It then released the carrier co-locator agreements unredacted — and NYSTA's own 50%-of-co-locator-fee formula (§III.D), applied to those rents, reconstructs the Authority's take at roughly $34,200/year today, rising toward ~$50,000/year as more carriers load on.",
     produced: [
       {
-        title: "Permit Fee Check (Redacted)",
-        href: "/foil/us-ny-2029-t3u250002-permit-fee-check-redacted.pdf",
-        note: "Dollar amount and bank info redacted. The visible permit fee per the cover letter is $750 administrative.",
+        title: "Verizon License Agreement (7/23/2025) — produced on appeal",
+        href: "https://media.protectliverpoolny.org/foil/us-ny-2029-verizon-sla-fe-07232025.pdf",
+        note: "UNREDACTED. §6: $2,950.00/month, +1.5%/year. §5: 5-year term auto-renewing for four more 5-year terms (25-year potential). Releasing this undercuts NYSTA's claim that carrier financial terms are confidential.",
       },
       {
-        title: "Additional Check (Redacted)",
-        href: "/foil/us-ny-2029-check-redacted.pdf",
+        title: "AT&T Site Lease (2/18/2025)",
+        href: "https://media.protectliverpoolny.org/foil/us-ny-2029-att-sla-fe-02182025.pdf",
+        note: "§5: $2,750.00/month, escalating per §6.3 of a Master Lease Agreement dated 8/22/2017 — the MLA itself was not produced.",
+      },
+      {
+        title: "Permit Fee Check — $750 (Redacted)",
+        href: "https://media.protectliverpoolny.org/foil/us-ny-2029-t3u250002-permit-fee-check-redacted.pdf",
+        note: "The $750 administrative application fee. Dollar amount is VISIBLE; only the check number and the MICR bank/routing line are redacted.",
+      },
+      {
+        title: "Additional Check — $500 (Redacted)",
+        href: "https://media.protectliverpoolny.org/foil/us-ny-2029-check-redacted.pdf",
+        note: "Pyramid Network Services → NYSTA, the annual Ground-Based Site Inspection offset fee (Condition Rider §IV.C.3). Dollar amount VISIBLE; only the check number and MICR line redacted.",
       },
     ],
     redacted: [
-      "The Annual Fee dollar amount (Section III of the PTI Permit) — corporate financial data, §87(2)(b) does not apply.",
-      "The fee check amount — public revenue from a corporation to a state authority, §87(2)(b) does not apply.",
-      "Bank routing and account information on the check (legitimate redaction — disclosure would expose the corporate account to fraud).",
-      "Verizon and AT&T sub-tenant rent amounts (referenced in the Condition Rider, not in the production).",
+      "On the two checks: only the check numbers and the MICR bank/routing lines — the dollar amounts ($750 and $500) are visible.",
+      "The Annual Fee was not redacted so much as never disclosed: no dollar figure appears on the produced permit, and no quarterly invoice was produced.",
+      "On appeal, NYSTA conceded §87(2)(b) was likely the wrong exemption and substituted §87(2)(i) (IT-asset security) — an exemption that does not fit a contract fee.",
     ],
     notProduced: [
-      "PTI–Verizon Co-location Agreement (which feeds the 50% pass-through to NYSTA per Section I.H).",
-      "PTI–AT&T Anchor Tenant Agreement showing AT&T's rent.",
-      "PTI–T-Mobile Co-location Agreement.",
-      "5%/annum escalation history referenced in Section I.H.",
-      "Field payment receipt for the $750 administrative fee referenced in the transmittal letter.",
+      "The Annual Fee dollar figure 'stated on the first page' of Permit T3U250002 (§III.A) — the recurring rent NYSTA collects.",
+      "Any quarterly Annual-Fee invoice or remittance record (§III.B) — squarely responsive to Item 5, never produced.",
+      "PTI–AT&T Master Lease Agreement dated 8/22/2017 (governs AT&T's rent escalation; referenced in the AT&T Site Lease).",
+      "PTI–T-Mobile co-location agreement (T-Mobile is a designed co-locator per the TA-W5123 supplement and the elevation drawing).",
     ],
   },
   {
@@ -482,64 +521,74 @@ const categories: Category[] = [
     number: "Item 6",
     label: "Fall Zone & Structural Safety Hazard Reports",
     blurb:
-      "ASCE Hazard Reports, TEP Structural Analyses, Tower/Foundation Drawings, three Construction Drawing versions, the Geotechnical Investigation, Topographic Survey, FAA 1A Survey, and Wetlands Delineation. The TEP Structural Analysis was based on a drilled pier foundation; the approved Construction Drawings show pad/pier — a foundation-type mismatch that NYSTA closed without producing the reconciliation memo.",
+      "Sabre Industries Structural Design Report (with full base reactions, Risk Category, design wind/ice), ASCE Hazard Reports, TEP Structural Analyses, Tower/Foundation Drawings, three Construction Drawing versions, the Geotechnical Investigation, Topographic Survey, FAA 1A Survey, and Wetlands Delineation. The TEP Structural Analysis was based on a drilled pier foundation; the approved Construction Drawings show pad/pier — a foundation-type mismatch that NYSTA closed without producing the reconciliation memo.",
     produced: [
       {
+        title: "Sabre Industries Structural Design Report Rev B (7/15/2025)",
+        href: "https://media.protectliverpoolny.org/foil/sabre-structural-design-report-rev-b-20250715.pdf",
+        note: "Engineer of record: Robert Beacom (Sabre, Alvarado TX). Standard ANSI/TIA-222-H (NY Code Chapter 35 references the older 222-G-2005 — the live mismatch). Design wind 109 mph / ice 1.50\". Risk Category II. Site Class D (the project's Delta Oaks geotech boring independently characterizes Seismic Site Class D). Base moment 6,352.75 ft-kips. Two foundation options designed — the foundation-type mismatch NYSTA closed without a reconciliation memo.",
+      },
+      {
+        title: "FAA 7460-1 — Construction Crane (2025-AEA-11322-OE)",
+        href: "https://media.protectliverpoolny.org/foil/faa-7460-crane-2025-aea-11322-oe.pdf",
+        note: "Crane operator Clark Rigging & Rental (Mike Dombroski). Crane height 220 ft AGL / 655 ft AMSL during construction.",
+      },
+      {
         title: "ASCE Hazard Report — Exit 37 Liverpool",
-        href: "/foil/us-ny-2029-exit-37-asce-hazard-report.pdf",
+        href: "https://media.protectliverpoolny.org/foil/us-ny-2029-exit-37-asce-hazard-report.pdf",
       },
       {
         title: "ASCE Design Hazards Report — Exit 37 Liverpool",
-        href: "/foil/us-ny-2029-exit-37-asce-design-hazards-report.pdf",
+        href: "https://media.protectliverpoolny.org/foil/us-ny-2029-exit-37-asce-design-hazards-report.pdf",
       },
       {
         title: "ASCE Hazard Report — Park & Ride sister site",
-        href: "/foil/us-ny-2029-t3u250002-park-n-ride-asce-hazard-report.pdf",
+        href: "https://media.protectliverpoolny.org/foil/us-ny-2029-t3u250002-park-n-ride-asce-hazard-report.pdf",
       },
       {
         title: "TEP Structural Analysis — Verizon (T3U250002)",
-        href: "/foil/us-ny-2029-t3u250002-vz-sa.pdf",
+        href: "https://media.protectliverpoolny.org/foil/us-ny-2029-t3u250002-vz-sa.pdf",
       },
       {
         title: "TEP Structural Analysis — Sister Site (Park & Ride)",
-        href: "/foil/us-ny-2030-t3u250001-verizon-sa.pdf",
+        href: "https://media.protectliverpoolny.org/foil/us-ny-2030-t3u250001-verizon-sa.pdf",
       },
       {
         title: "AT&T Updates to Structural Analysis",
-        href: "/foil/us-ny-2029-t3u250002-att-updates-to-sa.pdf",
+        href: "https://media.protectliverpoolny.org/foil/us-ny-2029-t3u250002-att-updates-to-sa.pdf",
       },
       {
         title: "Tower Drawings + Foundation Drawings (Stamped)",
-        href: "/foil/us-ny-2029-exit-37-td-fd-stamped.pdf",
+        href: "https://media.protectliverpoolny.org/foil/us-ny-2029-exit-37-td-fd-stamped.pdf",
       },
       {
         title: "Construction Drawings — 6/17/2025",
-        href: "/foil/us-ny-2029-nysta-exit37-cdfinal-20250617.pdf",
+        href: "https://media.protectliverpoolny.org/foil/us-ny-2029-nysta-exit37-cdfinal-20250617.pdf",
       },
       {
         title: "Construction Drawings — 10/7/2025",
-        href: "/foil/us-ny-2029-t3u250002-vz-cdfinal-20251007.pdf",
+        href: "https://media.protectliverpoolny.org/foil/us-ny-2029-t3u250002-vz-cdfinal-20251007.pdf",
       },
       {
         title: "Construction Drawings — 10/10/2025",
-        href: "/foil/electronics-parkway-cdfinal-20251010.pdf",
+        href: "https://media.protectliverpoolny.org/foil/electronics-parkway-cdfinal-20251010.pdf",
       },
       {
         title: "Geotechnical Investigation Report",
-        href: "/foil/us-ny-2029-t3u250002-geo.pdf",
+        href: "https://media.protectliverpoolny.org/foil/us-ny-2029-t3u250002-geo.pdf",
         note: "Tectonic Engineering, GEO24-23357-08, B-1 boring drilled 11/6/2024 to 50 ft. Groundwater at 28.10 ft below grade.",
       },
       {
         title: "Topographic Survey",
-        href: "/foil/us-ny-2029-exit-37-topographic-survey.pdf",
+        href: "https://media.protectliverpoolny.org/foil/us-ny-2029-exit-37-topographic-survey.pdf",
       },
       {
         title: "FAA 1A Survey Certification",
-        href: "/foil/us-ny-2029-exit-37-faa-1a-survey-certification.pdf",
+        href: "https://media.protectliverpoolny.org/foil/us-ny-2029-exit-37-faa-1a-survey-certification.pdf",
       },
       {
         title: "Wetlands Delineation Report",
-        href: "/foil/us-ny-2029-exit-37-wetlands-delineation-report.pdf",
+        href: "https://media.protectliverpoolny.org/foil/us-ny-2029-exit-37-wetlands-delineation-report.pdf",
       },
     ],
     redacted: [
@@ -557,7 +606,7 @@ const categories: Category[] = [
     number: "Item 7",
     label: "Alternative Site Analysis",
     blurb:
-      'NYSTA Records Access Officer Jill B. Warner, May 8, 2026: "No records responsive to Item 7 were located." NYSTA admitted in writing that no engineering or planning analysis was ever conducted to demonstrate why this specific residential site was chosen over alternatives. This is the showcase finding for any administrative appeal, hearing, or media engagement.',
+      'NYSTA Records Access Officer Jill B. Warner, May 8, 2026: "No records responsive to Item 7 were located." NYSTA admitted in writing that no engineering or planning analysis was ever conducted to demonstrate why this specific residential site was chosen over alternatives. On appeal (May 22, 2026), NYSTA certified this absence UNDER OATH in a sworn §89(3)(a) certification. This is the showcase finding for any Article 78 proceeding, hearing, or media engagement: the State swears, under oath, that nothing justifies putting a 184-foot commercial tower in a residential highway infield.',
     produced: [],
     notProduced: [
       "Coverage Objective + Alternatives Analysis showing nearby candidate locations were rejected for engineering, environmental, or land-availability reasons.",
@@ -596,7 +645,7 @@ export default function FoilEvidencePage() {
               >
                 What 49 Days of Stalling Bought Us:
                 <br className="hidden sm:block" />{" "}
-                <span className="text-purple-400">81 Documents</span> That Tell the Story{" "}
+                <span className="text-purple-400">93 Documents</span> That Tell the Story{" "}
                 <span className="text-danger-500">NYSTA Tried Not to.</span>
               </motion.h1>
               <motion.p
@@ -619,8 +668,8 @@ export default function FoilEvidencePage() {
                 </p>
                 <div className="grid grid-cols-2 gap-4">
                   <div className="bg-dark-950/60 border border-dark-700/30 rounded-xl p-4 text-center">
-                    <p className="text-3xl font-black text-purple-300">81</p>
-                    <p className="text-[10px] text-dark-400 uppercase tracking-wider font-bold mt-1">unique documents</p>
+                    <p className="text-3xl font-black text-purple-300">93</p>
+                    <p className="text-[10px] text-dark-400 uppercase tracking-wider font-bold mt-1">records catalogued</p>
                   </div>
                   <div className="bg-dark-950/60 border border-dark-700/30 rounded-xl p-4 text-center">
                     <p className="text-3xl font-black text-danger-400">49</p>
@@ -636,11 +685,124 @@ export default function FoilEvidencePage() {
                   </div>
                 </div>
                 <p className="text-xs text-dark-500 italic mt-4 leading-relaxed">
-                  Records arrived on May 8, 2026 — two business days after our constructive-denial appeal clock expired.
+                  Records arrived on May 8, 2026 — two business days after our constructive-denial appeal clock expired. NYSTA's own appeal determination counts the production as &ldquo;94 records … 1,664 pages.&rdquo; The appeal was denied in full on May 22, 2026; the next step is an Article 78 proceeding.
                 </p>
               </div>
             </motion.div>
           </div>
+        </div>
+      </section>
+
+      {/* ═══════════════════ APPEAL RESPONSE BATCH ═══════════════════ */}
+      <section id="appeal-response" className="py-10 px-4 scroll-mt-24">
+        <div className="max-w-5xl mx-auto">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeUp}
+            custom={0}
+            className="bg-danger-950/30 border-2 border-danger-700/40 rounded-2xl p-6 md:p-8 shadow-2xl shadow-black/40"
+          >
+            <span className="inline-flex items-center gap-2 px-3 py-1.5 bg-danger-900/50 border border-danger-700/40 rounded-full text-danger-300 text-[11px] font-bold uppercase tracking-wider mb-4">
+              <AlertTriangle className="w-3.5 h-3.5" />
+              Update — May 22, 2026: Appeal Denied in Full
+            </span>
+            <h2 className="text-2xl md:text-3xl font-black text-white leading-tight">
+              We Appealed. They Denied Everything &mdash; and Handed Us{" "}
+              <span className="text-danger-400">the Number They Were Hiding.</span>
+            </h2>
+            <p className="text-dark-300 text-sm md:text-base leading-relaxed mt-4">
+              On May 8 we appealed the redactions and the missing records. On May 22, NYSTA Appeals Officer <strong className="text-white">Christine Fernandez</strong> denied the appeal in its entirety, calling it &ldquo;final agency action&rdquo; under POL &sect;89(4)(b). But the denial came with <strong className="text-white">four more documents</strong> &mdash; and they do more damage than the silence did. Here is the follow-up production, and what it proves.
+            </p>
+
+            <p className="text-xs font-bold text-emerald-400 uppercase tracking-widest mt-6 mb-3">
+              The Follow-Up Documents (4)
+            </p>
+            <div className="space-y-2">
+              {[
+                {
+                  title: "NYSTA Appeal Determination — DENIED IN FULL (5/22/2026)",
+                  href: "https://media.protectliverpoolny.org/foil/nysta-foil-appeal-determination-r000082-032026.pdf",
+                  note: "Christine Fernandez, FOIL Appeals Officer. Final agency action; Article 78 review available. CONCEDES the original §87(2)(b) privacy exemption was likely wrong and substitutes §87(2)(i). Claims no records for items 1, 2, 3, 8, 9, 10, 11.",
+                },
+                {
+                  title: "Sworn §89(3)(a) Certification — Jill B. Warner, notarized (5/22/2026)",
+                  href: "https://media.protectliverpoolny.org/foil/nysta-foil-89-3a-certification-20260522.pdf",
+                  note: "Swears, under oath, that no responsive records exist for items 1, 2, 3, 8, 9, 10, 11 — including the Alternative Site Analysis. Paragraph 2, where the description of the search belongs, is BLANK.",
+                },
+                {
+                  title: "Verizon License Agreement (7/23/2025) — UNREDACTED",
+                  href: "https://media.protectliverpoolny.org/foil/us-ny-2029-verizon-sla-fe-07232025.pdf",
+                  note: "§6: $2,950.00/month, +1.5%/year. §5: 5-year term auto-renewing four more times — a 25-year horizon. Releasing this guts NYSTA's claim that carrier financial terms are confidential.",
+                },
+                {
+                  title: "AT&T Site Lease (2/18/2025)",
+                  href: "https://media.protectliverpoolny.org/foil/us-ny-2029-att-sla-fe-02182025.pdf",
+                  note: "§5: $2,750.00/month, escalating per §6.3 of a 2017 Master Lease Agreement — the MLA itself was not produced.",
+                },
+              ].map((doc) => (
+                <a
+                  key={doc.href}
+                  href={doc.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group flex items-start gap-3 bg-dark-950/50 hover:bg-dark-950/80 border border-dark-800/30 hover:border-emerald-700/30 rounded-xl px-4 py-3 transition-all"
+                >
+                  <FileText className="w-4 h-4 text-emerald-400 flex-shrink-0 mt-0.5" />
+                  <div className="flex-1 min-w-0">
+                    <p className="text-sm font-semibold text-dark-100 group-hover:text-white transition-colors leading-snug">
+                      {doc.title}
+                      <ExternalLink className="inline-block w-3 h-3 ml-1 text-dark-500" />
+                    </p>
+                    <p className="text-xs text-dark-400 mt-1 leading-relaxed">
+                      {doc.note}
+                    </p>
+                  </div>
+                </a>
+              ))}
+            </div>
+
+            <p className="text-xs font-bold text-danger-400 uppercase tracking-widest mt-6 mb-3">
+              What the Follow-Up Proves
+            </p>
+            <ul className="space-y-2.5 list-disc pl-5">
+              <li className="text-sm text-dark-200 leading-relaxed">
+                <strong className="text-white">The rent reconstructs itself.</strong> NYSTA&rsquo;s own Condition Rider (&sect;III.D) says the Authority&rsquo;s Annual Fee rises by <strong className="text-white">50% of each carrier&rsquo;s co-locator fee</strong>. Apply that to the rents they just released &mdash; Verizon $2,950/mo + AT&amp;T $2,750/mo &mdash; and NYSTA&rsquo;s take is roughly{" "}
+                <span className="text-danger-400 font-bold">$2,850/month &asymp; $34,200/year today</span>, climbing toward <strong className="text-white">~$50,000/year</strong> once T-Mobile (already a designed co-locator) loads on, across a 25-year horizon. They redacted the number; their own formula plus their own disclosure rebuilds it.{" "}
+                <em className="text-dark-400">(Reconstruction, not a figure NYSTA disclosed.)</em>
+              </li>
+              <li className="text-sm text-dark-200 leading-relaxed">
+                <strong className="text-white">They never produced the fee at all.</strong> The Rider says the Annual Fee is &ldquo;stated on the first page of this Occupancy Permit&rdquo; (&sect;III.A) and billed in quarterly installments (&sect;III.B). No figure, no invoice &mdash; despite Item 5 expressly demanding the payment records of what NYSTA receives. That is a constructive denial.
+              </li>
+              <li className="text-sm text-dark-200 leading-relaxed">
+                <strong className="text-white">They switched legal excuses mid-stream.</strong> Fernandez concedes &sect;87(2)(b) was likely wrong and reaches for &sect;87(2)(i) &mdash; an <em>IT-security</em> exemption that has nothing to do with a contract fee &mdash; while voluntarily releasing comparable carrier financial terms in the same breath.
+              </li>
+              <li className="text-sm text-dark-200 leading-relaxed">
+                <strong className="text-white">Their sworn certification contradicts their own files.</strong> It swears &ldquo;no records&rdquo; for the Verizon RFDS (a <em>required</em> submission per the produced collocation application), the $50,000 bond (required by produced permit &sect;IX.B), and the lift plan (required by NYSTA&rsquo;s own engineering review) &mdash; and its search-methodology paragraph is blank.
+              </li>
+              <li className="text-sm text-dark-200 leading-relaxed">
+                <strong className="text-white">No Alternative Site Analysis &mdash; now under oath.</strong> The State has sworn that no engineering or planning record justifies putting a 184-foot commercial tower in a residential highway infield.
+              </li>
+            </ul>
+
+            <div className="mt-6 pt-5 border-t border-danger-800/30">
+              <p className="text-sm md:text-base text-danger-300 font-bold leading-relaxed" style={{ textShadow: "0 0 8px rgba(239,68,68,0.35)" }}>
+                The administrative road is over. The next filing is an Article 78 in NYS Supreme Court &mdash; to compel the Annual Fee, the quarterly invoices, the underlying agreements, and a conforming certification &mdash; plus a &sect;89(4)(c) fee demand, a Committee on Open Government advisory opinion, and Authorities Budget Office / State Comptroller referrals.
+              </p>
+              <p className="text-xs text-dark-500 italic mt-3">
+                Full breakdown in the{" "}
+                <Link href="/changelog" className="text-danger-300 underline decoration-danger-500/40 hover:decoration-danger-400">
+                  May 22 movement update
+                </Link>
+                . The financial mechanics are dissected on{" "}
+                <Link href="/the-facts/loophole-kings" className="text-danger-300 underline decoration-danger-500/40 hover:decoration-danger-400">
+                  The Loophole Kings
+                </Link>
+                .
+              </p>
+            </div>
+          </motion.div>
         </div>
       </section>
 
@@ -680,7 +842,7 @@ export default function FoilEvidencePage() {
                 for the full breakdown.
               </li>
               <li>
-                Daniel&rsquo;s personal FOIL appeal letter is intentionally <em>not</em> hosted in this catalog — it&rsquo;s a private legal pleading.
+                Daniel&rsquo;s personal FOIL appeal letter is intentionally <em>not</em>{" "}hosted in this catalog — it&rsquo;s a private legal pleading.
               </li>
             </ul>
           </motion.div>
@@ -824,13 +986,13 @@ export default function FoilEvidencePage() {
                 <strong className="text-white">By approximately June 7, 2026</strong> — Filing an administrative redaction appeal with the NYSTA Records Appeals Officer demanding the Annual Fee, the fee check amount, and carrier sub-tenant rent terms. POL §89(4)(c) provides for fee-shifting in any subsequent Article 78.
               </li>
               <li>
-                <strong className="text-white">Follow-up FOIL filed</strong> targeting the Verizon RFDS (Project ID 17326150) and any AT&amp;T or T-Mobile RF emissions/propagation studies.
+                <strong className="text-white">Follow-up FOIL filed</strong>{" "}targeting the Verizon RFDS (Project ID 17326150) and any AT&amp;T or T-Mobile RF emissions/propagation studies.
               </li>
               <li>
-                <strong className="text-white">Referrals sent</strong> to the NYS Authorities Budget Office (financial audit), the Office of the State Comptroller (General Municipal Law §33), and the NYS Committee on Open Government (advisory opinion on §87(2)(b) misapplication).
+                <strong className="text-white">Referrals sent</strong>{" "}to the NYS Authorities Budget Office (financial audit), the Office of the State Comptroller (General Municipal Law §33), and the NYS Committee on Open Government (advisory opinion on §87(2)(b) misapplication).
               </li>
               <li>
-                <strong className="text-white">Article 78 reserved</strong> if administrative appeal denies relief — fee-shifting under POL §89(4)(c) if we substantially prevail.
+                <strong className="text-white">Article 78 reserved</strong>{" "}if administrative appeal denies relief — fee-shifting under POL §89(4)(c) if we substantially prevail.
               </li>
             </ul>
           </motion.div>

@@ -85,7 +85,7 @@ export default function SurveillancePage() {
               <div className="rounded-2xl overflow-hidden border border-dark-700/50 shadow-2xl shadow-black/40">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
-                  src="https://imagedelivery.net/5MAOvNjO0OBL917jHWR5AA/87517ceb-e6c4-45e6-6dfe-1f0ce181f200/public"
+                  src="https://media.protectliverpoolny.org/evidence/mass-surveillance.png"
                   alt="Surveillance infrastructure"
                   className="w-full h-auto"
                 />
@@ -147,7 +147,7 @@ export default function SurveillancePage() {
               {
                 step: "3",
                 question: "If it's for our \"safety,\" why is it making us less safe?",
-                answer: "RF radiation risk to 1,000+ homes. Aviation hazard at 441 feet below a Boeing 737. Property values dropping 20%. Eagle habitat disrupted. Zero public notice. That's not safety — that's a liability they're asking you to absorb.",
+                answer: "RF radiation risk to 1,000+ homes. Aviation hazard at 441 feet below a Boeing 737. Property values dropping 2-9%+. Eagle habitat disrupted. Zero public notice. That's not safety — that's a liability they're asking you to absorb.",
                 color: "text-danger-400",
                 border: "border-danger-800/30",
                 bg: "bg-danger-950/20",
@@ -375,7 +375,7 @@ export default function SurveillancePage() {
               <div className="bg-dark-900/60 rounded-xl p-5">
                 <p className="text-white text-lg font-black mb-2">🎥 Step 1: The Cameras (AI-Powered)</p>
                 <p className="text-dark-200 text-base leading-relaxed">
-                  A company called <strong className="text-purple-300">Flock Safety</strong> installs small,
+                  A company called <strong className="text-purple-300">Flock Safety</strong>{" "}installs small,
                   solar-powered cameras on poles, signs, and street infrastructure. These cameras
                   automatically <strong className="text-white">photograph every single vehicle that drives by</strong> —
                   your car, your truck, your van. Every. Single. One. 24 hours a day.
@@ -421,9 +421,9 @@ export default function SurveillancePage() {
                 <p className="text-white text-lg font-black mb-2">🏢 Step 5: Private Companies Get Access Too</p>
                 <p className="text-dark-200 text-base leading-relaxed">
                   It's not just police. Flock launched a <strong className="text-white">"Business
-                  Network"</strong> where private companies can share vehicle watchlists. Your employer.
+                  Network"</strong>{" "}where private companies can share vehicle watchlists. Your employer.
                   Shopping centers. HOAs. Private security firms. They can{" "}
-                  <strong className="text-white">add your plate to a hotlist</strong> and get alerted
+                  <strong className="text-white">add your plate to a hotlist</strong>{" "}and get alerted
                   every time you drive past one of their cameras. Anywhere.
                 </p>
               </div>
@@ -501,7 +501,7 @@ export default function SurveillancePage() {
             <div className="rounded-2xl overflow-hidden border border-dark-700/50 shadow-2xl shadow-black/40 mb-5">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
-                src="https://imagedelivery.net/5MAOvNjO0OBL917jHWR5AA/4509fb8f-230d-4608-7d36-4dd2a3679a00/public"
+                src="https://media.protectliverpoolny.org/evidence/surveillance-detail.png"
                 alt="Map showing Flock surveillance camera locations currently deployed in Liverpool and Salina, NY"
                 className="w-full h-auto"
               />
@@ -707,8 +707,8 @@ export default function SurveillancePage() {
               <p className="text-xs font-bold text-sky-400 uppercase tracking-widest mb-3">If You Lean Left</p>
               <ul className="space-y-3">
                 {[
-                  <><strong className="text-white">1.4 billion shares</strong> of PetroChina — Sudan&apos;s largest oil partner — <strong className="text-white">helping fund genocide</strong> in Darfur</>,
-                  <><strong className="text-white">1.8 billion shares</strong> of Sinopec — funding mass atrocities in Sudan and Syria</>,
+                  <><strong className="text-white">1.4 billion shares</strong>{" "}of PetroChina — Sudan&apos;s largest oil partner — <strong className="text-white">helping fund genocide</strong>{" "}in Darfur</>,
+                  <><strong className="text-white">1.8 billion shares</strong>{" "}of Sinopec — funding mass atrocities in Sudan and Syria</>,
                   <>Shareholders voted for genocide-free investing. BlackRock <strong className="text-danger-400">opposed it and killed it</strong></>,
                   <>Claims ESG commitment while maintaining the <strong className="text-white">worst human rights holdings on Earth</strong></>,
                 ].map((item, i) => (
@@ -726,10 +726,10 @@ export default function SurveillancePage() {
               <p className="text-xs font-bold text-red-400 uppercase tracking-widest mb-3">If You Lean Right</p>
               <ul className="space-y-3">
                 {[
-                  <>The <strong className="text-white">world&apos;s largest asset manager ($10T+)</strong> pushing ESG mandates on American companies while ignoring their own</>,
+                  <>The <strong className="text-white">world&apos;s largest asset manager ($10T+)</strong>{" "}pushing ESG mandates on American companies while ignoring their own</>,
                   <>The single biggest force behind <strong className="text-white">corporate wokewashing</strong> — virtue signaling while profiting from genocide</>,
-                  <>Openly strategizes around <strong className="text-white">&quot;rewiring global supply chains&quot;</strong> and &quot;geopolitical fragmentation&quot; — their own words</>,
-                  <>Pushes <strong className="text-white">surveillance infrastructure</strong> as investment opportunities — &quot;smart cities,&quot; &quot;connected highways&quot;</>,
+                  <>Openly strategizes around <strong className="text-white">&quot;rewiring global supply chains&quot;</strong>{" "}and &quot;geopolitical fragmentation&quot; — their own words</>,
+                  <>Pushes <strong className="text-white">surveillance infrastructure</strong>{" "}as investment opportunities — &quot;smart cities,&quot; &quot;connected highways&quot;</>,
                 ].map((item, i) => (
                   <li key={i} className="flex items-start gap-2.5 text-sm text-dark-300 leading-relaxed">
                     <span className="w-1.5 h-1.5 rounded-full bg-red-500 mt-1.5 flex-shrink-0" />
@@ -916,7 +916,7 @@ export default function SurveillancePage() {
         <div className="max-w-3xl mx-auto">
           <div className="bg-dark-900/40 border border-dark-800/50 rounded-xl p-5 text-center">
             <p className="text-xs text-dark-500 leading-relaxed">
-              <strong className="text-dark-400">Note:</strong> This page connects publicly available information
+              <strong className="text-dark-400">Note:</strong>{" "}This page connects publicly available information
               from the ACLU, NYSTA, Phoenix Tower International, and published reporting. We are not claiming that
               surveillance equipment has been installed on this specific tower. We are asking a question that
               deserves an answer: if Liverpool already has full 5G coverage, and the tower creates health, aviation,
