@@ -767,7 +767,8 @@ function GolfCartSlider() {
   return (
     <div className="mb-6">
       <p className="text-xs md:text-sm font-black text-danger-400 uppercase tracking-widest mb-3 text-center">
-        Same kid. Same street. Drag the slider. Watch the outrage vanish.
+        Same kid. Same street. Drag the slider. Watch the zombie apocalypse
+        unfold.
       </p>
       <div className="rounded-xl overflow-hidden border border-[#2c2c2c]">
         <ReactCompareSlider
