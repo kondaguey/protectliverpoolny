@@ -153,6 +153,7 @@ const JUMP_LINKS: { href: string; label: string; hot?: boolean }[] = [
   { href: "#both-illegal", label: "⚡ Both Illegal" },
   { href: "#not-the-same", label: "🚲 Not the Same" },
   { href: "#flock", label: "📵 No to Flock" },
+  { href: "#constitution", label: "🏛️ The Constitution" },
   { href: "#manifesto", label: "📜 The Manifesto" },
   { href: "#fafo", label: "💥 FAFO" },
   { href: "#the-warning", label: "📹 The Warning" },
@@ -795,7 +796,7 @@ function GolfCartSlider() {
 }
 
 /* NPC exhibit gallery — self-populating. Drop screenshots into
-   public/stupidity/npc/ named npc-1.png, npc-2.png, npc-3.png, ...
+   public/stupidity/ named npc-comment-1.png, npc-comment-2.png, ...
    (sequential, PNG). The gallery probes upward and stops after two
    consecutive missing numbers, so new exhibits appear on the next
    page load with zero code changes. */
@@ -808,7 +809,7 @@ function NpcGallery() {
       const found: string[] = [];
       let misses = 0;
       for (let i = 1; i <= 60 && misses < 2; i++) {
-        const src = `/stupidity/npc/npc-${i}.png`;
+        const src = `/stupidity/npc-comment-${i}.png`;
         const ok = await new Promise<boolean>((resolve) => {
           const im = new window.Image();
           im.onload = () => resolve(true);
@@ -925,6 +926,55 @@ export default function StupidityPage() {
     fetchCount();
     fetchComments();
   }, [fetchCount, fetchComments]);
+
+  // Anchor jumps land short on long hops: lazy images between the viewport
+  // and the target finish loading AFTER the browser has scrolled, growing the
+  // content above the target and leaving the viewport high. Re-align a couple
+  // of beats after the jump — unless the reader has started scrolling.
+  useEffect(() => {
+    let timers: ReturnType<typeof setTimeout>[] = [];
+    let onImgLoad: ((ev: Event) => void) | null = null;
+    const cancel = () => {
+      timers.forEach(clearTimeout);
+      timers = [];
+      if (onImgLoad) {
+        document.removeEventListener("load", onImgLoad, true);
+        onImgLoad = null;
+      }
+    };
+    const onClick = (e: MouseEvent) => {
+      const a = (e.target as HTMLElement).closest?.('a[href^="#"]');
+      const href = a?.getAttribute("href");
+      if (!href || href === "#") return;
+      const el = document.querySelector(href);
+      if (!el) return;
+      e.preventDefault();
+      history.pushState(null, "", href);
+      cancel();
+      const align = () => el.scrollIntoView({ behavior: "instant" });
+      align();
+      // Fixed timers alone miss slow images: chase the target on every
+      // image load for a few seconds after the jump.
+      onImgLoad = (ev: Event) => {
+        if (ev.target instanceof HTMLImageElement) align();
+      };
+      document.addEventListener("load", onImgLoad, true);
+      timers = [
+        setTimeout(align, 400),
+        setTimeout(align, 1000),
+        setTimeout(cancel, 4000),
+      ];
+    };
+    document.addEventListener("click", onClick);
+    window.addEventListener("wheel", cancel, { passive: true });
+    window.addEventListener("touchstart", cancel, { passive: true });
+    return () => {
+      cancel();
+      document.removeEventListener("click", onClick);
+      window.removeEventListener("wheel", cancel);
+      window.removeEventListener("touchstart", cancel);
+    };
+  }, []);
 
   const validate = (): boolean => {
     const e: Partial<FormData> = {};
@@ -1898,6 +1948,131 @@ export default function StupidityPage() {
                 Read The Real Question →
               </a>
             </p>
+            <MiniNav />
+          </motion.div>
+        </div>
+      </section>
+
+      <Divider />
+
+      {/* ═══════════════════ THE CONSTITUTION ═══════════════════ */}
+      <section id="constitution" className="pb-8 px-4 scroll-mt-24">
+        <div className="max-w-3xl mx-auto">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-40px" }}
+            variants={fadeUp}
+            custom={0}
+            className="bg-[#131313] border border-[#2c2c2c] rounded-2xl p-7 md:p-10"
+          >
+            <p className="text-xs md:text-sm font-black text-danger-500 uppercase tracking-widest mb-4 flex items-center gap-2">
+              <Landmark className="w-4 h-4" />
+              The comment section found a law degree
+            </p>
+            <h2 className="text-2xl md:text-3xl font-black text-[#f7f5ef] leading-tight mb-5">
+              &ldquo;You can&apos;t just stop them! That&apos;s
+              unconstitutional!&rdquo;{" "}
+              <span className="text-danger-500">
+                Read the case you&apos;re quoting.
+              </span>
+            </h2>
+            <div className="space-y-3 text-base md:text-lg text-[#c7c3b8] leading-relaxed">
+              <p>
+                Every thread gets one. A neighbor who half-remembers one
+                Supreme Court case and declares the whole petition illegal.
+              </p>
+              <p>
+                The case they&apos;re reaching for is{" "}
+                <B>Delaware v. Prouse (1979)</B>. It says police can&apos;t
+                pull people over at random to fish for a license.
+              </p>
+              <p>True. And nobody here is asking for that.</p>
+              <p>
+                Keep reading the same opinion. The Court calls{" "}
+                <B>&ldquo;acting upon observed violations&rdquo;</B> the
+                foremost method of enforcing traffic law, and it blesses
+                exactly that.
+              </p>
+              <p>
+                <B>Whren v. United States (1996)</B>{" "}finished the job: an
+                officer who sees a violation can make the stop. New
+                York&apos;s own top court said the same in People v. Robinson
+                (2001).
+              </p>
+              <p>
+                Now look at the machine. No pedals. No plate. No
+                registration. 40 miles an hour.
+              </p>
+              <p>
+                Under New York law that is not an e-bike. It&apos;s an{" "}
+                <B>unregistered motor vehicle</B> that cannot legally touch a
+                public road (VTL §§ 102-c, 401, 402). The missing helmet is
+                its own violation (§ 381(6)).
+              </p>
+              <p>
+                Nobody has to card anybody. <B>The machine itself is the
+                violation</B>, in plain view, every single ride.
+              </p>
+              <p>
+                And the age panic? <B>Kansas v. Glover (2020)</B> says a
+                commonsense inference is all reasonable suspicion requires. A
+                rider who looks twelve on a machine the law reserves for 16
+                and up (§ 1242(2)) is the same call as a sixth grader behind
+                the wheel of a Corolla.
+              </p>
+              <p>
+                Checking ID during a lawful stop? Rodriguez v. United States
+                (2015) calls that an <B>ordinary inquiry</B>. Routine.
+                Constitutional. Boring.
+              </p>
+              <p>
+                Want to know what actually is a live Fourth Amendment fight?
+                Scroll up one section.
+              </p>
+              <p>
+                Flock cameras log <B>billions of plate scans a month</B> with
+                zero suspicion attached to any of them. Federal suits are
+                running against Norfolk and San Jose right now, a Virginia
+                judge threw out warrantless Flock evidence, and this June the
+                Supreme Court tightened the screws on warrantless location
+                dragnets in Chatrie v. United States.
+              </p>
+              <p>
+                So if the plate readers never cost you a minute of sleep, but
+                a cop stopping a kid he just watched break six laws turns you
+                into a constitutional scholar,{" "}
+                <B>it was never about the Constitution</B>.
+              </p>
+              <p>
+                Stopping an observed violation is the most settled police
+                action in American law. Fifty years of precedent. The
+                petition asks for exactly that and nothing more.
+              </p>
+            </div>
+            <div className="flex flex-wrap gap-x-5 gap-y-2 mt-6">
+              <Src href="https://www.law.cornell.edu/supremecourt/text/440/648">
+                Delaware v. Prouse
+              </Src>
+              <Src href="https://www.law.cornell.edu/supct/html/95-5841.ZO.html">
+                Whren v. U.S.
+              </Src>
+              <Src href="https://www.law.cornell.edu/supremecourt/text/18-556">
+                Kansas v. Glover
+              </Src>
+              <Src href="https://www.law.cornell.edu/supremecourt/text/13-9972">
+                Rodriguez v. U.S.
+              </Src>
+              <Src href="https://www.nysenate.gov/legislation/laws/VAT/1242">
+                NY VTL § 1242
+              </Src>
+              <Src href="https://troopers.ny.gov/news/new-york-state-police-issue-safety-reminder-electric-bikes-scooters-and-dirt-bike-use">
+                NY State Police
+              </Src>
+              <Src href="https://ij.org/case/norfolk-virginia-camera-surveillance/">
+                IJ v. Norfolk
+              </Src>
+            </div>
             <MiniNav />
           </motion.div>
         </div>
@@ -2881,11 +3056,12 @@ export default function StupidityPage() {
             />
             <div className="space-y-2 mb-7">
               <p className="text-xl md:text-2xl font-black text-[#f7f5ef] leading-snug">
-                No. They are fucking hurting people.
+                No, they are actually hurting people,{" "}
+                <span className="text-danger-500">dumb fuck.</span> Daily.
               </p>
               <p className="text-xl md:text-2xl font-black text-[#f7f5ef] leading-snug">
-                Actually, disturbing the fucking peace is hurting people,{" "}
-                <span className="text-danger-500">dumb fuck.</span>
+                Your lies about them not being an issue put people in
+                serious danger.
               </p>
               <p className="text-sm md:text-base text-[#8a867c] pt-1">
                 Every one of these excuses gets answered in the FAQ below, with
