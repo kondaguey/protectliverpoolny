@@ -4,6 +4,15 @@ import { supabaseAdmin } from "@/lib/supabase-admin";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
+// The two petition lists. Whitelisted server-side — the client can only
+// pick a key, never a table name.
+const TABLES = {
+  tower: "plny_signatures",
+  ebike: "plny_stupidity_signatures",
+} as const;
+
+type Petition = keyof typeof TABLES;
+
 /** Escape HTML special characters */
 function esc(str: string): string {
   return str
@@ -15,7 +24,20 @@ function esc(str: string): string {
 }
 
 /** Build the PLNY-themed email HTML */
-function buildEmail(firstName: string, subject: string, bodyHtml: string): string {
+function buildEmail(
+  firstName: string,
+  subject: string,
+  bodyHtml: string,
+  petition: Petition
+): string {
+  const tagLine =
+    petition === "ebike"
+      ? `<p style="font-size:11px;font-weight:800;letter-spacing:2px;color:#ef4444;margin:8px 0 0;text-transform:uppercase;">The Stupidity — E-Bike Petition</p>`
+      : "";
+  const ctaHref =
+    petition === "ebike"
+      ? "https://protectliverpoolny.org/stupidity"
+      : "https://protectliverpoolny.org/take-action";
   return `<!DOCTYPE html>
 <html>
 <head>
@@ -30,6 +52,7 @@ function buildEmail(firstName: string, subject: string, bodyHtml: string): strin
       <p style="font-size:22px;font-weight:800;margin:0;letter-spacing:-0.5px;">
         <span style="color:#ffffff;">PROTECT</span><span style="color:#ef4444;">LIVERPOOL</span>
       </p>
+      ${tagLine}
     </div>
 
     <!-- Main -->
@@ -44,7 +67,7 @@ function buildEmail(firstName: string, subject: string, bodyHtml: string): strin
 
       <!-- CTA Button -->
       <div style="text-align:center;margin-top:24px;">
-        <a href="https://protectliverpoolny.org/take-action" style="display:inline-block;background-color:#dc2626;color:#ffffff;font-weight:700;font-size:14px;padding:14px 32px;border-radius:10px;text-decoration:none;">
+        <a href="${ctaHref}" style="display:inline-block;background-color:#dc2626;color:#ffffff;font-weight:700;font-size:14px;padding:14px 32px;border-radius:10px;text-decoration:none;">
           View the Petition →
         </a>
       </div>
@@ -75,6 +98,8 @@ export async function POST(req: Request) {
     }
 
     const { subject, bodyHtml, audience } = body;
+    // Whitelist the petition — anything unexpected falls back to tower.
+    const petition: Petition = body.petition === "ebike" ? "ebike" : "tower";
 
     if (!subject?.trim() || !bodyHtml?.trim()) {
       return NextResponse.json(
@@ -83,9 +108,9 @@ export async function POST(req: Request) {
       );
     }
 
-    // Fetch signers
+    // Fetch signers from the selected petition's table
     let query = supabaseAdmin
-      .from("plny_signatures")
+      .from(TABLES[petition])
       .select("first_name, email")
       .order("id", { ascending: true });
 
@@ -127,7 +152,7 @@ export async function POST(req: Request) {
         from: "Protect Liverpool NY <takeaction@protectliverpoolny.org>",
         to: signer.email,
         subject: subject.trim(),
-        html: buildEmail(signer.first_name, subject.trim(), bodyHtml),
+        html: buildEmail(signer.first_name, subject.trim(), bodyHtml, petition),
       }));
 
       try {

@@ -1,6 +1,25 @@
 import { NextResponse } from "next/server";
 import { supabaseAdmin } from "@/lib/supabase-admin";
 
+// The two petition lists. Physically separate tables — never mixed.
+const TABLES = {
+  tower: "plny_signatures",
+  ebike: "plny_stupidity_signatures",
+} as const;
+
+async function tableCounts(table: string) {
+  const { count: all } = await supabaseAdmin
+    .from(table)
+    .select("id", { count: "exact", head: true });
+
+  const { count: optedIn } = await supabaseAdmin
+    .from(table)
+    .select("id", { count: "exact", head: true })
+    .eq("opt_in_contact", true);
+
+  return { all: all || 0, optedIn: optedIn || 0 };
+}
+
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
   const secret = searchParams.get("secret");
@@ -11,19 +30,12 @@ export async function GET(request: Request) {
   }
 
   try {
-    const { count: allCount } = await supabaseAdmin
-      .from("plny_signatures")
-      .select("id", { count: "exact", head: true });
+    const [tower, ebike] = await Promise.all([
+      tableCounts(TABLES.tower),
+      tableCounts(TABLES.ebike),
+    ]);
 
-    const { count: optedInCount } = await supabaseAdmin
-      .from("plny_signatures")
-      .select("id", { count: "exact", head: true })
-      .eq("opt_in_contact", true);
-
-    return NextResponse.json({
-      all: allCount || 0,
-      optedIn: optedInCount || 0,
-    });
+    return NextResponse.json({ tower, ebike });
   } catch {
     return NextResponse.json({ error: "Failed to fetch counts" }, { status: 500 });
   }

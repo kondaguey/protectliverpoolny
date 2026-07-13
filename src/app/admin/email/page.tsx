@@ -66,11 +66,15 @@ export default function AdminEmailPage() {
   const [secret, setSecret] = useState("");
   const [authed, setAuthed] = useState(false);
 
-  // Audience
+  // Petition list + audience
+  const [petition, setPetition] = useState<"tower" | "ebike">("tower");
   const [audience, setAudience] = useState<"all" | "opted-in">("all");
-  const [counts, setCounts] = useState<{ all: number; optedIn: number }>({
-    all: 0,
-    optedIn: 0,
+  const [counts, setCounts] = useState<{
+    tower: { all: number; optedIn: number };
+    ebike: { all: number; optedIn: number };
+  }>({
+    tower: { all: 0, optedIn: 0 },
+    ebike: { all: 0, optedIn: 0 },
   });
 
   // Compose
@@ -106,7 +110,10 @@ export default function AdminEmailPage() {
       const res = await fetch(`/api/admin/counts?secret=${encodeURIComponent(secret)}`);
       if (!res.ok) return;
       const data = await res.json();
-      setCounts({ all: data.all || 0, optedIn: data.optedIn || 0 });
+      setCounts({
+        tower: data.tower || { all: 0, optedIn: 0 },
+        ebike: data.ebike || { all: 0, optedIn: 0 },
+      });
     } catch {
       // silently fail
     }
@@ -147,6 +154,7 @@ export default function AdminEmailPage() {
           subject: subject.trim(),
           bodyHtml,
           audience,
+          petition,
         }),
       });
 
@@ -165,7 +173,11 @@ export default function AdminEmailPage() {
     }
   };
 
-  const recipientCount = audience === "all" ? counts.all : counts.optedIn;
+  const petitionCounts = counts[petition];
+  const recipientCount =
+    audience === "all" ? petitionCounts.all : petitionCounts.optedIn;
+  const petitionLabel =
+    petition === "tower" ? "Cell Tower (5G)" : "E-Bike (The Stupidity)";
 
   /* ── Auth Gate ── */
   if (!authed) {
@@ -228,6 +240,70 @@ export default function AdminEmailPage() {
         </div>
 
         <div className="space-y-6">
+          {/* ── Petition list ── */}
+          <div className="bg-dark-900/60 border border-dark-800/50 rounded-2xl p-6">
+            <div className="flex items-center gap-2 mb-4">
+              <Mail className="w-4 h-4 text-danger-400" />
+              <h2 className="text-sm font-bold text-white uppercase tracking-wider">
+                Petition List
+              </h2>
+            </div>
+            <div className="grid sm:grid-cols-2 gap-3">
+              <button
+                onClick={() => setPetition("tower")}
+                className={`p-4 rounded-xl border text-left transition-all ${
+                  petition === "tower"
+                    ? "bg-danger-950/40 border-danger-700/50"
+                    : "bg-dark-800/40 border-dark-700/40 hover:border-dark-600"
+                }`}
+              >
+                <p
+                  className={`text-sm font-bold mb-1 ${
+                    petition === "tower" ? "text-danger-400" : "text-dark-200"
+                  }`}
+                >
+                  🗼 Cell Tower (5G)
+                </p>
+                <p className="text-xs text-dark-500">
+                  The original petition — plny_signatures
+                </p>
+                <p
+                  className={`text-2xl font-black mt-2 ${
+                    petition === "tower" ? "text-white" : "text-dark-300"
+                  }`}
+                >
+                  {counts.tower.all}
+                </p>
+              </button>
+              <button
+                onClick={() => setPetition("ebike")}
+                className={`p-4 rounded-xl border text-left transition-all ${
+                  petition === "ebike"
+                    ? "bg-danger-950/40 border-danger-700/50"
+                    : "bg-dark-800/40 border-dark-700/40 hover:border-dark-600"
+                }`}
+              >
+                <p
+                  className={`text-sm font-bold mb-1 ${
+                    petition === "ebike" ? "text-danger-400" : "text-dark-200"
+                  }`}
+                >
+                  🏍️ E-Bikes (The Stupidity)
+                </p>
+                <p className="text-xs text-dark-500">
+                  Completely separate list — plny_stupidity_signatures
+                </p>
+                <p
+                  className={`text-2xl font-black mt-2 ${
+                    petition === "ebike" ? "text-white" : "text-dark-300"
+                  }`}
+                >
+                  {counts.ebike.all}
+                </p>
+              </button>
+            </div>
+          </div>
+
           {/* ── Audience ── */}
           <div className="bg-dark-900/60 border border-dark-800/50 rounded-2xl p-6">
             <div className="flex items-center gap-2 mb-4">
@@ -260,7 +336,7 @@ export default function AdminEmailPage() {
                     audience === "all" ? "text-white" : "text-dark-300"
                   }`}
                 >
-                  {counts.all}
+                  {petitionCounts.all}
                 </p>
               </button>
               <button
@@ -286,7 +362,7 @@ export default function AdminEmailPage() {
                     audience === "opted-in" ? "text-white" : "text-dark-300"
                   }`}
                 >
-                  {counts.optedIn}
+                  {petitionCounts.optedIn}
                 </p>
               </button>
             </div>
@@ -430,8 +506,10 @@ export default function AdminEmailPage() {
                       {audience === "all"
                         ? "signers (ALL)"
                         : "opted-in signers"}
-                    </strong>
-                    . This cannot be undone.
+                    </strong>{" "}
+                    on the{" "}
+                    <strong className="text-white">{petitionLabel}</strong>{" "}
+                    list. This cannot be undone.
                   </p>
                   <div className="flex gap-3">
                     <button

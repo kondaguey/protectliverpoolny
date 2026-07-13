@@ -15,6 +15,13 @@ const nextConfig: NextConfig = {
   },
   async redirects() {
     return [
+      // The e-bike petition consolidated onto one page — the old
+      // /stupidity/take-action URL drops visitors at the sign form anchor.
+      {
+        source: "/stupidity/take-action",
+        destination: "/stupidity#sign",
+        permanent: false,
+      },
       // Bare /foil and /foil/ → the FOIL evidence catalog page.
       { source: "/foil", destination: "/the-facts/foil-evidence", permanent: false },
       { source: "/foil/", destination: "/the-facts/foil-evidence", permanent: false },
