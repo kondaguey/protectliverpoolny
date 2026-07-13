@@ -3,6 +3,10 @@
 import { useState, useEffect, useCallback, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
+  ReactCompareSlider,
+  ReactCompareSliderImage,
+} from "react-compare-slider";
+import {
   ArrowRight,
   ArrowUp,
   ArrowDown,
@@ -29,6 +33,7 @@ import {
   ChevronDown,
   ChevronLeft,
   ChevronRight,
+  CornerDownLeft,
   MessageSquareQuote,
   Video,
   TrendingUp,
@@ -56,7 +61,9 @@ function SignCta({
     <a
       href="#sign"
       className={`inline-flex items-center gap-2 bg-danger-600 hover:bg-danger-500 text-white font-black uppercase tracking-wide rounded-xl transition-all shadow-lg shadow-danger-900/60 ${
-        small ? "px-5 py-3 text-sm md:text-base" : "px-9 py-5 text-lg md:text-xl"
+        small
+          ? "px-5 py-3 text-sm md:text-base"
+          : "px-9 py-5 text-lg md:text-xl"
       }`}
     >
       {label}
@@ -65,7 +72,11 @@ function SignCta({
   );
 }
 
-function BackToSign({ label = "Back to the Petition — Sign" }: { label?: string }) {
+function BackToSign({
+  label = "Back to the Petition — Sign",
+}: {
+  label?: string;
+}) {
   return (
     <a
       href="#sign"
@@ -135,16 +146,17 @@ function Src({ href, children }: { href: string; children: React.ReactNode }) {
 const JUMP_LINKS: { href: string; label: string; hot?: boolean }[] = [
   { href: "#witness", label: "👀 Seen It" },
   { href: "#tally", label: "🤡 The Tally" },
-  { href: "#flock", label: "📵 No to Flock" },
-  { href: "#manifesto", label: "📜 The Manifesto" },
-  { href: "#fafo", label: "💥 FAFO" },
-  { href: "#sign", label: "✍️ SIGN NOW", hot: true },
   { href: "#the-case", label: "💀 The Case" },
   { href: "#the-law", label: "⚖️ The Law" },
   { href: "#the-numbers", label: "📊 The Numbers" },
   { href: "#the-science", label: "🧠 The Science" },
   { href: "#both-illegal", label: "⚡ Both Illegal" },
+  { href: "#not-the-same", label: "🚲 Not the Same" },
+  { href: "#flock", label: "📵 No to Flock" },
+  { href: "#manifesto", label: "📜 The Manifesto" },
+  { href: "#fafo", label: "💥 FAFO" },
   { href: "#the-warning", label: "📹 The Warning" },
+  { href: "#sign", label: "✍️ SIGN NOW", hot: true },
   { href: "#npc", label: "🤖 NPC Corner" },
   { href: "#faq", label: "❓ FAQ" },
 ];
@@ -182,7 +194,10 @@ function JumpMenu({ id }: { id?: string }) {
 /* Section divider — thin rule with a red diamond, protest-poster style. */
 function Divider() {
   return (
-    <div aria-hidden="true" className="max-w-3xl mx-auto px-4 pb-10 flex items-center gap-4">
+    <div
+      aria-hidden="true"
+      className="max-w-3xl mx-auto px-4 pb-10 flex items-center gap-4"
+    >
       <div className="h-px flex-1 bg-[#2c2c2c]" />
       <div className="w-2 h-2 rotate-45 bg-danger-600" />
       <div className="h-px flex-1 bg-[#2c2c2c]" />
@@ -197,6 +212,7 @@ type Stupidity = {
   cta: string;
   img?: string;
   imgAlt?: string;
+  after?: React.ReactNode;
 };
 
 const stupidities: Stupidity[] = [
@@ -211,12 +227,12 @@ const stupidities: Stupidity[] = [
           registration path, and no insurance.
         </p>
         <p>
-          The DMV won&apos;t register one for street use no matter what
-          anyone says at the counter.
+          The DMV won&apos;t register one for street use no matter what anyone
+          says at the counter.
         </p>
         <p>
-          On any public road, sidewalk, or park path in New York, the
-          machine is <B>illegal the second it leaves the driveway</B>.
+          On any public road, sidewalk, or park path in New York, the machine is{" "}
+          <B>illegal the second it leaves the driveway</B>.
         </p>
         <p>Ours leave the driveway every day.</p>
       </>
@@ -237,8 +253,8 @@ const stupidities: Stupidity[] = [
           <B>16 to operate an e-bike of any class</B> on a public road.
         </p>
         <p>
-          E-motorcycles demand more: a license, registration, and insurance
-          no child can hold.
+          E-motorcycles demand more: a license, registration, and insurance no
+          child can hold.
         </p>
         <p>
           The rules went on the books in 2020. Around here,{" "}
@@ -257,14 +273,16 @@ const stupidities: Stupidity[] = [
     body: (
       <>
         <p>
-          A kid mid-wheelie can&apos;t see what&apos;s coming, can&apos;t
-          brake, and can&apos;t steer.
+          A kid mid-wheelie can&apos;t see what&apos;s coming, can&apos;t brake,
+          and can&apos;t steer.
         </p>
         <p>
-          At 40 mph he&apos;s covering{" "}
-          <B>close to 60 feet every second</B>
-          {" "}on a machine he&apos;s owned for a month, no training,
-          usually no helmet.
+          At 40 mph he&apos;s covering <B>close to 60 feet every second</B> on a
+          machine he&apos;s owned for a month, with zero training.
+        </p>
+        <p>
+          And the full-face helmet with the dark visor? That&apos;s not safety
+          gear. That&apos;s a mask, worn to hide who he is. <B>Wonder why.</B>
         </p>
         <p>There&apos;s no version of that where he stops in time.</p>
       </>
@@ -275,20 +293,51 @@ const stupidities: Stupidity[] = [
       "Cartoon of a kid doing a wheelie on an e-bike, blind to the crossing ahead of him",
   },
   {
+    icon: CornerDownLeft,
+    title:
+      "Two to a bike, no helmets, too hot to make the right — so they swing wide into the oncoming lane.",
+    body: (
+      <>
+        <p>
+          The kids come into the corner carrying way too much speed to make the
+          right. So physics makes the decision for them: they swing wide,{" "}
+          <B>across the centerline</B>, into the oncoming lane. Doubled up on
+          one machine. No helmets. Every single time.
+        </p>
+        <p>
+          And everyone who lives here knows what comes the other way: people cut
+          that left sharp, like crazy, all day long.
+        </p>
+        <p>
+          A wide-swinging bike and a sharp-cutting car aimed at the exact same
+          patch of road. That is <B>literally death waiting to happen</B>.
+        </p>
+        <p>
+          Two heads, zero helmets, one corner. Do the math once and you
+          won&apos;t un-see it.
+        </p>
+      </>
+    ),
+    cta: "One corner. Sign.",
+    img: "/stupidity/stupidity-corner.png",
+    imgAlt:
+      "Cartoon of two very young kids doubled on one dirt bike — one hidden in an oversized helmet — swinging wide across the centerline while a car cutting a sharp left converges on the same spot",
+  },
+  {
     icon: CarFront,
     title:
       "Every driver in this neighborhood is compensating for kids who don't know the rules exist.",
     body: (
       <>
         <p>
-          Ask anyone who drives here. You&apos;re braking for riders you
-          never saw coming, creeping through intersections that used to be
-          routine, checking the mirror twice before every turn.
+          Ask anyone who drives here. You&apos;re braking for riders you never
+          saw coming, creeping through intersections that used to be routine,
+          checking the mirror twice before every turn.
         </p>
         <p>
-          You slow down to make a left into <B>your own driveway</B> and a
-          kid shoots past you on the left at full throttle, because
-          signaling, passing rules, and right-of-way mean nothing to him.
+          You slow down to make a left into <B>your own driveway</B> and a kid
+          shoots past you on the left at full throttle, because signaling,
+          passing rules, and right-of-way mean nothing to him.
         </p>
         <p>
           Add dusk, dark clothes, and no lights, and an ordinary drive home
@@ -309,9 +358,9 @@ const stupidities: Stupidity[] = [
     body: (
       <>
         <p>
-          The people getting buzzed at speed are the ones with zero
-          protection: little kids walking with their parents, seniors on an
-          evening loop, neighbors out with the dog.
+          The people getting buzzed at speed are the ones with zero protection:
+          little kids walking with their parents, seniors on an evening loop,
+          neighbors out with the dog.
         </p>
         <p>
           <B>Nobody agreed to share a sidewalk</B> or a park path with an
@@ -331,24 +380,48 @@ const stupidities: Stupidity[] = [
     body: (
       <>
         <p>
-          The riding is half of it. The other half is the swarming, the
-          cursing at neighbors and dog walkers, the threats aimed at anyone
-          who speaks up.
+          The riding is half of it. The other half is the swarming, the cursing
+          at neighbors and dog walkers, the threats aimed at anyone who speaks
+          up.
         </p>
         <p>
-          Pack behavior at 30 mph with <B>zero fear of consequences</B>,
-          because so far there haven&apos;t been any.
+          Pack behavior at 30 mph with <B>zero fear of consequences</B>, because
+          so far there haven&apos;t been any.
         </p>
         <p>
-          And the pack part is documented science. The receipts are in the
-          facts section below.
+          And the pack part is documented science. The receipts are in the facts
+          section below.
         </p>
       </>
     ),
     cta: "Zero consequences so far. Sign.",
     img: "/stupidity/stupidity-scream.png",
     imgAlt:
-      "Cartoon of a kid on an e-bike screaming at a recoiling neighbor on their own lawn",
+      "Cartoon of a rider screaming profanity as he blasts past a homeowner watering his garden, who deadpans back: slow down",
+    after: (
+      <div className="bg-danger-950/30 border-l-4 border-danger-600 rounded-xl p-5 md:p-6 mb-6">
+        <p className="text-xs md:text-sm font-black text-danger-400 uppercase tracking-widest mb-3">
+          It&apos;s not just the riding. It&apos;s the attitude.
+        </p>
+        <div className="space-y-2 text-base md:text-lg text-[#c7c3b8] leading-relaxed">
+          <p>
+            Parents, hear this next part as a warning, because <B>we tried</B>.
+          </p>
+          <p>
+            Your kid is screaming &ldquo;fuck you&rdquo; at strangers from a
+            moving motorcycle. Every stranger is a coin flip.
+          </p>
+          <p>
+            Most of us are the deadpan guy with the hose. One day it&apos;s not
+            the deadpan guy. It&apos;s somebody unstable, having the worst day
+            of their life, and <B>there&apos;s no telling how that ends</B>.
+          </p>
+          <p className="text-[#f7f5ef] font-bold">
+            We tried to warn you. Consider this one free, too.
+          </p>
+        </div>
+      </div>
+    ),
   },
   {
     icon: Users,
@@ -358,12 +431,11 @@ const stupidities: Stupidity[] = [
       <>
         <p>&ldquo;Boys will be boys&rdquo; is not a traffic-safety plan.</p>
         <p>
-          A 40-mph machine plus no license, no training, and no rules is a
-          bet, and <B>the stake is your kid&apos;s life</B>.
+          A 40-mph machine plus no license, no training, and no rules is a bet,
+          and <B>the stake is your kid&apos;s life</B>.
         </p>
         <p>
-          The rest of the street got dealt into that bet without being
-          asked.
+          The rest of the street got dealt into that bet without being asked.
         </p>
       </>
     ),
@@ -375,7 +447,7 @@ const stupidities: Stupidity[] = [
   {
     icon: ShieldOff,
     title:
-      "And the police? They refuse to enforce it. “We can't,” they say. Bullshit.",
+      "And the police? They refuse to enforce it. “There's nothin' we can do about it,” they say. Bullshit.",
     body: (
       <>
         <p>
@@ -383,22 +455,21 @@ const stupidities: Stupidity[] = [
           middle-schooler.
         </p>
         <p>
-          But &ldquo;no pursuit&rdquo; and &ldquo;no enforcement&rdquo; are
-          two different things, and pretending they&apos;re the same is the
-          lie this whole problem hides behind.
+          But &ldquo;no pursuit&rdquo; and &ldquo;no enforcement&rdquo; are two
+          different things, and pretending they&apos;re the same is the lie this
+          whole problem hides behind.
         </p>
         <p>
-          These are neighborhood kids on $5,000 machines that sleep in the
-          same driveways every night. <B>You know who they are.</B>
+          These are neighborhood kids on $5,000 machines that sleep in the same
+          driveways every night. <B>You know who they are.</B>
         </p>
         <p>
-          Knock on the door. Cite the parents. Impound the machine the next
-          time it touches a public street.
+          Knock on the door. Cite the parents. Impound the machine the next time
+          it touches a public street.
         </p>
         <p>
-          Meanwhile the taxpayer with a headlight out gets lit up in
-          seconds. Enforcement isn&apos;t impossible,{" "}
-          <B>it&apos;s declined</B>.
+          Meanwhile the taxpayer with a headlight out gets lit up in seconds.
+          Enforcement isn&apos;t impossible, <B>it&apos;s declined</B>.
         </p>
         <p>
           This petition takes the excuse away: a written protocol, impound
@@ -406,7 +477,7 @@ const stupidities: Stupidity[] = [
         </p>
       </>
     ),
-    cta: "“We can't” isn't an answer. Sign.",
+    cta: "“Nothin' we can do” isn't an answer. Sign.",
     img: "/stupidity/stupidity-headlight.png",
     imgAlt:
       "Cartoon of a cop ticketing a car with a dead headlight while kids wheelie past behind him",
@@ -418,8 +489,8 @@ const stupidities: Stupidity[] = [
     body: (
       <>
         <p>
-          Nobody wants the vigil, the ghost bike, the &ldquo;he was such a
-          good kid.&rdquo;
+          Nobody wants the vigil, the ghost bike, the &ldquo;he was such a good
+          kid.&rdquo;
         </p>
         <p>
           And nobody wants the third version either: a neighbor who had the
@@ -446,26 +517,28 @@ const stupidities: Stupidity[] = [
       <>
         <p>
           Everyone says it&apos;s the parents, it&apos;s the parents. Yeah.{" "}
-          <B>It is the fucking parents.</B> But give kids more credit than
-          that.
+          <B>It is the fucking parents.</B> But give kids more credit than that.
         </p>
         <p>
-          We&apos;ve met kids with more of a conscience than plenty of
-          adults: conscientious, emotionally mature kids who understand
-          that disturbing the peace isn&apos;t cool.
+          We&apos;ve met kids with more of a conscience than plenty of adults:
+          conscientious, emotionally mature kids who understand that disturbing
+          the peace isn&apos;t cool.
         </p>
         <p>They never needed their deadbeat parents to teach them that.</p>
         <p>
           And those are exactly the kids getting punished. They walk, they
-          pedal, they follow the rules, and they get buzzed at 30 mph by
-          the fuckfaces with no morality riding around on <B>a free pass</B>.
+          pedal, they follow the rules, and they get buzzed at 30 mph by the
+          fuckfaces with no morality riding around on <B>a free pass</B>.
         </p>
         <p>
           The tools to fix it already exist: age laws, registration laws,
-          impound authority, and New York&apos;s child-endangerment
-          statute, Penal Law § 260.10.
+          impound authority, and New York&apos;s child-endangerment statute,
+          Penal Law § 260.10.
         </p>
-        <p>What&apos;s missing is the will. That&apos;s what this petition supplies.</p>
+        <p>
+          What&apos;s missing is the will. That&apos;s what this petition
+          supplies.
+        </p>
       </>
     ),
     cta: "The good kids deserve better. Sign.",
@@ -486,26 +559,26 @@ const LAW_FACTS: {
     body: (
       <>
         <p>
-          New York prohibits anyone under 16 from operating an e-bike of
-          ANY class on public roads. Statewide, no exceptions.
+          New York prohibits anyone under 16 from operating an e-bike of ANY
+          class on public roads. Statewide, no exceptions.
         </p>
         <p>
-          Every underage rider you see is <B>breaking state law</B> the
-          moment the wheels touch the street.
+          Every underage rider you see is <B>breaking state law</B> the moment
+          the wheels touch the street.
         </p>
       </>
     ),
     srcName: "NY DMV",
-    srcUrl: "https://dmv.ny.gov/registration/electric-scooters-and-bicycles-and-other-unregistered-vehicles",
+    srcUrl:
+      "https://dmv.ny.gov/registration/electric-scooters-and-bicycles-and-other-unregistered-vehicles",
   },
   {
     title: "20 mph is the legal ceiling here. Not 25. Not 40.",
     body: (
       <>
         <p>
-          Outside NYC, only Class 1 and Class 2 e-bikes (max 20 mph
-          assisted) are lawful. Class 3 exists only in cities of a
-          million-plus people.
+          Outside NYC, only Class 1 and Class 2 e-bikes (max 20 mph assisted)
+          are lawful. Class 3 exists only in cities of a million-plus people.
         </p>
         <p>
           A machine assisting past 20 mph in Liverpool{" "}
@@ -514,42 +587,45 @@ const LAW_FACTS: {
       </>
     ),
     srcName: "NY DMV / VTL §102-c",
-    srcUrl: "https://dmv.ny.gov/registration/electric-scooters-and-bicycles-and-other-unregistered-vehicles",
+    srcUrl:
+      "https://dmv.ny.gov/registration/electric-scooters-and-bicycles-and-other-unregistered-vehicles",
   },
   {
     title: "Sur-Rons and Talarias can't be made street-legal at the counter.",
     body: (
       <>
         <p>
-          No DOT equipment means the NY DMV won&apos;t register them for
-          road use. Off-road and private property only.
+          No DOT equipment means the NY DMV won&apos;t register them for road
+          use. Off-road and private property only.
         </p>
         <p>
-          On a public street it&apos;s an unregistered, uninsured motor
-          vehicle with an unlicensed driver: <B>the exact trifecta</B> any
-          adult would be ticketed and towed for.
+          On a public street it&apos;s an unregistered, uninsured motor vehicle
+          with an unlicensed driver: <B>the exact trifecta</B> any adult would
+          be ticketed and towed for.
         </p>
       </>
     ),
     srcName: "NY DMV",
-    srcUrl: "https://dmv.ny.gov/registration/electric-scooters-and-bicycles-and-other-unregistered-vehicles",
+    srcUrl:
+      "https://dmv.ny.gov/registration/electric-scooters-and-bicycles-and-other-unregistered-vehicles",
   },
   {
     title: "Sidewalks are off-limits, full stop.",
     body: (
       <>
         <p>
-          E-bikes may not be ridden on sidewalks in New York unless a local
-          law specifically allows it.
+          E-bikes may not be ridden on sidewalks in New York unless a local law
+          specifically allows it.
         </p>
         <p>
-          Buzzing a stroller on the sidewalk{" "}
-          <B>stacks one more violation</B> on the pile.
+          Buzzing a stroller on the sidewalk <B>stacks one more violation</B> on
+          the pile.
         </p>
       </>
     ),
     srcName: "NY DMV",
-    srcUrl: "https://dmv.ny.gov/registration/electric-scooters-and-bicycles-and-other-unregistered-vehicles",
+    srcUrl:
+      "https://dmv.ny.gov/registration/electric-scooters-and-bicycles-and-other-unregistered-vehicles",
   },
 ];
 
@@ -558,25 +634,31 @@ const STATS = [
     stat: "360,800+",
     label: "ER visits from micromobility devices, 2017–2022",
     srcName: "CPSC",
-    srcUrl: "https://www.cpsc.gov/s3fs-public/Micromobility-Products-Related-Deaths-Injuries-and-Hazard-Patterns-2017-2022.pdf",
+    srcUrl:
+      "https://www.cpsc.gov/s3fs-public/Micromobility-Products-Related-Deaths-Injuries-and-Hazard-Patterns-2017-2022.pdf",
   },
   {
     stat: "+21%",
     label: "jump in e-bike & e-scooter injuries in 2022 alone",
     srcName: "CPSC",
-    srcUrl: "https://www.cpsc.gov/Newsroom/News-Releases/2024/E-Scooter-and-E-Bike-Injuries-Soar-2022-Injuries-Increased-Nearly-21",
+    srcUrl:
+      "https://www.cpsc.gov/Newsroom/News-Releases/2024/E-Scooter-and-E-Bike-Injuries-Soar-2022-Injuries-Increased-Nearly-21",
   },
   {
     stat: "233",
-    label: "deaths tied to micromobility devices, 2017–2022, and CPSC calls its own reporting incomplete",
+    label:
+      "deaths tied to micromobility devices, 2017–2022, and CPSC calls its own reporting incomplete",
     srcName: "CPSC",
-    srcUrl: "https://www.cpsc.gov/s3fs-public/Micromobility-Products-Related-Deaths-Injuries-and-Hazard-Patterns-2017-2022.pdf",
+    srcUrl:
+      "https://www.cpsc.gov/s3fs-public/Micromobility-Products-Related-Deaths-Injuries-and-Hazard-Patterns-2017-2022.pdf",
   },
   {
     stat: "36%",
-    label: "of those injuries are kids 14 and under: DOUBLE their share of the population",
+    label:
+      "of those injuries are kids 14 and under: DOUBLE their share of the population",
     srcName: "CPSC",
-    srcUrl: "https://www.cpsc.gov/s3fs-public/Micromobility-Products-Related-Deaths-Injuries-and-Hazard-Patterns-2017-2022.pdf",
+    srcUrl:
+      "https://www.cpsc.gov/s3fs-public/Micromobility-Products-Related-Deaths-Injuries-and-Hazard-Patterns-2017-2022.pdf",
   },
 ];
 
@@ -586,8 +668,8 @@ const STUDIES: { cite: string; finding: React.ReactNode; srcUrl: string }[] = [
     finding: (
       <>
         Teenagers took significantly more driving risks{" "}
-        <B>the moment peers were watching</B>. Adults didn&apos;t budge.
-        The audience changes the decision.
+        <B>the moment peers were watching</B>. Adults didn&apos;t budge. The
+        audience changes the decision.
       </>
     ),
     srcUrl: "https://pubmed.ncbi.nlm.nih.gov/16060809/",
@@ -597,8 +679,8 @@ const STUDIES: { cite: string; finding: React.ReactNode; srcUrl: string }[] = [
     finding: (
       <>
         Brain scans show why. The mere presence of peers{" "}
-        <B>lights up the adolescent reward circuitry</B>, and that
-        activation predicts the risky choice.
+        <B>lights up the adolescent reward circuitry</B>, and that activation
+        predicts the risky choice.
       </>
     ),
     srcUrl: "https://pmc.ncbi.nlm.nih.gov/articles/PMC3075496/",
@@ -607,9 +689,8 @@ const STUDIES: { cite: string; finding: React.ReactNode; srcUrl: string }[] = [
     cite: "Albert, Chein & Steinberg (2013), Current Directions in Psychological Science",
     finding: (
       <>
-        Adolescent risk-taking is disproportionately{" "}
-        <B>a group phenomenon</B>. Teens in packs do what no teen would do
-        alone.
+        Adolescent risk-taking is disproportionately <B>a group phenomenon</B>.
+        Teens in packs do what no teen would do alone.
       </>
     ),
     srcUrl: "https://journals.sagepub.com/doi/10.1177/0963721412471347",
@@ -618,9 +699,9 @@ const STUDIES: { cite: string; finding: React.ReactNode; srcUrl: string }[] = [
     cite: "Anderson & Galinsky (2006), European Journal of Social Psychology",
     finding: (
       <>
-        People made to feel powerful <B>judged risks as smaller</B> and
-        took more of them. Now hand a 14-year-old a machine that outruns
-        traffic and ask how powerful he feels.
+        People made to feel powerful <B>judged risks as smaller</B> and took
+        more of them. Now hand a 14-year-old a machine that outruns traffic and
+        ask how powerful he feels.
       </>
     ),
     srcUrl: "https://onlinelibrary.wiley.com/doi/abs/10.1002/ejsp.324",
@@ -630,9 +711,9 @@ const STUDIES: { cite: string; finding: React.ReactNode; srcUrl: string }[] = [
     finding: (
       <>
         Across 78 studies, <B>the mere presence of a weapon</B> increased
-        aggressive thoughts, hostile appraisals, and aggressive behavior.
-        The psychology tracks with any power object, and a 72-volt e-moto
-        under a child is exactly that.
+        aggressive thoughts, hostile appraisals, and aggressive behavior. The
+        psychology tracks with any power object, and a 72-volt e-moto under a
+        child is exactly that.
       </>
     ),
     srcUrl: "https://journals.sagepub.com/doi/abs/10.1177/1088868317725419",
@@ -655,6 +736,62 @@ type PublicComment = {
   zip: string | null;
   date: string;
 };
+
+/* The golf-cart double-standard slider. Renders only once BOTH images
+   exist in public/stupidity/ — drop them in and it appears. */
+const SLIDER_A = "/stupidity/stupidity-slider-golfcart.png";
+const SLIDER_B = "/stupidity/stupidity-slider-emoto.png";
+
+function GolfCartSlider() {
+  const [ready, setReady] = useState(false);
+
+  useEffect(() => {
+    let cancelled = false;
+    const probe = (src: string) =>
+      new Promise<boolean>((resolve) => {
+        const im = new window.Image();
+        im.onload = () => resolve(true);
+        im.onerror = () => resolve(false);
+        im.src = src;
+      });
+    Promise.all([probe(SLIDER_A), probe(SLIDER_B)]).then(([a, b]) => {
+      if (!cancelled && a && b) setReady(true);
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
+  if (!ready) return null;
+
+  return (
+    <div className="mb-6">
+      <p className="text-xs md:text-sm font-black text-danger-400 uppercase tracking-widest mb-3 text-center">
+        Same kid. Same street. Drag the slider. Watch the outrage vanish.
+      </p>
+      <div className="rounded-xl overflow-hidden border border-[#2c2c2c]">
+        <ReactCompareSlider
+          itemOne={
+            <ReactCompareSliderImage
+              src={SLIDER_A}
+              alt="A small kid driving a golf cart down the street while neighbors panic and call the police"
+            />
+          }
+          itemTwo={
+            <ReactCompareSliderImage
+              src={SLIDER_B}
+              alt="The same kid on an electric dirt bike on the same street while the same neighbors don't even look up"
+            />
+          }
+        />
+      </div>
+      <div className="flex justify-between text-[11px] md:text-xs font-black uppercase tracking-widest text-[#8a867c] mt-2 px-1">
+        <span>Golf cart: 911 gets dialed</span>
+        <span>E-moto: nobody blinks</span>
+      </div>
+    </div>
+  );
+}
 
 /* NPC exhibit gallery — self-populating. Drop screenshots into
    public/stupidity/npc/ named npc-1.png, npc-2.png, npc-3.png, ...
@@ -753,7 +890,9 @@ export default function StupidityPage() {
   const [commentAnonymous, setCommentAnonymous] = useState(false);
   const [comments, setComments] = useState<PublicComment[]>([]);
   const [commentTotal, setCommentTotal] = useState(0);
-  const [expandedComment, setExpandedComment] = useState<PublicComment | null>(null);
+  const [expandedComment, setExpandedComment] = useState<PublicComment | null>(
+    null,
+  );
   const voicesRef = useRef<HTMLDivElement>(null);
 
   const fetchCount = useCallback(async () => {
@@ -802,7 +941,7 @@ export default function StupidityPage() {
     }
     if (!consentChecked) {
       setConsentError(
-        "You must agree to the Privacy Notice and the no-confrontation promise to sign"
+        "You must agree to the Privacy Notice and the no-confrontation promise to sign",
       );
     } else {
       setConsentError("");
@@ -859,7 +998,9 @@ export default function StupidityPage() {
       }
 
       setSubmitted(true);
-      document.getElementById("sign")?.scrollIntoView({ behavior: "smooth", block: "start" });
+      document
+        .getElementById("sign")
+        ?.scrollIntoView({ behavior: "smooth", block: "start" });
       fetchCount();
       fetchComments();
     } catch (err: any) {
@@ -890,19 +1031,21 @@ export default function StupidityPage() {
       a: (
         <>
           <p>
-            Because ticketing you is easy, and dealing with this is work.
-            You stop, you sign, you pay, thirty seconds of revenue.
+            Because ticketing you is easy, and dealing with this is work. You
+            stop, you sign, you pay, thirty seconds of revenue.
           </p>
           <p>
-            A pack of kids on illegal machines requires policy,
-            coordination, and political will, so the system shrugs and
-            calls it impossible.
+            A pack of kids on illegal machines requires policy, coordination,
+            and political will, so the system shrugs and calls it impossible.
           </p>
           <p>
-            That&apos;s not a reason, it&apos;s an excuse, and it&apos;s
-            exactly the excuse this petition was built to kill:{" "}
-            <B>a written enforcement protocol, impound authority, and
-            parental fines</B>.
+            That&apos;s not a reason, it&apos;s an excuse, and it&apos;s exactly
+            the excuse this petition was built to kill:{" "}
+            <B>
+              a written enforcement protocol, impound authority, and parental
+              fines
+            </B>
+            .
           </p>
           <p>Same street, same law, for everyone.</p>
         </>
@@ -917,10 +1060,9 @@ export default function StupidityPage() {
             <B>both are illegal</B>.
           </p>
           <p>
-            The e-motorcycles can&apos;t be registered for road use at all.
-            The &ldquo;just e-bikes&rdquo; are ridden by kids under 16
-            (illegal), past the 20 mph ceiling (illegal), and on sidewalks
-            (illegal).
+            The e-motorcycles can&apos;t be registered for road use at all. The
+            &ldquo;just e-bikes&rdquo; are ridden by kids under 16 (illegal),
+            past the 20 mph ceiling (illegal), and on sidewalks (illegal).
           </p>
           <p>
             Scroll up and read the law section again: there&apos;s no legal
@@ -934,18 +1076,18 @@ export default function StupidityPage() {
       a: (
         <>
           <p>
-            Our bar for &ldquo;kids being kids&rdquo; is higher than you
-            think. Read the manifesto above: we don&apos;t care if a kid
-            sneaks a cigarette in the woods or cracks a beer in a basement.
+            Our bar for &ldquo;kids being kids&rdquo; is higher than you think.
+            Read the manifesto above: we don&apos;t care if a kid sneaks a
+            cigarette in the woods or cracks a beer in a basement.
           </p>
           <p>
-            The line is <B>disturbing the peace</B>. There are legal
-            machines, legal ages, and legal places, and none of them are a
-            public street at 40 mph next to a stroller.
+            The line is <B>disturbing the peace</B>. There are legal machines,
+            legal ages, and legal places, and none of them are a public street
+            at 40 mph next to a stroller.
           </p>
           <p>
-            The science above says the pack won&apos;t self-regulate, so
-            the adults have to.
+            The science above says the pack won&apos;t self-regulate, so the
+            adults have to.
           </p>
         </>
       ),
@@ -955,15 +1097,18 @@ export default function StupidityPage() {
       a: (
         <>
           <p>
-            A concerned citizen running a formal, legal, documented
-            political campaign through exactly the channels democracy
-            provides, while everyone else complains in the group chat?
+            A concerned citizen running a formal, legal, documented political
+            campaign through exactly the channels democracy provides, while
+            everyone else complains in the group chat?
           </p>
           <p>
             That&apos;s{" "}
             <B>the textbook definition of doing something with your life</B>.
           </p>
-          <p>Filming yourself doing wheelies at pedestrians is not. Glad you asked.</p>
+          <p>
+            Filming yourself doing wheelies at pedestrians is not. Glad you
+            asked.
+          </p>
         </>
       ),
     },
@@ -974,17 +1119,17 @@ export default function StupidityPage() {
           <p>Neither do we. That&apos;s the whole point.</p>
           <p>
             Read the demands: every single one targets{" "}
-            <B>machines and adults</B>. Impound the illegal vehicle. Fine
-            the enabling parent. Enforce the age law.
+            <B>machines and adults</B>. Impound the illegal vehicle. Fine the
+            enabling parent. Enforce the age law.
           </p>
           <p>
-            The goal is that no kid ever ends up in a courtroom, a trauma
-            ward, or a casket, and no parent ends up where the Orange
-            County mother is right now.
+            The goal is that no kid ever ends up in a courtroom, a trauma ward,
+            or a casket, and no parent ends up where the Orange County mother is
+            right now.
           </p>
           <p>
-            Same goes for the grown-ups: we don&apos;t condone confronting
-            kids, following them home, or any citizen-vigilante nonsense.{" "}
+            Same goes for the grown-ups: we don&apos;t condone confronting kids,
+            following them home, or any citizen-vigilante nonsense.{" "}
             <B>The petition is the outlet.</B>
           </p>
         </>
@@ -995,9 +1140,10 @@ export default function StupidityPage() {
       a: (
         <>
           <p>
-            A numbered petition delivered to named officials creates a
-            public record that they knew. &ldquo;We can&apos;t&rdquo; stops
-            being deniable and starts being <B>a documented choice</B>.
+            A numbered petition delivered to named officials creates a public
+            record that they knew. &ldquo;There&apos;s nothin&apos; we can do
+            about it&rdquo; stops being deniable and starts being{" "}
+            <B>a documented choice</B>.
           </p>
           <p>
             Boards pass ordinances when ignoring a problem costs more than
@@ -1024,8 +1170,7 @@ export default function StupidityPage() {
             className="flex items-center justify-center mb-7"
           >
             <span className="inline-flex items-center gap-2 px-5 py-2.5 bg-danger-950/60 border border-danger-700/50 rounded-full text-danger-400 text-xs md:text-sm font-black uppercase tracking-widest">
-              <Brain className="w-4 h-4" />
-              A Neighborhood Reality Check
+              <Brain className="w-4 h-4" />A Neighborhood Reality Check
             </span>
           </motion.div>
 
@@ -1035,30 +1180,49 @@ export default function StupidityPage() {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="text-5xl sm:text-6xl md:text-7xl font-black leading-none tracking-tight mb-8 text-[#f7f5ef]"
           >
-            The <span className="text-danger-500">Stupidity</span>.
+            E-Bike <span className="text-danger-500">Stupidity</span>
           </motion.h1>
+
+          {/* The hero image — the attention grab, straight after the title */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+          >
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/stupidity/stupidity-hero.png"
+              alt="Cartoon of the pack taking over a suburban street: cyclists forced onto the grass, a jogger leaping clear, an old man and his chihuahua in a near miss, and two officers shrugging beside their cruiser"
+              loading="eager"
+              className="w-full rounded-2xl border-2 border-danger-800/60 mb-8 shadow-2xl shadow-danger-950/50"
+              onError={(e) => {
+                (e.currentTarget as HTMLImageElement).style.display = "none";
+              }}
+            />
+          </motion.div>
 
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
             className="text-xl md:text-2xl text-[#d6d2c8] max-w-3xl mx-auto leading-relaxed mb-5 font-medium"
           >
-            Unlicensed kids on electric motorcycles and e-bikes: 25, 30, 40
-            miles an hour. Wheelies down the middle of the road. Races through
-            the neighborhood, through our parks, past your law-abiding
-            children.
+            Unlicensed minors on e-motorcycles and e-bikes going 25-40+ mph.
+            Wheelies down the middle of the road. Races through the
+            neighborhood. Through our parks and on sidewalks. Dangerously close
+            to your law-abiding children, families, dogs, seniors, and other
+            vulnerable people. And with an attitude that makes you feel like
+            you're the one in the wrong.
           </motion.p>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
             className="text-lg md:text-xl text-[#b3afa4] max-w-3xl mx-auto leading-relaxed mb-7"
           >
-            The parents allow it. The police refuse to enforce it. And
-            I&apos;m sorry, who&apos;s paying taxes here? Try driving down the
-            same street with a headlight out and see how fast you get pulled
-            over.{" "}
+            The parents allow it. The police refuse to enforce it. And I&apos;m
+            sorry, who&apos;s paying taxes here? Try driving down the same
+            street with a headlight out and see how fast you get pulled over.{" "}
             <span className="text-[#f7f5ef] font-bold">
               That&apos;s the stupid part.
             </span>
@@ -1067,7 +1231,7 @@ export default function StupidityPage() {
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
+            transition={{ duration: 0.6, delay: 0.5 }}
             className="text-3xl md:text-5xl font-black tracking-tight mb-10 text-[#f7f5ef]"
           >
             ENOUGH IS <span className="text-danger-500">ENOUGH.</span>
@@ -1076,7 +1240,7 @@ export default function StupidityPage() {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.5 }}
+            transition={{ duration: 0.6, delay: 0.6 }}
           >
             <SignCta label="Sign Against the Stupidity" />
           </motion.div>
@@ -1104,14 +1268,14 @@ export default function StupidityPage() {
               Seen with our own eyes
             </p>
             <p className="text-xl md:text-2xl text-[#f7f5ef] font-bold leading-snug mb-4">
-              I&apos;ve stood on Buckley Road and watched a kid go full
-              throttle WITH traffic. No plate, no helmet, no anything.
-              Electronics Parkway, same show.
+              I&apos;ve stood on Buckley Road and watched a kid go full throttle
+              WITH traffic. No plate, no helmet, no anything. Electronics
+              Parkway, same show.
             </p>
             <p className="text-base md:text-lg text-[#c7c3b8] leading-relaxed">
-              Say it out loud: children are riding unregistered motorcycles
-              in the traffic lane of a <B>state highway corridor</B>, and
-              everyone has quietly gotten used to it. We refuse.
+              Say it out loud: children are riding unregistered motorcycles in
+              the traffic lane of a <B>state highway corridor</B>, and everyone
+              has quietly gotten used to it. We refuse.
             </p>
           </motion.div>
         </div>
@@ -1132,11 +1296,12 @@ export default function StupidityPage() {
               custom={0}
               className="bg-[#131313] border border-[#2c2c2c] rounded-2xl p-7 md:p-10"
             >
-              <div className="flex items-start gap-5">
-                <div className="w-12 h-12 md:w-14 md:h-14 rounded-xl bg-danger-950/70 border border-danger-800/50 flex items-center justify-center flex-shrink-0">
+              {/* Icon stacks ABOVE on mobile so text gets the full card width */}
+              <div className="md:flex md:items-start md:gap-5">
+                <div className="w-12 h-12 md:w-14 md:h-14 rounded-xl bg-danger-950/70 border border-danger-800/50 flex items-center justify-center flex-shrink-0 mb-4 md:mb-0">
                   <s.icon className="w-6 h-6 md:w-7 md:h-7 text-danger-500" />
                 </div>
-                <div className="min-w-0 flex-1">
+                <div className="min-w-0 md:flex-1">
                   <p className="text-xs md:text-sm font-black text-danger-500 uppercase tracking-widest mb-2">
                     Stupidity #{i + 1}
                   </p>
@@ -1147,6 +1312,7 @@ export default function StupidityPage() {
                     {s.body}
                   </div>
                   {s.img && <CardImage src={s.img} alt={s.imgAlt!} />}
+                  {s.after}
                   <div className="flex flex-wrap items-center gap-4">
                     <SignCta small label={s.cta} />
                     <a
@@ -1160,6 +1326,507 @@ export default function StupidityPage() {
               </div>
             </motion.div>
           ))}
+        </div>
+      </section>
+
+      <Divider />
+
+      {/* ═══════════════════ JUST THE FACTS ═══════════════════ */}
+      <section id="the-facts" className="pt-12 md:pt-16 pb-8 px-4 scroll-mt-24">
+        <div className="max-w-3xl mx-auto">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeUp}
+            custom={0}
+            className="text-center mb-10"
+          >
+            <span className="inline-flex items-center gap-2 px-5 py-2.5 bg-danger-950/60 border border-danger-700/50 rounded-full text-danger-400 text-xs md:text-sm font-black uppercase tracking-widest mb-6">
+              <Scale className="w-4 h-4" />
+              No Opinions Below This Line
+            </span>
+            <h2 className="text-4xl md:text-5xl font-black tracking-tight text-[#f7f5ef] mb-4">
+              Just the <span className="text-danger-500">Facts</span>.
+            </h2>
+            <p className="text-lg md:text-xl text-[#b3afa4] max-w-2xl mx-auto leading-relaxed">
+              Laws, numbers, charges, case files. Every claim sourced.
+            </p>
+            <p className="text-base md:text-lg text-[#8a867c] max-w-2xl mx-auto leading-relaxed mt-2">
+              Forward this to the neighbor who thinks we&apos;re overreacting.
+            </p>
+          </motion.div>
+
+          {/* ── THE CASE ── */}
+          <motion.div
+            id="the-case"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-40px" }}
+            variants={fadeUp}
+            custom={0}
+            className="bg-[#131313] border-2 border-danger-800/60 rounded-2xl p-7 md:p-10 mb-8 scroll-mt-24"
+          >
+            <p className="text-xs md:text-sm font-black text-danger-500 uppercase tracking-widest mb-3">
+              It already happened, and a mother is facing prison
+            </p>
+            <h3 className="text-2xl md:text-3xl font-black text-[#f7f5ef] leading-snug mb-5">
+              A 14-year-old doing wheelies on an e-motorcycle killed an
+              81-year-old Vietnam combat veteran. Prosecutors charged his
+              mother.
+            </h3>
+
+            <div className="relative aspect-video rounded-xl overflow-hidden border border-[#2c2c2c] mb-6 bg-black">
+              <iframe
+                className="absolute inset-0 w-full h-full"
+                src="https://www.youtube-nocookie.com/embed/B-YJ9gSbJkY"
+                title="CBS LA: Orange County mom faces judge over charges connected to deadly e-bike crash involving son"
+                allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="strict-origin-when-cross-origin"
+              />
+            </div>
+
+            <div className="space-y-4 text-base md:text-lg text-[#c7c3b8] leading-relaxed">
+              <p>April 16, 2026. Lake Forest, California (Orange County).</p>
+              <p>
+                A 14-year-old on a Sur-Ron Ultra Bee e-motorcycle,{" "}
+                <B>popping wheelies</B>, struck 81-year-old <B>Ed Ashman</B>, a
+                Marine Corps veteran who flew combat missions in Vietnam, as he
+                walked home near El Toro High School.
+              </p>
+              <p>
+                He died of his injuries.{" "}
+                <Src href="https://abc7.com/post/aliso-viejo-mother-charged-teen-son-crashes-81-year-old-man-riding-motorcycle-leaving-critically-injured/18942740/">
+                  ABC7
+                </Src>{" "}
+                <Src href="https://www.nbclosangeles.com/news/local/vietnam-veteran-mother-charged-e-motorcycle-crash-orange-county/3884457/">
+                  NBC LA
+                </Src>
+              </p>
+              <p>
+                The rider&apos;s mother, <B>Tommi Jo Mejer of Aliso Viejo</B>,
+                is charged with{" "}
+                <strong className="text-danger-400">
+                  felony involuntary manslaughter, felony child endangerment,
+                  and accessory after the fact
+                </strong>
+                .{" "}
+                <Src href="https://orangecountyda.org/press/charges-upgraded-to-involuntary-manslaughter-against-aliso-viejo-mother-whose-14-year-old-son-killed-vietnam-veteran-while-child-was-illegally-riding-an-e-motorcycle-16-times-more-powerful-than-an-e/">
+                  OC District Attorney
+                </Src>{" "}
+                <Src href="https://ktla.com/news/orange-county/o-c-moms-charges-upgraded-to-manslaughter-after-e-motorcycle-crash-death/">
+                  KTLA
+                </Src>
+              </p>
+              <p>
+                Here&apos;s the part every parent in Liverpool should read
+                twice.
+              </p>
+              <p>
+                Deputies had <B>warned her ten months before the crash</B> that
+                she could face criminal charges if she kept letting her son
+                ride. She admitted she bought him the machine and knew he rode
+                recklessly.
+              </p>
+              <p>
+                She let him keep riding.{" "}
+                <Src href="https://orangecountyda.org/press/charges-upgraded-to-involuntary-manslaughter-against-aliso-viejo-mother-whose-14-year-old-son-killed-vietnam-veteran-while-child-was-illegally-riding-an-e-motorcycle-16-times-more-powerful-than-an-e/">
+                  OC District Attorney
+                </Src>
+              </p>
+              <p>
+                The DA calls the machine{" "}
+                <B>&ldquo;16 times more powerful than an e-bike&rdquo;</B> and
+                warned parents he will prosecute them{" "}
+                <em>to the fullest extent of the law</em>.
+              </p>
+              <p className="text-[#f7f5ef] font-bold">
+                Every element of that story already exists on our streets. The
+                only element Liverpool hasn&apos;t supplied yet is the body.
+              </p>
+            </div>
+
+            <div className="mt-7 flex flex-wrap items-center gap-4">
+              <BackToSign label="That's enough for me — Sign" />
+              <a
+                href="#jump"
+                className="text-xs md:text-sm font-black uppercase tracking-widest text-[#8a867c] hover:text-[#f7f5ef] transition-colors"
+              >
+                ↑ Menu
+              </a>
+            </div>
+          </motion.div>
+
+          {/* ── THE LAW ── */}
+          <motion.div
+            id="the-law"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-40px" }}
+            variants={fadeUp}
+            custom={0}
+            className="mb-8 scroll-mt-24"
+          >
+            <h3 className="text-2xl md:text-3xl font-black text-[#f7f5ef] mb-6 text-center">
+              The law is not ambiguous.{" "}
+              <span className="text-danger-500">It's just unenforced.</span>
+            </h3>
+            <div className="grid md:grid-cols-2 gap-5">
+              {LAW_FACTS.map((f) => (
+                <div
+                  key={f.title}
+                  className="bg-[#131313] border border-[#2c2c2c] rounded-2xl p-6"
+                >
+                  <h4 className="text-lg md:text-xl font-black text-[#f7f5ef] leading-snug mb-3">
+                    {f.title}
+                  </h4>
+                  <div className="text-sm md:text-base text-[#c7c3b8] leading-relaxed mb-4 space-y-2">
+                    {f.body}
+                  </div>
+                  <Src href={f.srcUrl}>Source: {f.srcName}</Src>
+                </div>
+              ))}
+            </div>
+
+            {/* The parent statute — full-width standout */}
+            <div className="bg-danger-950/30 border-2 border-danger-700/60 rounded-2xl p-6 md:p-8 mt-5">
+              <p className="text-xs md:text-sm font-black text-danger-400 uppercase tracking-widest mb-2">
+                The one the parents should read twice
+              </p>
+              <h4 className="text-xl md:text-2xl font-black text-[#f7f5ef] leading-snug mb-3">
+                New York already has a child-endangerment law with your name on
+                it: Penal Law § 260.10.
+              </h4>
+              <div className="text-sm md:text-base text-[#c7c3b8] leading-relaxed space-y-2">
+                <p>
+                  Subsection (1) covers anyone who{" "}
+                  <B>
+                    &ldquo;knowingly acts in a manner likely to be injurious to
+                    the physical, mental or moral welfare of a child&rdquo;
+                  </B>{" "}
+                  under 17.
+                </p>
+                <p>
+                  Handing your kid a 40-mph illegal machine fits that sentence
+                  like a glove.
+                </p>
+                <p>
+                  Subsection (2) goes further. It targets the parent who{" "}
+                  <B>
+                    &ldquo;fails or refuses to exercise reasonable diligence in
+                    the control of such child&rdquo;
+                  </B>{" "}
+                  to keep them from becoming a juvenile delinquent.
+                </p>
+                <p>
+                  A class A misdemeanor. On the books right now. Waiting to be
+                  used.
+                </p>
+              </div>
+              <div className="mt-3">
+                <Src href="https://www.nysenate.gov/legislation/laws/PEN/260.10">
+                  Source: NY Penal Law § 260.10 (NY Senate)
+                </Src>
+              </div>
+            </div>
+
+            <p className="text-center text-sm md:text-base text-[#8a867c] mt-5 italic">
+              It&apos;s the same law that tickets you for an unregistered car or
+              that dead headlight. The difference? Yours gets enforced.
+            </p>
+            <MiniNav />
+          </motion.div>
+
+          {/* ── THE NUMBERS ── */}
+          <motion.div
+            id="the-numbers"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-40px" }}
+            variants={fadeUp}
+            custom={0}
+            className="mb-8 scroll-mt-24"
+          >
+            <h3 className="text-2xl md:text-3xl font-black text-[#f7f5ef] mb-6 text-center flex items-center justify-center gap-3">
+              <TrendingUp className="w-7 h-7 text-danger-500" />
+              The national numbers are screaming.
+            </h3>
+            <div className="grid sm:grid-cols-2 gap-5">
+              {STATS.map((s) => (
+                <div
+                  key={s.label}
+                  className="bg-[#131313] border border-[#2c2c2c] rounded-2xl p-6 text-center"
+                >
+                  <p className="text-4xl md:text-5xl font-black text-danger-500 mb-2">
+                    {s.stat}
+                  </p>
+                  <p className="text-sm md:text-base text-[#c7c3b8] leading-snug mb-3">
+                    {s.label}
+                  </p>
+                  <Src href={s.srcUrl}>Source: {s.srcName}</Src>
+                </div>
+              ))}
+            </div>
+            <div className="text-center mt-7">
+              <BackToSign label="The numbers are enough — Sign" />
+              <MiniNav />
+            </div>
+          </motion.div>
+
+          {/* ── THE SCIENCE ── */}
+          <motion.div
+            id="the-science"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-40px" }}
+            variants={fadeUp}
+            custom={0}
+            className="bg-[#131313] border border-[#2c2c2c] rounded-2xl p-7 md:p-10 mb-8 scroll-mt-24"
+          >
+            <p className="text-xs md:text-sm font-black text-danger-500 uppercase tracking-widest mb-3">
+              The bravado and the pack: both are documented
+            </p>
+            <h3 className="text-2xl md:text-3xl font-black text-[#f7f5ef] leading-snug mb-5">
+              Give a kid a power machine and an audience, and science says you
+              get exactly this.
+            </h3>
+            <div className="space-y-5">
+              {STUDIES.map((s) => (
+                <div
+                  key={s.cite}
+                  className="border-l-2 border-danger-700/60 pl-5"
+                >
+                  <p className="text-base md:text-lg text-[#c7c3b8] leading-relaxed mb-2">
+                    {s.finding}
+                  </p>
+                  <Src href={s.srcUrl}>{s.cite}</Src>
+                </div>
+              ))}
+            </div>
+            <div className="text-base md:text-lg text-[#c7c3b8] leading-relaxed mt-6 space-y-3">
+              <p>
+                So it&apos;s a double whammy. The machine pumps the bravado up,
+                and the pack pays it out: throttle open, wheelies into traffic,
+                mouths running.
+              </p>
+              <p>
+                That&apos;s how you get a kid holding{" "}
+                <B>full throttle WITH traffic on Buckley Road</B>, no plate, no
+                helmet, while his friends film it.
+              </p>
+              <p className="text-[#f7f5ef] font-bold">
+                The research says they won&apos;t self-regulate. The adults have
+                to, and this petition is how.
+              </p>
+            </div>
+
+            {/* The plain-English version */}
+            <div className="bg-danger-950/30 border-l-4 border-danger-600 rounded-xl p-5 md:p-6 mt-6">
+              <p className="text-xs md:text-sm font-black text-danger-400 uppercase tracking-widest mb-2">
+                TL;DR
+              </p>
+              <p className="text-lg md:text-xl font-black text-[#f7f5ef] leading-snug">
+                Their brains haven&apos;t finished building the brakes yet, so
+                they ride like fucking idiots while feeling absolutely certain
+                they look cool.{" "}
+                <span className="text-danger-500">Clinically.</span>
+              </p>
+            </div>
+
+            {/* The delusion gap, illustrated */}
+            <div className="mt-6">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/stupidity/stupidity-delusion.png"
+                alt="Cartoon of a pack of riders blasting down a suburban street thinking we're so fucking cool, while the neighbors watching think god that's so fucking lame — a braking car, a scared chihuahua, and a sheriff on his phone complete the scene"
+                loading="lazy"
+                className="w-full rounded-xl border border-[#2c2c2c]"
+                onError={(e) => {
+                  const wrap = (e.currentTarget as HTMLImageElement)
+                    .parentElement;
+                  if (wrap) wrap.style.display = "none";
+                }}
+              />
+            </div>
+            <MiniNav />
+          </motion.div>
+
+          {/* ── "JUST AN E-BIKE" ── */}
+          <motion.div
+            id="both-illegal"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-40px" }}
+            variants={fadeUp}
+            custom={0}
+            className="bg-danger-950/30 border-2 border-danger-700/60 rounded-2xl p-7 md:p-10 mb-8 scroll-mt-24"
+          >
+            <p className="text-xs md:text-sm font-black text-danger-400 uppercase tracking-widest mb-3">
+              The favorite excuse
+            </p>
+            <h3 className="text-2xl md:text-3xl font-black text-[#f7f5ef] leading-snug mb-2">
+              &ldquo;But it&apos;s just an e-bike, not an e-motorcycle.&rdquo;
+            </h3>
+            <p className="text-3xl md:text-4xl font-black text-danger-500 mb-6">
+              No. The way they&apos;re ridden here, BOTH are illegal.
+            </p>
+            <div className="grid md:grid-cols-2 gap-5 mb-6">
+              <div className="bg-[#131313]/80 border border-[#2c2c2c] rounded-xl p-6">
+                <div className="flex items-center gap-2 mb-3">
+                  <Zap className="w-5 h-5 text-danger-500" />
+                  <h4 className="text-lg font-black text-[#f7f5ef]">
+                    The e-motorcycle
+                  </h4>
+                </div>
+                <ul className="space-y-2 text-sm md:text-base text-[#c7c3b8] leading-relaxed list-disc pl-5">
+                  <li>
+                    No DOT equipment, no VIN pathway, no registration. Off-road
+                    only.
+                  </li>
+                  <li>
+                    On a public road it&apos;s an unregistered, uninsured motor
+                    vehicle. <B>Illegal every single time, ridden by anyone.</B>
+                  </li>
+                </ul>
+              </div>
+              <div className="bg-[#131313]/80 border border-[#2c2c2c] rounded-xl p-6">
+                <div className="flex items-center gap-2 mb-3">
+                  <Scale className="w-5 h-5 text-danger-500" />
+                  <h4 className="text-lg font-black text-[#f7f5ef]">
+                    The &ldquo;just an e-bike&rdquo;
+                  </h4>
+                </div>
+                <ul className="space-y-2 text-sm md:text-base text-[#c7c3b8] leading-relaxed list-disc pl-5">
+                  <li>
+                    Rider under 16? <B>Illegal.</B> Any class, statewide.
+                  </li>
+                  <li>
+                    Assisting past 20 mph outside NYC? <B>Illegal.</B>
+                  </li>
+                  <li>
+                    On the sidewalk? <B>Illegal</B>, unless a local law says
+                    otherwise.
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <p className="text-lg md:text-xl font-black text-[#f7f5ef] text-center">
+              There is no legal version of what&apos;s happening on our streets.{" "}
+              <span className="text-danger-500">None.</span>
+            </p>
+            <div className="text-center mt-6">
+              <BackToSign label="No more excuses — Sign" />
+              <MiniNav />
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      <Divider />
+
+      {/* ═══════════════════ NOT THE SAME ═══════════════════ */}
+      <section id="not-the-same" className="pb-12 px-4 scroll-mt-24">
+        <div className="max-w-3xl mx-auto">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-40px" }}
+            variants={fadeUp}
+            custom={0}
+            className="bg-[#131313] border border-[#2c2c2c] rounded-2xl p-7 md:p-10"
+          >
+            <p className="text-xs md:text-sm font-black text-danger-500 uppercase tracking-widest mb-3 flex items-center gap-2">
+              <Bot className="w-4 h-4" />
+              Today&apos;s NPC take
+            </p>
+            <h2 className="text-2xl md:text-3xl font-black text-[#f7f5ef] leading-tight mb-2">
+              &ldquo;Literally bikes go that fast, dumbass.&rdquo;
+            </h2>
+            <p className="text-3xl md:text-4xl font-black text-danger-500 mb-6">
+              No the fuck they don&apos;t. Here&apos;s the math.
+            </p>
+
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/stupidity/stupidity-wojack-bikes.png"
+              alt="Wojak meme insisting bikes literally go that fast"
+              loading="lazy"
+              className="w-full rounded-xl border border-[#2c2c2c] mb-6"
+              onError={(e) => {
+                (e.currentTarget as HTMLImageElement).style.display = "none";
+              }}
+            />
+
+            <div className="grid sm:grid-cols-3 gap-4 mb-6">
+              <div className="bg-[#1a1a1a] border border-[#2c2c2c] rounded-xl p-5">
+                <p className="text-2xl mb-2">🚲</p>
+                <h3 className="text-base md:text-lg font-black text-[#f7f5ef] mb-2">
+                  A kid&apos;s pedal bike
+                </h3>
+                <p className="text-sm text-[#c7c3b8] leading-relaxed">
+                  25 to 30 pounds. Powered by legs. A kid cruises 10 to 15 mph,
+                  gets tired, coasts, stops.
+                </p>
+              </div>
+              <div className="bg-danger-950/30 border border-danger-700/50 rounded-xl p-5">
+                <p className="text-2xl mb-2">⚡</p>
+                <h3 className="text-base md:text-lg font-black text-[#f7f5ef] mb-2">
+                  The e-moto
+                </h3>
+                <p className="text-sm text-[#c7c3b8] leading-relaxed">
+                  110 to 200 pounds of machine. Battery-powered. 45+ mph by the
+                  spec sheet, no fitness required, no training included, never
+                  gets tired.
+                </p>
+              </div>
+              <div className="bg-[#1a1a1a] border border-[#2c2c2c] rounded-xl p-5">
+                <p className="text-2xl mb-2">⛳</p>
+                <h3 className="text-base md:text-lg font-black text-[#f7f5ef] mb-2">
+                  A golf cart
+                </h3>
+                <p className="text-sm text-[#c7c3b8] leading-relaxed">
+                  Around 900 pounds, factory-limited to roughly 15 mph. If a
+                  ten-year-old drove one down your street, you&apos;d call 911.
+                </p>
+              </div>
+            </div>
+
+            <GolfCartSlider />
+
+            <div className="space-y-3 text-base md:text-lg text-[#c7c3b8] leading-relaxed">
+              <p>
+                Run the physics once. A kid plus an e-moto at 40 mph carries{" "}
+                <B>about twenty times the crash energy</B> of the same kid on
+                his pedal bike at 12 mph.
+              </p>
+              <p>
+                Twenty times. That&apos;s the difference your
+                &ldquo;literally&rdquo; is trying to paper over.
+              </p>
+              <p>
+                So sure, it might as well be a golf cart. Except the golf cart
+                is <B>slower</B>, and you would absolutely stop the ten-year-old
+                driving the golf cart.
+              </p>
+              <p className="text-[#f7f5ef] font-bold">
+                A bicycle is a toy a kid powers with his body. This is a motor
+                vehicle a kid merely points. They are not the same thing, and
+                everyone typing otherwise knows it.
+              </p>
+            </div>
+
+            <div className="mt-7 flex flex-wrap items-center gap-4">
+              <BackToSign label="Not the same thing — Sign" />
+              <a
+                href="#jump"
+                className="text-xs md:text-sm font-black uppercase tracking-widest text-[#8a867c] hover:text-[#f7f5ef] transition-colors"
+              >
+                ↑ Menu
+              </a>
+            </div>
+          </motion.div>
         </div>
       </section>
 
@@ -1185,8 +1852,8 @@ export default function StupidityPage() {
             </h2>
             <div className="space-y-3 text-base md:text-lg text-[#c7c3b8] leading-relaxed">
               <p>
-                Before any official gets ideas: none of this is an argument
-                for Flock readers or one more surveillance layer.
+                Before any official gets ideas: none of this is an argument for
+                Flock readers or one more surveillance layer.
               </p>
               <p>
                 That&apos;s more societal fuckery, and it wouldn&apos;t even
@@ -1197,22 +1864,22 @@ export default function StupidityPage() {
                 don&apos;t have any.
               </p>
               <p>
-                The flagship surveillance tool of American suburbia is blind
-                to the one vehicle on our streets breaking the law daily.
+                The flagship surveillance tool of American suburbia is blind to
+                the one vehicle on our streets breaking the law daily.
               </p>
               <p>
-                Sit with that irony. Your plate gets scanned and logged
-                every drive to work. Your Fourth Amendment gets chipped away
-                one camera pole at a time.
+                Sit with that irony. Your plate gets scanned and logged every
+                drive to work. Your Fourth Amendment gets chipped away one
+                camera pole at a time.
               </p>
               <p>
-                And the kids with no plates, no registration, and no rules
-                are <B>the only ones the system can&apos;t touch</B>.
+                And the kids with no plates, no registration, and no rules are{" "}
+                <B>the only ones the system can&apos;t touch</B>.
               </p>
               <p>
                 We&apos;re not asking for more cameras pointed at everyone.
-                We&apos;re asking for existing laws enforced against the
-                people breaking them.
+                We&apos;re asking for existing laws enforced against the people
+                breaking them.
               </p>
             </div>
             <CardImage
@@ -1261,50 +1928,56 @@ export default function StupidityPage() {
                 little.
               </p>
               <p>
-                A kid sneaks a cigarette in the woods? Don&apos;t care. A
-                couple of 15-year-olds crack a beer in the basement? None of
-                our business.
+                A kid sneaks a cigarette in the woods? Don&apos;t care. A couple
+                of 15-year-olds crack a beer in the basement? None of our
+                business.
               </p>
               <p>
-                Getting away with a little something is half the point of
-                being a kid, and every one of us did it.
+                Getting away with a little something is half the point of being
+                a kid, and every one of us did it.
               </p>
               <p>
                 The line is old and it&apos;s simple:{" "}
                 <B>disturbing the fucking peace.</B>
               </p>
               <p>
-                Your fun is your business right up until it puts the rest of
-                us in danger. A toddler on a sidewalk becomes a near-miss. A
+                Your fun is your business right up until it puts the rest of us
+                in danger. A toddler on a sidewalk becomes a near-miss. A
                 grandmother times her walk around street racing.
               </p>
               <p>That&apos;s when your fun became our business.</p>
             </div>
 
             {/* No-confrontation promise — its own headline so nobody misses it */}
-            <div id="no-confrontation" className="border-l-4 border-danger-600 pl-5 mt-7 mb-7 scroll-mt-28">
+            <div
+              id="no-confrontation"
+              className="border-l-4 border-danger-600 pl-5 mt-7 mb-7 scroll-mt-28"
+            >
               <h3 className="text-xl md:text-2xl font-black text-[#f7f5ef] leading-snug mb-3">
                 And read this part twice: this is NOT a call to confront the
                 kids.
               </h3>
               <div className="space-y-3 text-base md:text-lg text-[#c7c3b8] leading-relaxed">
                 <p>
-                  We live in a society that loves to flip the script and
-                  punish the person who got fed up.
+                  We live in a society that loves to flip the script and punish
+                  the person who got fed up.
                 </p>
                 <p>
-                  So let&apos;s be crystal clear: <B>do not chase them,
-                  follow them home, or go citizen vigilante.</B>
+                  So let&apos;s be crystal clear:{" "}
+                  <B>
+                    do not chase them, follow them home, or go citizen
+                    vigilante.
+                  </B>
                 </p>
                 <p>
-                  Rage-follow a kid to his front door and congratulations:
-                  you just handed the lawbreakers a victim card and bought
-                  yourself a whole new set of legal problems.
+                  Rage-follow a kid to his front door and congratulations: you
+                  just handed the lawbreakers a victim card and bought yourself
+                  a whole new set of legal problems.
                 </p>
                 <p>
-                  This is a call to confront the parents, the elected
-                  officials, and the police who allow illegal acts to
-                  continue. On paper. In board meetings. On the record.
+                  This is a call to confront the parents, the elected officials,
+                  and the police who allow illegal acts to continue. On paper.
+                  In board meetings. On the record.
                 </p>
                 <p>
                   <B>The petition is your outlet.</B>
@@ -1313,9 +1986,9 @@ export default function StupidityPage() {
             </div>
 
             <p className="text-[#f7f5ef] font-bold text-base md:text-lg leading-relaxed">
-              That&apos;s the whole manifesto. It fits on an index card. Act
-              up on your own dime, and nobody here blinks. Put us at risk,
-              and we show up with signatures, statutes, and lawsuits.
+              That&apos;s the whole manifesto. It fits on an index card. Act up
+              on your own dime, and nobody here blinks. Put us at risk, and we
+              show up with signatures, statutes, and lawsuits.
             </p>
             <div className="mt-7 flex flex-wrap items-center gap-4">
               <SignCta small label="That's my line too. Sign." />
@@ -1357,34 +2030,114 @@ export default function StupidityPage() {
                 Welcome, parents. This is the reaction.
               </p>
               <div className="text-base md:text-lg text-[#c7c3b8] leading-relaxed max-w-xl mx-auto mb-9 space-y-3 text-left md:text-center">
+                <p>For every action there is an equal and opposite reaction.</p>
                 <p>
-                  For every action there is an equal and opposite reaction.
+                  The action was handing kids illegal 40-mph machines, ignoring
+                  the throttle, and shrugging at the near-misses.
                 </p>
                 <p>
-                  The action was handing kids illegal 40-mph machines,
-                  ignoring the throttle, and shrugging at the near-misses.
-                </p>
-                <p>
-                  The reaction is the ten kinds of stupid above and one
+                  The reaction is the eleven kinds of stupid above and one
                   signature below: enforce the laws, impound the machines,{" "}
                   <B>hold the parents accountable</B>.
                 </p>
                 <p>
                   Think the find-out is hypothetical? A California mother is
                   facing{" "}
-                  <B>felony involuntary manslaughter and felony child
-                  endangerment</B>{" "}
-                  right now, because she kept letting her 14-year-old ride
-                  the e-motorcycle he used to kill an 81-year-old veteran.
+                  <B>
+                    felony involuntary manslaughter and felony child
+                    endangerment
+                  </B>{" "}
+                  right now, because she kept letting her 14-year-old ride the
+                  e-motorcycle he used to kill an 81-year-old veteran.
                 </p>
                 <p>
-                  New York has the same lever, and it names you directly:
-                  Penal Law § 260.10, endangering the welfare of a child.
+                  New York has the same lever, and it names you directly: Penal
+                  Law § 260.10, endangering the welfare of a child.
                 </p>
                 <p>It takes 30 seconds.</p>
               </div>
               <SignCta label="This Is the Find-Out. Sign." />
               <MiniNav />
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      <Divider />
+
+      {/* ═══════════════════ THE WARNING ═══════════════════ */}
+      <section className="pb-12 px-4 scroll-mt-24">
+        <div className="max-w-3xl mx-auto">
+          {/* ── THE WARNING ── */}
+
+          <motion.div
+            id="the-warning"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-40px" }}
+            variants={fadeUp}
+            custom={0}
+            className="bg-[#131313] border-2 border-amber-700/60 rounded-2xl p-7 md:p-10 mb-8 scroll-mt-24"
+          >
+            <p className="text-xs md:text-sm font-black text-amber-500 uppercase tracking-widest mb-3 flex items-center gap-2">
+              <Video className="w-4 h-4" />
+              An extreme warning, offered for free
+            </p>
+            <h3 className="text-2xl md:text-3xl font-black text-[#f7f5ef] leading-snug mb-5">
+              Did you forget that everyone and their mother has cameras now?
+            </h3>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/stupidity/stupidity-cameras.png"
+              alt="Cartoon of a night street where every porch doorbell camera points its beam at a kid doing a wheelie"
+              loading="lazy"
+              className="w-full rounded-xl border border-[#2c2c2c] mb-6"
+              onError={(e) => {
+                (e.currentTarget as HTMLImageElement).style.display = "none";
+              }}
+            />
+            <div className="space-y-4 text-base md:text-lg text-[#c7c3b8] leading-relaxed">
+              <p>
+                Ring. Nest. Blink. Doorbell cams, garage cams, dashcams, porch
+                cams.
+              </p>
+              <p>
+                Every house on every block records everything, 24/7, in HD, from
+                multiple angles.
+              </p>
+              <p>
+                Every wheelie past a stroller, every profanity screamed at a dog
+                walker, every blown stop sign:{" "}
+                <B>
+                  it&apos;s already on somebody&apos;s cloud storage with a
+                  timestamp.
+                </B>
+              </p>
+              <p>
+                So when your kid fucks up (and at 40 mph, fucking up has a body
+                count) the evidence package will assemble itself before the
+                ambulance leaves the block.
+              </p>
+              <p>
+                The footage will be found. The dates will line up. The warnings
+                you ignored will be in the record. <B>We guarantee it.</B>
+              </p>
+              <p>
+                Ask the mother in Orange County. Deputies warned her, on the
+                record, ten months before her son killed a man.{" "}
+                <strong className="text-danger-400">
+                  That record is now the case against her.
+                </strong>
+              </p>
+            </div>
+            <div className="mt-7 flex flex-wrap items-center gap-4">
+              <BackToSign label="Sign it before the sirens" />
+              <a
+                href="#jump"
+                className="text-xs md:text-sm font-black uppercase tracking-widest text-[#8a867c] hover:text-[#f7f5ef] transition-colors"
+              >
+                ↑ Menu
+              </a>
             </div>
           </motion.div>
         </div>
@@ -1401,9 +2154,9 @@ export default function StupidityPage() {
               <span className="text-danger-500">Stupidity</span>.
             </h2>
             <p className="text-lg md:text-xl text-[#b3afa4] max-w-xl mx-auto leading-relaxed">
-              Thirty seconds. Your name on the record says: our streets are
-              not a racetrack, and &ldquo;we can&apos;t&rdquo; is not an
-              answer.
+              Thirty seconds. Your name on the record says: our streets are not
+              a racetrack, and &ldquo;there&apos;s nothin&apos; we can do about
+              it&rdquo; is not an answer.
             </p>
 
             {/* Signature counter — auto-shows at 25+ signatures */}
@@ -1429,7 +2182,7 @@ export default function StupidityPage() {
             <div className="bg-emerald-950/40 border border-emerald-700/40 rounded-2xl p-8 md:p-12 text-center">
               <CheckCircle2 className="w-16 h-16 text-emerald-400 mx-auto mb-4" />
               <h3 className="text-2xl md:text-3xl font-black text-[#f7f5ef] mb-3">
-                Signed. You&apos;re on the Record.
+                Signed. Thank you, neighbor.
               </h3>
               <p className="text-emerald-200/80 text-lg mb-6">
                 Thank you. Check your inbox for confirmation, then send{" "}
@@ -1449,7 +2202,7 @@ export default function StupidityPage() {
                   href="#the-facts"
                   className="w-full sm:w-auto px-6 py-3 bg-white/5 border border-white/10 text-[#c7c3b8] hover:text-white hover:bg-white/10 font-bold rounded-xl transition-all text-sm"
                 >
-                  Read the Facts ↓
+                  Read the Facts ↑
                 </a>
               </div>
             </div>
@@ -1463,7 +2216,11 @@ export default function StupidityPage() {
                     <div className="flex items-center gap-2 flex-wrap">
                       <MessageSquareQuote className="w-4 h-4 text-emerald-400" />
                       <span className="text-xs font-bold text-emerald-400 uppercase tracking-widest">
-                        {commentTotal} Real, Unedited {commentTotal === 1 ? "Comment" : "Comments"}{signatureCount ? ` / ${signatureCount} Signatures` : ""}
+                        {commentTotal} Real, Unedited{" "}
+                        {commentTotal === 1 ? "Comment" : "Comments"}
+                        {signatureCount
+                          ? ` / ${signatureCount} Signatures`
+                          : ""}
                       </span>
                       <span className="text-[10px] text-[#6b675e] font-medium">
                         — verified petition signers, not fluffed, not faked
@@ -1474,7 +2231,11 @@ export default function StupidityPage() {
                         type="button"
                         onClick={() => {
                           const el = voicesRef.current;
-                          if (el) el.scrollTo({ left: Math.max(0, el.scrollLeft - 290), behavior: "smooth" });
+                          if (el)
+                            el.scrollTo({
+                              left: Math.max(0, el.scrollLeft - 290),
+                              behavior: "smooth",
+                            });
                         }}
                         className="w-7 h-7 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center text-emerald-400 hover:bg-white/10 hover:text-emerald-300 transition-all"
                         aria-label="Scroll left"
@@ -1487,7 +2248,10 @@ export default function StupidityPage() {
                           const el = voicesRef.current;
                           if (el) {
                             const maxScroll = el.scrollWidth - el.clientWidth;
-                            el.scrollTo({ left: Math.min(maxScroll, el.scrollLeft + 290), behavior: "smooth" });
+                            el.scrollTo({
+                              left: Math.min(maxScroll, el.scrollLeft + 290),
+                              behavior: "smooth",
+                            });
                           }
                         }}
                         className="w-7 h-7 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center text-emerald-400 hover:bg-white/10 hover:text-emerald-300 transition-all"
@@ -1500,7 +2264,13 @@ export default function StupidityPage() {
                   <div
                     ref={voicesRef}
                     className="flex gap-3 overflow-x-auto snap-x snap-mandatory pb-2 -mx-1 px-1"
-                    style={{ scrollbarWidth: "none", msOverflowStyle: "none", WebkitOverflowScrolling: "touch" } as React.CSSProperties}
+                    style={
+                      {
+                        scrollbarWidth: "none",
+                        msOverflowStyle: "none",
+                        WebkitOverflowScrolling: "touch",
+                      } as React.CSSProperties
+                    }
                   >
                     {comments.map((c, i) => (
                       <div
@@ -1566,7 +2336,14 @@ export default function StupidityPage() {
                           ✕
                         </button>
                       </div>
-                      <div className="overflow-y-auto flex-1 px-6 pb-2 overscroll-contain" style={{ WebkitOverflowScrolling: "touch" } as React.CSSProperties}>
+                      <div
+                        className="overflow-y-auto flex-1 px-6 pb-2 overscroll-contain"
+                        style={
+                          {
+                            WebkitOverflowScrolling: "touch",
+                          } as React.CSSProperties
+                        }
+                      >
                         <p className="text-[#f2f0ea] text-base leading-relaxed whitespace-pre-wrap">
                           &ldquo;{expandedComment.comment}&rdquo;
                         </p>
@@ -1579,9 +2356,13 @@ export default function StupidityPage() {
                           {expandedComment.name}
                         </span>
                         {expandedComment.zip && (
-                          <span className="text-[#55524a]">• {expandedComment.zip}</span>
+                          <span className="text-[#55524a]">
+                            • {expandedComment.zip}
+                          </span>
                         )}
-                        <span className="ml-auto">{timeAgo(expandedComment.date)}</span>
+                        <span className="ml-auto">
+                          {timeAgo(expandedComment.date)}
+                        </span>
                       </div>
                     </motion.div>
                   </motion.div>
@@ -1610,55 +2391,93 @@ export default function StupidityPage() {
                 </p>
                 <p className="text-xs text-[#d6d2c8] leading-relaxed mb-3">
                   WE, THE UNDERSIGNED residents of Liverpool, the Town of
-                  Salina, and surrounding Onondaga County communities,
-                  declare that the illegal operation of e-bikes and electric
-                  motorcycles by unlicensed minors on our streets, sidewalks,
-                  parks, and trails, at speeds of 25 to 40+ mph, in live
-                  traffic, through pedestrian spaces, with repeated
-                  near-misses and escalating intimidation of residents, is an
-                  active public-safety emergency. We demand:
+                  Salina, and surrounding Onondaga County communities, declare
+                  that the illegal operation of e-bikes and electric motorcycles
+                  by unlicensed minors on our streets, sidewalks, parks, and
+                  trails, at speeds of 25 to 40+ mph, in live traffic, through
+                  pedestrian spaces, with repeated near-misses and escalating
+                  intimidation of residents, is an active public-safety
+                  emergency. We demand:
                 </p>
                 <div className="space-y-1.5 mb-3">
                   <p className="text-xs text-[#d6d2c8] leading-relaxed">
-                    <strong className="text-[#f7f5ef]">1. Enforcement of existing law:</strong>{" "}
-                    New York&apos;s 16+ minimum age for operating any class
-                    of e-bike, and the prohibition on unregistered, uninsured
+                    <strong className="text-[#f7f5ef]">
+                      1. Enforcement of existing law:
+                    </strong>{" "}
+                    New York&apos;s 16+ minimum age for operating any class of
+                    e-bike, and the prohibition on unregistered, uninsured
                     electric motorcycles on public roads.
                   </p>
                   <p className="text-xs text-[#d6d2c8] leading-relaxed">
-                    <strong className="text-[#f7f5ef]">2. Impoundment authority:</strong>{" "}
-                    a local ordinance authorizing seizure of illegally
-                    operated machines, with escalating penalties for repeat
-                    offenses.
+                    <strong className="text-[#f7f5ef]">
+                      2. Impoundment authority:
+                    </strong>{" "}
+                    a local ordinance authorizing seizure of illegally operated
+                    machines, with escalating penalties for repeat offenses.
                   </p>
                   <p className="text-xs text-[#d6d2c8] leading-relaxed">
-                    <strong className="text-[#f7f5ef]">3. Parental accountability:</strong>{" "}
-                    civil penalties for the adults who purchase these
-                    machines for minors and enable their illegal operation,
-                    and, where the facts warrant it, prosecution under New
-                    York Penal Law § 260.10 (endangering the welfare of a
-                    child).
+                    <strong className="text-[#f7f5ef]">
+                      3. Parental accountability:
+                    </strong>{" "}
+                    civil penalties for the adults who purchase these machines
+                    for minors and enable their illegal operation, and, where
+                    the facts warrant it, prosecution under New York Penal Law §
+                    260.10 (endangering the welfare of a child).
                   </p>
                   <p className="text-xs text-[#d6d2c8] leading-relaxed">
-                    <strong className="text-[#f7f5ef]">4. A written enforcement protocol</strong>{" "}
-                    between local law enforcement agencies and our town,
-                    village, and county governments, so that
-                    &ldquo;we can&apos;t&rdquo; is never again the final
-                    answer.
+                    <strong className="text-[#f7f5ef]">
+                      4. A parent on the scene:
+                    </strong>{" "}
+                    immediate parent or guardian notification for ANY
+                    enforcement stop involving a minor, with the parent required
+                    to respond in person, and no impounded machine released to
+                    anyone but a parent or guardian.
+                  </p>
+                  <p className="text-xs text-[#d6d2c8] leading-relaxed">
+                    <strong className="text-[#f7f5ef]">
+                      5. Targeted patrols, not dragnets:
+                    </strong>{" "}
+                    recurring, publicized enforcement details at the known
+                    corridors and peak hours — Buckley Road, Electronics
+                    Parkway, and our parks — aimed specifically at illegal
+                    machines. No general checkpoints, no new surveillance of
+                    everyone.
+                  </p>
+                  <p className="text-xs text-[#d6d2c8] leading-relaxed">
+                    <strong className="text-[#f7f5ef]">
+                      6. A written escalation ladder
+                    </strong>{" "}
+                    adopted between local law enforcement and our town, village,
+                    and county governments: first stop, a logged warning and the
+                    parents notified; second stop, a citation to the enabling
+                    adult and impound eligibility; third stop, impoundment plus
+                    referral under § 260.10 — so that &ldquo;there&apos;s
+                    nothin&apos; we can do about it&rdquo; is never again the
+                    final answer.
                   </p>
                 </div>
                 <p className="text-xs text-[#d6d2c8] leading-relaxed font-semibold">
                   Directed to the Village of Liverpool Mayor and Board of
-                  Trustees; Town of Salina Supervisor Raul Huerta and the
-                  Town Board; the Onondaga County Sheriff&apos;s Office; the
-                  Onondaga County Legislature; State Senator Christopher
-                  Ryan; and Assemblymember Pamela Hunter.
+                  Trustees; Town of Salina Supervisor Raul Huerta and the Town
+                  Board; the Onondaga County Sheriff&apos;s Office; the Onondaga
+                  County Legislature; State Senator Christopher Ryan; and
+                  Assemblymember Pamela Hunter.
                 </p>
               </div>
 
               <form onSubmit={handleSubmit} className="space-y-4">
                 {/* Honeypot — invisible to humans, bots auto-fill it */}
-                <div aria-hidden="true" style={{ position: "absolute", left: "-9999px", top: "-9999px", opacity: 0, height: 0, overflow: "hidden" }}>
+                <div
+                  aria-hidden="true"
+                  style={{
+                    position: "absolute",
+                    left: "-9999px",
+                    top: "-9999px",
+                    opacity: 0,
+                    height: 0,
+                    overflow: "hidden",
+                  }}
+                >
                   <label htmlFor="website">Website</label>
                   <input
                     type="text"
@@ -1839,14 +2658,13 @@ export default function StupidityPage() {
                     />
                     <div>
                       <span className="text-sm text-[#c7c3b8] group-hover:text-[#e8e5de] transition-colors">
-                        Yes, you may contact me with updates about this
-                        campaign and ways to get involved.
+                        Yes, you may contact me with updates about this campaign
+                        and ways to get involved.
                       </span>
                       <p className="text-xs text-[#6b675e] mt-0.5 italic">
-                        If left unchecked, we will ONLY email you for
-                        critical alerts: serious incidents, town or village
-                        board votes, or material updates to our formal
-                        demands.
+                        If left unchecked, we will ONLY email you for critical
+                        alerts: serious incidents, town or village board votes,
+                        or material updates to our formal demands.
                       </p>
                     </div>
                   </label>
@@ -1904,22 +2722,21 @@ export default function StupidityPage() {
                     <span className="font-bold text-[#c7c3b8] block mb-1.5 text-sm">
                       Privacy Notice — How Your Signature Will Be Used
                     </span>
-                    Signatures may be formally presented to elected officials
-                    as a numbered document. At a minimum, your{" "}
+                    Signatures may be formally presented to elected officials as
+                    a numbered document. At a minimum, your{" "}
                     <strong className="text-[#f7f5ef]">full name</strong> and{" "}
                     <strong className="text-[#f7f5ef]">zip code</strong> will
-                    become part of the public record. If provided, your
-                    street address and comment may also be printed and shared
-                    with officials to demonstrate direct community impact.
+                    become part of the public record. If provided, your street
+                    address and comment may also be printed and shared with
+                    officials to demonstrate direct community impact.
                   </p>
                   <p className="text-[13px] text-[#8a867c] leading-relaxed mt-2.5">
                     Your email address and phone number (if provided) are
-                    collected strictly for signature verification and
-                    campaign alerts (subject to your opt-in preferences).
-                    They will never be printed, shared with officials, or
-                    made public. We will never sell or trade your
-                    information. You may revoke your consent at any time
-                    prior to formal submission by emailing{" "}
+                    collected strictly for signature verification and campaign
+                    alerts (subject to your opt-in preferences). They will never
+                    be printed, shared with officials, or made public. We will
+                    never sell or trade your information. You may revoke your
+                    consent at any time prior to formal submission by emailing{" "}
                     <a
                       href="mailto:takeaction@protectliverpoolny.org"
                       className="text-danger-500 hover:text-danger-400 transition-colors font-medium"
@@ -1949,12 +2766,12 @@ export default function StupidityPage() {
                           : "text-[#c7c3b8] group-hover:text-[#e8e5de]"
                       }`}
                     >
-                      I agree to the Privacy Notice and understand that my
-                      name and zip code may appear on a formal document
-                      presented to elected officials. I also agree this is
-                      NOT a call to confront anyone: I will not confront,
-                      chase, follow, or harass the riders or their families.
-                      The petition is the outlet.*{" "}
+                      I agree to the Privacy Notice and understand that my name
+                      and zip code may appear on a formal document presented to
+                      elected officials. I also agree this is NOT a call to
+                      confront anyone: I will not confront, chase, follow, or
+                      harass the riders or their families. The petition is the
+                      outlet.*{" "}
                       <a
                         href="#no-confrontation"
                         className="text-danger-500 hover:text-danger-400 font-bold whitespace-nowrap transition-colors"
@@ -1996,9 +2813,8 @@ export default function StupidityPage() {
                 </button>
 
                 <p className="text-center text-xs text-[#6b675e] pt-2">
-                  New York State is screwing this neighborhood more ways
-                  than one. The 184-foot tower they parked over our houses
-                  is{" "}
+                  New York State is screwing this neighborhood more ways than
+                  one. The 184-foot tower they parked over our houses is{" "}
                   <a
                     href="/"
                     target="_blank"
@@ -2015,447 +2831,18 @@ export default function StupidityPage() {
           {/* ── Jump to the facts ── */}
           <div className="text-center mt-8">
             <a
-              href="#the-facts"
+              href="#faq"
               className="inline-flex items-center gap-2 px-7 py-4 bg-white/5 border-2 border-danger-700/60 text-[#f7f5ef] hover:bg-danger-950/40 hover:border-danger-500 font-black uppercase tracking-wide text-base md:text-lg rounded-xl transition-all"
             >
-              Wait — WHY is this so stupid? Just the facts
+              Still on the fence? Asked &amp; Answered
               <ArrowDown className="w-5 h-5 text-danger-500" />
             </a>
           </div>
         </div>
       </section>
 
-      {/* Second jump menu — right where signers land and decide what's next */}
+      {/* Second jump menu — post-ask navigation */}
       <JumpMenu />
-
-      <Divider />
-
-      {/* ═══════════════════ JUST THE FACTS ═══════════════════ */}
-      <section id="the-facts" className="pt-12 md:pt-16 pb-8 px-4 scroll-mt-24">
-        <div className="max-w-3xl mx-auto">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={fadeUp}
-            custom={0}
-            className="text-center mb-10"
-          >
-            <span className="inline-flex items-center gap-2 px-5 py-2.5 bg-danger-950/60 border border-danger-700/50 rounded-full text-danger-400 text-xs md:text-sm font-black uppercase tracking-widest mb-6">
-              <Scale className="w-4 h-4" />
-              No Opinions Below This Line
-            </span>
-            <h2 className="text-4xl md:text-5xl font-black tracking-tight text-[#f7f5ef] mb-4">
-              Just the <span className="text-danger-500">Facts</span>.
-            </h2>
-            <p className="text-lg md:text-xl text-[#b3afa4] max-w-2xl mx-auto leading-relaxed">
-              Laws, numbers, charges, case files. Every claim sourced.
-            </p>
-            <p className="text-base md:text-lg text-[#8a867c] max-w-2xl mx-auto leading-relaxed mt-2">
-              Forward this to the neighbor who thinks we&apos;re
-              overreacting.
-            </p>
-          </motion.div>
-
-          {/* ── THE CASE ── */}
-          <motion.div
-            id="the-case"
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-40px" }}
-            variants={fadeUp}
-            custom={0}
-            className="bg-[#131313] border-2 border-danger-800/60 rounded-2xl p-7 md:p-10 mb-8 scroll-mt-24"
-          >
-            <p className="text-xs md:text-sm font-black text-danger-500 uppercase tracking-widest mb-3">
-              It already happened, and a mother is facing prison
-            </p>
-            <h3 className="text-2xl md:text-3xl font-black text-[#f7f5ef] leading-snug mb-5">
-              A 14-year-old doing wheelies on an e-motorcycle killed an
-              81-year-old Vietnam combat veteran. Prosecutors charged his
-              mother.
-            </h3>
-
-            <div className="relative aspect-video rounded-xl overflow-hidden border border-[#2c2c2c] mb-6 bg-black">
-              <iframe
-                className="absolute inset-0 w-full h-full"
-                src="https://www.youtube-nocookie.com/embed/B-YJ9gSbJkY"
-                title="CBS LA: Orange County mom faces judge over charges connected to deadly e-bike crash involving son"
-                allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-                loading="lazy"
-                referrerPolicy="strict-origin-when-cross-origin"
-              />
-            </div>
-
-            <div className="space-y-4 text-base md:text-lg text-[#c7c3b8] leading-relaxed">
-              <p>April 16, 2026. Lake Forest, California (Orange County).</p>
-              <p>
-                A 14-year-old on a Sur-Ron Ultra Bee e-motorcycle,{" "}
-                <B>popping wheelies</B>, struck 81-year-old{" "}
-                <B>Ed Ashman</B>, a Marine Corps veteran who flew combat
-                missions in Vietnam, as he walked home near El Toro High
-                School.
-              </p>
-              <p>
-                He died of his injuries.{" "}
-                <Src href="https://abc7.com/post/aliso-viejo-mother-charged-teen-son-crashes-81-year-old-man-riding-motorcycle-leaving-critically-injured/18942740/">ABC7</Src>{" "}
-                <Src href="https://www.nbclosangeles.com/news/local/vietnam-veteran-mother-charged-e-motorcycle-crash-orange-county/3884457/">NBC LA</Src>
-              </p>
-              <p>
-                The rider&apos;s mother,{" "}
-                <B>Tommi Jo Mejer of Aliso Viejo</B>, is charged with{" "}
-                <strong className="text-danger-400">
-                  felony involuntary manslaughter, felony child endangerment,
-                  and accessory after the fact
-                </strong>
-                .{" "}
-                <Src href="https://orangecountyda.org/press/charges-upgraded-to-involuntary-manslaughter-against-aliso-viejo-mother-whose-14-year-old-son-killed-vietnam-veteran-while-child-was-illegally-riding-an-e-motorcycle-16-times-more-powerful-than-an-e/">OC District Attorney</Src>{" "}
-                <Src href="https://ktla.com/news/orange-county/o-c-moms-charges-upgraded-to-manslaughter-after-e-motorcycle-crash-death/">KTLA</Src>
-              </p>
-              <p>
-                Here&apos;s the part every parent in Liverpool should read
-                twice.
-              </p>
-              <p>
-                Deputies had <B>warned her ten months before the crash</B>{" "}
-                that she could face criminal charges if she kept letting her
-                son ride. She admitted she bought him the machine and knew
-                he rode recklessly.
-              </p>
-              <p>
-                She let him keep riding.{" "}
-                <Src href="https://orangecountyda.org/press/charges-upgraded-to-involuntary-manslaughter-against-aliso-viejo-mother-whose-14-year-old-son-killed-vietnam-veteran-while-child-was-illegally-riding-an-e-motorcycle-16-times-more-powerful-than-an-e/">OC District Attorney</Src>
-              </p>
-              <p>
-                The DA calls the machine{" "}
-                <B>&ldquo;16 times more powerful than an e-bike&rdquo;</B>{" "}
-                and warned parents he will prosecute them{" "}
-                <em>to the fullest extent of the law</em>.
-              </p>
-              <p className="text-[#f7f5ef] font-bold">
-                Every element of that story already exists on our streets.
-                The only element Liverpool hasn&apos;t supplied yet is the
-                body.
-              </p>
-            </div>
-
-            <div className="mt-7 flex flex-wrap items-center gap-4">
-              <BackToSign label="That's enough for me — Sign" />
-              <a
-                href="#jump"
-                className="text-xs md:text-sm font-black uppercase tracking-widest text-[#8a867c] hover:text-[#f7f5ef] transition-colors"
-              >
-                ↑ Menu
-              </a>
-            </div>
-          </motion.div>
-
-          {/* ── THE LAW ── */}
-          <motion.div
-            id="the-law"
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-40px" }}
-            variants={fadeUp}
-            custom={0}
-            className="mb-8 scroll-mt-24"
-          >
-            <h3 className="text-2xl md:text-3xl font-black text-[#f7f5ef] mb-6 text-center">
-              The law is not ambiguous.{" "}
-              <span className="text-danger-500">It's just unenforced.</span>
-            </h3>
-            <div className="grid md:grid-cols-2 gap-5">
-              {LAW_FACTS.map((f) => (
-                <div
-                  key={f.title}
-                  className="bg-[#131313] border border-[#2c2c2c] rounded-2xl p-6"
-                >
-                  <h4 className="text-lg md:text-xl font-black text-[#f7f5ef] leading-snug mb-3">
-                    {f.title}
-                  </h4>
-                  <div className="text-sm md:text-base text-[#c7c3b8] leading-relaxed mb-4 space-y-2">
-                    {f.body}
-                  </div>
-                  <Src href={f.srcUrl}>Source: {f.srcName}</Src>
-                </div>
-              ))}
-            </div>
-
-            {/* The parent statute — full-width standout */}
-            <div className="bg-danger-950/30 border-2 border-danger-700/60 rounded-2xl p-6 md:p-8 mt-5">
-              <p className="text-xs md:text-sm font-black text-danger-400 uppercase tracking-widest mb-2">
-                The one the parents should read twice
-              </p>
-              <h4 className="text-xl md:text-2xl font-black text-[#f7f5ef] leading-snug mb-3">
-                New York already has a child-endangerment law with your name
-                on it: Penal Law § 260.10.
-              </h4>
-              <div className="text-sm md:text-base text-[#c7c3b8] leading-relaxed space-y-2">
-                <p>
-                  Subsection (1) covers anyone who{" "}
-                  <B>
-                    &ldquo;knowingly acts in a manner likely to be injurious
-                    to the physical, mental or moral welfare of a
-                    child&rdquo;
-                  </B>{" "}
-                  under 17.
-                </p>
-                <p>
-                  Handing your kid a 40-mph illegal machine fits that
-                  sentence like a glove.
-                </p>
-                <p>
-                  Subsection (2) goes further. It targets the parent who{" "}
-                  <B>
-                    &ldquo;fails or refuses to exercise reasonable diligence
-                    in the control of such child&rdquo;
-                  </B>{" "}
-                  to keep them from becoming a juvenile delinquent.
-                </p>
-                <p>A class A misdemeanor. On the books right now. Waiting to be used.</p>
-              </div>
-              <div className="mt-3">
-                <Src href="https://www.nysenate.gov/legislation/laws/PEN/260.10">
-                  Source: NY Penal Law § 260.10 (NY Senate)
-                </Src>
-              </div>
-            </div>
-
-            <p className="text-center text-sm md:text-base text-[#8a867c] mt-5 italic">
-              It&apos;s the same law that tickets you for an unregistered
-              car or that dead headlight. The difference? Yours gets
-              enforced.
-            </p>
-            <MiniNav />
-          </motion.div>
-
-          {/* ── THE NUMBERS ── */}
-          <motion.div
-            id="the-numbers"
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-40px" }}
-            variants={fadeUp}
-            custom={0}
-            className="mb-8 scroll-mt-24"
-          >
-            <h3 className="text-2xl md:text-3xl font-black text-[#f7f5ef] mb-6 text-center flex items-center justify-center gap-3">
-              <TrendingUp className="w-7 h-7 text-danger-500" />
-              The national numbers are screaming.
-            </h3>
-            <div className="grid sm:grid-cols-2 gap-5">
-              {STATS.map((s) => (
-                <div
-                  key={s.label}
-                  className="bg-[#131313] border border-[#2c2c2c] rounded-2xl p-6 text-center"
-                >
-                  <p className="text-4xl md:text-5xl font-black text-danger-500 mb-2">
-                    {s.stat}
-                  </p>
-                  <p className="text-sm md:text-base text-[#c7c3b8] leading-snug mb-3">
-                    {s.label}
-                  </p>
-                  <Src href={s.srcUrl}>Source: {s.srcName}</Src>
-                </div>
-              ))}
-            </div>
-            <div className="text-center mt-7">
-              <BackToSign label="The numbers are enough — Sign" />
-              <MiniNav />
-            </div>
-          </motion.div>
-
-          {/* ── THE SCIENCE ── */}
-          <motion.div
-            id="the-science"
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-40px" }}
-            variants={fadeUp}
-            custom={0}
-            className="bg-[#131313] border border-[#2c2c2c] rounded-2xl p-7 md:p-10 mb-8 scroll-mt-24"
-          >
-            <p className="text-xs md:text-sm font-black text-danger-500 uppercase tracking-widest mb-3">
-              The bravado and the pack: both are documented
-            </p>
-            <h3 className="text-2xl md:text-3xl font-black text-[#f7f5ef] leading-snug mb-5">
-              Give a kid a power machine and an audience, and science says
-              you get exactly this.
-            </h3>
-            <div className="space-y-5">
-              {STUDIES.map((s) => (
-                <div
-                  key={s.cite}
-                  className="border-l-2 border-danger-700/60 pl-5"
-                >
-                  <p className="text-base md:text-lg text-[#c7c3b8] leading-relaxed mb-2">
-                    {s.finding}
-                  </p>
-                  <Src href={s.srcUrl}>{s.cite}</Src>
-                </div>
-              ))}
-            </div>
-            <div className="text-base md:text-lg text-[#c7c3b8] leading-relaxed mt-6 space-y-3">
-              <p>
-                So it&apos;s a double whammy. The machine pumps the bravado
-                up, and the pack pays it out: throttle open, wheelies into
-                traffic, mouths running.
-              </p>
-              <p>
-                That&apos;s how you get a kid holding{" "}
-                <B>full throttle WITH traffic on Buckley Road</B>, no plate,
-                no helmet, while his friends film it.
-              </p>
-              <p className="text-[#f7f5ef] font-bold">
-                The research says they won&apos;t self-regulate. The adults
-                have to, and this petition is how.
-              </p>
-            </div>
-            <MiniNav />
-          </motion.div>
-
-          {/* ── "JUST AN E-BIKE" ── */}
-          <motion.div
-            id="both-illegal"
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-40px" }}
-            variants={fadeUp}
-            custom={0}
-            className="bg-danger-950/30 border-2 border-danger-700/60 rounded-2xl p-7 md:p-10 mb-8 scroll-mt-24"
-          >
-            <p className="text-xs md:text-sm font-black text-danger-400 uppercase tracking-widest mb-3">
-              The favorite excuse
-            </p>
-            <h3 className="text-2xl md:text-3xl font-black text-[#f7f5ef] leading-snug mb-2">
-              &ldquo;But it&apos;s just an e-bike, not an e-motorcycle.&rdquo;
-            </h3>
-            <p className="text-3xl md:text-4xl font-black text-danger-500 mb-6">
-              No. The way they&apos;re ridden here, BOTH are illegal.
-            </p>
-            <div className="grid md:grid-cols-2 gap-5 mb-6">
-              <div className="bg-[#131313]/80 border border-[#2c2c2c] rounded-xl p-6">
-                <div className="flex items-center gap-2 mb-3">
-                  <Zap className="w-5 h-5 text-danger-500" />
-                  <h4 className="text-lg font-black text-[#f7f5ef]">
-                    The e-motorcycle
-                  </h4>
-                </div>
-                <ul className="space-y-2 text-sm md:text-base text-[#c7c3b8] leading-relaxed list-disc pl-5">
-                  <li>
-                    No DOT equipment, no VIN pathway, no registration.
-                    Off-road only.
-                  </li>
-                  <li>
-                    On a public road it&apos;s an unregistered, uninsured
-                    motor vehicle.{" "}
-                    <B>Illegal every single time, ridden by anyone.</B>
-                  </li>
-                </ul>
-              </div>
-              <div className="bg-[#131313]/80 border border-[#2c2c2c] rounded-xl p-6">
-                <div className="flex items-center gap-2 mb-3">
-                  <Scale className="w-5 h-5 text-danger-500" />
-                  <h4 className="text-lg font-black text-[#f7f5ef]">
-                    The &ldquo;just an e-bike&rdquo;
-                  </h4>
-                </div>
-                <ul className="space-y-2 text-sm md:text-base text-[#c7c3b8] leading-relaxed list-disc pl-5">
-                  <li>
-                    Rider under 16? <B>Illegal.</B> Any class, statewide.
-                  </li>
-                  <li>
-                    Assisting past 20 mph outside NYC? <B>Illegal.</B>
-                  </li>
-                  <li>
-                    On the sidewalk? <B>Illegal</B>, unless a local law says
-                    otherwise.
-                  </li>
-                </ul>
-              </div>
-            </div>
-            <p className="text-lg md:text-xl font-black text-[#f7f5ef] text-center">
-              There is no legal version of what&apos;s happening on our
-              streets. <span className="text-danger-500">None.</span>
-            </p>
-            <div className="text-center mt-6">
-              <BackToSign label="No more excuses — Sign" />
-              <MiniNav />
-            </div>
-          </motion.div>
-
-          {/* ── THE WARNING ── */}
-          <motion.div
-            id="the-warning"
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-40px" }}
-            variants={fadeUp}
-            custom={0}
-            className="bg-[#131313] border-2 border-amber-700/60 rounded-2xl p-7 md:p-10 mb-8 scroll-mt-24"
-          >
-            <p className="text-xs md:text-sm font-black text-amber-500 uppercase tracking-widest mb-3 flex items-center gap-2">
-              <Video className="w-4 h-4" />
-              An extreme warning, offered for free
-            </p>
-            <h3 className="text-2xl md:text-3xl font-black text-[#f7f5ef] leading-snug mb-5">
-              Did you forget that everyone and their mother has cameras now?
-            </h3>
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src="/stupidity/stupidity-cameras.png"
-              alt="Cartoon of a night street where every porch doorbell camera points its beam at a kid doing a wheelie"
-              loading="lazy"
-              className="w-full rounded-xl border border-[#2c2c2c] mb-6"
-              onError={(e) => {
-                (e.currentTarget as HTMLImageElement).style.display = "none";
-              }}
-            />
-            <div className="space-y-4 text-base md:text-lg text-[#c7c3b8] leading-relaxed">
-              <p>
-                Ring. Nest. Blink. Doorbell cams, garage cams, dashcams,
-                porch cams.
-              </p>
-              <p>
-                Every house on every block records everything, 24/7, in HD,
-                from multiple angles.
-              </p>
-              <p>
-                Every wheelie past a stroller, every profanity screamed at a
-                dog walker, every blown stop sign:{" "}
-                <B>it&apos;s already on somebody&apos;s cloud storage with a timestamp.</B>
-              </p>
-              <p>
-                So when your kid fucks up (and at 40 mph, fucking up has a
-                body count) the evidence package will assemble itself before
-                the ambulance leaves the block.
-              </p>
-              <p>
-                The footage will be found. The dates will line up. The
-                warnings you ignored will be in the record.{" "}
-                <B>We guarantee it.</B>
-              </p>
-              <p>
-                Ask the mother in Orange County. Deputies warned her, on the
-                record, ten months before her son killed a man.{" "}
-                <strong className="text-danger-400">
-                  That record is now the case against her.
-                </strong>
-              </p>
-            </div>
-            <div className="mt-7 flex flex-wrap items-center gap-4">
-              <BackToSign label="Sign it before the sirens" />
-              <a
-                href="#jump"
-                className="text-xs md:text-sm font-black uppercase tracking-widest text-[#8a867c] hover:text-[#f7f5ef] transition-colors"
-              >
-                ↑ Menu
-              </a>
-            </div>
-          </motion.div>
-        </div>
-      </section>
 
       <Divider />
 
@@ -2478,8 +2865,8 @@ export default function StupidityPage() {
               The <span className="text-danger-500">NPC Corner</span>.
             </h2>
             <p className="text-base md:text-lg text-[#8a867c] mb-6">
-              Real takes from real keyboards around the neighborhood.
-              Stupidity verbatim.
+              Real takes from real keyboards around the neighborhood. Stupidity
+              verbatim.
             </p>
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
@@ -2500,8 +2887,8 @@ export default function StupidityPage() {
                 <span className="text-danger-500">dumb fuck.</span>
               </p>
               <p className="text-sm md:text-base text-[#8a867c] pt-1">
-                Every one of these excuses gets answered in the FAQ below,
-                with sources. Meanwhile, enjoy the exhibits.
+                Every one of these excuses gets answered in the FAQ below, with
+                sources. Meanwhile, enjoy the exhibits.
               </p>
             </div>
 
@@ -2574,10 +2961,10 @@ export default function StupidityPage() {
             <BackToSign label="Back up to the Petition — Sign" />
             <MiniNav />
             <p className="text-sm text-[#8a867c] mt-8 max-w-lg mx-auto leading-relaxed">
-              And by the way, New York State is fucking you over in more
-              ways than one. The same state that shrugs at illegal
-              motorcycles used a state-land loophole to plant a 184-foot
-              tower over our houses without a single public hearing.{" "}
+              And by the way, New York State is fucking you over in more ways
+              than one. The same state that shrugs at illegal motorcycles used a
+              state-land loophole to plant a 184-foot tower over our houses
+              without a single public hearing.{" "}
               <a
                 href="/"
                 target="_blank"

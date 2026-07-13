@@ -105,7 +105,7 @@ export async function POST(req: Request) {
     const { data, error } = await resend.emails.send({
       from: "Protect Liverpool NY <takeaction@protectliverpoolny.org>",
       to: email,
-      subject: "You're on the record. Our streets aren't a racetrack.",
+      subject: "Signed. Thank you for standing up for our streets.",
       html: `
 <!DOCTYPE html>
 <html>
@@ -113,36 +113,42 @@ export async function POST(req: Request) {
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 </head>
-<body style="margin:0;padding:0;background-color:#0a0a0a;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+<body style="margin:0;padding:0;background-color:#f7f5ef;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
   <div style="max-width:560px;margin:0 auto;padding:40px 24px;">
 
     <!-- Header -->
-    <div style="text-align:center;margin-bottom:32px;">
+    <div style="text-align:center;margin-bottom:28px;">
       <p style="font-size:22px;font-weight:800;margin:0;letter-spacing:-0.5px;">
-        <span style="color:#ffffff;">PROTECT</span><span style="color:#ef4444;">LIVERPOOL</span>
+        <span style="color:#0a0a0a;">PROTECT</span><span style="color:#dc2626;">LIVERPOOL</span>
       </p>
-      <p style="font-size:11px;font-weight:800;letter-spacing:2px;color:#ef4444;margin:8px 0 0;text-transform:uppercase;">The Stupidity — E-Bike Petition</p>
+      <p style="font-size:11px;font-weight:800;letter-spacing:2px;color:#dc2626;margin:8px 0 0;text-transform:uppercase;">The Stupidity — E-Bike Petition</p>
     </div>
 
     <!-- Main -->
-    <div style="background-color:#131313;border:1px solid #2c2c2c;border-radius:16px;padding:32px 24px;margin-bottom:24px;">
-      <h1 style="color:#f7f5ef;font-size:22px;margin:0 0 12px;">Signed. You're on the record, ${firstName}.</h1>
-      <p style="color:#c7c3b8;font-size:15px;line-height:1.6;margin:0 0 16px;">
-        Your signature joins the neighborhood's formal demand on the illegal e-bike and
-        e-motorcycle riding tearing through Liverpool's streets, parks, and sidewalks:
-        enforce the laws that already exist, impound the illegal machines, hold the
-        parents accountable, and put an enforcement protocol in writing so
-        &ldquo;we can't&rdquo; is never the final answer again.
+    <div style="background-color:#ffffff;border:1px solid #e5e1d6;border-radius:16px;padding:32px 24px;margin-bottom:24px;">
+      <h1 style="color:#0a0a0a;font-size:22px;margin:0 0 12px;">Thank you, ${firstName}. One more voice for our streets.</h1>
+      <p style="color:#4a463e;font-size:15px;line-height:1.6;margin:0 0 16px;">
+        Your signature joins a formal demand that starts on our block and carries
+        outward: Liverpool, Salina, Onondaga County, New York State, and every
+        neighborhood in the country watching the same machines tear through their
+        shared spaces.
       </p>
-      <p style="color:#c7c3b8;font-size:15px;line-height:1.6;margin:0 0 16px;">
+      <p style="color:#4a463e;font-size:15px;line-height:1.6;margin:0 0 16px;">
+        <strong style="color:#0a0a0a;">Not all laws are good. But the ones that are must
+        be enforced.</strong> Enforce what's already on the books, impound the illegal
+        machines, hold the parents accountable, and put an enforcement protocol in
+        writing so &ldquo;there's nothin' we can do about it&rdquo; is never the final
+        answer again.
+      </p>
+      <p style="color:#4a463e;font-size:15px;line-height:1.6;margin:0 0 16px;">
         This petition goes to the Village of Liverpool, the Town of Salina, the Onondaga
         County Sheriff's Office, the County Legislature, and our state representatives.
         Your name and zip code become part of that formal record.
       </p>
 
-      <div style="background-color:#1c1c1c;border:1px solid #2c2c2c;border-radius:10px;padding:16px;margin:0 0 16px;">
+      <div style="background-color:#f7f5ef;border:1px solid #e5e1d6;border-radius:10px;padding:16px;margin:0 0 16px;">
         <p style="color:#8a867c;font-size:12px;margin:0 0 8px;text-transform:uppercase;letter-spacing:1px;font-weight:700;">Your signature</p>
-        <p style="color:#f2f0ea;font-size:14px;line-height:1.7;margin:0;">
+        <p style="color:#0a0a0a;font-size:14px;line-height:1.7;margin:0;">
           ${firstName} ${lastName}<br/>
           Zip: ${zipCode}<br/>
           ${comment ? `Comment: &ldquo;${comment}&rdquo;<br/>` : ""}
@@ -151,8 +157,8 @@ export async function POST(req: Request) {
         </p>
       </div>
 
-      <p style="color:#c7c3b8;font-size:15px;line-height:1.6;margin:0 0 8px;">
-        <strong style="color:#f7f5ef;">The single most useful thing you can do next:</strong>
+      <p style="color:#4a463e;font-size:15px;line-height:1.6;margin:0 0 8px;">
+        <strong style="color:#0a0a0a;">The single most useful thing you can do next:</strong>
         send this page to one neighbor who hasn't seen it yet.
       </p>
       <p style="text-align:center;margin:20px 0 4px;">
@@ -161,13 +167,13 @@ export async function POST(req: Request) {
     </div>
 
     <!-- Footer -->
-    <p style="color:#6b675e;font-size:12px;line-height:1.6;text-align:center;margin:0;">
+    <p style="color:#8a867c;font-size:12px;line-height:1.6;text-align:center;margin:0;">
       ${optInContact
-        ? "You opted in to campaign updates, so we'll keep you posted on this fight."
+        ? "You opted in to campaign updates, so we'll keep you posted as this moves forward."
         : "You did not opt in to regular updates, so we will only email you for critical alerts: serious incidents, board votes, or material changes to the formal demands."}
       <br/><br/>
       To revoke your signature before formal submission, email
-      <a href="mailto:takeaction@protectliverpoolny.org" style="color:#ef4444;">takeaction@protectliverpoolny.org</a>.
+      <a href="mailto:takeaction@protectliverpoolny.org" style="color:#dc2626;">takeaction@protectliverpoolny.org</a>.
       <br/>
       Protect Liverpool NY &middot; Liverpool, New York
     </p>
