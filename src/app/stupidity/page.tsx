@@ -37,6 +37,7 @@ import {
   MessageSquareQuote,
   ShoppingCart,
   Waves,
+  Siren,
   Video,
   TrendingUp,
   HelpCircle,
@@ -152,7 +153,7 @@ const JUMP_GROUPS: {
   {
     title: "The Evidence",
     links: [
-      { href: "#witness", label: "👀 Seen With Our Own Eyes" },
+      { href: "#witness", label: "🚨 Read This First" },
       { href: "#tally", label: "🤡 The Stupidity Tally" },
       { href: "#the-case", label: "💀 The Manslaughter Case", video: true },
       { href: "#the-law", label: "⚖️ The Law Nobody Enforces" },
@@ -338,8 +339,8 @@ const stupidities: Stupidity[] = [
           and can&apos;t steer.
         </p>
         <p>
-          At 40 mph he&apos;s covering <B>close to 60 feet every second</B> on a
-          machine he&apos;s owned for a month, with zero training.
+          At 40 mph he&apos;s covering <B>close to 60 feet every second</B>{" "}
+          on a machine he&apos;s owned for a month, with zero training.
         </p>
         <p>
           And the full-face helmet with the dark visor? That&apos;s not safety
@@ -1361,12 +1362,11 @@ export default function StupidityPage() {
             transition={{ duration: 0.6, delay: 0.3 }}
             className="text-xl md:text-2xl text-[#d6d2c8] max-w-3xl mx-auto leading-relaxed mb-5 font-medium"
           >
-            Unlicensed minors on e-motorcycles and e-bikes going 25-40+ mph.
-            Wheelies down the middle of the road. Races through the
-            neighborhood. Through our parks and on sidewalks. Dangerously close
-            to your law-abiding children, families, dogs, seniors, and other
-            vulnerable people. And with an attitude that makes you feel like
-            you're the one in the wrong.
+            Unlicensed kids. Illegal machines.{" "}
+            <B>40 mph past your children, your dog, your grandmother.</B>{" "}
+            Wheelies down the middle of the road. Races through the parks,
+            down the sidewalks. And when you object, the attitude says{" "}
+            <B>you&apos;re the problem</B>.
           </motion.p>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -1374,9 +1374,9 @@ export default function StupidityPage() {
             transition={{ duration: 0.6, delay: 0.4 }}
             className="text-lg md:text-xl text-[#b3afa4] max-w-3xl mx-auto leading-relaxed mb-7"
           >
-            The parents allow it. The police refuse to enforce it. And I&apos;m
-            sorry, who&apos;s paying taxes here? Try driving down the same
-            street with a headlight out and see how fast you get pulled over.{" "}
+            The parents allow it. The police recite{" "}
+            <B>&ldquo;there&apos;s nothin&apos; we can do about it.&rdquo;</B>{" "}
+            Your dead headlight? Pulled over in a minute.{" "}
             <span className="text-[#f7f5ef] font-bold">
               That&apos;s the stupid part.
             </span>
@@ -1418,19 +1418,45 @@ export default function StupidityPage() {
             className="bg-[#131313] border-l-4 border-danger-600 rounded-2xl p-7 md:p-10"
           >
             <p className="text-xs md:text-sm font-black text-danger-500 uppercase tracking-widest mb-4 flex items-center gap-2">
-              <Eye className="w-4 h-4" />
-              Seen with our own eyes
+              <Siren className="w-4 h-4" />
+              Read this first
             </p>
-            <p className="text-xl md:text-2xl text-[#f7f5ef] font-bold leading-snug mb-4">
-              I&apos;ve stood on Buckley Road and watched a kid go full throttle
-              WITH traffic. No plate, no helmet, no anything. Electronics
-              Parkway, same show.
+            <p className="text-2xl md:text-3xl text-[#f7f5ef] font-black leading-snug mb-3">
+              This spring, a 14-year-old popping wheelies on an e-motorcycle{" "}
+              <span className="text-danger-500">killed</span> an 81-year-old
+              combat veteran.
             </p>
-            <p className="text-base md:text-lg text-[#c7c3b8] leading-relaxed">
-              Say it out loud: children are riding unregistered motorcycles in
-              the traffic lane of a <B>state highway corridor</B>, and everyone
-              has quietly gotten used to it. We refuse.
+            <p className="text-xl md:text-2xl text-[#f7f5ef] font-bold leading-snug mb-5">
+              His mother is facing prison for letting him ride it.
             </p>
+            <p className="text-base md:text-lg text-[#c7c3b8] leading-relaxed mb-3">
+              That was California.{" "}
+              <B>This is Buckley Road:</B> a child, full throttle,
+              in the traffic lane. No plate. No helmet. No fear of anyone.
+              Electronics Parkway, same show.
+            </p>
+            <p className="text-base md:text-lg text-[#c7c3b8] leading-relaxed mb-5">
+              Same machines. Same parents. Same{" "}
+              <B>&ldquo;there&apos;s nothin&apos; we can do about
+              it.&rdquo;</B>
+            </p>
+            <p className="text-2xl md:text-3xl font-black text-[#f7f5ef] leading-snug mb-2">
+              Liverpool is the{" "}
+              <span className="text-danger-500">prequel</span>. Everyone
+              already knows how it ends.
+            </p>
+            <p className="text-xl md:text-2xl font-black text-danger-500 mb-7">
+              We refuse to wait for it.
+            </p>
+            <div className="flex flex-wrap items-center gap-4">
+              <SignCta small label="I've Seen Enough — Sign" />
+              <a
+                href="#the-case"
+                className="text-xs md:text-sm font-black uppercase tracking-widest text-[#8a867c] hover:text-[#f7f5ef] transition-colors"
+              >
+                Full story + video ↓
+              </a>
+            </div>
           </motion.div>
         </div>
       </section>
