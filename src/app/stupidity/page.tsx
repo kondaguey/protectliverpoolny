@@ -143,52 +143,108 @@ function Src({ href, children }: { href: string; children: React.ReactNode }) {
   );
 }
 
-/* Ordered to match the page top-to-bottom; SIGN NOW sits in its true
-   position but renders as the hot red chip. */
-const JUMP_LINKS: { href: string; label: string; hot?: boolean }[] = [
-  { href: "#witness", label: "👀 Seen It" },
-  { href: "#tally", label: "🤡 The Tally" },
-  { href: "#the-case", label: "💀 The Case" },
-  { href: "#the-law", label: "⚖️ The Law" },
-  { href: "#the-numbers", label: "📊 The Numbers" },
-  { href: "#the-science", label: "🧠 The Science" },
-  { href: "#both-illegal", label: "⚡ Both Illegal" },
-  { href: "#not-the-same", label: "🚲 Not the Same" },
-  { href: "#entitlement", label: "🛒 The Entitlement" },
-  { href: "#the-tide", label: "🌊 The Tide" },
-  { href: "#flock", label: "📵 No to Flock" },
-  { href: "#constitution", label: "🏛️ The Constitution" },
-  { href: "#manifesto", label: "📜 The Manifesto" },
-  { href: "#fafo", label: "💥 FAFO" },
-  { href: "#the-warning", label: "📹 The Warning" },
-  { href: "#sign", label: "✍️ SIGN NOW", hot: true },
-  { href: "#npc", label: "🤖 NPC Corner" },
-  { href: "#faq", label: "❓ FAQ" },
+/* Grouped to match the page top-to-bottom; the SIGN banner sits in its true
+   position (after the ground rules, before the aftermath). */
+const JUMP_GROUPS: {
+  title: string;
+  links: { href: string; label: string; video?: boolean }[];
+}[] = [
+  {
+    title: "The Evidence",
+    links: [
+      { href: "#witness", label: "👀 Seen With Our Own Eyes" },
+      { href: "#tally", label: "🤡 The Stupidity Tally" },
+      { href: "#the-case", label: "💀 The Manslaughter Case", video: true },
+      { href: "#the-law", label: "⚖️ The Law Nobody Enforces" },
+      { href: "#the-numbers", label: "📊 The ER Numbers" },
+      { href: "#the-science", label: "🧠 The Teen-Brain Science" },
+    ],
+  },
+  {
+    title: "The Excuses, Destroyed",
+    links: [
+      { href: "#both-illegal", label: "⚡ Both Are Illegal" },
+      { href: "#not-the-same", label: "🚲 Not the Same as a Bicycle" },
+      {
+        href: "#entitlement",
+        label: "🛒 They Rode Through a Walmart",
+        video: true,
+      },
+      { href: "#the-tide", label: "🌊 America Is Fed Up", video: true },
+      { href: "#flock", label: "📵 Not a Case for Cameras" },
+      { href: "#constitution", label: "🏛️ Yes, Stops Are Legal" },
+    ],
+  },
+  {
+    title: "The Ground Rules",
+    links: [
+      { href: "#manifesto", label: "📜 No-Confrontation Promise" },
+      { href: "#fafo", label: "💥 FAFO" },
+      { href: "#the-warning", label: "📹 The Warning to Parents" },
+    ],
+  },
+];
+
+const JUMP_AFTERMATH: { href: string; label: string }[] = [
+  { href: "#npc", label: "🤖 The NPC Wall of Fame" },
+  { href: "#faq", label: "❓ Every Excuse, Answered" },
 ];
 
 /* The jump-anywhere widget — dropped at every major decision point. */
 function JumpMenu({ id }: { id?: string }) {
+  const chip =
+    "inline-flex items-center px-4 py-2.5 bg-white/5 border border-[#2c2c2c] text-[#c7c3b8] hover:text-[#f7f5ef] hover:border-danger-700 font-bold text-sm md:text-base rounded-full transition-all";
+  const videoBadge = (
+    <span className="ml-1.5 inline-flex items-center px-1.5 py-0.5 rounded bg-danger-600/20 border border-danger-600/50 text-danger-400 text-[9px] font-black uppercase tracking-wider leading-none">
+      ▶ video
+    </span>
+  );
   return (
     <section id={id} className="pb-10 px-4 scroll-mt-24">
       <div className="max-w-3xl mx-auto">
         <div className="bg-[#131313] border border-[#2c2c2c] rounded-2xl p-5 md:p-7">
-          <p className="text-xs md:text-sm font-black text-danger-500 uppercase tracking-widest mb-4 text-center">
+          <p className="text-xs md:text-sm font-black text-danger-500 uppercase tracking-widest mb-5 text-center">
             Jump anywhere. Sign from everywhere.
           </p>
-          <div className="flex flex-wrap justify-center gap-2.5">
-            {JUMP_LINKS.map((l) => (
-              <a
-                key={l.href}
-                href={l.href}
-                className={
-                  l.hot
-                    ? "px-4 py-2.5 bg-danger-600 hover:bg-danger-500 text-white font-black text-sm md:text-base rounded-full transition-all"
-                    : "px-4 py-2.5 bg-white/5 border border-[#2c2c2c] text-[#c7c3b8] hover:text-[#f7f5ef] hover:border-danger-700 font-bold text-sm md:text-base rounded-full transition-all"
-                }
-              >
-                {l.label}
-              </a>
-            ))}
+          {JUMP_GROUPS.map((g) => (
+            <div key={g.title} className="mb-5">
+              <p className="text-[10px] md:text-xs font-black uppercase tracking-[0.25em] text-[#6b675e] mb-2.5 text-center">
+                — {g.title} —
+              </p>
+              <div className="flex flex-wrap justify-center gap-2.5">
+                {g.links.map((l) => (
+                  <a key={l.href} href={l.href} className={chip}>
+                    {l.label}
+                    {l.video && videoBadge}
+                  </a>
+                ))}
+              </div>
+            </div>
+          ))}
+
+          {/* The ask — full-width, pulsing, in its true page position */}
+          <a
+            href="#sign"
+            className="sign-sizzle relative overflow-hidden flex items-center justify-center gap-2 w-full px-4 py-3.5 mb-5 bg-danger-600 hover:bg-danger-500 text-white font-black text-base md:text-lg uppercase tracking-wider rounded-full transition-colors"
+          >
+            <span
+              aria-hidden="true"
+              className="sign-shine absolute inset-y-0 left-0 w-1/4 bg-gradient-to-r from-transparent via-white/30 to-transparent pointer-events-none"
+            />
+            ✍️ Sign the Petition — 30 Seconds
+          </a>
+
+          <div>
+            <p className="text-[10px] md:text-xs font-black uppercase tracking-[0.25em] text-[#6b675e] mb-2.5 text-center">
+              — After You Sign —
+            </p>
+            <div className="flex flex-wrap justify-center gap-2.5">
+              {JUMP_AFTERMATH.map((l) => (
+                <a key={l.href} href={l.href} className={chip}>
+                  {l.label}
+                </a>
+              ))}
+            </div>
           </div>
         </div>
       </div>
@@ -1995,10 +2051,35 @@ export default function StupidityPage() {
                 targets the <B>consequences vacuum</B>: enforcement, impound,
                 parental accountability.
               </p>
+              <p>
+                Still think it&apos;s aisles and parking lots? Here&apos;s a
+                pack of them on <B>Interstate 4 in Orlando</B>, cutting off
+                cars at highway speed.
+              </p>
+              <p>
+                A literal interstate. The place where a fender-bender is a
+                funeral.
+              </p>
             </div>
-            <div className="mt-4">
+
+            <div className="relative aspect-[9/16] w-full max-w-[300px] mx-auto rounded-xl overflow-hidden border border-[#2c2c2c] my-6 bg-black">
+              <iframe
+                className="absolute inset-0 w-full h-full"
+                src="https://www.youtube-nocookie.com/embed/279myYnkmww"
+                title="4LOW Photo: Bunch of kids on e-bikes riding on I-4 cutting off cars"
+                allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="strict-origin-when-cross-origin"
+              />
+            </div>
+
+            <div className="mt-4 flex flex-wrap gap-x-5 gap-y-2">
               <Src href="https://www.youtube.com/watch?v=ajoyAm_MxNE">
                 Source: KTLA 5 (Los Angeles)
+              </Src>
+              <Src href="https://www.youtube.com/shorts/279myYnkmww">
+                Source: 4LOW Photo (I-4, Orlando)
               </Src>
             </div>
             <div className="mt-7 flex flex-wrap items-center gap-4">
@@ -2146,6 +2227,9 @@ export default function StupidityPage() {
           </motion.div>
         </div>
       </section>
+
+      {/* Midpoint jump menu — splits the long climb between hero and sign */}
+      <JumpMenu />
 
       <Divider />
 

@@ -76,3 +76,39 @@ textarea:-webkit-autofill {
   width: 48px !important;
   height: 48px !important;
 }
+
+/* SIGN NOW sizzle — heartbeat glow + shine sweep (/stupidity jump menu) */
+@keyframes sign-pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(220, 38, 38, 0.55);
+    transform: scale(1);
+  }
+  50% {
+    box-shadow: 0 0 0 12px rgba(220, 38, 38, 0);
+    transform: scale(1.03);
+  }
+}
+@keyframes sign-shine {
+  0% {
+    transform: translateX(-180%) skewX(-18deg);
+  }
+  18% {
+    transform: translateX(560%) skewX(-18deg);
+  }
+  100% {
+    transform: translateX(560%) skewX(-18deg);
+  }
+}
+.sign-sizzle {
+  animation: sign-pulse 1.8s ease-in-out infinite;
+}
+.sign-shine {
+  animation: sign-shine 3.2s linear infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .sign-sizzle,
+  .sign-shine {
+    animation: none;
+  }
+}
