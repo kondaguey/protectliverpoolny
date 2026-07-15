@@ -35,6 +35,8 @@ import {
   ChevronRight,
   CornerDownLeft,
   MessageSquareQuote,
+  ShoppingCart,
+  Waves,
   Video,
   TrendingUp,
   HelpCircle,
@@ -152,6 +154,8 @@ const JUMP_LINKS: { href: string; label: string; hot?: boolean }[] = [
   { href: "#the-science", label: "🧠 The Science" },
   { href: "#both-illegal", label: "⚡ Both Illegal" },
   { href: "#not-the-same", label: "🚲 Not the Same" },
+  { href: "#entitlement", label: "🛒 The Entitlement" },
+  { href: "#the-tide", label: "🌊 The Tide" },
   { href: "#flock", label: "📵 No to Flock" },
   { href: "#constitution", label: "🏛️ The Constitution" },
   { href: "#manifesto", label: "📜 The Manifesto" },
@@ -801,26 +805,35 @@ function GolfCartSlider() {
    consecutive missing numbers, so new exhibits appear on the next
    page load with zero code changes. */
 function NpcGallery() {
-  const [shots, setShots] = useState<string[]>([]);
+  const [shots, setShots] = useState<{ src: string; scorched: boolean }[]>([]);
 
   useEffect(() => {
     let cancelled = false;
+    const probe = (src: string) =>
+      new Promise<boolean>((resolve) => {
+        const im = new window.Image();
+        im.onload = () => resolve(true);
+        im.onerror = () => resolve(false);
+        im.src = src;
+      });
     (async () => {
-      const found: string[] = [];
+      const found: { src: string; scorched: boolean }[] = [];
       let misses = 0;
+      // Two filename tiers per slot: npc-comment-N.png (plain exhibit) or
+      // npc-comment-N-scorched.png (the NPC got the retort included).
       for (let i = 1; i <= 60 && misses < 2; i++) {
-        const src = `/stupidity/npc-comment-${i}.png`;
-        const ok = await new Promise<boolean>((resolve) => {
-          const im = new window.Image();
-          im.onload = () => resolve(true);
-          im.onerror = () => resolve(false);
-          im.src = src;
-        });
-        if (cancelled) return;
-        if (ok) {
-          found.push(src);
+        const plain = `/stupidity/npc-comment-${i}.png`;
+        const scorched = `/stupidity/npc-comment-${i}-scorched.png`;
+        if (await probe(plain)) {
+          if (cancelled) return;
+          found.push({ src: plain, scorched: false });
+          misses = 0;
+        } else if (await probe(scorched)) {
+          if (cancelled) return;
+          found.push({ src: scorched, scorched: true });
           misses = 0;
         } else {
+          if (cancelled) return;
           misses++;
         }
       }
@@ -841,18 +854,52 @@ function NpcGallery() {
   }
 
   return (
-    <div className="columns-1 sm:columns-2 gap-4 mb-2 [&>*]:break-inside-avoid">
-      {shots.map((src, i) => (
-        // eslint-disable-next-line @next/next/no-img-element
-        <img
-          key={src}
-          src={src}
-          alt={`NPC exhibit ${i + 1}: a real comment defending the illegal riding`}
-          loading="lazy"
-          className="w-full rounded-xl border border-[#2c2c2c] mb-4"
-        />
-      ))}
-    </div>
+    <>
+      {/* Restaurant celebrity-wall header */}
+      <div className="flex items-center gap-3 mb-2">
+        <span className="h-px flex-1 bg-[#2c2c2c]" />
+        <p className="text-sm md:text-base font-black uppercase tracking-[0.25em] text-amber-400/90 text-center">
+          ★ The NPC Wall of Fame ★
+        </p>
+        <span className="h-px flex-1 bg-[#2c2c2c]" />
+      </div>
+      <p className="text-center text-xs md:text-sm text-[#8a867c] italic mb-5">
+        Like the celebrity wall at a pizzeria, except everyone here earned it.
+      </p>
+      <div className="columns-1 sm:columns-2 gap-4 mb-2 [&>*]:break-inside-avoid">
+        {shots.map((s, i) => (
+          <motion.figure
+            key={s.src}
+            style={{ rotate: i % 2 === 0 ? -0.8 : 0.8 }}
+            whileHover={{ rotate: 0 }}
+            className={`mb-4 rounded-xl border overflow-hidden bg-[#0d0d0d] ${
+              s.scorched ? "border-amber-600/70" : "border-[#2c2c2c]"
+            }`}
+          >
+            <figcaption className="flex items-center justify-between gap-3 border-b border-[#2c2c2c] px-3.5 py-2">
+              <span className="flex items-center gap-2 text-[10px] md:text-xs font-black uppercase tracking-widest text-danger-500">
+                Exhibit {i + 1}
+                {s.scorched && (
+                  <span className="px-1.5 py-0.5 rounded bg-amber-500/15 border border-amber-500/60 text-amber-400">
+                    🔥 Scorched
+                  </span>
+                )}
+              </span>
+              <span className="text-[10px] md:text-xs font-bold uppercase tracking-widest text-[#8a867c]">
+                Unedited screenshot
+              </span>
+            </figcaption>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={s.src}
+              alt={`NPC exhibit ${i + 1}: a real comment defending the illegal riding, reproduced unedited${s.scorched ? ", retort included" : ""}`}
+              loading="lazy"
+              className="w-full"
+            />
+          </motion.figure>
+        ))}
+      </div>
+    </>
   );
 }
 
@@ -1870,6 +1917,225 @@ export default function StupidityPage() {
 
             <div className="mt-7 flex flex-wrap items-center gap-4">
               <BackToSign label="Not the same thing — Sign" />
+              <a
+                href="#jump"
+                className="text-xs md:text-sm font-black uppercase tracking-widest text-[#8a867c] hover:text-[#f7f5ef] transition-colors"
+              >
+                ↑ Menu
+              </a>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      <Divider />
+
+      {/* ═══════════════════ THE ENTITLEMENT ═══════════════════ */}
+      <section id="entitlement" className="pb-8 px-4 scroll-mt-24">
+        <div className="max-w-3xl mx-auto">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-40px" }}
+            variants={fadeUp}
+            custom={0}
+            className="bg-[#131313] border border-[#2c2c2c] rounded-2xl p-7 md:p-10"
+          >
+            <p className="text-xs md:text-sm font-black text-danger-500 uppercase tracking-widest mb-4 flex items-center gap-2">
+              <ShoppingCart className="w-4 h-4" />
+              A Walmart, somewhere in America
+            </p>
+            <h2 className="text-2xl md:text-3xl font-black text-[#f7f5ef] leading-tight mb-5">
+              It&apos;s less an e-bike problem. More an{" "}
+              <span className="text-danger-500">entitlement problem</span>. And
+              a consequences problem.
+            </h2>
+            <div className="space-y-3 text-base md:text-lg text-[#c7c3b8] leading-relaxed">
+              <p>
+                Think this is a Liverpool quirk? Watch what a Los Angeles news
+                station put on air.
+              </p>
+            </div>
+
+            <div className="relative aspect-video rounded-xl overflow-hidden border border-[#2c2c2c] my-6 bg-black">
+              <iframe
+                className="absolute inset-0 w-full h-full"
+                src="https://www.youtube-nocookie.com/embed/ajoyAm_MxNE"
+                title="KTLA 5: Teens on e-bikes terrorize Walmart customers"
+                allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="strict-origin-when-cross-origin"
+              />
+            </div>
+
+            <div className="space-y-3 text-base md:text-lg text-[#c7c3b8] leading-relaxed">
+              <p>
+                Teenagers rode their e-motos and e-bikes{" "}
+                <B>through a Walmart</B>. Through the aisles. Past shoppers who
+                had nowhere to go.
+              </p>
+              <p>And the consequences? You already know. None.</p>
+              <p>
+                So no, the machine was never the whole story. The machine is
+                just the delivery vehicle.
+              </p>
+              <p>
+                The cargo is the attitude:{" "}
+                <B>rules are for other people, and nobody will do anything</B>.
+              </p>
+              <p>They&apos;re not wrong about the second part. Yet.</p>
+              <p>
+                Every time nothing happens, the lesson gets louder. A kid who
+                learns at 14 that no rule can reach him doesn&apos;t unlearn
+                it at 18 behind the wheel of a car.
+              </p>
+              <p>
+                That&apos;s why this petition doesn&apos;t target hardware. It
+                targets the <B>consequences vacuum</B>: enforcement, impound,
+                parental accountability.
+              </p>
+            </div>
+            <div className="mt-4">
+              <Src href="https://www.youtube.com/watch?v=ajoyAm_MxNE">
+                Source: KTLA 5 (Los Angeles)
+              </Src>
+            </div>
+            <div className="mt-7 flex flex-wrap items-center gap-4">
+              <BackToSign label="Enough entitlement — Sign" />
+              <a
+                href="#jump"
+                className="text-xs md:text-sm font-black uppercase tracking-widest text-[#8a867c] hover:text-[#f7f5ef] transition-colors"
+              >
+                ↑ Menu
+              </a>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      <Divider />
+
+      {/* ═══════════════════ THE TIDE ═══════════════════ */}
+      <section id="the-tide" className="pb-8 px-4 scroll-mt-24">
+        <div className="max-w-3xl mx-auto">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-40px" }}
+            variants={fadeUp}
+            custom={0}
+            className="bg-[#131313] border border-[#2c2c2c] rounded-2xl p-7 md:p-10"
+          >
+            <p className="text-xs md:text-sm font-black text-danger-500 uppercase tracking-widest mb-4 flex items-center gap-2">
+              <Waves className="w-4 h-4" />
+              Milford, Massachusetts. And everywhere.
+            </p>
+            <h2 className="text-2xl md:text-3xl font-black text-[#f7f5ef] leading-tight mb-5">
+              People are getting{" "}
+              <span className="text-danger-500">fucking tired</span> of it. And
+              the tide is turning.
+            </h2>
+            <div className="space-y-3 text-base md:text-lg text-[#c7c3b8] leading-relaxed">
+              <p>
+                Here&apos;s a new one. A teen rider blew through a crosswalk
+                signal on his e-bike and got hit by a car. On camera.
+              </p>
+              <p>
+                Guess who got charged. <B>The rider.</B>{" "}And the police chief
+                went on the record saying he&apos;s sick of it.
+              </p>
+            </div>
+
+            <div className="relative aspect-video rounded-xl overflow-hidden border border-[#2c2c2c] my-6 bg-black">
+              <iframe
+                className="absolute inset-0 w-full h-full"
+                src="https://www.youtube-nocookie.com/embed/bkuHFntessc"
+                title="CBS Boston: Teen e-bike rider charged after being hit by car in Milford"
+                allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="strict-origin-when-cross-origin"
+              />
+            </div>
+
+            <p className="text-base md:text-lg text-[#c7c3b8] leading-relaxed mb-4">
+              Now scroll the comment section under that report.{" "}
+              <B>America&apos;s mood, with receipts:</B>
+            </p>
+
+            <div className="grid sm:grid-cols-2 gap-3 mb-6">
+              {[
+                {
+                  quote: "Dang that car really wanted to finish off that e bike.",
+                  likes: "10K",
+                },
+                {
+                  quote: "Good thing there was a camera",
+                  likes: "8.7K",
+                },
+                {
+                  quote:
+                    "What!!? We're gonna hold people accountable for their actions? What insanity.",
+                  likes: "6.9K",
+                },
+                {
+                  quote:
+                    "If you're going 40 Mph on an e-bike, then you're just driving a small motorcycle at that point.",
+                  likes: "5.9K",
+                },
+                {
+                  quote:
+                    "The vehicle taking 5 business days to completely stop is the best part",
+                  likes: "5K",
+                },
+                {
+                  quote:
+                    "I'm shocked! Someone's actually being held accountable for their actions! Well done",
+                  likes: "3.4K",
+                },
+              ].map((c) => (
+                <div
+                  key={c.likes}
+                  className="bg-[#0d0d0d] border border-[#2c2c2c] rounded-xl p-4 flex flex-col justify-between gap-3"
+                >
+                  <p className="text-sm md:text-base text-[#c7c3b8] leading-snug">
+                    &ldquo;{c.quote}&rdquo;
+                  </p>
+                  <p className="text-xs font-black uppercase tracking-widest text-danger-500">
+                    👍 {c.likes} likes
+                  </p>
+                </div>
+              ))}
+            </div>
+
+            <div className="space-y-3 text-base md:text-lg text-[#c7c3b8] leading-relaxed">
+              <p>
+                That&apos;s tens of thousands of likes for accountability. Not
+                from cranky neighbors. <B>From everybody.</B>
+              </p>
+              <p>
+                The riders and their parents think we&apos;re the villains
+                here. The rest of the country is telling them otherwise.
+              </p>
+              <p>
+                And understand what this site actually is. It&apos;s{" "}
+                <B>local parenting, outsourced</B>. The parents wouldn&apos;t
+                set a boundary, so the neighborhood is setting one for them.
+              </p>
+              <p>
+                They hate us for it today. Fine. A boundary you hate is still
+                a boundary. And it might be the only thing keeping their kid
+                off a stretcher.
+              </p>
+            </div>
+            <div className="mt-4">
+              <Src href="https://www.youtube.com/watch?v=bkuHFntessc">
+                Source: CBS Boston
+              </Src>
+            </div>
+            <div className="mt-7 flex flex-wrap items-center gap-4">
+              <BackToSign label="The tide is turning — Sign" />
               <a
                 href="#jump"
                 className="text-xs md:text-sm font-black uppercase tracking-widest text-[#8a867c] hover:text-[#f7f5ef] transition-colors"

@@ -136,6 +136,20 @@ export function Header() {
           >
             Take Action
           </Link>
+
+          {/* Separate campaign — the e-bike fight. Divider keeps it visually
+              apart from the tower links so the two are never conflated. */}
+          <div className="w-px h-6 bg-dark-700/60 mx-2" />
+          <Link
+            href="/stupidity"
+            className={`px-4 py-2 rounded-lg text-sm font-black tracking-wide transition-all duration-200 ${
+              pathname === "/stupidity"
+                ? "bg-danger-600 text-white"
+                : "text-danger-400 border border-danger-600/60 bg-danger-600/10 hover:bg-danger-600 hover:text-white"
+            }`}
+          >
+            🏍️ The Stupidity
+          </Link>
         </nav>
 
         {/* Mobile Toggle */}
@@ -243,6 +257,24 @@ export function Header() {
           >
             Take Action
           </Link>
+
+          {/* ── Separate campaign: the e-bike fight ── */}
+          <div className="pt-5 mt-4 border-t border-dark-700/50">
+            <p className="px-4 pb-2 text-[11px] font-black uppercase tracking-[0.2em] text-dark-500">
+              Separate Fight · Same Town
+            </p>
+            <Link
+              href="/stupidity"
+              onClick={() => setMobileOpen(false)}
+              className={`block px-4 py-3 rounded-lg text-sm font-black transition-all ${
+                pathname === "/stupidity"
+                  ? "bg-danger-600 text-white"
+                  : "text-danger-400 border border-danger-600/60 bg-danger-600/10 hover:bg-danger-600 hover:text-white"
+              }`}
+            >
+              🏍️ The Stupidity — E-Bike Petition
+            </Link>
+          </div>
         </nav>
       </div>
     )}
