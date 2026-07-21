@@ -985,7 +985,14 @@ export default function TakeActionPage() {
                     )}
                   </button>
 
-
+                  <a
+                    href="https://buymeacoffee.com/protectliverpoolny"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-full flex items-center justify-center gap-2 py-2.5 bg-amber-500/10 border border-amber-600/40 text-amber-300 hover:bg-amber-500/20 hover:text-amber-200 font-bold rounded-xl transition-all text-sm"
+                  >
+                    ☕ One-man show. Help keep it running.
+                  </a>
 
                   <div className="text-center pt-2 border-t border-dark-800/50">
                     <p className="text-xs text-dark-500 mb-1">

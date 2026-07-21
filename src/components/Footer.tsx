@@ -57,6 +57,22 @@ export function Footer() {
           </div>
         </div>
 
+        {/* Support strip — personal ask, kept deliberately small */}
+        <div className="mt-8 text-center">
+          <p className="text-xs text-dark-400 mb-2.5">
+            No ads. No tracking. No organization. Every cost here comes out of
+            one resident&apos;s wallet.
+          </p>
+          <a
+            href="https://buymeacoffee.com/protectliverpoolny"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 px-4 py-2 bg-amber-500/10 border border-amber-600/30 text-amber-300/90 hover:bg-amber-500/20 hover:text-amber-200 font-bold rounded-lg transition-all text-xs"
+          >
+            ☕ Buy me a coffee
+          </a>
+        </div>
+
         {/* Disclaimer */}
         <div className="mt-8 pt-6 border-t border-dark-800/50">
           <p className="text-xs text-dark-500 text-center max-w-2xl mx-auto leading-relaxed">

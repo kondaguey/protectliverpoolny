@@ -150,6 +150,17 @@ export function Header() {
           >
             🏍️ The Stupidity
           </Link>
+
+          {/* Coffee — personal support, deliberately small */}
+          <a
+            href="https://buymeacoffee.com/protectliverpoolny"
+            target="_blank"
+            rel="noopener noreferrer"
+            title="One-man show. Help keep the site running."
+            className="ml-1 px-3 py-2 rounded-lg text-sm font-bold text-amber-300/90 bg-amber-500/10 border border-amber-600/30 hover:bg-amber-500/20 hover:text-amber-200 transition-all duration-200"
+          >
+            ☕
+          </a>
         </nav>
 
         {/* Mobile Toggle */}
@@ -274,6 +285,19 @@ export function Header() {
             >
               🏍️ The Stupidity — E-Bike Petition
             </Link>
+          </div>
+
+          {/* Coffee — personal support */}
+          <div className="pt-5 mt-4 border-t border-dark-700/50">
+            <a
+              href="https://buymeacoffee.com/protectliverpoolny"
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => setMobileOpen(false)}
+              className="block px-4 py-3 rounded-lg text-sm font-bold text-amber-300/90 bg-amber-500/10 border border-amber-600/30 hover:bg-amber-500/20 hover:text-amber-200 transition-all"
+            >
+              ☕ Buy Me a Coffee — One-Man Show
+            </a>
           </div>
         </nav>
       </div>

@@ -1308,6 +1308,33 @@ export default function StupidityPage() {
         </>
       ),
     },
+    {
+      q: "Who's paying for all of this? What's the angle?",
+      a: (
+        <>
+          <p>
+            Me. The domain, the hosting, the email receipts, the hours.{" "}
+            <B>All of it, out of one wallet: mine.</B>
+          </p>
+          <p>
+            No ads. No tracking. No data selling. Nothing for sale.
+            That&apos;s deliberate, and it stays that way.
+          </p>
+          <p>
+            If the site&apos;s worth something to you, you can{" "}
+            <a
+              href="https://buymeacoffee.com/protectliverpoolny"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-amber-400 hover:text-amber-300 font-bold transition-colors"
+            >
+              buy me a coffee ☕
+            </a>
+            . If not, signing is free and matters more.
+          </p>
+        </>
+      ),
+    },
   ];
 
   return (
@@ -2757,6 +2784,22 @@ export default function StupidityPage() {
                   Read the Facts ↑
                 </a>
               </div>
+
+              {/* Coffee strip — personal support, shown only after signing */}
+              <div className="mt-7 pt-5 border-t border-emerald-800/30">
+                <p className="text-xs md:text-sm text-[#8a867c] mb-3">
+                  This site has no ads, no tracking, and no organization
+                  behind it. One resident&apos;s wallet covers all of it.
+                </p>
+                <a
+                  href="https://buymeacoffee.com/protectliverpoolny"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-5 py-2.5 bg-amber-500/10 border border-amber-600/40 text-amber-300 hover:bg-amber-500/20 hover:text-amber-200 font-bold rounded-xl transition-all text-sm"
+                >
+                  ☕ Buy me a coffee
+                </a>
+              </div>
             </div>
           ) : (
             /* ── Form ── */
@@ -3363,6 +3406,15 @@ export default function StupidityPage() {
                     </>
                   )}
                 </button>
+
+                <a
+                  href="https://buymeacoffee.com/protectliverpoolny"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full flex items-center justify-center gap-2 py-2.5 bg-amber-500/10 border border-amber-600/40 text-amber-300 hover:bg-amber-500/20 hover:text-amber-200 font-bold rounded-xl transition-all text-sm"
+                >
+                  ☕ One-man show. Help keep it running.
+                </a>
 
                 <p className="text-center text-xs text-[#6b675e] pt-2">
                   New York State is screwing this neighborhood more ways than
