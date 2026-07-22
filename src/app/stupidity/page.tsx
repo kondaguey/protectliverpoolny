@@ -174,6 +174,7 @@ const JUMP_GROUPS: {
       { href: "#the-tide", label: "🌊 America Is Fed Up", video: true },
       { href: "#flock", label: "📵 Not a Case for Cameras" },
       { href: "#constitution", label: "🏛️ Yes, Stops Are Legal" },
+      { href: "#the-line", label: "🚧 The Karen Line" },
     ],
   },
   {
@@ -1360,9 +1361,13 @@ export default function StupidityPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-5xl sm:text-6xl md:text-7xl font-black leading-none tracking-tight mb-8 text-[#f7f5ef]"
+            className="text-4xl sm:text-5xl md:text-6xl font-black leading-tight tracking-tight mb-8 text-[#f7f5ef]"
           >
-            E-Bike <span className="text-danger-500">Stupidity</span>
+            We&apos;re not against e-bikes.{" "}
+            <span className="block">
+              We&apos;re against{" "}
+              <span className="text-danger-500">STUPIDITY</span>.
+            </span>
           </motion.h1>
 
           {/* The hero image — the attention grab, straight after the title */}
@@ -2477,6 +2482,92 @@ export default function StupidityPage() {
               </Src>
             </div>
             <MiniNav />
+          </motion.div>
+        </div>
+      </section>
+
+      <Divider />
+
+      {/* ═══════════════════ THE KAREN LINE ═══════════════════ */}
+      <section id="the-line" className="pb-8 px-4 scroll-mt-24">
+        <div className="max-w-3xl mx-auto">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-40px" }}
+            variants={fadeUp}
+            custom={0}
+            className="bg-[#131313] border border-[#2c2c2c] rounded-2xl p-6 md:p-8"
+          >
+            <p className="text-xs md:text-sm font-black text-danger-500 uppercase tracking-widest mb-4 flex items-center gap-2">
+              <Scale className="w-4 h-4" />
+              Know the difference
+            </p>
+            <h2 className="text-2xl md:text-3xl font-black text-[#f7f5ef] leading-tight mb-2">
+              The line between a Karen and a{" "}
+              <span className="text-danger-500">Koncerned Citizen</span>.
+            </h2>
+            <p className="text-sm md:text-base text-[#8a867c] mb-6">
+              The K is on purpose. So is everything else here.
+            </p>
+
+            <CardImage
+              src="/stupidity/stupidity-karen-line.png"
+              alt="Split cartoon: the same woman screaming over a fence at an empty street on one side, and calmly handing a thick petition to town officials at a podium on the other"
+            />
+
+            <div className="grid sm:grid-cols-2 gap-3">
+              <div className="bg-danger-950/30 border border-danger-700/50 rounded-xl p-5">
+                <p className="text-xs font-black uppercase tracking-widest text-danger-400 mb-3">
+                  A Karen
+                </p>
+                <ul className="space-y-2 text-sm md:text-base text-[#c7c3b8] leading-relaxed list-disc list-outside pl-4 marker:text-danger-500">
+                  <li>Screams at the kids in the street.</li>
+                  <li>Wants to see the manager.</li>
+                  <li>Just bad vibes. Cringe the whole block can feel.</li>
+                  <li>Hopes the kids get what&apos;s coming.</li>
+                  <li>Hates their life and takes it out on everyone else.</li>
+                  <li>Deeply insecure.</li>
+                </ul>
+              </div>
+              <div className="bg-emerald-950/30 border border-emerald-700/50 rounded-xl p-5">
+                <p className="text-xs font-black uppercase tracking-widest text-emerald-400 mb-3">
+                  A Koncerned Citizen
+                </p>
+                <ul className="space-y-2 text-sm md:text-base text-[#f7f5ef] leading-relaxed font-medium list-disc list-outside pl-4 marker:text-emerald-400">
+                  <li>
+                    A normal, adjusted human who cares about the welfare of
+                    everyone on that street. Including the kids on the
+                    machines.
+                  </li>
+                  <li>
+                    Knows disturbing the peace is real harm with a real
+                    statute behind it. Not a vibe.
+                  </li>
+                  <li>
+                    Carries righteous anger and aims it at the government. On
+                    paper. On the record.
+                  </li>
+                  <li>
+                    Sees through the lies, the dumbing down, and the
+                    sociopathy being sold as &ldquo;just fun.&rdquo;
+                  </li>
+                  <li>
+                    Loves their life here. That&apos;s the whole reason
+                    they&apos;re defending it.
+                  </li>
+                  <li>
+                    Secure enough to sign their real name and take the hatred
+                    for it.
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <p className="text-base md:text-lg font-bold text-[#f7f5ef] mt-5">
+              Every word on this page was built on the right side of that
+              line.
+            </p>
           </motion.div>
         </div>
       </section>
