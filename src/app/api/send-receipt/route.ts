@@ -3,6 +3,27 @@ import { NextResponse } from "next/server";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
+// ── In-memory rate limiter (per IP, resets on redeploy) ──
+// Added 2026-11-14, same as /api/stupidity/send-receipt. This is a public
+// endpoint that sends email to whatever address it is given; with no limiter
+// it could be looped to mail anyone from our domain and burn the Resend quota.
+const rateLimitMap = new Map<string, { count: number; resetAt: number }>();
+const RATE_LIMIT = 5; // max receipts per window
+const RATE_WINDOW_MS = 60 * 60 * 1000; // 1 hour
+
+function isRateLimited(ip: string): boolean {
+  const now = Date.now();
+  const entry = rateLimitMap.get(ip);
+
+  if (!entry || now > entry.resetAt) {
+    rateLimitMap.set(ip, { count: 1, resetAt: now + RATE_WINDOW_MS });
+    return false;
+  }
+
+  entry.count++;
+  return entry.count > RATE_LIMIT;
+}
+
 /** Escape HTML special characters to prevent XSS */
 function esc(str: string | null | undefined): string {
   if (!str) return "";
@@ -16,6 +37,18 @@ function esc(str: string | null | undefined): string {
 
 export async function POST(req: Request) {
   try {
+    const ip =
+      req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ||
+      req.headers.get("x-real-ip") ||
+      "unknown";
+
+    if (isRateLimited(ip)) {
+      return NextResponse.json(
+        { error: "Too many requests. Please try again later." },
+        { status: 429 }
+      );
+    }
+
     const body = await req.json();
 
     // Sanitize + enforce length limits
